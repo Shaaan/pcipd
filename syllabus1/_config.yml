@@ -1,9 +1,0 @@
-# Site settings
-title: PCIPD, First Year Syllabus
-tag_text: PCIPD
-description: PCI PharmD syllabus for First Year
-
-# Build settings
-markdown: kramdown
-
-exclude: ["README.md"]
