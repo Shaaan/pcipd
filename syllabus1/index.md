@@ -16,9 +16,9 @@ nervous tissues-their sub-types and characteristics
   b) Classification of joints, Types of movements of joints and disorders of joints
  (Definitions only)
 5. Haemopoetic System
-  1. Composition and functions of blood
-  2. Haemopoesis and disorders of blood components (definition of disorder)
-  3. Blood groups
+  * Composition and functions of blood
+  * Haemopoesis and disorders of blood components (definition of disorder)
+  * Blood groups
   4. Clotting factors and mechanism
   5. Platelets and disorders of coagulation
 6. Lymph
