@@ -15,29 +15,27 @@ nervous tissues-their sub-types and characteristics
  Skeleton. (done in practical classes - 6hrs)  
   b) Classification of joints, Types of movements of joints and disorders of joints
  (Definitions only)
-- Haemopoetic System
+5. Haemopoetic System
  * Composition and functions of blood
  * Haemopoesis and disorders of blood components (definition of disorder)
  * Blood groups
  * Clotting factors and mechanism
  * Platelets and disorders of coagulation
 6. Lymph
-  1. Lymph and lymphatic system, composition, formation and circulation.
-  2. Spleen: structure and functions, Disorders
-  3. Disorders of lymphatic system (definition only)
+ * Lymph and lymphatic system, composition, formation and circulation.
+ * Spleen: structure and functions, Disorders
+ * Disorders of lymphatic system (definition only)
 7. Cardiovascular system
-  1. Anatomy and functions of heart
-  2. Blood vessels and circulation (Pulmonary, coronary and systemic circulation)
-  3. Electrocardiogram (ECG)
-  4. Cardiac cycle and heart sounds
-  5. Blood pressure – its maintenance and regulation
-  6. Definition of the following disorders
+ * Anatomy and functions of heart
+ * Blood vessels and circulation (Pulmonary, coronary and systemic circulation)
+ * Electrocardiogram (ECG)
+ * Cardiac cycle and heart sounds
+ * Blood pressure – its maintenance and regulation
+ * Definition of the following disorders  
   Hypertension, Hypotension, Arteriosclerosis, Atherosclerosis, Angina,
   Myocardial infarction, Congestive heart failure, Cardiac arrhythmias
 8. Respiratory system
-  1. Anatomy of respiratory organs and functions
-  2. Mechanism / physiology of respiration and regulation of respiration
+ * Anatomy of respiratory organs and functions
+ * Mechanism / physiology of respiration and regulation of respiration
 
-  1. Item 1
-    1. A corollary to the above item.
-    2. Yet another point to consider.
+  
