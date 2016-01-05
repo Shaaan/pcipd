@@ -96,4 +96,17 @@
     <string name="fourth_year">Fourth Year Syllabus</string>
     <string name="fifth_year">Fifth Year Syllabus</string>
     <string name="sixth_year">Sixth Year Syllabus</string>
+    <string name="title_activity_first_year">First Year Syllabus</string>
+    <string name="title_activity_second_year">Second Year Syllabus</string>
+    <string name="title_activity_third_year">Third Year Syllabus</string>
+    <string name="title_activity_fourth_year">Fourth Year Syllabus</string>
+    <string name="title_activity_fifth_year">Fifth Year Syllabus</string>
+    <string name="title_activity_sixth_year">Sixth Year Syllabus</string>
+
+    <!--First Year-->
+    <string name="hap">Human Anatomy and Physiology</string>
+    <string name="biochem">Medicinal Biochemistry</string>
+    <string name="ic">Pharmaceutical Inorganic Chemistry</string>
+    <string name="oc">Pharmaceutical Organic Chemistry</string>
+    <string name="ceutics">Pharmaceutics</string>
 </resources>

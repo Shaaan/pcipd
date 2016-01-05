@@ -19,15 +19,69 @@
             </intent-filter>
         </activity>
         <activity
-        android:name=".helper.WebviewActivity"
-        android:label="@string/app_name"
-        android:parentActivityName=".HomeActivity" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".HomeActivity" />
+            android:name=".helper.WebviewActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeActivity" />
         </activity>
 
-        <service android:name="org.chromium.customtabsclient.shared.KeepAliveService"/>
+        <activity
+            android:name=".FirstYear"
+            android:label="@string/title_activity_first_year"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.shaaan.pcipharmd.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".SecondYear"
+            android:label="@string/title_activity_second_year"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.shaaan.pcipharmd.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".ThirdYear"
+            android:label="@string/title_activity_third_year"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.shaaan.pcipharmd.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".FourthYear"
+            android:label="@string/title_activity_fourth_year"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.shaaan.pcipharmd.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".FifthYear"
+            android:label="@string/title_activity_fifth_year"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.shaaan.pcipharmd.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".SixthYear"
+            android:label="@string/title_activity_sixth_year"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.shaaan.pcipharmd.HomeActivity" />
+        </activity>
+        <service android:name="org.chromium.customtabsclient.shared.KeepAliveService" />
     </application>
 
 </manifest>
