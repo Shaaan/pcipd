@@ -82,5 +82,56 @@ nervous tissues-their sub-types and characteristics
 16. Sports physiology
  * Muscles in exercise, Effect of athletic training on muscles and muscle performance
  * Respiration in exercise, CVS in exercise, Body heat in exercise, Body fluids and salts in exercise
+ * Drugs and athletics
 
-  
+
+ ###1.1 HUMAN ANATOMY & PHYSIOLOGY (PRACTICAL)
+
+**Practical : 3 Hrs/Week**
+
+*General Requirements:*  
+Dissection box, Laboratory Napkin, muslin cloth, record,
+Observation book(100pages), Stationary items, Blood lancet.  
+*Course materials:*  
+  * Text books - Goyal, R. K, Natvar M.P, and Shah S.A, Practical anatomy, physiology and
+biochemistry, latest edition, Publisher: B.S Shah Prakashan, Ahmedabad.
+  * Reference books - Ranade VG, Text book of practical physiology, Latest edition, Publisher: PVG, Pune, Anderson Experimental Physiology, Latest edition, Publisher: NA
+
+  List of Experiments:
+1. Study of tissues of human body
+ * Epithelial tissue
+ * Muscular tissue
+2. Study of tissues of human body
+ * Connective tissue
+ * Nervous tissue
+3. Study of appliances used in hematological experiments
+4. Determination of W.B.C. count of blood
+5. Determination of R.B.C. count of blood
+6. Determination of differential count of blood
+7. Determination of
+ * Erythrocyte Sedimentation Rate
+ * Hemoglobin content of Blood
+ * Bleeding time & Clotting time
+8. Determination of
+ * Blood Pressure
+ * Blood group
+9. Study of various systems with the help of charts, models & specimens
+ * Skeleton system part I-axial skeleton
+ * Skeleton system part II- appendicular skeleton
+ * Cardiovascular system
+ * Respiratory system
+ * Digestive system
+ * Urinary system
+ * Nervous system
+ * Special senses
+ * Reproductive system
+10. Study of different family planning appliances
+11. To perform pregnancy diagnosis test
+12. Study of appliances used in experimental physiology
+13. To record simple muscle curve using gastroenemius sciatic nerve preparation
+14. To record simple summation curve using gastroenemius sciatic nerve preparation
+15. To record simple effect of temperature using gastroenemius sciatic nerve
+preparation
+16. To record simple effect of load & after load using gastroenemius sciatic nerve
+preparation
+17. To record simple fatigue curve using gastroenemius sciatic nerve preparation
