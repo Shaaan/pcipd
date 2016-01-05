@@ -674,7 +674,7 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 	background: #ffffff;
 	padding: 140px 0;
 	background: url('../img/cubes.png') repeat;
-	text-align: center;
+	text-align: left;
 }
 
 .cta .title{
@@ -683,21 +683,31 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 	font-size: 26px;
 	font-weight: bold;
 	text-transform: uppercase;
+	text-align: center;
 	margin-bottom: 10px;
 }
 
 .cta .sub_title{
 	color: #454545;
-	font-family: "raleway-light", Helvetica, Arial, sans-serif;
-	font-weight: lighter;
+	text-align: center;
+	font-family: "raleway-semibold", Helvetica, Arial, sans-serif;
+	font-weight: bold;
 	font-size: 18px;
-	text-transform: lowercase;
+	text-transform: uppercase;
 }
 
 .cta .btn_fancy{
 	margin-top: 60px;
 }
 
+.cta .li{
+	color: #454545;
+	text-align: left;
+	font-family: "raleway-semibold", Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	margin-left: 20px;
+	font-size: 14px;
+}
 
 
 
