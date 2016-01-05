@@ -28,6 +28,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         findViewById(R.id.syllabus1).setOnClickListener(this);
         findViewById(R.id.syllabus2).setOnClickListener(this);
+        findViewById(R.id.syllabus3).setOnClickListener(this);
+        findViewById(R.id.syllabus4).setOnClickListener(this);
+        findViewById(R.id.syllabus5).setOnClickListener(this);
+        findViewById(R.id.syllabus6).setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +72,38 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 builder1.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
                 CustomTabsIntent customTabsIntent1 = builder1.build();
                 customTabsIntent1.launchUrl(this, Uri.parse(url1));
+                break;
+            case R.id.syllabus3:
+                String syllabus3 = "http://gayatriagencies.co.in";
+                CustomTabsIntent.Builder builder3 = new CustomTabsIntent.Builder();
+                builder3.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+                builder3.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                CustomTabsIntent customTabsIntent3 = builder3.build();
+                customTabsIntent3.launchUrl(this, Uri.parse(syllabus3));
+                break;
+            case R.id.syllabus4:
+                String syllabus4 = "http://prakelservices.com";
+                CustomTabsIntent.Builder builder4 = new CustomTabsIntent.Builder();
+                builder4.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+                builder4.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                CustomTabsIntent customTabsIntent4 = builder4.build();
+                customTabsIntent4.launchUrl(this, Uri.parse(syllabus4));
+                break;
+            case R.id.syllabus5:
+                String syllabus5 = "https://wikipedia.com";
+                CustomTabsIntent.Builder builder5 = new CustomTabsIntent.Builder();
+                builder5.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+                builder5.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                CustomTabsIntent customTabsIntent5 = builder5.build();
+                customTabsIntent5.launchUrl(this, Uri.parse(syllabus5));
+                break;
+            case R.id.syllabus6:
+                String syllabus6 = "https://androidpolice.com";
+                CustomTabsIntent.Builder builder6 = new CustomTabsIntent.Builder();
+                builder6.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+                builder6.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                CustomTabsIntent customTabsIntent6 = builder6.build();
+                customTabsIntent6.launchUrl(this, Uri.parse(syllabus6));
                 break;
             default:
         }
