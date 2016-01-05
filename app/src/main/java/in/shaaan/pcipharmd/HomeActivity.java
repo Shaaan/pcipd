@@ -1,8 +1,10 @@
 package in.shaaan.pcipharmd;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import in.shaaan.pcipharmd.helper.WebviewActivity;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        findViewById(R.id.syllabus1).setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -30,10 +34,30 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    public void syllabus1(View view) {
+    /*public void syllabus1(View view) {
         String url = "https://about.me/shantanulondhe";
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(i);
+    }*/
+
+    @Override
+    public void onClick(View view) {
+        int viewId = view.getId();
+
+        switch (viewId) {
+            case R.id.syllabus1:
+                String url = "https://google.com";
+                CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder().build();
+                CudstomTabActivityHelper.openCustomTab(
+                        this, customTabsIntent, Uri.parse(url), new Activity(openUri());
+                break;
+        }
+    }
+
+    public void openUri(Activity activity, Uri uri){
+        Intent intent = new Intent(activity, WebviewActivity.class);
+        intent.putExtra(WebviewActivity.EXTRA_URL, uri.toString());
+        activity.startActivity(intent);
     }
 
 
