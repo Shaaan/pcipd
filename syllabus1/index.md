@@ -15,7 +15,7 @@ nervous tissues-their sub-types and characteristics
  Skeleton. (done in practical classes - 6hrs)  
   b) Classification of joints, Types of movements of joints and disorders of joints
  (Definitions only)
-5. Haemopoetic System  
+5. Haemopoetic System 
 * Composition and functions of blood
  * Haemopoesis and disorders of blood components (definition of disorder)
   1. Blood groups
