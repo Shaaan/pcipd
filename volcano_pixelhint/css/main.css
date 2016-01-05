@@ -201,9 +201,8 @@
 
 .hero{
 	width: 100%;
-	height: 100px;
-	/*background: url('../img/try1.jpg') no-repeat 50% 50%;*/
-	background: #00838F;
+	height: 750px;
+	background: url('../img/hero.jpg') no-repeat 50% 50%;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -675,7 +674,7 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 	background: #ffffff;
 	padding: 140px 0;
 	background: url('../img/cubes.png') repeat;
-	text-align: left;
+	text-align: center;
 }
 
 .cta .title{
@@ -684,30 +683,19 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 	font-size: 26px;
 	font-weight: bold;
 	text-transform: uppercase;
-	text-align: center;
 	margin-bottom: 10px;
 }
 
 .cta .sub_title{
 	color: #454545;
-	text-align: center;
-	font-family: "raleway-semibold", Helvetica, Arial, sans-serif;
-	font-weight: bold;
+	font-family: "raleway-light", Helvetica, Arial, sans-serif;
+	font-weight: lighter;
 	font-size: 18px;
-	text-transform: uppercase;
+	text-transform: lowercase;
 }
 
 .cta .btn_fancy{
 	margin-top: 60px;
-}
-
-.cta .li{
-	color: #454545;
-	text-align: left;
-	font-family: "raleway-semibold", Helvetica, Arial, sans-serif;
-	font-weight: normal;
-	margin-left: 20px;
-	font-size: 14px;
 }
 
 
@@ -772,13 +760,13 @@ header .top-bar-section li:not(.has-form) a:not(.button):hover{
 /*    Footer    */
 
 footer{
-	padding: 20px 0;
-	background: url('../img/try1.jpg') no-repeat;
+	padding: 80px 0;
+	background: #535353;
 }
 
 footer .copyrights{
 	float: left;
-	margin-bottom: 20px;
+	margin-bottom: 80px;
 }
 
 footer .copyrights p{
