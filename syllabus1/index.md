@@ -12,8 +12,8 @@ layout: default
 3. Elementary tissues of the human body: epithelial, connective, Muscular and
 nervous tissues-their sub-types and characteristics
 4. a) Osseous system - structure, composition and functions of the
- Skeleton. (done in practical classes - 6hrs)
-b) Classification of joints, Types of movements of joints and disorders of joints
+ Skeleton. (done in practical classes - 6hrs)  
+  b) Classification of joints, Types of movements of joints and disorders of joints
  (Definitions only)
 5. Haemopoetic System
   1. Composition and functions of blood
@@ -35,5 +35,9 @@ b) Classification of joints, Types of movements of joints and disorders of joint
   Hypertension, Hypotension, Arteriosclerosis, Atherosclerosis, Angina,
   Myocardial infarction, Congestive heart failure, Cardiac arrhythmias
 8. Respiratory system
-..1. Anatomy of respiratory organs and functions
-..2. Mechanism / physiology of respiration and regulation of respiration
+  1. Anatomy of respiratory organs and functions
+  2. Mechanism / physiology of respiration and regulation of respiration
+
+  1. Item 1
+    1. A corollary to the above item.
+    2. Yet another point to consider.
