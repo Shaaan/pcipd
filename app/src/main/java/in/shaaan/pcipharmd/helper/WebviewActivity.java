@@ -1,5 +1,6 @@
 package in.shaaan.pcipharmd.helper;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ public class WebviewActivity extends AppCompatActivity {
     public static final String EXTRA_URL = "extra.url";
 
 
+    @SuppressLint("setJavaScriptEnabled")
     protected void OnCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview);
@@ -25,8 +27,11 @@ public class WebviewActivity extends AppCompatActivity {
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         setTitle(url);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         webView.loadUrl(url);
+
     }
 
     @Override
