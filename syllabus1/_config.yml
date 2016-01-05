@@ -1,7 +1,7 @@
 # Site settings
-title: Solo, a Jekyll Theme
-tag_text: Solo
-description: Solo is a Jekyll theme that supports single-page websites only, but supports them well. Yes, it’s responsive.
+title: PCIPD, First Year Syllabus
+tag_text: PCIPD
+description: PCI PharmD syllabus for First Year
 
 # Build settings
 markdown: kramdown
