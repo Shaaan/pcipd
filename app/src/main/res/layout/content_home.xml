@@ -27,8 +27,7 @@
             android:layout_height="wrap_content"
             android:text="@string/first_year"
             android:padding="20dp"
-            android:id="@+id/syllabus1"
-            android:onClick="syllabus1"/>
+            android:id="@+id/syllabus1" />
     <!--</android.support.v7.widget.CardView>-->
 
         <!--<android.support.v7.widget.CardView
@@ -46,6 +45,31 @@
             android:padding="20dp"
             android:id="@+id/syllabus2"/>
         <!--</android.support.v7.widget.CardView>-->
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/third_year"
+            android:padding="20dp"
+            android:id="@+id/syllabus3"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fourth_year"
+            android:padding="20dp"
+            android:id="@+id/syllabus4"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fifth_year"
+            android:padding="20dp"
+            android:id="@+id/syllabus5"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sixth_year"
+            android:padding="20dp"
+            android:id="@+id/syllabus6"/>
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -92,4 +92,8 @@
     <string name="action_settings">Settings</string>
     <string name="first_year">First Year Syllabus</string>
     <string name="second_year">Second Year Syllabus</string>
+    <string name="third_year">Third Year Syllabus</string>
+    <string name="fourth_year">Fourth Year Syllabus</string>
+    <string name="fifth_year">Fifth Year Syllabus</string>
+    <string name="sixth_year">Sixth Year Syllabus</string>
 </resources>
