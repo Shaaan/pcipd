@@ -2,6 +2,7 @@ package in.shaaan.pcipharmd;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
@@ -12,7 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import in.shaaan.pcipharmd.helper.CustomTabActivityHelper;
 import in.shaaan.pcipharmd.helper.WebviewActivity;
+import in.shaaan.pcipharmd.helper.WebviewFallback;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -23,6 +27,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         findViewById(R.id.syllabus1).setOnClickListener(this);
+        findViewById(R.id.syllabus2).setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -36,8 +41,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     /*public void syllabus1(View view) {
         String url = "https://about.me/shantanulondhe";
-        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        startActivity(i);
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+        builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(this, Uri.parse(url));
     }*/
 
     @Override
@@ -47,10 +55,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (viewId) {
             case R.id.syllabus1:
                 String url = "https://google.com";
-                CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder().build();
-                CudstomTabActivityHelper.openCustomTab(
-                        this, customTabsIntent, Uri.parse(url), new Activity(openUri());
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+                builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                CustomTabsIntent customTabsIntent = builder.build();
+                customTabsIntent.launchUrl(this, Uri.parse(url));
                 break;
+            case R.id.syllabus2:
+                String url1 = "https://facebook.com";
+                CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
+                builder1.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
+                builder1.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                CustomTabsIntent customTabsIntent1 = builder1.build();
+                customTabsIntent1.launchUrl(this, Uri.parse(url1));
+                break;
+            default:
         }
     }
 
