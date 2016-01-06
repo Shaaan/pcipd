@@ -115,11 +115,16 @@
     <!--Third Year-->
 
     <!--Fourth Year-->
+    <string name="tp3">Pharmacotheraputics 3</string>
+    <string name="toxicology">Clinical Toxicology</string>
+    <string name="hp">Hospital Pharmacy</string>
+    <string name="cp">Clinical Pharmacy</string>
+    <string name="biostat">Biostatistics and Research Methodologies</string>
+    <string name="biopharm">Biopharmaceutics and Pharmacokinetics</string>
 
     <!--Fifth Year-->
     <string name="epi">Pharmacoepidemiology</string>
     <string name="research">Clinical research</string>
     <string name="tdm">Theraputic Drug Monitoring</string>
-    <string name="clerkship">Clerkship</string>
-    <string name="tp3">Pharmacotheraputics 3</string>
+
 </resources>

@@ -65,16 +65,6 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
                 CustomTabsIntent customTabsIntent2 = builder2.build();
                 customTabsIntent2.launchUrl(this, Uri.parse(s1));
                 break;
-            //// TODO: 6/1/16 Shift this to Fourth Year 
-            
-            /*case R.id.tp3:
-                String s3 = "https://shaaan.github.io/pcipd/syllabus5/epi";
-                CustomTabsIntent.Builder builder3 = new CustomTabsIntent.Builder();
-                builder3.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder3.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-                CustomTabsIntent customTabsIntent3 = builder3.build();
-                customTabsIntent3.launchUrl(this, Uri.parse(s3));
-                break;*/
             default:
         }
     }

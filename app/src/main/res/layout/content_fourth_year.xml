@@ -8,6 +8,40 @@
     tools:context="in.shaaan.pcipharmd.FourthYear"
     tools:showIn="@layout/activity_fourth_year">
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tp3"
+            android:id="@+id/tp3"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/toxicology"
+            android:id="@+id/toxicology"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hp"
+            android:id="@+id/hp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cp"
+            android:id="@+id/cp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/biopharm"
+            android:id="@+id/biopharm"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/biostat"
+            android:id="@+id/biostat"/>
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
