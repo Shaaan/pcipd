@@ -43,7 +43,7 @@ public class FourthYear extends AppCompatActivity implements View.OnClickListene
 
         switch (id) {
             case R.id.tp3:
-                String s3 = "https://shaaan.github.io/pcipd/syllabus4/tp3";
+                String s3 = "https://shaaan.github.io/pcipd/syllabus4/pt3";
                 CustomTabsIntent.Builder builder3 = new CustomTabsIntent.Builder();
                 builder3.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
                 builder3.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
@@ -67,7 +67,7 @@ public class FourthYear extends AppCompatActivity implements View.OnClickListene
                 customTabsIntent1.launchUrl(this, Uri.parse(s1));
                 break;
             case R.id.hp:
-                String s2 = "https://shaaan.github.io/pcipd/syllabus4/hp";
+                String s2 = "https://shaaan.github.io/pcipd/syllabus4/hosp_pharm";
                 CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
                 builder2.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
                 builder2.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
@@ -75,7 +75,7 @@ public class FourthYear extends AppCompatActivity implements View.OnClickListene
                 customTabsIntent2.launchUrl(this, Uri.parse(s2));
                 break;
             case R.id.biopharm:
-                String s4 = "https://shaaan.github.io/pcipd/syllabus/biopharm";
+                String s4 = "https://shaaan.github.io/pcipd/syllabus4/biopharm";
                 CustomTabsIntent.Builder builder4 = new CustomTabsIntent.Builder();
                 builder4.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
                 builder4.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);

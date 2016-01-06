@@ -18,10 +18,8 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         findViewById(R.id.epi).setOnClickListener(this);
-        findViewById(R.id.clerkship).setOnClickListener(this);
         findViewById(R.id.tdm).setOnClickListener(this);
         findViewById(R.id.research).setOnClickListener(this);
-        findViewById(R.id.tp3).setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

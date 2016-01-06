@@ -83,7 +83,7 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
                 customTabsIntent4.launchUrl(this, Uri.parse(s4));
                 break;
             case R.id.com:
-                String s5 = "https://shaaan.github.io/pcipd/syllabus2/cpm";
+                String s5 = "https://shaaan.github.io/pcipd/syllabus2/cmp";
                 CustomTabsIntent.Builder builder5 = new CustomTabsIntent.Builder();
                 builder5.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
                 builder5.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
