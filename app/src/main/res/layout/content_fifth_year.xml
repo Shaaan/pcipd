@@ -17,11 +17,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tdm"
             android:id="@+id/tdm"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tp3"
-            android:id="@+id/tp3"/>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,11 +28,6 @@
             android:layout_height="wrap_content"
             android:text="@string/research"
             android:id="@+id/research"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/clerkship"
-            android:id="@+id/clerkship"/>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
