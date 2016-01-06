@@ -8,5 +8,40 @@
     tools:context="in.shaaan.pcipharmd.ThirdYear"
     tools:showIn="@layout/activity_third_year">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tp2"
+            android:id="@+id/tp2"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/juris"
+            android:id="@+id/juris"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/analysis"
+            android:id="@+id/analysis"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/formulation"
+            android:id="@+id/formulation"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mchem"
+            android:id="@+id/mchem"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pharmac"
+            android:id="@+id/pharmac"/>
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

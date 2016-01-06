@@ -113,6 +113,12 @@
     <!--Second Year-->
 
     <!--Third Year-->
+    <string name="pharmac">Pharmacology 2</string>
+    <string name="juris">Pharmaceutical Jurisprudence</string>
+    <string name="formulation">Pharmaceutical Formulations</string>
+    <string name="tp2">Pharmacotheraputics 2</string>
+    <string name="analysis">Pharmaceutical Analysis</string>
+    <string name="mchem">Medicinal Chemistry</string>
 
     <!--Fourth Year-->
     <string name="tp3">Pharmacotheraputics 3</string>
