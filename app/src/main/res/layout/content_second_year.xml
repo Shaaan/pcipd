@@ -9,5 +9,40 @@
     tools:showIn="@layout/activity_second_year">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cology"
+            android:id="@+id/cology"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cognosy"
+            android:id="@+id/cognosy"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tp1"
+            android:id="@+id/tp1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/micro"
+            android:id="@+id/micro"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/patho"
+            android:id="@+id/patho"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/com"
+            android:id="@+id/com"/>
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

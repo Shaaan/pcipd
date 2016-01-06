@@ -111,6 +111,12 @@
     <string name="ceutics">Pharmaceutics</string>
 
     <!--Second Year-->
+    <string name="cology">Pharmacology I</string>
+    <string name="tp1">Pharmacotheraputics I</string>
+    <string name="micro">Microbiology</string>
+    <string name="cognosy">Pharmacognosy and Pythochemistry</string>
+    <string name="com">Community Pharmacy</string>
+    <string name="patho">Pathophysiology</string>
 
     <!--Third Year-->
     <string name="pharmac">Pharmacology 2</string>
