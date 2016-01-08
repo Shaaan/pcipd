@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -47,6 +48,7 @@ public class FirstYear extends AppCompatActivity implements View.OnClickListener
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
                 builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent = builder.build();
                 customTabsIntent.launchUrl(this, Uri.parse(hap));
                 break;
@@ -55,6 +57,7 @@ public class FirstYear extends AppCompatActivity implements View.OnClickListener
                 CustomTabsIntent.Builder builderC = new CustomTabsIntent.Builder();
                 builderC.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
                 builderC.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                builderC.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntentC = builderC.build();
                 customTabsIntentC.launchUrl(this, Uri.parse(ceutics));
                 break;
@@ -63,6 +66,7 @@ public class FirstYear extends AppCompatActivity implements View.OnClickListener
                 CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
                 builder1.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
                 builder1.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent1 = builder1.build();
                 customTabsIntent1.launchUrl(this, Uri.parse(biochem));
                 break;
@@ -71,6 +75,7 @@ public class FirstYear extends AppCompatActivity implements View.OnClickListener
                 CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
                 builder2.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
                 builder2.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent2 = builder2.build();
                 customTabsIntent2.launchUrl(this, Uri.parse(ic));
                 break;
@@ -79,11 +84,19 @@ public class FirstYear extends AppCompatActivity implements View.OnClickListener
                 CustomTabsIntent.Builder builder3 = new CustomTabsIntent.Builder();
                 builder3.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
                 builder3.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
+                builder3.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent3 = builder3.build();
                 customTabsIntent3.launchUrl(this, Uri.parse(s));
                 break;
             default:
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 
