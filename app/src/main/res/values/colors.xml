@@ -3,8 +3,6 @@
     <color name="colorPrimary">#455A64</color>
     <color name="colorPrimaryDark">#455A64</color>
     <color name="colorAccent">#FFC107</color>
-    <color name="colorPrimaryLight">#CFD8DC</color>
     <color name="bg_card">#ffff</color>
     <color name="button_bg">#AA00838F</color>
-    <color name="grey">#f3f3f3</color>
 </resources>

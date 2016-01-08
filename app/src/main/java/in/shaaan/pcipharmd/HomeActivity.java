@@ -1,22 +1,12 @@
 package in.shaaan.pcipharmd;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,12 +14,6 @@ import android.view.MenuItem;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-
-import java.util.zip.Inflater;
-
-import in.shaaan.pcipharmd.helper.CustomTabActivityHelper;
-import in.shaaan.pcipharmd.helper.WebviewActivity;
-import in.shaaan.pcipharmd.helper.WebviewFallback;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -56,7 +40,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Like the app? Rate it on playstore!", Snackbar.LENGTH_LONG)
                         .setAction("RATE", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -71,15 +55,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
-    /*public void syllabus1(View view) {
-        String url = "https://about.me/shantanulondhe";
-        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-        builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-        builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-        CustomTabsIntent customTabsIntent = builder.build();
-        customTabsIntent.launchUrl(this, Uri.parse(url));
-    }*/
 
     @Override
     public void onClick(View view) {
@@ -117,69 +92,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             default:
         }
-    }
-
-    /*@Override
-    public void onClick(View view) {
-        int viewId = view.getId();
-
-        switch (viewId) {
-            case R.id.syllabus1:
-                String url = "https://google.com";
-                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-                CustomTabsIntent customTabsIntent = builder.build();
-                customTabsIntent.launchUrl(this, Uri.parse(url));
-                break;
-            case R.id.syllabus2:
-                String url1 = "https://facebook.com";
-                CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
-                builder1.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder1.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-                CustomTabsIntent customTabsIntent1 = builder1.build();
-                customTabsIntent1.launchUrl(this, Uri.parse(url1));
-                break;
-            case R.id.syllabus3:
-                String syllabus3 = "http://gayatriagencies.co.in";
-                CustomTabsIntent.Builder builder3 = new CustomTabsIntent.Builder();
-                builder3.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder3.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-                CustomTabsIntent customTabsIntent3 = builder3.build();
-                customTabsIntent3.launchUrl(this, Uri.parse(syllabus3));
-                break;
-            case R.id.syllabus4:
-                String syllabus4 = "http://prakelservices.com";
-                CustomTabsIntent.Builder builder4 = new CustomTabsIntent.Builder();
-                builder4.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder4.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-                CustomTabsIntent customTabsIntent4 = builder4.build();
-                customTabsIntent4.launchUrl(this, Uri.parse(syllabus4));
-                break;
-            case R.id.syllabus5:
-                String syllabus5 = "https://wikipedia.com";
-                CustomTabsIntent.Builder builder5 = new CustomTabsIntent.Builder();
-                builder5.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder5.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-                CustomTabsIntent customTabsIntent5 = builder5.build();
-                customTabsIntent5.launchUrl(this, Uri.parse(syllabus5));
-                break;
-            case R.id.syllabus6:
-                String syllabus6 = "https://androidpolice.com";
-                CustomTabsIntent.Builder builder6 = new CustomTabsIntent.Builder();
-                builder6.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder6.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
-                CustomTabsIntent customTabsIntent6 = builder6.build();
-                customTabsIntent6.launchUrl(this, Uri.parse(syllabus6));
-                break;
-            default:
-        }
-    }*/
-
-    public void openUri(Activity activity, Uri uri) {
-        Intent intent = new Intent(activity, WebviewActivity.class);
-        intent.putExtra(WebviewActivity.EXTRA_URL, uri.toString());
-        activity.startActivity(intent);
     }
 
 
