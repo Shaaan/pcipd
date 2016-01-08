@@ -22,4 +22,8 @@
         <item name="android:background">@color/button_bg</item>
     </style>
 
+    <style name="AppTheme.Dialog" parent="Base.V7.Theme.AppCompat.Light.Dialog">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
 </resources>

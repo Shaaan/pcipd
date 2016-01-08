@@ -139,4 +139,8 @@
     <string name="research">Clinical research</string>
     <string name="tdm">Theraputic Drug Monitoring</string>
 
+    <string name="about"><b>Application developed by Shantanu Londhe (shaaan@xda)</b>\n\nLike what you see? Buy me a coffee!</string>
+    <string name="title_activity_about">About</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

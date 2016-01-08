@@ -1,5 +1,6 @@
 package in.shaaan.pcipharmd;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
@@ -29,8 +30,15 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG)
+                        .setAction("RATE", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("market://details?id=in.shaaan.pcipharmd"));
+                                startActivity(intent);
+                            }
+                        }).show();
             }
         });
         if (getSupportActionBar() != null) {
