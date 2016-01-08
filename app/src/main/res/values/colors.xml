@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00838F</color>
     <color name="colorAccent">#795548</color>
     <color name="bg_card">#ffff</color>
+    <color name="button_bg">#AA00838F</color>
+    <color name="grey">#f3f3f3</color>
 </resources>
