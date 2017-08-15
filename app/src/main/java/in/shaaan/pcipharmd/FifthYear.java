@@ -13,7 +13,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class FifthYear extends AppCompatActivity implements View.OnClickListener{
+
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,11 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
         findViewById(R.id.epi).setOnClickListener(this);
         findViewById(R.id.tdm).setOnClickListener(this);
         findViewById(R.id.research).setOnClickListener(this);
+        MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
+        mAdView = (AdView) findViewById(R.id.adView5);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
+        mAdView.loadAd(adRequest);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

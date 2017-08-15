@@ -53,4 +53,7 @@
     <string name="about"><b>Application developed by Shantanu Londhe (shaaan@xda)</b>\n\nLike what you see? Buy me a coffee!</string>
     <string name="title_activity_about">About</string>
 
+    <!-- Add Unit ID -->
+    <string name="bottom_banner">ca-app-pub-1941738066609841/6796929913</string>
+
 </resources>

@@ -10,7 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class SixthYear extends AppCompatActivity {
+private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,11 @@ public class SixthYear extends AppCompatActivity {
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.launchUrl(this, Uri.parse(s));
         finish();
+        MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
+        mAdView = (AdView) findViewById(R.id.adView6);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
+        mAdView.loadAd(adRequest);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

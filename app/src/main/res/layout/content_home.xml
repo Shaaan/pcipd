@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:iosched="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -12,118 +12,117 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="30dp"
+        android:orientation="vertical"
         android:padding="10dp">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         iosched:cardCornerRadius="@dimen/card_corner_radius"
         iosched:cardElevation="@dimen/card_elevation"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
         iosched:cardPreventCornerOverlap="false">
         <Button
+            android:id="@+id/syllabus1"
+            style="@style/AppTheme.Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/first_year"
-            android:padding="10dp"
-            style="@style/AppTheme.Button"
             android:background="@android:color/transparent"
-            android:id="@+id/syllabus1"/>
+            android:padding="10dp"
+            android:text="@string/first_year"/>
     </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             iosched:cardPreventCornerOverlap="false">
         <Button
+            android:id="@+id/syllabus2"
+            style="@style/AppTheme.Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/second_year"
-            android:padding="10dp"
-            style="@style/AppTheme.Button"
             android:background="@android:color/transparent"
-            android:id="@+id/syllabus2"/>
+            android:padding="10dp"
+            android:text="@string/second_year"/>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             iosched:cardPreventCornerOverlap="false">
             <Button
+                android:id="@+id/syllabus3"
+                style="@style/AppTheme.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/third_year"
-                android:padding="10dp"
-                style="@style/AppTheme.Button"
                 android:background="@android:color/transparent"
-                android:id="@+id/syllabus3"/>
+                android:padding="10dp"
+                android:text="@string/third_year"/>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             iosched:cardPreventCornerOverlap="false">
             <Button
+                android:id="@+id/syllabus4"
+                style="@style/AppTheme.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/fourth_year"
-                android:padding="10dp"
-                style="@style/AppTheme.Button"
                 android:background="@android:color/transparent"
-                android:id="@+id/syllabus4"/>
+                android:padding="10dp"
+                android:text="@string/fourth_year"/>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             iosched:cardPreventCornerOverlap="false">
             <Button
+                android:id="@+id/syllabus5"
+                style="@style/AppTheme.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/fifth_year"
-                android:padding="10dp"
-                style="@style/AppTheme.Button"
                 android:background="@android:color/transparent"
-                android:id="@+id/syllabus5"/>
+                android:padding="10dp"
+                android:text="@string/fifth_year"/>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             iosched:cardPreventCornerOverlap="false">
             <Button
+                android:id="@+id/syllabus6"
+                style="@style/AppTheme.Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/sixth_year"
-                android:padding="10dp"
-                style="@style/AppTheme.Button"
                 android:background="@android:color/transparent"
-                android:id="@+id/syllabus6"/>
+                android:padding="10dp"
+                android:text="@string/sixth_year"/>
         </android.support.v7.widget.CardView>
-
 
 
     </LinearLayout>
