@@ -56,8 +56,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.tp2:
                 String s = "https://shaaan.github.io/pcipd/syllabus3/tp2";
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
                 builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent = builder.build();
                 customTabsIntent.launchUrl(this, Uri.parse(s));
@@ -65,8 +63,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.pharmac:
                 String s1 = "https://shaaan.github.io/pcipd/syllabus3/pharmac";
                 CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
-                builder1.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder1.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
                 builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent1 = builder1.build();
                 customTabsIntent1.launchUrl(this, Uri.parse(s1));
@@ -74,8 +70,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.formulation:
                 String s2 = "https://shaaan.github.io/pcipd/syllabus3/formulation";
                 CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
-                builder2.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder2.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
                 builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent2 = builder2.build();
                 customTabsIntent2.launchUrl(this, Uri.parse(s2));
@@ -83,8 +77,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.analysis:
                 String s3 = "https://shaaan.github.io/pcipd/syllabus3/analysis";
                 CustomTabsIntent.Builder builder3 = new CustomTabsIntent.Builder();
-                builder3.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder3.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
                 builder3.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent3 = builder3.build();
                 customTabsIntent3.launchUrl(this, Uri.parse(s3));
@@ -92,8 +84,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.juris:
                 String s4 = "https://shaaan.github.io/pcipd/syllabus3/juris";
                 CustomTabsIntent.Builder builder4 = new CustomTabsIntent.Builder();
-                builder4.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder4.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
                 builder4.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent4 = builder4.build();
                 customTabsIntent4.launchUrl(this, Uri.parse(s4));
@@ -101,8 +91,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.mchem:
                 String s5 = "https://shaaan.github.io/pcipd/syllabus3/mchem";
                 CustomTabsIntent.Builder builder5 = new CustomTabsIntent.Builder();
-                builder5.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder5.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
                 builder5.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent5 = builder5.build();
                 customTabsIntent5.launchUrl(this, Uri.parse(s5));
@@ -115,7 +103,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override
@@ -135,7 +122,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, About.class));
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             return true;
         }
         return super.onOptionsItemSelected(item);

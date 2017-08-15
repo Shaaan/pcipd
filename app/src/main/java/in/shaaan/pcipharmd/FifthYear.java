@@ -53,8 +53,6 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
             case R.id.epi:
                 String epi = "https://shaaan.github.io/pcipd/syllabus5/epi/";
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
                 builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent = builder.build();
                 customTabsIntent.launchUrl(this, Uri.parse(epi));
@@ -62,8 +60,6 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
             case R.id.research:
                 String s = "https://shaaan.github.io/pcipd/syllabus5/research";
                 CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
-                builder1.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder1.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
                 builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent1 = builder1.build();
                 customTabsIntent1.launchUrl(this, Uri.parse(s));
@@ -71,8 +67,6 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
             case R.id.tdm:
                 String s1 = "https://shaaan.github.io/pcipd/syllabus5/tdm";
                 CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
-                builder2.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder2.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
                 builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent2 = builder2.build();
                 customTabsIntent2.launchUrl(this, Uri.parse(s1));
@@ -85,7 +79,6 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override
@@ -105,7 +98,6 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, About.class));
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             return true;
         }
         return super.onOptionsItemSelected(item);

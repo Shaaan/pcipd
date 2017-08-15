@@ -20,8 +20,6 @@ public class SixthYear extends AppCompatActivity {
         setSupportActionBar(toolbar);
         String s = "https://shaaan.github.io/pcipd/syllabus6";
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-        builder.setStartAnimations(this, R.anim.slide_in_right, R.anim.slide_out_left);
-        builder.setExitAnimations(this, R.anim.slide_in_left, R.anim.slide_out_right);
         builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.launchUrl(this, Uri.parse(s));
@@ -44,6 +42,5 @@ public class SixthYear extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

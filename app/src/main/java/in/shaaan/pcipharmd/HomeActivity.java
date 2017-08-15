@@ -7,9 +7,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -64,22 +64,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.syllabus1:
                 Intent intent1 = new Intent(this, FirstYear.class);
                 startActivity(intent1);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.syllabus2:
                 Intent intent2 = new Intent(this, SecondYear.class);
                 startActivity(intent2);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.syllabus3:
                 Intent intent3 = new Intent(this, ThirdYear.class);
                 startActivity(intent3);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.syllabus4:
                 Intent intent4 = new Intent(this, FourthYear.class);
                 startActivity(intent4);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.syllabus5:
                 Intent intent5 = new Intent(this, FifthYear.class);
@@ -88,7 +84,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.syllabus6:
                 Intent intent6 = new Intent(this, SixthYear.class);
                 startActivity(intent6);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             default:
         }
@@ -112,7 +107,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, About.class));
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -162,6 +156,5 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }
