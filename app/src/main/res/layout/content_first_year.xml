@@ -29,7 +29,6 @@
             android:layout_height="match_parent"
             android:id="@+id/hap"
             android:padding="10dp"
-            style="@style/AppTheme.Button"
             android:background="@android:color/transparent"
             android:text="@string/hap"/>
         </android.support.v7.widget.CardView>
@@ -47,7 +46,6 @@
             android:layout_height="match_parent"
             android:id="@+id/ceutics"
             android:padding="10dp"
-            style="@style/AppTheme.Button"
             android:background="@android:color/transparent"
             android:text="@string/ceutics"/>
         </android.support.v7.widget.CardView>
