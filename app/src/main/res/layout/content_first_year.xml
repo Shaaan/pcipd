@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:iosched="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -12,96 +13,135 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_marginTop="30dp">
+        android:padding="10dp">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             iosched:cardPreventCornerOverlap="false">
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/hap"
-            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:text="@string/hap"/>
+            android:padding="10dp"
+            android:text="@string/hap"
+            android:textSize="16sp" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             iosched:cardPreventCornerOverlap="false">
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/ceutics"
-            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:text="@string/ceutics"/>
+            android:padding="10dp"
+            android:text="@string/ceutics"
+            android:textSize="16sp" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/nativeCard-21"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            iosched:cardCornerRadius="@dimen/card_corner_radius"
+            iosched:cardElevation="@dimen/card_elevation"
+            iosched:cardPreventCornerOverlap="false">
+
+            <com.google.android.gms.ads.NativeExpressAdView
+                android:id="@+id/advert_21"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                ads:adUnitId="@string/nativeAd"
+                app:adSize="360x80" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             iosched:cardPreventCornerOverlap="false">
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/biochem"
-            android:padding="10dp"
-            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:text="@string/biochem"/>
+            android:padding="10dp"
+            android:text="@string/biochem"
+            android:textSize="16sp" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             iosched:cardPreventCornerOverlap="false">
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/oc"
-            android:padding="10dp"
-            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:text="@string/oc"/>
+            android:padding="10dp"
+            android:text="@string/oc"
+            android:textSize="16sp" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/nativeCard-22"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            iosched:cardCornerRadius="@dimen/card_corner_radius"
+            iosched:cardElevation="@dimen/card_elevation"
+            iosched:cardPreventCornerOverlap="false">
+
+            <com.google.android.gms.ads.NativeExpressAdView
+                android:id="@+id/advert_22"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                ads:adUnitId="@string/nativeAd"
+                app:adSize="360x80" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             iosched:cardPreventCornerOverlap="false">
         <Button
+            android:id="@+id/ic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/ic"
-            android:padding="10dp"
-            style="@style/AppTheme.Button"
             android:background="@android:color/transparent"
-            android:text="@string/ic"/>
+            android:padding="10dp"
+            android:text="@string/ic"
+            android:textSize="16sp" />
         </android.support.v7.widget.CardView>
     </LinearLayout>
 

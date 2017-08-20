@@ -13,13 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.NativeExpressAdView;
 
-public class FifthYear extends AppCompatActivity implements View.OnClickListener{
+public class FifthYear extends AppCompatActivity implements View.OnClickListener {
 
-    private AdView mAdView;
+    private NativeExpressAdView nativeExpressAdView;
+    private NativeExpressAdView nativeExpressAdView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +29,19 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_fifth_year);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        findViewById(R.id.nativeCard_61).setVisibility(View.GONE);
+        findViewById(R.id.nativeCard_62).setVisibility(View.GONE);
         findViewById(R.id.epi).setOnClickListener(this);
         findViewById(R.id.tdm).setOnClickListener(this);
         findViewById(R.id.research).setOnClickListener(this);
+
         MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
-        mAdView = (AdView) findViewById(R.id.adView5);
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-        mAdView.loadAd(adRequest);
+        nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_61);
+        nativeExpressAdView1 = (NativeExpressAdView) findViewById(R.id.advert_62);
+        AdRequest request = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
+        AdRequest request1 = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
+        nativeExpressAdView.loadAd(request);
+        nativeExpressAdView1.loadAd(request1);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +61,14 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        nativeExpressAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                findViewById(R.id.nativeCard_61).setVisibility(View.VISIBLE);
+                findViewById(R.id.nativeCard_62).setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override

@@ -11,8 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.NativeExpressAdView;
 
@@ -22,10 +22,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private AdView mAdView;
+
     private NativeExpressAdView nativeExpressAdView;
     private NativeExpressAdView nativeExpressAdView1;
-    private NativeExpressAdView nativeExpressAdView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +32,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        findViewById(R.id.nativeCard_11).setVisibility(View.GONE);
+        findViewById(R.id.nativeCard_12).setVisibility(View.GONE);
         findViewById(R.id.syllabus1).setOnClickListener(this);
         findViewById(R.id.syllabus2).setOnClickListener(this);
         findViewById(R.id.syllabus3).setOnClickListener(this);
@@ -70,6 +71,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
+        nativeExpressAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                findViewById(R.id.nativeCard_11).setVisibility(View.VISIBLE);
+                findViewById(R.id.nativeCard_12).setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
