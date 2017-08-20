@@ -69,8 +69,8 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                findViewById(R.id.nativeCard_11).setVisibility(View.VISIBLE);
-                findViewById(R.id.nativeCard_12).setVisibility(View.VISIBLE);
+                findViewById(R.id.nativeCard_41).setVisibility(View.VISIBLE);
+                findViewById(R.id.nativeCard_42).setVisibility(View.VISIBLE);
             }
         });
     }
