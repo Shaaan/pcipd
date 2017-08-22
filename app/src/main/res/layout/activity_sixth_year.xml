@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom"
         ads:adSize="SMART_BANNER"
         ads:adUnitId="@string/bottom_banner">
 

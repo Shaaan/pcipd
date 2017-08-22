@@ -13,15 +13,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.NativeExpressAdView;
 
-public class SecondYear extends AppCompatActivity implements View.OnClickListener{
-
-    private NativeExpressAdView nativeExpressAdView;
-    private NativeExpressAdView nativeExpressAdView1;
+public class SecondYear extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +35,15 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
         findViewById(R.id.com).setOnClickListener(this);
 
         MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
-        nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_31);
-        nativeExpressAdView1 = (NativeExpressAdView) findViewById(R.id.advert_32);
+        AdView mAdView = (AdView) findViewById(R.id.adView2);
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
+        mAdView.loadAd(adRequest);
+        /*NativeExpressAdView nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_31);
+        NativeExpressAdView nativeExpressAdView1 = (NativeExpressAdView) findViewById(R.id.advert_32);
         AdRequest request = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
         AdRequest request1 = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
         nativeExpressAdView.loadAd(request);
-        nativeExpressAdView1.loadAd(request1);
+        nativeExpressAdView1.loadAd(request1);*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,14 +63,14 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        nativeExpressAdView.setAdListener(new AdListener() {
+        /*nativeExpressAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
                 findViewById(R.id.nativeCard_31).setVisibility(View.VISIBLE);
                 findViewById(R.id.nativeCard_32).setVisibility(View.VISIBLE);
             }
-        });
+        });*/
     }
 
     @Override

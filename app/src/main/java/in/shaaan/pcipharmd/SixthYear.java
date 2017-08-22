@@ -1,5 +1,6 @@
 package in.shaaan.pcipharmd;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
@@ -10,15 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.NativeExpressAdView;
 
 public class SixthYear extends AppCompatActivity implements View.OnClickListener {
-private AdView mAdView;
-    private NativeExpressAdView nativeExpressAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,32 +28,39 @@ private AdView mAdView;
         findViewById(R.id.intern_documents).setOnClickListener(this);
 
         MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
-        mAdView = (AdView) findViewById(R.id.adView6);
+        AdView mAdView = (AdView) findViewById(R.id.adView6);
         AdRequest adRequest = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
         mAdView.loadAd(adRequest);
-        nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_71);
+        /*NativeExpressAdView nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_71);
         AdRequest request = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-        nativeExpressAdView.loadAd(request);
+        nativeExpressAdView.loadAd(request);*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG)
+                        .setAction("RATE", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("market://details?id=in.shaaan.pcipharmd"));
+                                startActivity(intent);
+                            }
+                        }).show();
             }
         });
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        nativeExpressAdView.setAdListener(new AdListener() {
+        /*nativeExpressAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
                 findViewById(R.id.nativeCard_71).setVisibility(View.VISIBLE);
             }
-        });
+        });*/
     }
 
 
@@ -73,7 +77,7 @@ private AdView mAdView;
                 customTabsIntent.launchUrl(this, Uri.parse(s));
                 break;
             case R.id.intern_documents:
-                String s1 = "https://shaaan.github.io/pcpid/syllabus6_1";
+                String s1 = "https://shaaan.github.io/pcipd/syllabus6_1/";
                 CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
                 builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent1 = builder1.build();

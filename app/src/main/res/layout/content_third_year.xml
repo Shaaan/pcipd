@@ -6,14 +6,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="100dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="in.shaaan.pcipharmd.ThirdYear"
     tools:showIn="@layout/activity_third_year">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:padding="10dp">
@@ -26,14 +26,15 @@
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
-        <Button
-            android:id="@+id/tp2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:padding="10dp"
-            android:text="@string/tp2"
-            android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/tp2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:text="@string/tp2"
+                android:textSize="16sp" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -44,14 +45,15 @@
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
-        <Button
-            android:id="@+id/juris"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:padding="10dp"
-            android:text="@string/juris"
-            android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/juris"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:text="@string/juris"
+                android:textSize="16sp" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -80,14 +82,15 @@
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
-        <Button
-            android:id="@+id/analysis"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:padding="10dp"
-            android:text="@string/analysis"
-            android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/analysis"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:text="@string/analysis"
+                android:textSize="16sp" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -98,15 +101,17 @@
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
-        <Button
-            android:id="@+id/formulation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:padding="10dp"
-            android:text="@string/formulation"
-            android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/formulation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:text="@string/formulation"
+                android:textSize="16sp" />
         </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.CardView
             android:id="@+id/nativeCard-42"
             android:layout_width="match_parent"
@@ -133,14 +138,15 @@
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
-        <Button
-            android:id="@+id/mchem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:padding="10dp"
-            android:text="@string/mchem"
-            android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/mchem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:text="@string/mchem"
+                android:textSize="16sp" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -151,14 +157,15 @@
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
-        <Button
-            android:id="@+id/pharmac"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:padding="10dp"
-            android:text="@string/pharmac"
-            android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/pharmac"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:text="@string/pharmac"
+                android:textSize="16sp" />
         </android.support.v7.widget.CardView>
     </LinearLayout>
 

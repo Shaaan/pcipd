@@ -11,20 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.NativeExpressAdView;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-
-    private NativeExpressAdView nativeExpressAdView;
-    private NativeExpressAdView nativeExpressAdView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +31,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.syllabus4).setOnClickListener(this);
         findViewById(R.id.syllabus5).setOnClickListener(this);
         findViewById(R.id.syllabus6).setOnClickListener(this);
+
         MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
         /*mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
         mAdView.loadAd(adRequest);*/
-
-        nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_11);
-        nativeExpressAdView1 = (NativeExpressAdView) findViewById(R.id.advert_12);
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
+        mAdView.loadAd(adRequest);
+        /*NativeExpressAdView nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_11);
+        NativeExpressAdView nativeExpressAdView1 = (NativeExpressAdView) findViewById(R.id.advert_12);
         AdRequest request = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
         AdRequest request1 = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
         nativeExpressAdView.loadAd(request);
-        nativeExpressAdView1.loadAd(request1);
+        nativeExpressAdView1.loadAd(request1);*/
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -71,14 +65,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        nativeExpressAdView.setAdListener(new AdListener() {
+        /*nativeExpressAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
                 findViewById(R.id.nativeCard_11).setVisibility(View.VISIBLE);
                 findViewById(R.id.nativeCard_12).setVisibility(View.VISIBLE);
             }
-        });
+        });*/
     }
 
     @Override
