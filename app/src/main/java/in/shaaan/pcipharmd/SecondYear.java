@@ -37,8 +37,8 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
         findViewById(R.id.micro).setOnClickListener(this);
         findViewById(R.id.patho).setOnClickListener(this);
         findViewById(R.id.com).setOnClickListener(this);
-        MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
 
+        MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
         nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_31);
         nativeExpressAdView1 = (NativeExpressAdView) findViewById(R.id.advert_32);
         AdRequest request = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
