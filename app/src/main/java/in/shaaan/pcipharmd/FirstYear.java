@@ -3,6 +3,7 @@ package in.shaaan.pcipharmd;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,11 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.InterstitialAd;
 
 public class FirstYear extends AppCompatActivity implements View.OnClickListener {
+    private InterstitialAd mInterstitialAd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,18 +37,22 @@ public class FirstYear extends AppCompatActivity implements View.OnClickListener
         findViewById(R.id.biochem).setOnClickListener(this);
         findViewById(R.id.oc).setOnClickListener(this);
         findViewById(R.id.ic).setOnClickListener(this);
+        findViewById(R.id.rem_mathBio).setOnClickListener(this);
 
         MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
         AdView mAdView = (AdView) findViewById(R.id.adView1);
         AdRequest adRequest = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
         mAdView.loadAd(adRequest);
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
+        mInterstitialAd.loadAd(adRequest);
+
         /*NativeExpressAdView nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_21);
         NativeExpressAdView nativeExpressAdView1 = (NativeExpressAdView) findViewById(R.id.advert_22);
         AdRequest request = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
         AdRequest request1 = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
         nativeExpressAdView.loadAd(request);
         nativeExpressAdView1.loadAd(request1);*/
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -113,14 +122,30 @@ public class FirstYear extends AppCompatActivity implements View.OnClickListener
                 CustomTabsIntent customTabsIntent3 = builder3.build();
                 customTabsIntent3.launchUrl(this, Uri.parse(s));
                 break;
+            case R.id.rem_mathBio:
+                String mb= "https://shaaan.github.io/pcipd/syllabus1/math_bio/";
+                CustomTabsIntent.Builder builder4 = new CustomTabsIntent.Builder();
+                builder4.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                CustomTabsIntent customTabsIntent4 = builder4.build();
+                customTabsIntent4.launchUrl(this, Uri.parse(mb));
             default:
         }
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+                    finish();
+                }
+            });
+        }else{
+            super.onBackPressed();
+        }
     }
 
     @Override

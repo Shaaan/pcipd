@@ -20,6 +20,7 @@
     <string name="ic">Pharmaceutical Inorganic Chemistry</string>
     <string name="oc">Pharmaceutical Organic Chemistry</string>
     <string name="ceutics">Pharmaceutics</string>
+    <string name="rem_mathBio">Remedial Mathematics and Biology</string>
 
     <!--Second Year-->
     <string name="cology">Pharmacology I</string>

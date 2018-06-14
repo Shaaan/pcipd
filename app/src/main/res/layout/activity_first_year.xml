@@ -42,7 +42,9 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/bottom_banner"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="@string/bottom_banner">
+
+    </com.google.android.gms.ads.AdView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
