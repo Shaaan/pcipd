@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:iosched="http://schemas.android.com/apk/res-auto"
@@ -19,7 +19,7 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="5dp"
@@ -36,9 +36,9 @@
                 android:padding="10dp"
                 android:text="@string/hap"
                 android:textSize="16sp" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="5dp"
@@ -55,9 +55,9 @@
                 android:padding="10dp"
                 android:text="@string/ceutics"
                 android:textSize="16sp" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/nativeCard-21"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -73,9 +73,9 @@
                 android:layout_height="match_parent"
                 ads:adUnitId="@string/nativeAd"
                 app:adSize="360x80" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="5dp"
@@ -92,9 +92,9 @@
                 android:padding="10dp"
                 android:text="@string/biochem"
                 android:textSize="16sp" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="5dp"
@@ -111,9 +111,9 @@
                 android:padding="10dp"
                 android:text="@string/oc"
                 android:textSize="16sp" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/nativeCard-22"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -129,9 +129,9 @@
                 android:layout_height="match_parent"
                 ads:adUnitId="@string/nativeAd"
                 app:adSize="360x80" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="5dp"
@@ -148,9 +148,9 @@
                 android:padding="10dp"
                 android:text="@string/ic"
                 android:textSize="16sp" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="5dp"
@@ -167,7 +167,7 @@
                 android:padding="10dp"
                 android:text="@string/rem_mathBio"
                 android:textSize="16sp" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

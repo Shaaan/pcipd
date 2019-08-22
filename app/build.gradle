@@ -5,16 +5,16 @@ android {
         config {
             keyAlias 'Shaaan'
             keyPassword 'cyanogenm0d'
-            storeFile file('D:\\secure/shaaan.jks')
+            storeFile file('/Users/shantanu/Downloads/shaaan.jks')
             storePassword 'cyanogenm0d'
         }
     }
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "in.shaaan.pcipharmd"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode getVersionCodeTimestamp()
         versionName "2.7"
     }
@@ -38,10 +38,10 @@ def getVersionCodeTimestamp() {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:customtabs:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.google.android.gms:play-services-ads:15.0.1'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.browser:browser:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.gms:play-services-ads:18.1.1'
 }
