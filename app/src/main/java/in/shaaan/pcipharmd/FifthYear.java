@@ -10,44 +10,46 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.ads.nativetemplates.NativeTemplateStyle;
+import com.google.android.ads.nativetemplates.TemplateView;
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class FifthYear extends AppCompatActivity implements View.OnClickListener {
+    @BindView(R.id.native_ad_51)
+    TemplateView nativeAd51;
+    @BindView(R.id.nativeCard_51)
+    CardView nativeCard51;
+    @BindView(R.id.native_ad_52)
+    TemplateView nativeAd52;
+    @BindView(R.id.nativeCard_52)
+    CardView nativeCard52;
     private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fifth_year);
+        ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        findViewById(R.id.nativeCard_61).setVisibility(View.GONE);
-        findViewById(R.id.nativeCard_62).setVisibility(View.GONE);
         findViewById(R.id.epi).setOnClickListener(this);
         findViewById(R.id.tdm).setOnClickListener(this);
         findViewById(R.id.research).setOnClickListener(this);
-
-        MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
-        AdView mAdView = findViewById(R.id.adView5);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-        mAdView.loadAd(adRequest);
-        /*NativeExpressAdView nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_61);
-        NativeExpressAdView nativeExpressAdView1 = (NativeExpressAdView) findViewById(R.id.advert_62);
-        AdRequest request = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-        AdRequest request1 = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-        nativeExpressAdView.loadAd(request);
-        nativeExpressAdView1.loadAd(request1);*/
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
-        mInterstitialAd.loadAd(adRequest);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,14 +69,73 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        /*nativeExpressAdView.setAdListener(new AdListener() {
+
+//
+//
+//        Google AdMob
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                findViewById(R.id.nativeCard_61).setVisibility(View.VISIBLE);
-                findViewById(R.id.nativeCard_62).setVisibility(View.VISIBLE);
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
             }
-        });*/
+        });
+
+        refreshAd();
+
+    }
+
+    public void refreshAd() {
+//
+//        Banner Ads
+//
+//        AdView mAdView = findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
+//        mAdView.loadAd(adRequest);
+
+//
+//        Native Ads
+//
+        AdLoader adLoader51 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
+                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                    @Override
+                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+                        nativeCard51.setVisibility(View.VISIBLE);
+                        NativeTemplateStyle style = new NativeTemplateStyle.Builder()
+                                .withSecondaryTextSize(0)
+                                .withTertiaryTextSize(0)
+                                .withCallToActionTextSize(0)
+                                .build();
+
+                        nativeAd51.setStyles(style);
+                        nativeAd51.setNativeAd(unifiedNativeAd);
+                    }
+                }).build();
+
+        adLoader51.loadAd(new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("010E297A73E360936A053C01A2D8902F").build());
+
+        AdLoader adLoader52 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
+                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                    @Override
+                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+                        nativeCard52.setVisibility(View.VISIBLE);
+                        NativeTemplateStyle style = new NativeTemplateStyle.Builder()
+                                .withSecondaryTextSize(0)
+                                .withTertiaryTextSize(0)
+                                .withCallToActionTextSize(0)
+                                .build();
+
+                        nativeAd52.setStyles(style);
+                        nativeAd52.setNativeAd(unifiedNativeAd);
+                    }
+                }).build();
+
+        adLoader52.loadAd(new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("010E297A73E360936A053C01A2D8902F").build());
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
     }
 
     @Override
@@ -118,8 +179,24 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
                     finish();
                 }
             });
-        }else{
+        } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+                }
+            });
+        } else {
+            super.onResume();
         }
     }
 

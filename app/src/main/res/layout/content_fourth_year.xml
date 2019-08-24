@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:iosched="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -57,21 +56,21 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/nativeCard-51"
+            android:id="@+id/nativeCard_41"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
 
-            <com.google.android.gms.ads.NativeExpressAdView
-                android:id="@+id/advert_51"
+            <!--  This is your template view -->
+            <com.google.android.ads.nativetemplates.TemplateView
+                android:id="@+id/native_ad_41"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                ads:adUnitId="@string/nativeAd"
-                app:adSize="360x80" />
+                android:layout_height="wrap_content"
+                app:gnt_template_type="@layout/gnt_small_template_view" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -113,21 +112,21 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/nativeCard-52"
+            android:id="@+id/nativeCard_42"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
 
-            <com.google.android.gms.ads.NativeExpressAdView
-                android:id="@+id/advert_52"
+            <!--  This is your template view -->
+            <com.google.android.ads.nativetemplates.TemplateView
+                android:id="@+id/native_ad_42"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                ads:adUnitId="@string/nativeAd"
-                app:adSize="360x80" />
+                android:layout_height="wrap_content"
+                app:gnt_template_type="@layout/gnt_small_template_view" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -166,6 +165,24 @@
                 android:padding="10dp"
                 android:text="@string/biostat"
                 android:textSize="16sp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/nativeCard_43"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            iosched:cardCornerRadius="@dimen/card_corner_radius"
+            iosched:cardElevation="@dimen/card_elevation"
+            iosched:cardPreventCornerOverlap="false">
+
+            <!--  This is your template view -->
+            <com.google.android.ads.nativetemplates.TemplateView
+                android:id="@+id/native_ad_43"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:gnt_template_type="@layout/gnt_small_template_view" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
