@@ -10,13 +10,20 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.ads.nativetemplates.NativeTemplateStyle;
+import com.google.android.ads.nativetemplates.TemplateView;
+import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private UnifiedNativeAd nativeAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +40,79 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.syllabus5).setOnClickListener(this);
         findViewById(R.id.syllabus6).setOnClickListener(this);
 
-        MobileAds.initialize(this, "ca-app-pub-1941738066609841~7536308276");
-        /*mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-        mAdView.loadAd(adRequest);*/
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-        mAdView.loadAd(adRequest);
-        /*NativeExpressAdView nativeExpressAdView = (NativeExpressAdView) findViewById(R.id.advert_11);
-        NativeExpressAdView nativeExpressAdView1 = (NativeExpressAdView) findViewById(R.id.advert_12);
-        AdRequest request = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-        AdRequest request1 = new AdRequest.Builder().addTestDevice("83292CF42ABC0992E918B70ED66AFCCB").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-        nativeExpressAdView.loadAd(request);
-        nativeExpressAdView1.loadAd(request1);*/
+//
+//
+//        Google AdMob
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        refreshAd();
+
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        /*nativeExpressAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                findViewById(R.id.nativeCard_11).setVisibility(View.VISIBLE);
+                findViewById(R.id.nativeCard_12).setVisibility(View.VISIBLE);
+            }
+        });*/
+    }
+
+    public void refreshAd() {
+//
+//        Banner Ads
+//
+//        AdView mAdView = findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
+//        mAdView.loadAd(adRequest);
+
+//
+//        Native Ads
+//
+        AdLoader adLoader = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
+                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                    @Override
+                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+                        findViewById(R.id.nativeCard_12).setVisibility(View.VISIBLE);
+                        NativeTemplateStyle style = new NativeTemplateStyle.Builder()
+                                .withSecondaryTextSize(0)
+                                .withTertiaryTextSize(0)
+                                .withCallToActionTextSize(0)
+                                .build();
+
+                        TemplateView templateView = findViewById(R.id.my_template);
+                        templateView.setStyles(style);
+                        templateView.setNativeAd(unifiedNativeAd);
+                    }
+                }).build();
+
+        AdLoader adLoader1 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
+                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                    @Override
+                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+                        findViewById(R.id.nativeCard_11).setVisibility(View.VISIBLE);
+                        NativeTemplateStyle style = new NativeTemplateStyle.Builder()
+                                .withSecondaryTextSize(0)
+                                .withTertiaryTextSize(0)
+                                .withCallToActionTextSize(0)
+                                .build();
+
+                        TemplateView templateView = findViewById(R.id.my_template1);
+                        templateView.setStyles(style);
+                        templateView.setNativeAd(unifiedNativeAd);
+                    }
+                }).build();
+
+        adLoader.loadAd(new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("010E297A73E360936A053C01A2D8902F").build());
+        adLoader1.loadAd(new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("010E297A73E360936A053C01A2D8902F").build());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,17 +129,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         }).show();
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        /*nativeExpressAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                findViewById(R.id.nativeCard_11).setVisibility(View.VISIBLE);
-                findViewById(R.id.nativeCard_12).setVisibility(View.VISIBLE);
-            }
-        });*/
     }
+
 
     @Override
     public void onClick(View view) {

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:iosched="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="100dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="in.shaaan.pcipharmd.HomeActivity"
     tools:showIn="@layout/activity_home">
@@ -14,7 +12,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -57,21 +54,23 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/nativeCard-11"
+            android:id="@+id/nativeCard_11"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
 
-            <com.google.android.gms.ads.NativeExpressAdView
-                android:id="@+id/advert_11"
-                android:layout_width="match_parent"
+            <!--  This is your template view -->
+            <com.google.android.ads.nativetemplates.TemplateView
+                android:id="@+id/my_template1"
                 android:layout_height="match_parent"
-                ads:adUnitId="@string/nativeAd"
-                app:adSize="360x80" />
+                android:layout_width="match_parent"
+                app:gnt_template_type="@layout/gnt_small_template_view" />
+
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -113,21 +112,23 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/nativeCard-12"
+            android:id="@+id/nativeCard_12"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
 
-            <com.google.android.gms.ads.NativeExpressAdView
-                android:id="@+id/advert_12"
+            <!--  This is your template view -->
+            <com.google.android.ads.nativetemplates.TemplateView
+                android:id="@+id/my_template"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                ads:adUnitId="@string/nativeAd"
-                app:adSize="360x80" />
+                app:gnt_template_type="@layout/gnt_small_template_view" />
+
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
