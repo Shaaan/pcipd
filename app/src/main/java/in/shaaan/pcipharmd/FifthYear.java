@@ -148,57 +148,77 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent = builder.build();
-                customTabsIntent.launchUrl(this, Uri.parse(epi));
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            super.onAdClosed();
+//                            finish();
+                            customTabsIntent.launchUrl(FifthYear.this, Uri.parse(epi));
+                        }
+                    });
+                } else {
+                    customTabsIntent.launchUrl(this, Uri.parse(epi));
+                }
                 break;
             case R.id.research:
                 String s = "https://shaaan.github.io/pcipd/syllabus5/research";
                 CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
                 builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent1 = builder1.build();
-                customTabsIntent1.launchUrl(this, Uri.parse(s));
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            super.onAdClosed();
+//                            finish();
+                            customTabsIntent1.launchUrl(FifthYear.this, Uri.parse(s));
+                        }
+                    });
+                } else {
+                    customTabsIntent1.launchUrl(this, Uri.parse(s));
+                }
                 break;
             case R.id.tdm:
                 String s1 = "https://shaaan.github.io/pcipd/syllabus5/tdm";
                 CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
                 builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent2 = builder2.build();
-                customTabsIntent2.launchUrl(this, Uri.parse(s1));
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            super.onAdClosed();
+//                            finish();
+                            customTabsIntent2.launchUrl(FifthYear.this, Uri.parse(s1));
+                        }
+                    });
+                } else {
+                    customTabsIntent2.launchUrl(this, Uri.parse(s1));
+                }
                 break;
             default:
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    finish();
-                }
-            });
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    super.onAdClosed();
-                }
-            });
-        } else {
-            super.onResume();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (mInterstitialAd.isLoaded()) {
+//            mInterstitialAd.show();
+//            mInterstitialAd.setAdListener(new AdListener() {
+//                @Override
+//                public void onAdClosed() {
+//                    super.onAdClosed();
+//                    finish();
+//                }
+//            });
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

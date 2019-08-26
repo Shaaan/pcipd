@@ -175,78 +175,134 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent = builder.build();
-                customTabsIntent.launchUrl(this, Uri.parse(s));
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            super.onAdClosed();
+//                            finish();
+                            customTabsIntent.launchUrl(ThirdYear.this, Uri.parse(s));
+                        }
+                    });
+                } else {
+                    customTabsIntent.launchUrl(this, Uri.parse(s));
+                }
                 break;
             case R.id.pharmac:
                 String s1 = "https://shaaan.github.io/pcipd/syllabus3/pharmac";
                 CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
                 builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent1 = builder1.build();
-                customTabsIntent1.launchUrl(this, Uri.parse(s1));
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            super.onAdClosed();
+//                            finish();
+                            customTabsIntent1.launchUrl(ThirdYear.this, Uri.parse(s1));
+                        }
+                    });
+                } else {
+                    customTabsIntent1.launchUrl(this, Uri.parse(s1));
+                }
                 break;
             case R.id.formulation:
                 String s2 = "https://shaaan.github.io/pcipd/syllabus3/formulation";
                 CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
                 builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent2 = builder2.build();
-                customTabsIntent2.launchUrl(this, Uri.parse(s2));
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            super.onAdClosed();
+//                            finish();
+                            customTabsIntent2.launchUrl(ThirdYear.this, Uri.parse(s2));
+                        }
+                    });
+                } else {
+                    customTabsIntent2.launchUrl(this, Uri.parse(s2));
+                }
                 break;
             case R.id.analysis:
                 String s3 = "https://shaaan.github.io/pcipd/syllabus3/analysis";
                 CustomTabsIntent.Builder builder3 = new CustomTabsIntent.Builder();
                 builder3.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent3 = builder3.build();
-                customTabsIntent3.launchUrl(this, Uri.parse(s3));
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            super.onAdClosed();
+//                            finish();
+                            customTabsIntent3.launchUrl(ThirdYear.this, Uri.parse(s3));
+                        }
+                    });
+                } else {
+                    customTabsIntent3.launchUrl(this, Uri.parse(s3));
+                }
                 break;
             case R.id.juris:
                 String s4 = "https://shaaan.github.io/pcipd/syllabus3/juris";
                 CustomTabsIntent.Builder builder4 = new CustomTabsIntent.Builder();
                 builder4.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent4 = builder4.build();
-                customTabsIntent4.launchUrl(this, Uri.parse(s4));
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            super.onAdClosed();
+//                            finish();
+                            customTabsIntent4.launchUrl(ThirdYear.this, Uri.parse(s4));
+                        }
+                    });
+                } else {
+                    customTabsIntent4.launchUrl(this, Uri.parse(s4));
+                }
                 break;
             case R.id.mchem:
                 String s5 = "https://shaaan.github.io/pcipd/syllabus3/mchem";
                 CustomTabsIntent.Builder builder5 = new CustomTabsIntent.Builder();
                 builder5.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
                 CustomTabsIntent customTabsIntent5 = builder5.build();
-                customTabsIntent5.launchUrl(this, Uri.parse(s5));
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            super.onAdClosed();
+//                            finish();
+                            customTabsIntent5.launchUrl(ThirdYear.this, Uri.parse(s5));
+                        }
+                    });
+                } else {
+                    customTabsIntent5.launchUrl(this, Uri.parse(s5));
+                }
                 break;
             default:
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    finish();
-                }
-            });
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    super.onAdClosed();
-                }
-            });
-        } else {
-            super.onResume();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (mInterstitialAd.isLoaded()) {
+//            mInterstitialAd.show();
+//            mInterstitialAd.setAdListener(new AdListener() {
+//                @Override
+//                public void onAdClosed() {
+//                    super.onAdClosed();
+//                    finish();
+//                }
+//            });
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
