@@ -58,7 +58,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/nativeCard_31"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="110dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
@@ -114,7 +114,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/nativeCard_32"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="110dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
@@ -170,7 +170,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/nativeCard_33"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="110dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"

@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
 
         android:padding="10dp">
@@ -57,7 +58,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/nativeCard_01"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="110dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
@@ -68,7 +69,7 @@
             <com.google.android.ads.nativetemplates.TemplateView
                 android:id="@+id/native_ad_01"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:gnt_template_type="@layout/gnt_small_template_view" />
 
 
@@ -115,7 +116,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/nativeCard_02"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="110dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
