@@ -31,15 +31,15 @@
     <string name="patho">Pathophysiology</string>
 
     <!--Third Year-->
-    <string name="pharmac">Pharmacology 2</string>
+    <string name="pharmac">Pharmacology II</string>
     <string name="juris">Pharmaceutical Jurisprudence</string>
     <string name="formulation">Pharmaceutical Formulations</string>
-    <string name="tp2">Pharmacotheraputics 2</string>
+    <string name="tp2">Pharmacotheraputics II</string>
     <string name="analysis">Pharmaceutical Analysis</string>
     <string name="mchem">Medicinal Chemistry</string>
 
     <!--Fourth Year-->
-    <string name="tp3">Pharmacotheraputics 3</string>
+    <string name="tp3">Pharmacotheraputics III</string>
     <string name="toxicology">Clinical Toxicology</string>
     <string name="hp">Hospital Pharmacy</string>
     <string name="cp">Clinical Pharmacy</string>
