@@ -112,6 +112,7 @@ public class SixthYear extends AppCompatActivity implements View.OnClickListener
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setImmersiveMode(true);
 
     }
 
@@ -124,7 +125,9 @@ public class SixthYear extends AppCompatActivity implements View.OnClickListener
             case R.id.intern_activities:
                 String s = "https://shaaan.github.io/pcipd/syllabus6";
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent = builder.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -132,7 +135,6 @@ public class SixthYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent.launchUrl(SixthYear.this, Uri.parse(s));
                         }
                     });
@@ -143,7 +145,9 @@ public class SixthYear extends AppCompatActivity implements View.OnClickListener
             case R.id.intern_documents:
                 String s1 = "https://shaaan.github.io/pcipd/syllabus6_1/";
                 CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
-                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent1 = builder1.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -151,7 +155,6 @@ public class SixthYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent1.launchUrl(SixthYear.this, Uri.parse(s1));
                         }
                     });

@@ -135,6 +135,7 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setImmersiveMode(true);
 
     }
 
@@ -146,7 +147,9 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
             case R.id.epi:
                 String epi = "https://shaaan.github.io/pcipd/syllabus5/epi/";
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent = builder.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -154,7 +157,6 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent.launchUrl(FifthYear.this, Uri.parse(epi));
                         }
                     });
@@ -165,7 +167,9 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
             case R.id.research:
                 String s = "https://shaaan.github.io/pcipd/syllabus5/research";
                 CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
-                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent1 = builder1.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -173,7 +177,6 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent1.launchUrl(FifthYear.this, Uri.parse(s));
                         }
                     });
@@ -184,7 +187,9 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
             case R.id.tdm:
                 String s1 = "https://shaaan.github.io/pcipd/syllabus5/tdm";
                 CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
-                builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent2 = builder2.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -192,7 +197,6 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent2.launchUrl(FifthYear.this, Uri.parse(s1));
                         }
                     });

@@ -162,6 +162,7 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setImmersiveMode(true);
 
     }
 
@@ -173,7 +174,9 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.tp2:
                 String s = "https://shaaan.github.io/pcipd/syllabus3/tp2";
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent = builder.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -181,7 +184,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent.launchUrl(ThirdYear.this, Uri.parse(s));
                         }
                     });
@@ -192,7 +194,9 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.pharmac:
                 String s1 = "https://shaaan.github.io/pcipd/syllabus3/pharmac";
                 CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
-                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent1 = builder1.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -200,7 +204,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent1.launchUrl(ThirdYear.this, Uri.parse(s1));
                         }
                     });
@@ -211,7 +214,9 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.formulation:
                 String s2 = "https://shaaan.github.io/pcipd/syllabus3/formulation";
                 CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
-                builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent2 = builder2.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -219,7 +224,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent2.launchUrl(ThirdYear.this, Uri.parse(s2));
                         }
                     });
@@ -230,7 +234,9 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.analysis:
                 String s3 = "https://shaaan.github.io/pcipd/syllabus3/analysis";
                 CustomTabsIntent.Builder builder3 = new CustomTabsIntent.Builder();
-                builder3.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder3.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent3 = builder3.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -238,7 +244,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent3.launchUrl(ThirdYear.this, Uri.parse(s3));
                         }
                     });
@@ -249,7 +254,9 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.juris:
                 String s4 = "https://shaaan.github.io/pcipd/syllabus3/juris";
                 CustomTabsIntent.Builder builder4 = new CustomTabsIntent.Builder();
-                builder4.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder4.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent4 = builder4.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -257,7 +264,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent4.launchUrl(ThirdYear.this, Uri.parse(s4));
                         }
                     });
@@ -268,7 +274,9 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
             case R.id.mchem:
                 String s5 = "https://shaaan.github.io/pcipd/syllabus3/mchem";
                 CustomTabsIntent.Builder builder5 = new CustomTabsIntent.Builder();
-                builder5.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder5.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent5 = builder5.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -276,7 +284,6 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent5.launchUrl(ThirdYear.this, Uri.parse(s5));
                         }
                     });

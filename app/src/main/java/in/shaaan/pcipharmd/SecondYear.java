@@ -162,6 +162,7 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setImmersiveMode(true);
 
     }
 
@@ -174,7 +175,9 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
                 String s3 = "https://shaaan.github.io/pcipd/syllabus2/cology";
                 CustomTabsIntent.Builder builder3 = new CustomTabsIntent.Builder();
                 CustomTabsIntent customTabsIntent3 = builder3.build();
-                builder3.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder3.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
                     mInterstitialAd.setAdListener(new AdListener() {
@@ -191,7 +194,9 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
             case R.id.tp1:
                 String s = "https://shaaan.github.io/pcipd/syllabus2/tp1";
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent = builder.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -209,7 +214,9 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
             case R.id.micro:
                 String s1 = "https://shaaan.github.io/pcipd/syllabus2/micro";
                 CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
-                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent1 = builder1.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -217,7 +224,6 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent1.launchUrl(SecondYear.this, Uri.parse(s1));
                         }
                     });
@@ -228,7 +234,9 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
             case R.id.cognosy:
                 String s2 = "https://shaaan.github.io/pcipd/syllabus2/cognosy";
                 CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
-                builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent2 = builder2.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -236,7 +244,6 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent2.launchUrl(SecondYear.this, Uri.parse(s2));
                         }
                     });
@@ -247,7 +254,9 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
             case R.id.patho:
                 String s4 = "https://shaaan.github.io/pcipd/syllabus2/patho";
                 CustomTabsIntent.Builder builder4 = new CustomTabsIntent.Builder();
-                builder4.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder4.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent4 = builder4.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -255,7 +264,6 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent4.launchUrl(SecondYear.this, Uri.parse(s4));
                         }
                     });
@@ -266,7 +274,9 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
             case R.id.com:
                 String s5 = "https://shaaan.github.io/pcipd/syllabus2/cmp";
                 CustomTabsIntent.Builder builder5 = new CustomTabsIntent.Builder();
-                builder5.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                builder5.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                        .enableUrlBarHiding()
+                        .setShowTitle(true);
                 CustomTabsIntent customTabsIntent5 = builder5.build();
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
@@ -274,7 +284,6 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
                         @Override
                         public void onAdClosed() {
                             super.onAdClosed();
-//                            finish();
                             customTabsIntent5.launchUrl(SecondYear.this, Uri.parse(s5));
                         }
                     });
