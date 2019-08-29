@@ -47,6 +47,8 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
         ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        nativeAd51.setVisibility(View.GONE);
+        nativeAd52.setVisibility(View.GONE);
         findViewById(R.id.epi).setOnClickListener(this);
         findViewById(R.id.tdm).setOnClickListener(this);
         findViewById(R.id.research).setOnClickListener(this);
