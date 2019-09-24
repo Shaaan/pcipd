@@ -62,4 +62,8 @@
     <string name="bottom_banner">ca-app-pub-1941738066609841/6796929913</string>
     <string name="nativeAd">ca-app-pub-1941738066609841/9140177753</string>
     <string name="ad_attribution">Ad</string>
+
+    <!--  App drawer strings  -->
+    <string name="drawer_item_syllabus">Syllabus</string>
+    <string name="drawer_item_chat">Chat</string>
 </resources>
