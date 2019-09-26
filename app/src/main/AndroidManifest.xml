@@ -14,7 +14,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".ChatActivity"
-            android:label="Doctor's Chatroom"
+            android:label="Doctor&apos;s Chatroom"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
