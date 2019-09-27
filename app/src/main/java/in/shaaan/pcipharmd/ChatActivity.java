@@ -6,13 +6,11 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +39,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -85,6 +84,9 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
     // Choose an arbitrary request code value
     private static final int RC_SIGN_IN = 123;
     FirebaseUser mFirebaseUser;
+    String userPhoto;
+    FirebaseAnalytics firebaseAnalytics;
+    SharedPreferences.Editor editor;
     private String mUsername;
     private String mPhotoUrl;
     private String mUserEmail;
@@ -100,7 +102,6 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
     // Firebase instance variables
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder> mFirebaseAdapter;
-    String userPhoto;
     private Drawer result;
 
     @Override
@@ -109,11 +110,12 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         setContentView(R.layout.activity_chat);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mUsername = ANONYMOUS;
 
         FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
         if (mFirebaseUser == null) {
             startActivityForResult(
                     AuthUI.getInstance()
@@ -126,7 +128,6 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                             .setIsSmartLockEnabled(false)
                             .build(), RC_SIGN_IN
             );
-            finish();
         } else {
             mUsername = mFirebaseUser.getDisplayName();
             mUserEmail = mFirebaseUser.getEmail();
@@ -226,6 +227,46 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(R.string.action_about)
                 )
+                .addStickyDrawerItems(new SecondaryDrawerItem().withName("Logout").withDescription("Logout from chat").withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                            @Override
+                            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                                AuthUI.getInstance()
+                                        .signOut(ChatActivity.this)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                // user is now signed out
+                                                Toast toast = Toast.makeText(ChatActivity.this, "Logged out successfully!", Toast.LENGTH_LONG);
+                                                toast.show();
+                                                finish();
+                                            }
+                                        });
+                                return true;
+                            }
+                        }),
+                        new SecondaryDrawerItem().withName("Delete").withDescription("Delete chat account").withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                            @Override
+                            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                                AuthUI.getInstance()
+                                        .delete(ChatActivity.this)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    // Deletion succeeded
+                                                    Toast toast = Toast.makeText(ChatActivity.this, "Account deleted successfully!", Toast.LENGTH_LONG);
+                                                    toast.show();
+                                                    finish();
+                                                } else {
+                                                    // Deletion failed
+                                                    Toast toast = Toast.makeText(ChatActivity.this, "Failed to delete the account. Please contact the developer!", Toast.LENGTH_LONG);
+                                                    toast.show();
+                                                    finish();
+                                                }
+                                            }
+                                        });
+                                return false;
+                            }
+                        }))
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -238,10 +279,12 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                                 break;
 
                             case 1:
-                                Intent chatIntent = new Intent(ChatActivity.this, HomeActivity.class);
-                                startActivity(chatIntent);
+//                                Intent chatIntent = new Intent(ChatActivity.this, HomeActivity.class);
+//                                startActivity(chatIntent);
                                 result.closeDrawer();
                                 finish();
+                                break;
+                            case 3:
                                 break;
                         }
                         return true;
@@ -296,8 +339,10 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
                 if (friendlyMessage.getText() != null) {
                     viewHolder.messageTextView.setText(friendlyMessage.getText());
+                    viewHolder.timeStampTextView.setText(friendlyMessage.getTimeStamp());
                     viewHolder.messageTextView.setVisibility(TextView.VISIBLE);
                     viewHolder.messageImageView.setVisibility(ImageView.GONE);
+
                 } else if (friendlyMessage.getImageUrl() != null) {
                     String imageUrl = friendlyMessage.getImageUrl();
                     if (imageUrl.startsWith("gs://")) {
@@ -448,8 +493,8 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_logout, menu);
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_logout, menu);
         return true;
     }
 
@@ -459,14 +504,7 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        public void onComplete(@NonNull Task<Void> task) {
-                            // user is now signed out
-                            finish();
-                        }
-                    });
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -546,11 +584,21 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                 });
     }
 
+    @Override
+    public void onBackPressed() {
+        if (result != null && result.isDrawerOpen()) {
+            result.closeDrawer();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
         TextView messageTextView;
         ImageView messageImageView;
         TextView messengerTextView;
         CircleImageView messengerImageView;
+        TextView timeStampTextView;
 
         public MessageViewHolder(View v) {
             super(v);
@@ -558,6 +606,7 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
             messageImageView = itemView.findViewById(R.id.messageImageView);
             messengerTextView = itemView.findViewById(R.id.messengerTextView);
             messengerImageView = itemView.findViewById(R.id.messengerImageView);
+            timeStampTextView = itemView.findViewById(R.id.timeStampTextView);
         }
     }
 }
