@@ -162,6 +162,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         result = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
+                .withSelectedItem(-1)
                 .withAccountHeader(headerResult)
                 .addDrawerItems(
                         item1,
@@ -176,7 +177,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         Log.d("Drawer", "Clicked" + position);
                         switch (position) {
                             case 1:
-                                Toast toast = Toast.makeText(HomeActivity.this, "Already viewing the syllabus", Toast.LENGTH_SHORT);
+                                Toast toast = Toast.makeText(HomeActivity.this, "Already viewing the syllabus..", Toast.LENGTH_SHORT);
                                 toast.show();
                                 break;
 
@@ -184,6 +185,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                                 Intent chatIntent = new Intent(HomeActivity.this, ChatActivity.class);
                                 startActivity(chatIntent);
                                 result.closeDrawer();
+                                finish();
                                 break;
                         }
                         return true;

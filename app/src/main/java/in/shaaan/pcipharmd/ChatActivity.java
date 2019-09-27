@@ -219,6 +219,7 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withAccountHeader(headerResult)
+                .withSelectedItem(-1)
                 .addDrawerItems(
                         item1,
                         item2,
@@ -231,21 +232,22 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                         // do something with the clicked item :D
                         Log.d("Drawer", "Clicked" + position);
                         switch (position) {
-                            case 1:
-                                Toast toast = Toast.makeText(ChatActivity.this, "Already viewing the syllabus", Toast.LENGTH_SHORT);
+                            case 2:
+                                Toast toast = Toast.makeText(ChatActivity.this, "Already in the Doctor's Chatroom..", Toast.LENGTH_SHORT);
                                 toast.show();
                                 break;
 
-                            case 2:
-                                Intent chatIntent = new Intent(ChatActivity.this, ChatActivity.class);
+                            case 1:
+                                Intent chatIntent = new Intent(ChatActivity.this, HomeActivity.class);
                                 startActivity(chatIntent);
                                 result.closeDrawer();
+                                finish();
                                 break;
                         }
                         return true;
                     }
                 })
-                .withFullscreen(true)
+//                .withFullscreen(true)
                 .withSavedInstance(savedInstanceState)
                 .build();
 
