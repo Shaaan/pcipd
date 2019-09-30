@@ -608,7 +608,12 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         if (result != null && result.isDrawerOpen()) {
             result.closeDrawer();
         } else {
-            super.onBackPressed();
+            if (interstitialAd.isLoaded()) {
+                interstitialAd.show();
+                super.onBackPressed();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
