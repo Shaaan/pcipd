@@ -15,6 +15,9 @@
  */
 package in.shaaan.pcipharmd;
 
+import androidx.annotation.Keep;
+
+@Keep
 public class FriendlyMessage {
 
     private String id;
