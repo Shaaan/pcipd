@@ -31,6 +31,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.ErrorCodes;
+import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
@@ -133,7 +135,7 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                             .setAvailableProviders(Arrays.asList(
                                     new AuthUI.IdpConfig.GoogleBuilder().build()
                             ))
-                            .setTosAndPrivacyPolicyUrls("https://google.com", "https://google.com")
+                            .setTosAndPrivacyPolicyUrls("https://shaaan.github.io/pcipd/tos/tos.html", "https://shaaan.github.io/pcipd/tos/privacy_policy.html")
                             .setAlwaysShowSignInMethodScreen(true)
                             .setIsSmartLockEnabled(false)
                             .build(), RC_SIGN_IN
@@ -146,6 +148,8 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                 mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
             }
         }
+
+
 
 /*
         Material Drawer
@@ -570,6 +574,26 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                                     }
                                 }
                             });
+                }
+            }
+        } else if (requestCode == RC_SIGN_IN) {
+            IdpResponse response = IdpResponse.fromResultIntent(data);
+
+            // Successfully signed in
+            if (resultCode == RESULT_OK) {
+                Log.d("FIrebase Login", "Successful");
+            } else {
+                // Sign in failed
+                if (response == null) {
+                    // User pressed back button
+                    finish();
+                    return;
+                }
+
+                if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+                    Toast toast = Toast.makeText(this, "No network connectivity!", Toast.LENGTH_LONG);
+                    toast.show();
+
                 }
             }
         }
