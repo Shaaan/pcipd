@@ -1,8 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'
-// Apply the Performance Monitoring plugin
-//apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
     signingConfigs {
@@ -24,13 +22,20 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resConfigs "en"
         multiDexEnabled true
+
     }
     buildTypes {
         release {
             minifyEnabled true
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
+        }
+
+        debug {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -84,6 +89,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
     implementation 'com.google.firebase:firebase-inappmessaging-display:19.0.0'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
-//    implementation 'com.google.firebase:firebase-perf:19.0.0'
 
 }

@@ -34,6 +34,9 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -70,6 +73,7 @@ import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+@SuppressWarnings("deprecation")
 public class ChatActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     public static final String MESSAGES_CHILD = "messages";
@@ -103,6 +107,7 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder> mFirebaseAdapter;
     private Drawer result;
+    private InterstitialAd interstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +117,11 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         setSupportActionBar(toolbar);
 //        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mUsername = ANONYMOUS;
+
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+        interstitialAd.setImmersiveMode(true);
 
         FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -279,10 +289,19 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                                 break;
 
                             case 1:
-//                                Intent chatIntent = new Intent(ChatActivity.this, HomeActivity.class);
-//                                startActivity(chatIntent);
                                 result.closeDrawer();
-                                finish();
+                                if (interstitialAd.isLoaded()) {
+                                    interstitialAd.show();
+                                    interstitialAd.setAdListener(new AdListener() {
+                                        @Override
+                                        public void onAdClosed() {
+                                            super.onAdClosed();
+                                            finish();
+                                        }
+                                    });
+                                } else {
+                                    finish();
+                                }
                                 break;
                             case 3:
                                 break;

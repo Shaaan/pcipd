@@ -20,8 +20,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.ads.nativetemplates.NativeTemplateStyle;
 import com.google.android.ads.nativetemplates.TemplateView;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -59,6 +61,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     String userPhoto;
     private Drawer result;
     private FirebaseAnalytics mFirebaseAnalytics;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+//        Load the ads
+        refreshAd();
 
 
         findViewById(R.id.nativeCard_01).setVisibility(View.GONE);
@@ -183,8 +189,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                             case 2:
                                 Intent chatIntent = new Intent(HomeActivity.this, ChatActivity.class);
-                                startActivity(chatIntent);
                                 result.closeDrawer();
+                                if (mInterstitialAd.isLoaded()) {
+                                    mInterstitialAd.show();
+                                    mInterstitialAd.setAdListener(new AdListener() {
+                                        @Override
+                                        public void onAdClosed() {
+                                            super.onAdClosed();
+                                            startActivity(chatIntent);
+                                        }
+                                    });
+                                } else {
+                                    startActivity(chatIntent);
+                                }
                                 break;
 
                             case 3:
@@ -228,7 +245,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        refreshAd();
     }
 
     public void refreshAd() {
@@ -297,6 +313,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 }).build();
 
         adLoader2.loadAd(new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("010E297A73E360936A053C01A2D8902F").build());
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setImmersiveMode(true);
     }
 
 
