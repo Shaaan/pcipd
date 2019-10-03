@@ -460,16 +460,24 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
 //                SimpleDateFormat s = new SimpleDateFormat("ddMMyyyyhhmmss");
 //                mTimeStamp = s.format(new Date());
                 mTimeStamp = DateFormat.getDateTimeInstance().format(new Date());
-                FriendlyMessage friendlyMessage = new
-                        FriendlyMessage(mMessageEditText.getText().toString(),
-                        mUsername,
-                        mPhotoUrl,
-                        null/* no image */,
-                        mUserEmail,
-                        mTimeStamp);
-                mFirebaseDatabaseReference.child(MESSAGES_CHILD)
-                        .push().setValue(friendlyMessage);
-                mMessageEditText.setText("");
+
+                boolean a = mMessageEditText.getText().toString().matches("/[A-Za-z0-9 .?&+-@#]+/i");
+                if (a) {
+                    FriendlyMessage friendlyMessage = new
+                            FriendlyMessage(mMessageEditText.getText().toString(),
+                            mUsername,
+                            mPhotoUrl,
+                            null/* no image */,
+                            mUserEmail,
+                            mTimeStamp);
+                    mFirebaseDatabaseReference.child(MESSAGES_CHILD)
+                            .push().setValue(friendlyMessage);
+                    mMessageEditText.setText("");
+
+                } else {
+                    Toast t = Toast.makeText(ChatActivity.this, "Please use only English!", Toast.LENGTH_LONG);
+                    t.show();
+                }
             }
         });
 
