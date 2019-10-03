@@ -11,14 +11,14 @@ android {
             storePassword 'cyanogenm0d'
         }
     }
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
     defaultConfig {
         applicationId "in.shaaan.pcipharmd"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode getVersionCodeTimestamp()
-        versionName "3.5"
+        versionName "3.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resConfigs "en"
         multiDexEnabled true
