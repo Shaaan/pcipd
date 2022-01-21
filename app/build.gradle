@@ -17,7 +17,8 @@ android {
         applicationId "in.shaaan.pcipharmd"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode getVersionCodeTimestamp()
+//        versionCode getVersionCodeTimestamp()
+        versionCode 35
         versionName "3.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resConfigs "en"
