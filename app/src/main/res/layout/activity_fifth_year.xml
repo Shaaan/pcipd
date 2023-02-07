@@ -32,7 +32,8 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_fifth_year" />
+    <include layout="@layout/content_fifth_year"
+        android:id="@+id/layout_5y"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

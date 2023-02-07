@@ -4,7 +4,13 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/pcipd.iml" filepath="$PROJECT_DIR$/.idea/modules/pcipd.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pcipd.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pcipd.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pcipd.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pcipd.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pcipd.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pcipd.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pcipd.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pcipd.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/nativetemplates/pcipd.nativetemplates.iml" filepath="$PROJECT_DIR$/.idea/modules/nativetemplates/pcipd.nativetemplates.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nativetemplates/pcipd.nativetemplates.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/nativetemplates/pcipd.nativetemplates.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nativetemplates/pcipd.nativetemplates.main.iml" filepath="$PROJECT_DIR$/.idea/modules/nativetemplates/pcipd.nativetemplates.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nativetemplates/pcipd.nativetemplates.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/nativetemplates/pcipd.nativetemplates.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/shared/pcipd.shared.iml" filepath="$PROJECT_DIR$/.idea/modules/shared/pcipd.shared.iml" />
     </modules>
   </component>

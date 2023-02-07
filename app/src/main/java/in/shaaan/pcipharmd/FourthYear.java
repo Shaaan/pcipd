@@ -9,59 +9,39 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.ads.nativetemplates.NativeTemplateStyle;
-import com.google.android.ads.nativetemplates.TemplateView;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import in.shaaan.pcipharmd.databinding.ActivityFourthYearBinding;
 
 public class FourthYear extends AppCompatActivity implements View.OnClickListener {
-    @BindView(R.id.native_ad_41)
-    TemplateView nativeAd41;
-    @BindView(R.id.nativeCard_41)
-    CardView nativeCard41;
-    @BindView(R.id.native_ad_42)
-    TemplateView nativeAd42;
-    @BindView(R.id.nativeCard_42)
-    CardView nativeCard42;
-    @BindView(R.id.native_ad_43)
-    TemplateView nativeAd43;
-    @BindView(R.id.nativeCard_43)
-    CardView nativeCard43;
-    private InterstitialAd mInterstitialAd;
+    private ActivityFourthYearBinding activityFourthYearBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fourth_year);
-        ButterKnife.bind(this);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        activityFourthYearBinding = ActivityFourthYearBinding.inflate(getLayoutInflater());
+        View view = activityFourthYearBinding.getRoot();
+        setContentView(view);
+        Toolbar toolbar = activityFourthYearBinding.toolbar;
         setSupportActionBar(toolbar);
-        nativeCard41.setVisibility(View.GONE);
-        nativeCard42.setVisibility(View.GONE);
-        nativeCard43.setVisibility(View.GONE);
-        findViewById(R.id.tp3).setOnClickListener(this);
-        findViewById(R.id.toxicology).setOnClickListener(this);
-        findViewById(R.id.hp).setOnClickListener(this);
-        findViewById(R.id.cp).setOnClickListener(this);
-        findViewById(R.id.biopharm).setOnClickListener(this);
-        findViewById(R.id.biostat).setOnClickListener(this);
+        AdUtil.loadAd(this);
+        activityFourthYearBinding.layout4y.nativeCard41.setVisibility(View.GONE);
+        activityFourthYearBinding.layout4y.nativeCard42.setVisibility(View.GONE);
+        activityFourthYearBinding.layout4y.nativeCard43.setVisibility(View.GONE);
+        activityFourthYearBinding.layout4y.tp3.setOnClickListener(this);
+        activityFourthYearBinding.layout4y.toxicology.setOnClickListener(this);
+        activityFourthYearBinding.layout4y.hp.setOnClickListener(this);
+        activityFourthYearBinding.layout4y.cp.setOnClickListener(this);
+        activityFourthYearBinding.layout4y.biopharm.setOnClickListener(this);
+        activityFourthYearBinding.layout4y.biostat.setOnClickListener(this);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = activityFourthYearBinding.fab;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,217 +60,84 @@ public class FourthYear extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-//
-//
-//        Google AdMob
-
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-
-            }
-        });
-
         refreshAd();
     }
 
     public void refreshAd() {
-//
-//        Banner Ads
-//
-//        AdView mAdView = findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-//        mAdView.loadAd(adRequest);
-
-//
-//        Native Ads
-//
+//      Native Ads
         AdLoader adLoader41 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
                     @Override
-                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                        nativeCard41.setVisibility(View.VISIBLE);
+                    public void onNativeAdLoaded(NativeAd unifiedNativeAd) {
                         NativeTemplateStyle style = new NativeTemplateStyle.Builder()
                                 .withSecondaryTextSize(0)
                                 .withTertiaryTextSize(0)
                                 .withCallToActionTextSize(0)
                                 .build();
-
-                        nativeAd41.setStyles(style);
-                        nativeAd41.setNativeAd(unifiedNativeAd);
+                        activityFourthYearBinding.layout4y.nativeAd41.setStyles(style);
+                        activityFourthYearBinding.layout4y.nativeAd41.setNativeAd(unifiedNativeAd);
                     }
                 }).build();
-
-        adLoader41.loadAd(new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("010E297A73E360936A053C01A2D8902F").build());
+        adLoader41.loadAd(new AdRequest.Builder().build());
 
         AdLoader adLoader42 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
                     @Override
-                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                        nativeCard42.setVisibility(View.VISIBLE);
+                    public void onNativeAdLoaded(NativeAd unifiedNativeAd) {
                         NativeTemplateStyle style = new NativeTemplateStyle.Builder()
                                 .withSecondaryTextSize(0)
                                 .withTertiaryTextSize(0)
                                 .withCallToActionTextSize(0)
                                 .build();
-
-                        nativeAd42.setStyles(style);
-                        nativeAd42.setNativeAd(unifiedNativeAd);
+                        activityFourthYearBinding.layout4y.nativeAd42.setStyles(style);
+                        activityFourthYearBinding.layout4y.nativeAd42.setNativeAd(unifiedNativeAd);
                     }
                 }).build();
-
-        adLoader42.loadAd(new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("010E297A73E360936A053C01A2D8902F").build());
+        adLoader42.loadAd(new AdRequest.Builder().build());
 
         AdLoader adLoader43 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
                     @Override
-                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                        nativeCard43.setVisibility(View.VISIBLE);
+                    public void onNativeAdLoaded(NativeAd unifiedNativeAd) {
                         NativeTemplateStyle style = new NativeTemplateStyle.Builder()
                                 .withSecondaryTextSize(0)
                                 .withTertiaryTextSize(0)
                                 .withCallToActionTextSize(0)
                                 .build();
-
-                        nativeAd43.setStyles(style);
-                        nativeAd43.setNativeAd(unifiedNativeAd);
+                        activityFourthYearBinding.layout4y.nativeAd43.setStyles(style);
+                        activityFourthYearBinding.layout4y.nativeAd43.setNativeAd(unifiedNativeAd);
                     }
                 }).build();
+        adLoader43.loadAd(new AdRequest.Builder().build());
 
-        adLoader43.loadAd(new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("010E297A73E360936A053C01A2D8902F").build());
-
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.setImmersiveMode(true);
-
+        activityFourthYearBinding.layout4y.nativeCard41.setVisibility(View.VISIBLE);
+        activityFourthYearBinding.layout4y.nativeCard42.setVisibility(View.VISIBLE);
+        activityFourthYearBinding.layout4y.nativeCard43.setVisibility(View.VISIBLE);
     }
+
 
     @Override
     public void onClick(View view) {
         int id = view.getId();
 
-        switch (id) {
-            case R.id.tp3:
-                String s3 = "https://shaaan.github.io/pcipd/syllabus4/pt3";
-                CustomTabsIntent.Builder builder3 = new CustomTabsIntent.Builder();
-                builder3.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                        .enableUrlBarHiding()
-                        .setShowTitle(true);
-                CustomTabsIntent customTabsIntent3 = builder3.build();
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            customTabsIntent3.launchUrl(FourthYear.this, Uri.parse(s3));
-                        }
-                    });
-                } else {
-                    customTabsIntent3.launchUrl(this, Uri.parse(s3));
-                }
-                break;
-            case R.id.toxicology:
-                String s = "https://shaaan.github.io/pcipd/syllabus4/toxicology";
-                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                        .enableUrlBarHiding()
-                        .setShowTitle(true);
-                CustomTabsIntent customTabsIntent = builder.build();
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            customTabsIntent.launchUrl(FourthYear.this, Uri.parse(s));
-                        }
-                    });
-                } else {
-                    customTabsIntent.launchUrl(this, Uri.parse(s));
-                }
-                break;
-            case R.id.cp:
-                String s1 = "https://shaaan.github.io/pcipd/syllabus4/cp";
-                CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
-                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                        .enableUrlBarHiding()
-                        .setShowTitle(true);
-                CustomTabsIntent customTabsIntent1 = builder1.build();
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            customTabsIntent1.launchUrl(FourthYear.this, Uri.parse(s1));
-                        }
-                    });
-                } else {
-                    customTabsIntent1.launchUrl(this, Uri.parse(s1));
-                }
-                break;
-            case R.id.hp:
-                String s2 = "https://shaaan.github.io/pcipd/syllabus4/hosp_pharm";
-                CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
-                builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                        .enableUrlBarHiding()
-                        .setShowTitle(true);
-                CustomTabsIntent customTabsIntent2 = builder2.build();
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            customTabsIntent2.launchUrl(FourthYear.this, Uri.parse(s2));
-                        }
-                    });
-                } else {
-                    customTabsIntent2.launchUrl(this, Uri.parse(s2));
-                }
-                break;
-            case R.id.biopharm:
-                String s4 = "https://shaaan.github.io/pcipd/syllabus4/biopharm";
-                CustomTabsIntent.Builder builder4 = new CustomTabsIntent.Builder();
-                builder4.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                        .enableUrlBarHiding()
-                        .setShowTitle(true);
-                CustomTabsIntent customTabsIntent4 = builder4.build();
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            customTabsIntent4.launchUrl(FourthYear.this, Uri.parse(s4));
-                        }
-                    });
-                } else {
-                    customTabsIntent4.launchUrl(this, Uri.parse(s4));
-                }
-                break;
-            case R.id.biostat:
-                String s5 = "https://shaaan.github.io/pcipd/syllabus4/biostat";
-                CustomTabsIntent.Builder builder5 = new CustomTabsIntent.Builder();
-                builder5.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                        .enableUrlBarHiding()
-                        .setShowTitle(true);
-                CustomTabsIntent customTabsIntent5 = builder5.build();
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            customTabsIntent5.launchUrl(FourthYear.this, Uri.parse(s5));
-                        }
-                    });
-                } else {
-                    customTabsIntent5.launchUrl(this, Uri.parse(s5));
-                }
-                break;
+        if (id == R.id.tp3) {
+            String s3 = "https://shaaan.github.io/pcipd/syllabus4/pt3";
+            AdUtil.showInterAd(this, s3);
+        } else if (id == R.id.toxicology) {
+            String s = "https://shaaan.github.io/pcipd/syllabus4/toxicology";
+            AdUtil.showInterAd(this, s);
+        } else if (id == R.id.cp) {
+            String s1 = "https://shaaan.github.io/pcipd/syllabus4/cp";
+            AdUtil.showInterAd(this, s1);
+        } else if (id == R.id.hp) {
+            String s2 = "https://shaaan.github.io/pcipd/syllabus4/hosp_pharm";
+            AdUtil.showInterAd(this, s2);
+        } else if (id == R.id.biopharm) {
+            String s4 = "https://shaaan.github.io/pcipd/syllabus4/biopharm";
+            AdUtil.showInterAd(this, s4);
+        } else if (id == R.id.biostat) {
+            String s5 = "https://shaaan.github.io/pcipd/syllabus4/biostat";
+            AdUtil.showInterAd(this, s5);
         }
     }
 

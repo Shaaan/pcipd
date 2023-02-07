@@ -9,51 +9,35 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.ads.nativetemplates.NativeTemplateStyle;
-import com.google.android.ads.nativetemplates.TemplateView;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import in.shaaan.pcipharmd.databinding.ActivityFifthYearBinding;
 
 public class FifthYear extends AppCompatActivity implements View.OnClickListener {
-    @BindView(R.id.native_ad_51)
-    TemplateView nativeAd51;
-    @BindView(R.id.nativeCard_51)
-    CardView nativeCard51;
-    @BindView(R.id.native_ad_52)
-    TemplateView nativeAd52;
-    @BindView(R.id.nativeCard_52)
-    CardView nativeCard52;
-    private InterstitialAd mInterstitialAd;
+    private ActivityFifthYearBinding activityFifthYearBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fifth_year);
-        ButterKnife.bind(this);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        activityFifthYearBinding = ActivityFifthYearBinding.inflate(getLayoutInflater());
+        View view = activityFifthYearBinding.getRoot();
+        setContentView(view);
+        Toolbar toolbar = activityFifthYearBinding.toolbar;
         setSupportActionBar(toolbar);
-        nativeCard51.setVisibility(View.GONE);
-        nativeCard52.setVisibility(View.GONE);
-        findViewById(R.id.epi).setOnClickListener(this);
-        findViewById(R.id.tdm).setOnClickListener(this);
-        findViewById(R.id.research).setOnClickListener(this);
+        AdUtil.loadAd(this);
+        activityFifthYearBinding.layout5y.nativeCard51.setVisibility(View.GONE);
+        activityFifthYearBinding.layout5y.nativeCard52.setVisibility(View.GONE);
+        activityFifthYearBinding.layout5y.epi.setOnClickListener(this);
+        activityFifthYearBinding.layout5y.tdm.setOnClickListener(this);
+        activityFifthYearBinding.layout5y.research.setOnClickListener(this);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = activityFifthYearBinding.fab;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,141 +56,58 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-//
-//
-//        Google AdMob
-
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-
-            }
-        });
-
         refreshAd();
-
     }
 
     public void refreshAd() {
-//
-//        Banner Ads
-//
-//        AdView mAdView = findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("A86F9B85802FF794F2D5CE913677792C").build();
-//        mAdView.loadAd(adRequest);
-
-//
-//        Native Ads
-//
+//      Native Ads
         AdLoader adLoader51 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
                     @Override
-                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                        nativeCard51.setVisibility(View.VISIBLE);
+                    public void onNativeAdLoaded(NativeAd unifiedNativeAd) {
                         NativeTemplateStyle style = new NativeTemplateStyle.Builder()
                                 .withSecondaryTextSize(0)
                                 .withTertiaryTextSize(0)
                                 .withCallToActionTextSize(0)
                                 .build();
-
-                        nativeAd51.setStyles(style);
-                        nativeAd51.setNativeAd(unifiedNativeAd);
+                        activityFifthYearBinding.layout5y.nativeAd51.setStyles(style);
+                        activityFifthYearBinding.layout5y.nativeAd51.setNativeAd(unifiedNativeAd);
                     }
                 }).build();
-
-        adLoader51.loadAd(new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("010E297A73E360936A053C01A2D8902F").build());
+        adLoader51.loadAd(new AdRequest.Builder().build());
 
         AdLoader adLoader52 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
                     @Override
-                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
-                        nativeCard52.setVisibility(View.VISIBLE);
+                    public void onNativeAdLoaded(NativeAd unifiedNativeAd) {
                         NativeTemplateStyle style = new NativeTemplateStyle.Builder()
                                 .withSecondaryTextSize(0)
                                 .withTertiaryTextSize(0)
                                 .withCallToActionTextSize(0)
                                 .build();
-
-                        nativeAd52.setStyles(style);
-                        nativeAd52.setNativeAd(unifiedNativeAd);
+                        activityFifthYearBinding.layout5y.nativeAd52.setStyles(style);
+                        activityFifthYearBinding.layout5y.nativeAd52.setNativeAd(unifiedNativeAd);
                     }
                 }).build();
+        adLoader52.loadAd(new AdRequest.Builder().build());
 
-        adLoader52.loadAd(new AdRequest.Builder().addTestDevice("5FFDEB2790F9F640D76A0B9FC0D2BCD9").addTestDevice("010E297A73E360936A053C01A2D8902F").build());
-
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-1941738066609841/7774678359");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.setImmersiveMode(true);
-
+        activityFifthYearBinding.layout5y.nativeCard51.setVisibility(View.VISIBLE);
+        activityFifthYearBinding.layout5y.nativeCard52.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onClick(View view) {
         int id = view.getId();
 
-        switch (id) {
-            case R.id.epi:
-                String epi = "https://shaaan.github.io/pcipd/syllabus5/epi/";
-                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                        .enableUrlBarHiding()
-                        .setShowTitle(true);
-                CustomTabsIntent customTabsIntent = builder.build();
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            customTabsIntent.launchUrl(FifthYear.this, Uri.parse(epi));
-                        }
-                    });
-                } else {
-                    customTabsIntent.launchUrl(this, Uri.parse(epi));
-                }
-                break;
-            case R.id.research:
-                String s = "https://shaaan.github.io/pcipd/syllabus5/research";
-                CustomTabsIntent.Builder builder1 = new CustomTabsIntent.Builder();
-                builder1.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                        .enableUrlBarHiding()
-                        .setShowTitle(true);
-                CustomTabsIntent customTabsIntent1 = builder1.build();
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            customTabsIntent1.launchUrl(FifthYear.this, Uri.parse(s));
-                        }
-                    });
-                } else {
-                    customTabsIntent1.launchUrl(this, Uri.parse(s));
-                }
-                break;
-            case R.id.tdm:
-                String s1 = "https://shaaan.github.io/pcipd/syllabus5/tdm";
-                CustomTabsIntent.Builder builder2 = new CustomTabsIntent.Builder();
-                builder2.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary))
-                        .enableUrlBarHiding()
-                        .setShowTitle(true);
-                CustomTabsIntent customTabsIntent2 = builder2.build();
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            customTabsIntent2.launchUrl(FifthYear.this, Uri.parse(s1));
-                        }
-                    });
-                } else {
-                    customTabsIntent2.launchUrl(this, Uri.parse(s1));
-                }
-                break;
-            default:
+        if (id == R.id.epi) {
+            String epi = "https://shaaan.github.io/pcipd/syllabus5/epi/";
+            AdUtil.showInterAd(this, epi);
+        } else if (id == R.id.research) {
+            String s = "https://shaaan.github.io/pcipd/syllabus5/research";
+            AdUtil.showInterAd(this, s);
+        } else if (id == R.id.tdm) {
+            String s1 = "https://shaaan.github.io/pcipd/syllabus5/tdm";
+            AdUtil.showInterAd(this, s1);
         }
     }
 
@@ -224,6 +125,7 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
 //        } else {
 //            super.onBackPressed();
 //        }
+//        AdUtil.gInterstitialAd(this);
 //    }
 
     @Override
@@ -246,5 +148,12 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        checkAdLoaded();
+//        AdUtil.gRefreshAd(this);
     }
 }

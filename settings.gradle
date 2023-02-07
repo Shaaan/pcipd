@@ -1,1 +1,2 @@
-include ':app', ':shared', ':nativetemplates'
+include ':app', ':shared'
+include ':nativetemplates'
