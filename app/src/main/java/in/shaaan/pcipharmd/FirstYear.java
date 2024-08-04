@@ -1,5 +1,7 @@
 package in.shaaan.pcipharmd;
 
+import static in.shaaan.pcipharmd.AdUtil.loadNativeAd;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,135 +10,73 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.ads.nativetemplates.NativeTemplateStyle;
-import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.nativead.NativeAd;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import in.shaaan.pcipharmd.databinding.ActivityFirstYearBinding;
+import in.shaaan.pcipharmd.databinding.ContentFirstYearBinding;
 
 public class FirstYear extends AppCompatActivity implements View.OnClickListener {
     private ActivityFirstYearBinding activityFirstYearBinding;
+    ContentFirstYearBinding yearBinding;
+    AdUtil adUtil = new AdUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityFirstYearBinding = ActivityFirstYearBinding.inflate(getLayoutInflater());
-        View view = activityFirstYearBinding.getRoot();
-        setContentView(view);
-        Toolbar toolbar = activityFirstYearBinding.toolbar;
-        setSupportActionBar(toolbar);
-        AdUtil.loadAd(this);
-        activityFirstYearBinding.layout1y.nativeCard11.setVisibility(View.GONE);
-        activityFirstYearBinding.layout1y.nativeCard12.setVisibility(View.GONE);
-        activityFirstYearBinding.layout1y.nativeCard13.setVisibility(View.GONE);
-        activityFirstYearBinding.layout1y.hap.setOnClickListener(this);
-        activityFirstYearBinding.layout1y.ceutics.setOnClickListener(this);
-        activityFirstYearBinding.layout1y.biochem.setOnClickListener(this);
-        activityFirstYearBinding.layout1y.oc.setOnClickListener(this);
-        activityFirstYearBinding.layout1y.ic.setOnClickListener(this);
-        activityFirstYearBinding.layout1y.remMathBio.setOnClickListener(this);
+        setContentView(activityFirstYearBinding.getRoot());
+        setSupportActionBar(activityFirstYearBinding.toolbar);
+        yearBinding = activityFirstYearBinding.layout1y;
+        adUtil.loadInterAd(this);
 
-        FloatingActionButton fab = activityFirstYearBinding.fab;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG)
-                        .setAction("RATE", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse("market://details?id=in.shaaan.pcipharmd"));
-                                startActivity(intent);
-                            }
-                        }).show();
-            }
-        });
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
+        initializeUI();
         refreshAd();
     }
 
+    private void initializeUI() {
+        yearBinding.hap.setOnClickListener(this);
+        yearBinding.ceutics.setOnClickListener(this);
+        yearBinding.biochem.setOnClickListener(this);
+        yearBinding.oc.setOnClickListener(this);
+        yearBinding.ic.setOnClickListener(this);
+        yearBinding.remMathBio.setOnClickListener(this);
+
+        activityFirstYearBinding.fab.setOnClickListener(view -> Snackbar.make(view, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG)
+                .setAction("RATE", v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=in.shaaan.pcipharmd"));
+                    startActivity(intent);
+                }).show());
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     public void refreshAd() {
-//      Native Ads
-        AdLoader adLoader = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                    @Override
-                    public void onNativeAdLoaded(NativeAd nativeAd) {
-                        NativeTemplateStyle style = new NativeTemplateStyle.Builder()
-                                .withSecondaryTextSize(0)
-                                .withTertiaryTextSize(0)
-                                .withCallToActionTextSize(0)
-                                .build();
-                        activityFirstYearBinding.layout1y.nativeAd11.setStyles(style);
-                        activityFirstYearBinding.layout1y.nativeAd11.setNativeAd(nativeAd);
-                    }
-                }).build();
-        adLoader.loadAd(new AdRequest.Builder().build());
-
-        AdLoader adLoader1 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                    @Override
-                    public void onNativeAdLoaded(NativeAd nativeAd) {
-                        NativeTemplateStyle style = new NativeTemplateStyle.Builder()
-                                .withSecondaryTextSize(0)
-                                .withTertiaryTextSize(0)
-                                .withCallToActionTextSize(0)
-                                .build();
-                        activityFirstYearBinding.layout1y.nativeAd12.setStyles(style);
-                        activityFirstYearBinding.layout1y.nativeAd12.setNativeAd(nativeAd);
-                    }
-                }).build();
-        adLoader1.loadAd(new AdRequest.Builder().build());
-
-        AdLoader adLoader2 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                    @Override
-                    public void onNativeAdLoaded(NativeAd nativeAd) {
-                        NativeTemplateStyle style = new NativeTemplateStyle.Builder()
-                                .withSecondaryTextSize(0)
-                                .withTertiaryTextSize(0)
-                                .withCallToActionTextSize(0)
-                                .build();
-                        activityFirstYearBinding.layout1y.nativeAd13.setStyles(style);
-                        activityFirstYearBinding.layout1y.nativeAd13.setNativeAd(nativeAd);
-                    }
-                }).build();
-        adLoader2.loadAd(new AdRequest.Builder().build());
-
-        activityFirstYearBinding.layout1y.nativeCard11.setVisibility(View.VISIBLE);
-        activityFirstYearBinding.layout1y.nativeCard12.setVisibility(View.VISIBLE);
-        activityFirstYearBinding.layout1y.nativeCard13.setVisibility(View.VISIBLE);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        loadNativeAd(this, yearBinding.nativeAd11, yearBinding.nativeCard11, adRequest);
+        loadNativeAd(this, yearBinding.nativeAd12, yearBinding.nativeCard12, adRequest);
+        loadNativeAd(this, yearBinding.nativeAd13, yearBinding.nativeCard13, adRequest);
     }
 
     @Override
     public void onClick(View view) {
-        int id = view.getId();
+        Map<Integer, String> urlMap = new HashMap<>();
+        urlMap.put(R.id.hap, "https://shaaan.github.io/pcipd/syllabus1/hap/");
+        urlMap.put(R.id.ceutics, "https://shaaan.github.io/pcipd/syllabus1/pahrmaceutics/");
+        urlMap.put(R.id.biochem, "https://shaaan.github.io/pcipd/syllabus1/biochem/");
+        urlMap.put(R.id.ic, "https://shaaan.github.io/pcipd/syllabus1/ic/");
+        urlMap.put(R.id.oc, "https://shaaan.github.io/pcipd/syllabus1/oc/");
+        urlMap.put(R.id.rem_mathBio, "https://shaaan.github.io/pcipd/syllabus1/math_bio/");
 
-        if (id == R.id.hap) {
-            String hap = "https://shaaan.github.io/pcipd/syllabus1/hap/";
-            AdUtil.showInterAd(this, hap);
-        } else if (id == R.id.ceutics) {
-            String ceutics = "https://shaaan.github.io/pcipd/syllabus1/pahrmaceutics/";
-            AdUtil.showInterAd(this, ceutics);
-        } else if (id == R.id.biochem) {
-            String biochem = "https://shaaan.github.io/pcipd/syllabus1/biochem/";
-            AdUtil.showInterAd(this, biochem);
-        } else if (id == R.id.ic) {
-            String ic = "https://shaaan.github.io/pcipd/syllabus1/ic/";
-            AdUtil.showInterAd(this, ic);
-        } else if (id == R.id.oc) {
-            String s = "https://shaaan.github.io/pcipd/syllabus1/oc/";
-            AdUtil.showInterAd(this, s);
-        } else if (id == R.id.rem_mathBio) {
-            String mb = "https://shaaan.github.io/pcipd/syllabus1/math_bio/";
-            AdUtil.showInterAd(this, mb);
+        String url = urlMap.get(view.getId());
+        if (url != null) {
+            adUtil.showInterAd(this, url);
         }
     }
 

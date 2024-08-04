@@ -58,6 +58,7 @@
             android:id="@+id/nativeCard_21"
             android:layout_width="match_parent"
             android:layout_height="110dp"
+            android:visibility="gone"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
@@ -113,6 +114,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/nativeCard_22"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="110dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
@@ -173,6 +175,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
+            android:visibility="gone"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
 

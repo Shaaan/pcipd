@@ -1,5 +1,7 @@
 package in.shaaan.pcipharmd;
 
+import static in.shaaan.pcipharmd.AdUtil.loadNativeAd;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,102 +10,68 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.ads.nativetemplates.NativeTemplateStyle;
-import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.nativead.NativeAd;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import in.shaaan.pcipharmd.databinding.ActivitySixthYearBinding;
+import in.shaaan.pcipharmd.databinding.ContentSixthYearBinding;
 
 public class SixthYear extends AppCompatActivity implements View.OnClickListener {
     private ActivitySixthYearBinding activitySixthYearBinding;
+    ContentSixthYearBinding yearBinding;
+    AdUtil adUtil = new AdUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activitySixthYearBinding = ActivitySixthYearBinding.inflate(getLayoutInflater());
-        View view = activitySixthYearBinding.getRoot();
-        setContentView(view);
-        Toolbar toolbar = activitySixthYearBinding.toolbar;
-        setSupportActionBar(toolbar);
-        AdUtil.loadAd(this);
-        activitySixthYearBinding.layout6y.nativeCard61.setVisibility(View.GONE);
-        activitySixthYearBinding.layout6y.internActivities.setOnClickListener(this);
-        activitySixthYearBinding.layout6y.internDocuments.setOnClickListener(this);
+        setContentView(activitySixthYearBinding.getRoot());
+        setSupportActionBar(activitySixthYearBinding.toolbar);
+        yearBinding = activitySixthYearBinding.layout6y;
+        adUtil.loadInterAd(this);
+        yearBinding.internActivities.setOnClickListener(this);
+        yearBinding.internDocuments.setOnClickListener(this);
 
-        FloatingActionButton fab = activitySixthYearBinding.fab;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG)
-                        .setAction("RATE", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse("market://details?id=in.shaaan.pcipharmd"));
-                                startActivity(intent);
-                            }
-                        }).show();
-            }
-        });
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
+        initializeUI();
         refreshAd();
     }
 
+    private void initializeUI() {
+        yearBinding.internActivities.setOnClickListener(this);
+        yearBinding.internDocuments.setOnClickListener(this);
+
+        activitySixthYearBinding.fab.setOnClickListener(view -> Snackbar.make(view, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG)
+                .setAction("RATE", v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=in.shaaan.pcipharmd"));
+                    startActivity(intent);
+                }).show());
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     public void refreshAd() {
-//        Native Ads
-        AdLoader adLoader61 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                    @Override
-                    public void onNativeAdLoaded(NativeAd unifiedNativeAd) {
-                        NativeTemplateStyle style = new NativeTemplateStyle.Builder()
-                                .withSecondaryTextSize(0)
-                                .withTertiaryTextSize(0)
-                                .withCallToActionTextSize(0)
-                                .build();
-                        activitySixthYearBinding.layout6y.nativeAd61.setStyles(style);
-                        activitySixthYearBinding.layout6y.nativeAd61.setNativeAd(unifiedNativeAd);
-                        activitySixthYearBinding.layout6y.nativeCard61.setVisibility(View.VISIBLE);
-                    }
-                }).build();
-        adLoader61.loadAd(new AdRequest.Builder().build());
+        AdRequest adRequest = new AdRequest.Builder().build();
+        loadNativeAd(this, yearBinding.nativeAd61, yearBinding.nativeCard61, adRequest);
+        loadNativeAd(this, yearBinding.nativeAd62, yearBinding.nativeCard62, adRequest);
     }
 
     @Override
     public void onClick(View view) {
-        int id = view.getId();
+        Map<Integer, String> urlMap = new HashMap<>();
+        urlMap.put(R.id.intern_activities, "https://shaaan.github.io/pcipd/syllabus6");
+        urlMap.put(R.id.intern_documents, "https://shaaan.github.io/pcipd/syllabus6_1/");
 
-        if (id == R.id.intern_activities) {
-            String s = "https://shaaan.github.io/pcipd/syllabus6";
-            AdUtil.showInterAd(this, s);
-        } else if (id == R.id.intern_documents) {
-            String s1 = "https://shaaan.github.io/pcipd/syllabus6_1/";
-            AdUtil.showInterAd(this, s1);
+        String url = urlMap.get(view.getId());
+        if (url != null) {
+            adUtil.showInterAd(this, url);
         }
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        if (mInterstitialAd.isLoaded()) {
-//            mInterstitialAd.show();
-//            mInterstitialAd.setAdListener(new AdListener() {
-//                @Override
-//                public void onAdClosed() {
-//                    super.onAdClosed();
-//                    finish();
-//                }
-//            });
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

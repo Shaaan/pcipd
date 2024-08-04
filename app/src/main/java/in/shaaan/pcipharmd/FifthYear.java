@@ -1,5 +1,7 @@
 package in.shaaan.pcipharmd;
 
+import static in.shaaan.pcipharmd.AdUtil.loadNativeAd;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,125 +10,71 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.ads.nativetemplates.NativeTemplateStyle;
-import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.nativead.NativeAd;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import in.shaaan.pcipharmd.databinding.ActivityFifthYearBinding;
+import in.shaaan.pcipharmd.databinding.ContentFifthYearBinding;
 
 public class FifthYear extends AppCompatActivity implements View.OnClickListener {
     private ActivityFifthYearBinding activityFifthYearBinding;
+    ContentFifthYearBinding yearBinding;
+    AdUtil adUtil = new AdUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityFifthYearBinding = ActivityFifthYearBinding.inflate(getLayoutInflater());
-        View view = activityFifthYearBinding.getRoot();
-        setContentView(view);
-        Toolbar toolbar = activityFifthYearBinding.toolbar;
-        setSupportActionBar(toolbar);
-        AdUtil.loadAd(this);
-        activityFifthYearBinding.layout5y.nativeCard51.setVisibility(View.GONE);
-        activityFifthYearBinding.layout5y.nativeCard52.setVisibility(View.GONE);
-        activityFifthYearBinding.layout5y.epi.setOnClickListener(this);
-        activityFifthYearBinding.layout5y.tdm.setOnClickListener(this);
-        activityFifthYearBinding.layout5y.research.setOnClickListener(this);
+        setContentView(activityFifthYearBinding.getRoot());
+        setSupportActionBar(activityFifthYearBinding.toolbar);
+        yearBinding = activityFifthYearBinding.layout5y;
+        adUtil.loadInterAd(this);
 
-        FloatingActionButton fab = activityFifthYearBinding.fab;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG)
-                        .setAction("RATE", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse("market://details?id=in.shaaan.pcipharmd"));
-                                startActivity(intent);
-                            }
-                        }).show();
-            }
-        });
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
+        initializeUI();
         refreshAd();
     }
 
+    private void initializeUI() {
+        yearBinding.nativeCard51.setVisibility(View.GONE);
+        yearBinding.nativeCard52.setVisibility(View.GONE);
+        yearBinding.epi.setOnClickListener(this);
+        yearBinding.tdm.setOnClickListener(this);
+        yearBinding.research.setOnClickListener(this);
+
+        activityFifthYearBinding.fab.setOnClickListener(view -> Snackbar.make(view, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG)
+                .setAction("RATE", v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=in.shaaan.pcipharmd"));
+                    startActivity(intent);
+                }).show());
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     public void refreshAd() {
-//      Native Ads
-        AdLoader adLoader51 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                    @Override
-                    public void onNativeAdLoaded(NativeAd unifiedNativeAd) {
-                        NativeTemplateStyle style = new NativeTemplateStyle.Builder()
-                                .withSecondaryTextSize(0)
-                                .withTertiaryTextSize(0)
-                                .withCallToActionTextSize(0)
-                                .build();
-                        activityFifthYearBinding.layout5y.nativeAd51.setStyles(style);
-                        activityFifthYearBinding.layout5y.nativeAd51.setNativeAd(unifiedNativeAd);
-                    }
-                }).build();
-        adLoader51.loadAd(new AdRequest.Builder().build());
-
-        AdLoader adLoader52 = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                    @Override
-                    public void onNativeAdLoaded(NativeAd unifiedNativeAd) {
-                        NativeTemplateStyle style = new NativeTemplateStyle.Builder()
-                                .withSecondaryTextSize(0)
-                                .withTertiaryTextSize(0)
-                                .withCallToActionTextSize(0)
-                                .build();
-                        activityFifthYearBinding.layout5y.nativeAd52.setStyles(style);
-                        activityFifthYearBinding.layout5y.nativeAd52.setNativeAd(unifiedNativeAd);
-                    }
-                }).build();
-        adLoader52.loadAd(new AdRequest.Builder().build());
-
-        activityFifthYearBinding.layout5y.nativeCard51.setVisibility(View.VISIBLE);
-        activityFifthYearBinding.layout5y.nativeCard52.setVisibility(View.VISIBLE);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        loadNativeAd(this, yearBinding.nativeAd51, yearBinding.nativeCard51, adRequest);
+        loadNativeAd(this, yearBinding.nativeAd52, yearBinding.nativeCard52, adRequest);
+        loadNativeAd(this, yearBinding.nativeAd53, yearBinding.nativeCard53, adRequest);
     }
 
     @Override
     public void onClick(View view) {
-        int id = view.getId();
+        Map<Integer, String> urlMap = new HashMap<>();
+        urlMap.put(R.id.epi, "https://shaaan.github.io/pcipd/syllabus5/epi");
+        urlMap.put(R.id.research, "https://shaaan.github.io/pcipd/syllabus5/research");
+        urlMap.put(R.id.tdm, "https://shaaan.github.io/pcipd/syllabus5/tdm");
 
-        if (id == R.id.epi) {
-            String epi = "https://shaaan.github.io/pcipd/syllabus5/epi/";
-            AdUtil.showInterAd(this, epi);
-        } else if (id == R.id.research) {
-            String s = "https://shaaan.github.io/pcipd/syllabus5/research";
-            AdUtil.showInterAd(this, s);
-        } else if (id == R.id.tdm) {
-            String s1 = "https://shaaan.github.io/pcipd/syllabus5/tdm";
-            AdUtil.showInterAd(this, s1);
+        String url = urlMap.get(view.getId());
+        if (url != null) {
+            adUtil.showInterAd(this, url);
         }
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        if (mInterstitialAd.isLoaded()) {
-//            mInterstitialAd.show();
-//            mInterstitialAd.setAdListener(new AdListener() {
-//                @Override
-//                public void onAdClosed() {
-//                    super.onAdClosed();
-//                    finish();
-//                }
-//            });
-//        } else {
-//            super.onBackPressed();
-//        }
-//        AdUtil.gInterstitialAd(this);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
