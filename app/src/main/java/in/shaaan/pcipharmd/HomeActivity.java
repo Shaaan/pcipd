@@ -1,5 +1,7 @@
 package in.shaaan.pcipharmd;
 
+import static in.shaaan.pcipharmd.AdUtil.loadNativeAd;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -22,9 +24,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import in.shaaan.pcipharmd.databinding.ActivityHomeBinding;
+import in.shaaan.pcipharmd.databinding.ContentHomeBinding;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityHomeBinding activityHomeBinding;
+    ContentHomeBinding yearBinding;
 
 
     @Override
@@ -33,6 +37,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         activityHomeBinding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(activityHomeBinding.getRoot());
         setSupportActionBar(activityHomeBinding.toolbar);
+        yearBinding = activityHomeBinding.layoutHome;
         FirebaseAnalytics.getInstance(this);
 
         new Thread(
@@ -62,34 +67,33 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void refreshAd() {
-        AdRequest adRequest = new AdRequest.Builder().build();
-        loadNativeAd(activityHomeBinding.layoutHome.nativeAd01, activityHomeBinding.layoutHome.nativeCard01, adRequest);
-        loadNativeAd(activityHomeBinding.layoutHome.nativeAd02, activityHomeBinding.layoutHome.nativeCard02, adRequest);
-        loadNativeAd(activityHomeBinding.layoutHome.nativeAd03, activityHomeBinding.layoutHome.nativeCard03, adRequest);
+        loadNativeAd(this, yearBinding.nativeAd01, yearBinding.nativeCard01);
+        loadNativeAd(this, yearBinding.nativeAd02, yearBinding.nativeCard02);
+        loadNativeAd(this, yearBinding.nativeAd03, yearBinding.nativeCard03);
     }
 
-    private void loadNativeAd(TemplateView nativeAdView, View nativeCard, AdRequest adRequest) {
-        AdLoader adLoader = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
-                .forNativeAd(nativeAd -> {
-                    NativeTemplateStyle style = new NativeTemplateStyle.Builder()
-                            .withSecondaryTextSize(0)
-                            .withTertiaryTextSize(0)
-                            .withCallToActionTextSize(0)
-                            .build();
-                    nativeAdView.setStyles(style);
-                    nativeAdView.setNativeAd(nativeAd);
-                    nativeCard.setVisibility(View.VISIBLE);
-                }).withAdListener(new AdListener() {
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        super.onAdFailedToLoad(loadAdError);
-                        Log.e("HomeActivity", "Ad failed to load: " + loadAdError.getMessage());
-                    }
-                })
-                .withNativeAdOptions(new NativeAdOptions.Builder().build())
-                .build();
-        adLoader.loadAd(adRequest);
-    }
+//    private void loadNativeAd(TemplateView nativeAdView, View nativeCard, AdRequest adRequest) {
+//        AdLoader adLoader = new AdLoader.Builder(this, "ca-app-pub-1941738066609841/8926036161")
+//                .forNativeAd(nativeAd -> {
+//                    NativeTemplateStyle style = new NativeTemplateStyle.Builder()
+//                            .withSecondaryTextSize(0)
+//                            .withTertiaryTextSize(0)
+//                            .withCallToActionTextSize(0)
+//                            .build();
+//                    nativeAdView.setStyles(style);
+//                    nativeAdView.setNativeAd(nativeAd);
+//                    nativeCard.setVisibility(View.VISIBLE);
+//                }).withAdListener(new AdListener() {
+//                    @Override
+//                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+//                        super.onAdFailedToLoad(loadAdError);
+//                        Log.e("HomeActivity", "Ad failed to load: " + loadAdError.getMessage());
+//                    }
+//                })
+//                .withNativeAdOptions(new NativeAdOptions.Builder().build())
+//                .build();
+//        adLoader.loadAd(adRequest);
+//    }
 
 
     @SuppressLint("NonConstantResourceId")

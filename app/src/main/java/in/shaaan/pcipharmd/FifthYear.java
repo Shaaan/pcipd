@@ -58,9 +58,9 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
 
     public void refreshAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
-        loadNativeAd(this, yearBinding.nativeAd51, yearBinding.nativeCard51, adRequest);
-        loadNativeAd(this, yearBinding.nativeAd52, yearBinding.nativeCard52, adRequest);
-        loadNativeAd(this, yearBinding.nativeAd53, yearBinding.nativeCard53, adRequest);
+        loadNativeAd(this, yearBinding.nativeAd51, yearBinding.nativeCard51);
+        loadNativeAd(this, yearBinding.nativeAd52, yearBinding.nativeCard52);
+        loadNativeAd(this, yearBinding.nativeAd53, yearBinding.nativeCard53);
     }
 
     @Override

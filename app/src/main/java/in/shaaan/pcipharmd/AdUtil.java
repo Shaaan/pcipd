@@ -23,6 +23,7 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.nativead.MediaView;
@@ -35,7 +36,8 @@ public class AdUtil {
     private static InterstitialAd interstitialAd;
     private static final String AD_UNIT_ID = "ca-app-pub-1941738066609841/7774678359";
     private static boolean adIsLoading;
-    private static final String TEST_DEVICE = "F0C2258F020EEFC5BDA4F97C7758B629";
+    private static final String TEST_DEVICE = "B12F232395821DBBEC08E0E9EF9C5EF";
+    private static final String NATIVE_AD_UNIT_ID = "ca-app-pub-1941738066609841/8926036161";
 
     public void loadInterAd(Context context) {
         Log.i(TAG,"Google Mobile Ads SDK Version: " + MobileAds.getVersion());
@@ -102,12 +104,18 @@ public class AdUtil {
         }
     }
 
-    public static void loadNativeAd(Context context, TemplateView nativeAdView, View nativeCard, AdRequest adRequest) {
-        NativeAdOptions nativeAdOptions = new NativeAdOptions.Builder()
-                .setRequestMultipleImages(true)
+    public static void loadNativeAd(Context context, TemplateView nativeAdView, View nativeCard) {
+        VideoOptions videoOptions = new VideoOptions.Builder()
+                .setStartMuted(true)
                 .build();
 
-        AdLoader adLoader = new AdLoader.Builder(context, "ca-app-pub-1941738066609841/8926036161")
+        NativeAdOptions nativeAdOptions = new NativeAdOptions.Builder()
+                .setRequestMultipleImages(false)
+                .setVideoOptions(videoOptions)
+                .build();
+
+
+        AdLoader adLoader = new AdLoader.Builder(context, NATIVE_AD_UNIT_ID)
                 .forNativeAd(nativeAd -> {
                     NativeTemplateStyle style = new NativeTemplateStyle.Builder()
                             .withSecondaryTextSize(0)
@@ -121,11 +129,11 @@ public class AdUtil {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         super.onAdFailedToLoad(loadAdError);
-                        Log.e("HomeActivity", "Ad failed to load: " + loadAdError.getMessage());
+                        Log.e(String.valueOf(context), "Ad failed to load: " + loadAdError.getMessage());
                     }
                 })
                 .withNativeAdOptions(nativeAdOptions)
                 .build();
-        adLoader.loadAds(adRequest, 5);
+        adLoader.loadAd(new AdRequest.Builder().build());
     }
 }

@@ -59,9 +59,9 @@ public class FirstYear extends AppCompatActivity implements View.OnClickListener
 
     public void refreshAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
-        loadNativeAd(this, yearBinding.nativeAd11, yearBinding.nativeCard11, adRequest);
-        loadNativeAd(this, yearBinding.nativeAd12, yearBinding.nativeCard12, adRequest);
-        loadNativeAd(this, yearBinding.nativeAd13, yearBinding.nativeCard13, adRequest);
+        loadNativeAd(this, yearBinding.nativeAd11, yearBinding.nativeCard11);
+        loadNativeAd(this, yearBinding.nativeAd12, yearBinding.nativeCard12);
+        loadNativeAd(this, yearBinding.nativeAd13, yearBinding.nativeCard13);
     }
 
     @Override
