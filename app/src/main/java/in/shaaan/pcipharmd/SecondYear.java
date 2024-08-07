@@ -100,4 +100,10 @@ public class SecondYear extends AppCompatActivity implements View.OnClickListene
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AdUtil.interstitialAd = null;
+    }
 }

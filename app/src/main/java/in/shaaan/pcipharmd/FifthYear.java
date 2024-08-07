@@ -104,4 +104,10 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
 //        checkAdLoaded();
 //        AdUtil.gRefreshAd(this);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AdUtil.interstitialAd = null;
+    }
 }

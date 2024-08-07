@@ -34,7 +34,7 @@ public class AdUtil {
     private static final String AD_UNIT_ID = "ca-app-pub-1941738066609841/7774678359";
     private static final String TEST_DEVICE = "B12F232395821DBBEC08E0E9EF9C5EF7";
     private static final String NATIVE_AD_UNIT_ID = "ca-app-pub-1941738066609841/8926036161";
-    private static InterstitialAd interstitialAd;
+    static InterstitialAd interstitialAd;
     private static boolean adIsLoading;
 
     public static void loadNativeAd(Context context, TemplateView nativeAdView, View nativeCard) {
@@ -46,7 +46,6 @@ public class AdUtil {
                 .setRequestMultipleImages(false)
                 .setVideoOptions(videoOptions)
                 .build();
-
 
         AdLoader adLoader = new AdLoader.Builder(context, NATIVE_AD_UNIT_ID)
                 .forNativeAd(nativeAd -> {

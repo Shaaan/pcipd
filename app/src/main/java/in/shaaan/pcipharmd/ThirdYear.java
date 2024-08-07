@@ -101,4 +101,10 @@ public class ThirdYear extends AppCompatActivity implements View.OnClickListener
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AdUtil.interstitialAd = null;
+    }
 }
