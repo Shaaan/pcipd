@@ -20,9 +20,9 @@ android {
         applicationId "in.shaaan.pcipharmd"
         minSdkVersion 28
         targetSdkVersion 35
-        versionCode getVersionCodeTimestamp()
-//        versionCode 1909301656
-        versionName "3.8"
+//        versionCode getVersionCodeTimestamp()
+        versionCode 1909301657
+        versionName "3.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resourceConfigurations += ['en']
         multiDexEnabled true
@@ -57,8 +57,8 @@ android {
 
 def getVersionCodeTimestamp() {
     def date = new Date()
-    def formattedDate = date.format('yyMMddmm')
-    def code = formattedDate.toInteger()
+    def formattedDate = date.format('yyMMddHHmm')
+    def code = formattedDate.toBigInteger()
     println sprintf("VersionCode: %d", code)
     return code
 }
