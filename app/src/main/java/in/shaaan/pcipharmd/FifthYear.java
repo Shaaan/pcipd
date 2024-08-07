@@ -21,9 +21,9 @@ import in.shaaan.pcipharmd.databinding.ActivityFifthYearBinding;
 import in.shaaan.pcipharmd.databinding.ContentFifthYearBinding;
 
 public class FifthYear extends AppCompatActivity implements View.OnClickListener {
-    private ActivityFifthYearBinding activityFifthYearBinding;
     ContentFifthYearBinding yearBinding;
     AdUtil adUtil = new AdUtil();
+    private ActivityFifthYearBinding activityFifthYearBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

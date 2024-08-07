@@ -22,8 +22,8 @@ import in.shaaan.pcipharmd.databinding.ContentFourthYearBinding;
 
 public class FourthYear extends AppCompatActivity implements View.OnClickListener {
     ContentFourthYearBinding yearBinding;
-    private ActivityFourthYearBinding activityFourthYearBinding;
     AdUtil adUtil = new AdUtil();
+    private ActivityFourthYearBinding activityFourthYearBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class FourthYear extends AppCompatActivity implements View.OnClickListene
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
-    
+
     public void refreshAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
         loadNativeAd(this, yearBinding.nativeAd41, yearBinding.nativeCard41);

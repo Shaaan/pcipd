@@ -6,20 +6,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.ads.nativetemplates.NativeTemplateStyle;
-import com.google.android.ads.nativetemplates.TemplateView;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdLoader;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -27,9 +18,8 @@ import in.shaaan.pcipharmd.databinding.ActivityHomeBinding;
 import in.shaaan.pcipharmd.databinding.ContentHomeBinding;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
-    private ActivityHomeBinding activityHomeBinding;
     ContentHomeBinding yearBinding;
-
+    private ActivityHomeBinding activityHomeBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +33,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         new Thread(
                 () -> {
                     // Initialize the Google Mobile Ads SDK on a background thread.
-                    MobileAds.initialize(this, initializationStatus -> {});
+                    MobileAds.initialize(this, initializationStatus -> {
+                    });
                 })
                 .start();
 

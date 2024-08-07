@@ -59,9 +59,9 @@
             android:id="@+id/nativeCard_01"
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            android:visibility="gone"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:visibility="gone"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">
@@ -120,9 +120,9 @@
             android:layout_height="110dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:visibility="gone"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
-            android:visibility="gone"
             iosched:cardPreventCornerOverlap="false">
 
             <!--  This is your template view -->
@@ -178,8 +178,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:visibility="gone"
             android:layout_marginBottom="5dp"
+            android:visibility="gone"
             iosched:cardCornerRadius="@dimen/card_corner_radius"
             iosched:cardElevation="@dimen/card_elevation"
             iosched:cardPreventCornerOverlap="false">

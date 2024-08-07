@@ -11,7 +11,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.nativead.NativeAdView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
@@ -21,9 +21,10 @@ import in.shaaan.pcipharmd.databinding.ActivitySixthYearBinding;
 import in.shaaan.pcipharmd.databinding.ContentSixthYearBinding;
 
 public class SixthYear extends AppCompatActivity implements View.OnClickListener {
-    private ActivitySixthYearBinding activitySixthYearBinding;
     ContentSixthYearBinding yearBinding;
     AdUtil adUtil = new AdUtil();
+    NativeAdView frameLayout;
+    private ActivitySixthYearBinding activitySixthYearBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,11 @@ public class SixthYear extends AppCompatActivity implements View.OnClickListener
         adUtil.loadInterAd(this);
         yearBinding.internActivities.setOnClickListener(this);
         yearBinding.internDocuments.setOnClickListener(this);
+//        frameLayout = yearBinding.nativeCard62;
 
         initializeUI();
         refreshAd();
+//        adUtil.nativeAdMedium(SixthYear.this, frameLayout);
     }
 
     private void initializeUI() {
@@ -56,7 +59,6 @@ public class SixthYear extends AppCompatActivity implements View.OnClickListener
     }
 
     public void refreshAd() {
-        AdRequest adRequest = new AdRequest.Builder().build();
         loadNativeAd(this, yearBinding.nativeAd61, yearBinding.nativeCard61);
         loadNativeAd(this, yearBinding.nativeAd62, yearBinding.nativeCard62);
     }

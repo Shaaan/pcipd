@@ -22,8 +22,8 @@ import in.shaaan.pcipharmd.databinding.ContentThirdYearBinding;
 
 public class ThirdYear extends AppCompatActivity implements View.OnClickListener {
     ContentThirdYearBinding yearBinding;
-    private ActivityThirdYearBinding activityThirdYearBinding;
     AdUtil adUtil = new AdUtil();
+    private ActivityThirdYearBinding activityThirdYearBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

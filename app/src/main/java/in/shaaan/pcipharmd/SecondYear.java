@@ -22,8 +22,8 @@ import in.shaaan.pcipharmd.databinding.ContentSecondYearBinding;
 
 public class SecondYear extends AppCompatActivity implements View.OnClickListener {
     ContentSecondYearBinding yearBinding;
-    private ActivitySecondYearBinding activitySecondYearBinding;
     AdUtil adUtil = new AdUtil();
+    private ActivitySecondYearBinding activitySecondYearBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
