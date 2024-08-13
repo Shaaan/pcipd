@@ -3,3 +3,4 @@ _site
 .idea
 .kotlin
 .nativetemplates
+.DS_Store
