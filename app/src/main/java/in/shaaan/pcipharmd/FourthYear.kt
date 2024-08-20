@@ -1,0 +1,104 @@
+package `in`.shaaan.pcipharmd
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import `in`.shaaan.pcipharmd.databinding.ActivityFourthYearBinding
+import `in`.shaaan.pcipharmd.databinding.ContentFourthYearBinding
+
+class FourthYear : AppCompatActivity(), View.OnClickListener {
+    private var yearBinding: ContentFourthYearBinding? = null
+    private var adUtil: AdUtil = AdUtil()
+    private var activityFourthYearBinding: ActivityFourthYearBinding? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityFourthYearBinding = ActivityFourthYearBinding.inflate(
+            layoutInflater
+        )
+        setContentView(activityFourthYearBinding!!.root)
+        setSupportActionBar(activityFourthYearBinding!!.toolbar)
+        yearBinding = activityFourthYearBinding!!.layout4y
+        adUtil.loadInterAd(this)
+
+        initializeUI()
+        refreshAd()
+    }
+
+    private fun initializeUI() {
+        yearBinding!!.tp3.setOnClickListener(this)
+        yearBinding!!.toxicology.setOnClickListener(this)
+        yearBinding!!.hp.setOnClickListener(this)
+        yearBinding!!.cp.setOnClickListener(this)
+        yearBinding!!.biopharm.setOnClickListener(this)
+        yearBinding!!.biostat.setOnClickListener(this)
+
+        activityFourthYearBinding!!.fab.setOnClickListener { view: View? ->
+            Snackbar.make(
+                view!!, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG
+            )
+                .setAction("RATE") {
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=in.shaaan.pcipharmd")
+                    )
+                    startActivity(intent)
+                }.show()
+        }
+
+        if (supportActionBar != null) {
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        }
+    }
+
+    private fun refreshAd() {
+        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd41, yearBinding!!.nativeCard41)
+        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd42, yearBinding!!.nativeCard42)
+        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd43, yearBinding!!.nativeCard43)
+    }
+
+
+    override fun onClick(view: View) {
+        val urlMap: MutableMap<Int, String> = HashMap()
+        urlMap[R.id.tp3] = "https://shaaan.github.io/pcipd/syllabus4/pt3"
+        urlMap[R.id.toxicology] = "https://shaaan.github.io/pcipd/syllabus4/toxicology"
+        urlMap[R.id.cp] = "https://shaaan.github.io/pcipd/syllabus4/cp"
+        urlMap[R.id.hp] = "https://shaaan.github.io/pcipd/syllabus4/hosp_pharm"
+        urlMap[R.id.biopharm] = "https://shaaan.github.io/pcipd/syllabus4/biopharm"
+        urlMap[R.id.biostat] = "https://shaaan.github.io/pcipd/syllabus4/biostat"
+
+        val url = urlMap[view.id]
+        if (url != null) {
+            adUtil.showInterAd(this, url)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu_home, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        val id = item.itemId
+
+        if (id == R.id.action_settings) {
+            startActivity(Intent(this, About::class.java))
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AdUtil.interstitialAd = null
+    }
+}
