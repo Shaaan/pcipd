@@ -13,17 +13,17 @@ import `in`.shaaan.pcipharmd.databinding.ActivityHomeBinding
 import `in`.shaaan.pcipharmd.databinding.ContentHomeBinding
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
-    private var yearBinding: ContentHomeBinding? = null
-    private var activityHomeBinding: ActivityHomeBinding? = null
+    private lateinit var yearBinding: ContentHomeBinding
+    private lateinit var activityHomeBinding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityHomeBinding = ActivityHomeBinding.inflate(
             layoutInflater
         )
-        setContentView(activityHomeBinding!!.root)
-        setSupportActionBar(activityHomeBinding!!.toolbar)
-        yearBinding = activityHomeBinding!!.layoutHome
+        setContentView(activityHomeBinding.root)
+        setSupportActionBar(activityHomeBinding.toolbar)
+        yearBinding = activityHomeBinding.layoutHome
         FirebaseAnalytics.getInstance(this)
 
         Thread {
@@ -36,14 +36,14 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initializeUI() {
-        activityHomeBinding!!.layoutHome.syllabus1.setOnClickListener(this)
-        activityHomeBinding!!.layoutHome.syllabus2.setOnClickListener(this)
-        activityHomeBinding!!.layoutHome.syllabus3.setOnClickListener(this)
-        activityHomeBinding!!.layoutHome.syllabus4.setOnClickListener(this)
-        activityHomeBinding!!.layoutHome.syllabus5.setOnClickListener(this)
-        activityHomeBinding!!.layoutHome.syllabus6.setOnClickListener(this)
+        activityHomeBinding.layoutHome.syllabus1.setOnClickListener(this)
+        activityHomeBinding.layoutHome.syllabus2.setOnClickListener(this)
+        activityHomeBinding.layoutHome.syllabus3.setOnClickListener(this)
+        activityHomeBinding.layoutHome.syllabus4.setOnClickListener(this)
+        activityHomeBinding.layoutHome.syllabus5.setOnClickListener(this)
+        activityHomeBinding.layoutHome.syllabus6.setOnClickListener(this)
 
-        activityHomeBinding!!.fab.setOnClickListener { view: View? ->
+        activityHomeBinding.fab.setOnClickListener { view: View? ->
             Snackbar.make(
                 view!!, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG
             )
@@ -58,9 +58,9 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun refreshAd() {
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd01, yearBinding!!.nativeCard01)
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd02, yearBinding!!.nativeCard02)
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd03, yearBinding!!.nativeCard03)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd01, yearBinding.nativeCard01)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd02, yearBinding.nativeCard02)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd03, yearBinding.nativeCard03)
     }
 
     @SuppressLint("NonConstantResourceId")

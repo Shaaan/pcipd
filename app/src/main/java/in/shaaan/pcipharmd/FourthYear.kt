@@ -12,9 +12,9 @@ import `in`.shaaan.pcipharmd.databinding.ActivityFourthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentFourthYearBinding
 
 class FourthYear : AppCompatActivity(), View.OnClickListener {
-    private var yearBinding: ContentFourthYearBinding? = null
+    private lateinit var yearBinding: ContentFourthYearBinding
     private var adUtil: AdUtil = AdUtil()
-    private var activityFourthYearBinding: ActivityFourthYearBinding? = null
+    private lateinit var activityFourthYearBinding: ActivityFourthYearBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +31,14 @@ class FourthYear : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initializeUI() {
-        yearBinding!!.tp3.setOnClickListener(this)
-        yearBinding!!.toxicology.setOnClickListener(this)
-        yearBinding!!.hp.setOnClickListener(this)
-        yearBinding!!.cp.setOnClickListener(this)
-        yearBinding!!.biopharm.setOnClickListener(this)
-        yearBinding!!.biostat.setOnClickListener(this)
+        yearBinding.tp3.setOnClickListener(this)
+        yearBinding.toxicology.setOnClickListener(this)
+        yearBinding.hp.setOnClickListener(this)
+        yearBinding.cp.setOnClickListener(this)
+        yearBinding.biopharm.setOnClickListener(this)
+        yearBinding.biostat.setOnClickListener(this)
 
-        activityFourthYearBinding!!.fab.setOnClickListener { view: View? ->
+        activityFourthYearBinding.fab.setOnClickListener { view: View? ->
             Snackbar.make(
                 view!!, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG
             )
@@ -57,9 +57,9 @@ class FourthYear : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun refreshAd() {
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd41, yearBinding!!.nativeCard41)
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd42, yearBinding!!.nativeCard42)
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd43, yearBinding!!.nativeCard43)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd41, yearBinding.nativeCard41)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd42, yearBinding.nativeCard42)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd43, yearBinding.nativeCard43)
     }
 
 

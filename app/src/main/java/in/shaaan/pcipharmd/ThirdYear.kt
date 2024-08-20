@@ -12,18 +12,18 @@ import `in`.shaaan.pcipharmd.databinding.ActivityThirdYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentThirdYearBinding
 
 class ThirdYear : AppCompatActivity(), View.OnClickListener {
-    private var yearBinding: ContentThirdYearBinding? = null
+    private lateinit var yearBinding: ContentThirdYearBinding
     private var adUtil: AdUtil = AdUtil()
-    private var activityThirdYearBinding: ActivityThirdYearBinding? = null
+    private lateinit var activityThirdYearBinding: ActivityThirdYearBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityThirdYearBinding = ActivityThirdYearBinding.inflate(
             layoutInflater
         )
-        setContentView(activityThirdYearBinding!!.root)
-        setSupportActionBar(activityThirdYearBinding!!.toolbar)
-        yearBinding = activityThirdYearBinding!!.layout3y
+        setContentView(activityThirdYearBinding.root)
+        setSupportActionBar(activityThirdYearBinding.toolbar)
+        yearBinding = activityThirdYearBinding.layout3y
         adUtil.loadInterAd(this)
 
         initializeUI()
@@ -31,14 +31,14 @@ class ThirdYear : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initializeUI() {
-        yearBinding!!.tp2.setOnClickListener(this)
-        yearBinding!!.pharmac.setOnClickListener(this)
-        yearBinding!!.formulation.setOnClickListener(this)
-        yearBinding!!.analysis.setOnClickListener(this)
-        yearBinding!!.juris.setOnClickListener(this)
-        yearBinding!!.mchem.setOnClickListener(this)
+        yearBinding.tp2.setOnClickListener(this)
+        yearBinding.pharmac.setOnClickListener(this)
+        yearBinding.formulation.setOnClickListener(this)
+        yearBinding.analysis.setOnClickListener(this)
+        yearBinding.juris.setOnClickListener(this)
+        yearBinding.mchem.setOnClickListener(this)
 
-        activityThirdYearBinding!!.fab.setOnClickListener { view: View? ->
+        activityThirdYearBinding.fab.setOnClickListener { view: View? ->
             Snackbar.make(
                 view!!, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG
             )
@@ -57,9 +57,9 @@ class ThirdYear : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun refreshAd() {
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd31, yearBinding!!.nativeCard31)
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd32, yearBinding!!.nativeCard32)
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd33, yearBinding!!.nativeCard33)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd31, yearBinding.nativeCard31)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd32, yearBinding.nativeCard32)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd33, yearBinding.nativeCard33)
     }
 
     override fun onClick(view: View) {

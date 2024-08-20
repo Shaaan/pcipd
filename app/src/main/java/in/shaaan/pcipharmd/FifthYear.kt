@@ -12,18 +12,18 @@ import `in`.shaaan.pcipharmd.databinding.ActivityFifthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentFifthYearBinding
 
 class FifthYear : AppCompatActivity(), View.OnClickListener {
-    private var yearBinding: ContentFifthYearBinding? = null
+    private lateinit var yearBinding: ContentFifthYearBinding
     private var adUtil: AdUtil = AdUtil()
-    private var activityFifthYearBinding: ActivityFifthYearBinding? = null
+    private lateinit var activityFifthYearBinding: ActivityFifthYearBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityFifthYearBinding = ActivityFifthYearBinding.inflate(
             layoutInflater
         )
-        setContentView(activityFifthYearBinding!!.root)
-        setSupportActionBar(activityFifthYearBinding!!.toolbar)
-        yearBinding = activityFifthYearBinding!!.layout5y
+        setContentView(activityFifthYearBinding.root)
+        setSupportActionBar(activityFifthYearBinding.toolbar)
+        yearBinding = activityFifthYearBinding.layout5y
         adUtil.loadInterAd(this)
 
         initializeUI()
@@ -31,13 +31,13 @@ class FifthYear : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initializeUI() {
-        yearBinding!!.nativeCard51.visibility = View.GONE
-        yearBinding!!.nativeCard52.visibility = View.GONE
-        yearBinding!!.epi.setOnClickListener(this)
-        yearBinding!!.tdm.setOnClickListener(this)
-        yearBinding!!.research.setOnClickListener(this)
+        yearBinding.nativeCard51.visibility = View.GONE
+        yearBinding.nativeCard52.visibility = View.GONE
+        yearBinding.epi.setOnClickListener(this)
+        yearBinding.tdm.setOnClickListener(this)
+        yearBinding.research.setOnClickListener(this)
 
-        activityFifthYearBinding!!.fab.setOnClickListener { view: View? ->
+        activityFifthYearBinding.fab.setOnClickListener { view: View? ->
             Snackbar.make(
                 view!!, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG
             )
@@ -56,9 +56,9 @@ class FifthYear : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun refreshAd() {
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd51, yearBinding!!.nativeCard51)
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd52, yearBinding!!.nativeCard52)
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd53, yearBinding!!.nativeCard53)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd51, yearBinding.nativeCard51)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd52, yearBinding.nativeCard52)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd53, yearBinding.nativeCard53)
     }
 
     override fun onClick(view: View) {

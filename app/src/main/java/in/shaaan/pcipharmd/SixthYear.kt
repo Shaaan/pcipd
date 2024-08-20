@@ -13,32 +13,31 @@ import `in`.shaaan.pcipharmd.databinding.ActivitySixthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentSixthYearBinding
 
 class SixthYear : AppCompatActivity(), View.OnClickListener {
-    private var yearBinding: ContentSixthYearBinding? = null
+    private lateinit var yearBinding: ContentSixthYearBinding
     private var adUtil: AdUtil = AdUtil()
-    var frameLayout: NativeAdView? = null
-    private var activitySixthYearBinding: ActivitySixthYearBinding? = null
+    private lateinit var activitySixthYearBinding: ActivitySixthYearBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activitySixthYearBinding = ActivitySixthYearBinding.inflate(
             layoutInflater
         )
-        setContentView(activitySixthYearBinding!!.root)
-        setSupportActionBar(activitySixthYearBinding!!.toolbar)
-        yearBinding = activitySixthYearBinding!!.layout6y
+        setContentView(activitySixthYearBinding.root)
+        setSupportActionBar(activitySixthYearBinding.toolbar)
+        yearBinding = activitySixthYearBinding.layout6y
         adUtil.loadInterAd(this)
-        yearBinding!!.internActivities.setOnClickListener(this)
-        yearBinding!!.internDocuments.setOnClickListener(this)
+        yearBinding.internActivities.setOnClickListener(this)
+        yearBinding.internDocuments.setOnClickListener(this)
 
         initializeUI()
         refreshAd()
     }
 
     private fun initializeUI() {
-        yearBinding!!.internActivities.setOnClickListener(this)
-        yearBinding!!.internDocuments.setOnClickListener(this)
+        yearBinding.internActivities.setOnClickListener(this)
+        yearBinding.internDocuments.setOnClickListener(this)
 
-        activitySixthYearBinding!!.fab.setOnClickListener { view: View? ->
+        activitySixthYearBinding.fab.setOnClickListener { view: View? ->
             Snackbar.make(
                 view!!, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG
             )
@@ -57,8 +56,8 @@ class SixthYear : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun refreshAd() {
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd61, yearBinding!!.nativeCard61)
-        AdUtil.loadNativeAd(this, yearBinding!!.nativeAd62, yearBinding!!.nativeCard62)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd61, yearBinding.nativeCard61)
+        AdUtil.loadNativeAd(this, yearBinding.nativeAd62, yearBinding.nativeCard62)
     }
 
     override fun onClick(view: View) {
