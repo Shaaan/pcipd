@@ -36,11 +36,9 @@ public class SixthYear extends AppCompatActivity implements View.OnClickListener
         adUtil.loadInterAd(this);
         yearBinding.internActivities.setOnClickListener(this);
         yearBinding.internDocuments.setOnClickListener(this);
-//        frameLayout = yearBinding.nativeCard62;
 
         initializeUI();
         refreshAd();
-//        adUtil.nativeAdMedium(SixthYear.this, frameLayout);
     }
 
     private void initializeUI() {

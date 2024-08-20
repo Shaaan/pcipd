@@ -101,8 +101,6 @@ public class FifthYear extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onResume() {
         super.onResume();
-//        checkAdLoaded();
-//        AdUtil.gRefreshAd(this);
     }
 
     @Override

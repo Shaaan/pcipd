@@ -80,22 +80,6 @@ public class FirstYear extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        if (mInterstitialAd.isLoaded()) {
-//            mInterstitialAd.show();
-//            mInterstitialAd.setAdListener(new AdListener() {
-//                @Override
-//                public void onAdClosed() {
-//                    super.onAdClosed();
-//                    finish();
-//                }
-//            });
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
