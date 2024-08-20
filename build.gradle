@@ -9,22 +9,14 @@ buildscript {
         google()
         maven {
             url 'https://maven.google.com'}
-//        maven {
-//            url 'http://dl.bintray.com/chat-sdk/chat-sdk-android'}
         maven {
             url "https://jitpack.io"
-            // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
         }
-//        maven { url 'https://maven.fabric.io/public'  }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.5.1'
-        classpath 'com.google.gms:google-services:4.3.15'
-//        classpath 'io.fabric.tools:gradle:1.28.1'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
+        classpath 'com.android.tools.build:gradle:8.5.2'
+        classpath 'com.google.gms:google-services:4.4.2'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -35,14 +27,9 @@ allprojects {
         google()
         maven { url 'https://maven.google.com'  }
         maven { url 'https://jitpack.io' }
-//        maven { url "https://chatsdk.jfrog.io/artifactory/release/chat-sdk-android" }
-//        maven { url "https://chatsdk.jfrog.io/artifactory/release/chatkit" }
-//        maven { url "https://chatsdk.jfrog.io/artifactory/release/matisse" }
-//        maven { url "https://chatsdk.jfrog.io/artifactory/release/material-search-view" }
-//        maven { url "https://chatsdk.jfrog.io/artifactory/release/android-image-cropper" }
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
