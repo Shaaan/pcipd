@@ -59,7 +59,7 @@ class SecondYear : AppCompatActivity(), View.OnClickListener {
     private fun refreshAd() {
         AdUtil.loadNativeAd(this, yearBinding.nativeAd21, yearBinding.nativeCard21)
         AdUtil.loadNativeAd(this, yearBinding.nativeAd22, yearBinding.nativeCard22)
-        AdUtil.loadNativeAd(this, yearBinding.nativeAd23, yearBinding.nativeCard23)
+        AdUtil.refreshAd(this, yearBinding.nativeAd23, yearBinding.nativeCard23)
     }
 
     override fun onClick(view: View) {

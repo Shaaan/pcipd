@@ -60,7 +60,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     private fun refreshAd() {
         AdUtil.loadNativeAd(this, yearBinding.nativeAd01, yearBinding.nativeCard01)
         AdUtil.loadNativeAd(this, yearBinding.nativeAd02, yearBinding.nativeCard02)
-        AdUtil.loadNativeAd(this, yearBinding.nativeAd03, yearBinding.nativeCard03)
+        AdUtil.refreshAd(this, yearBinding.nativeAd03, yearBinding.nativeCard03)
     }
 
     @SuppressLint("NonConstantResourceId")

@@ -66,4 +66,5 @@
     <!--  App drawer strings  -->
     <string name="drawer_item_syllabus">Syllabus</string>
     <string name="drawer_item_chat">Chat</string>
+    <string name="todo">TODO</string>
 </resources>

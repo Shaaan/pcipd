@@ -5,7 +5,7 @@ android {
     compileSdkVersion 35
 
     namespace 'com.google.android.ads.nativetemplates'
-    
+
     defaultConfig {
         minSdkVersion 28
         targetSdkVersion 35
@@ -31,7 +31,6 @@ android {
         jvmTarget = '17'
     }
 }
-
 
 
 dependencies {

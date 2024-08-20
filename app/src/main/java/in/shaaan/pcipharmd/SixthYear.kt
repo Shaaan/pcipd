@@ -7,7 +7,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.material.snackbar.Snackbar
 import `in`.shaaan.pcipharmd.databinding.ActivitySixthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentSixthYearBinding
@@ -57,7 +56,7 @@ class SixthYear : AppCompatActivity(), View.OnClickListener {
 
     private fun refreshAd() {
         AdUtil.loadNativeAd(this, yearBinding.nativeAd61, yearBinding.nativeCard61)
-        AdUtil.loadNativeAd(this, yearBinding.nativeAd62, yearBinding.nativeCard62)
+        AdUtil.refreshAd(this, yearBinding.nativeAd62, yearBinding.nativeCard62)
     }
 
     override fun onClick(view: View) {

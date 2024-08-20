@@ -52,6 +52,10 @@
                 android:id="@+id/native_ad_51"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
                 app:gnt_template_type="@layout/gnt_small_template_view" />
         </androidx.cardview.widget.CardView>
 
@@ -90,6 +94,10 @@
                 android:id="@+id/native_ad_52"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
                 app:gnt_template_type="@layout/gnt_small_template_view" />
         </androidx.cardview.widget.CardView>
 
@@ -124,11 +132,15 @@
             iosched:cardPreventCornerOverlap="false">
 
             <!--  This is your template view -->
-            <com.google.android.ads.nativetemplates.TemplateView
+            <FrameLayout
                 android:id="@+id/native_ad_53"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:gnt_template_type="@layout/gnt_medium_template_view" />
+                android:layout_marginTop="16dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
