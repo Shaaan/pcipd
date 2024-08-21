@@ -74,7 +74,7 @@ class FirstYear : AppCompatActivity(), View.OnClickListener {
         endpointMap[R.id.rem_mathBio] = "first_year/math_bio/"
 
         val endpoint = endpointMap[view.id]
-        val url = if (endpoint!= null) baseUrl + endpoint else null
+        val url = if (endpoint != null) baseUrl + endpoint else null
         if (url != null) {
             adUtil.showInterAd(this, url)
         }

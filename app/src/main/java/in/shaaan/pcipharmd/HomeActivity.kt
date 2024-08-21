@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -18,12 +17,11 @@ import `in`.shaaan.pcipharmd.databinding.ActivityHomeBinding
 import `in`.shaaan.pcipharmd.databinding.ContentHomeBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import java.util.prefs.Preferences
 
 // At the top level of your kotlin file:
 val Context.dataStore by preferencesDataStore("settings")
 val BASE_URL_KEY = stringPreferencesKey("base_url")
-//const val baseUrl = "https://shaaan.github.io/pcipd/"
+
 const val baseUrl = "https://pcipd.hypertex.co.in/syllabus/"
 
 

@@ -1,6 +1,5 @@
 package `in`.shaaan.pcipharmd
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,8 +11,6 @@ import com.google.android.material.snackbar.Snackbar
 import `in`.shaaan.pcipharmd.HomeActivity.Companion.getBaseUrl
 import `in`.shaaan.pcipharmd.databinding.ActivitySixthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentSixthYearBinding
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 
 class SixthYear : AppCompatActivity(), View.OnClickListener {
     private lateinit var yearBinding: ContentSixthYearBinding
@@ -70,7 +67,7 @@ class SixthYear : AppCompatActivity(), View.OnClickListener {
         endpointMap[R.id.intern_documents] = "internship/"
 
         val endpoint = endpointMap[view.id]
-        val url = if (endpoint!= null) baseUrl + endpoint else null
+        val url = if (endpoint != null) baseUrl + endpoint else null
         if (url != null) {
             adUtil.showInterAd(this, url)
         }

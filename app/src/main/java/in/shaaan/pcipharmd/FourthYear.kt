@@ -22,9 +22,9 @@ class FourthYear : AppCompatActivity(), View.OnClickListener {
         activityFourthYearBinding = ActivityFourthYearBinding.inflate(
             layoutInflater
         )
-        setContentView(activityFourthYearBinding!!.root)
-        setSupportActionBar(activityFourthYearBinding!!.toolbar)
-        yearBinding = activityFourthYearBinding!!.layout4y
+        setContentView(activityFourthYearBinding.root)
+        setSupportActionBar(activityFourthYearBinding.toolbar)
+        yearBinding = activityFourthYearBinding.layout4y
         adUtil.loadInterAd(this)
 
         initializeUI()
@@ -74,7 +74,7 @@ class FourthYear : AppCompatActivity(), View.OnClickListener {
         endpointMap[R.id.biostat] = "fourth_year/biostat"
 
         val endpoint = endpointMap[view.id]
-        val url = if (endpoint!= null) baseUrl + endpoint else null
+        val url = if (endpoint != null) baseUrl + endpoint else null
         if (url != null) {
             adUtil.showInterAd(this, url)
         }

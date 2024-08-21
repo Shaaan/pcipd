@@ -70,7 +70,7 @@ class FifthYear : AppCompatActivity(), View.OnClickListener {
         endpointMap[R.id.tdm] = "fifth_year/tdm"
 
         val endpoint = endpointMap[view.id]
-        val url = if (endpoint!= null) baseUrl + endpoint else null
+        val url = if (endpoint != null) baseUrl + endpoint else null
         if (url != null) {
             adUtil.showInterAd(this, url)
         }
