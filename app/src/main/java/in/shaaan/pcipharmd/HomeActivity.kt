@@ -1,16 +1,31 @@
 package `in`.shaaan.pcipharmd
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import `in`.shaaan.pcipharmd.databinding.ActivityHomeBinding
 import `in`.shaaan.pcipharmd.databinding.ContentHomeBinding
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import java.util.prefs.Preferences
+
+// At the top level of your kotlin file:
+val Context.dataStore by preferencesDataStore("settings")
+val BASE_URL_KEY = stringPreferencesKey("base_url")
+//const val baseUrl = "https://shaaan.github.io/pcipd/"
+const val baseUrl = "https://pcipd.hypertex.co.in/syllabus/"
+
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var yearBinding: ContentHomeBinding
@@ -26,6 +41,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         yearBinding = activityHomeBinding.layoutHome
         FirebaseAnalytics.getInstance(this)
 
+        saveBaseUrl(this)
+
         Thread {
             // Initialize the Google Mobile Ads SDK on a background thread.
             MobileAds.initialize(this) { }
@@ -33,6 +50,14 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             .start()
         initializeUI()
         refreshAd()
+    }
+
+    private fun saveBaseUrl(context: Context) {
+        runBlocking {
+            context.dataStore.edit { preferences ->
+                preferences[BASE_URL_KEY] = baseUrl
+            }
+        }
     }
 
     private fun initializeUI() {
@@ -88,5 +113,14 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     override fun onDestroy() {
         super.onDestroy()
         AdUtil.interstitialAd = null
+    }
+
+    companion object {
+        fun getBaseUrl(context: Context): String {
+            return runBlocking {
+                val preferences = context.dataStore.data.first()
+                preferences[BASE_URL_KEY].toString()
+            }
+        }
     }
 }

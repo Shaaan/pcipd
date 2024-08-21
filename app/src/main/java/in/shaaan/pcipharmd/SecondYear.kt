@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import `in`.shaaan.pcipharmd.HomeActivity.Companion.getBaseUrl
 import `in`.shaaan.pcipharmd.databinding.ActivitySecondYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentSecondYearBinding
 
@@ -63,15 +64,17 @@ class SecondYear : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        val urlMap: MutableMap<Int, String> = HashMap()
-        urlMap[R.id.cology] = "https://shaaan.github.io/pcipd/syllabus2/cology"
-        urlMap[R.id.tp1] = "https://shaaan.github.io/pcipd/syllabus2/tp1"
-        urlMap[R.id.micro] = "https://shaaan.github.io/pcipd/syllabus2/micro"
-        urlMap[R.id.cognosy] = "https://shaaan.github.io/pcipd/syllabus2/cognosy"
-        urlMap[R.id.patho] = "https://shaaan.github.io/pcipd/syllabus2/patho"
-        urlMap[R.id.com] = "https://shaaan.github.io/pcipd/syllabus2/cmp"
+        val baseUrl = getBaseUrl(this)
+        val endpointMap: MutableMap<Int, String> = HashMap()
+        endpointMap[R.id.cology] = "second_year/cology"
+        endpointMap[R.id.tp1] = "second_year/tp1"
+        endpointMap[R.id.micro] = "second_year/micro"
+        endpointMap[R.id.cognosy] = "second_year/cognosy"
+        endpointMap[R.id.patho] = "second_year/patho"
+        endpointMap[R.id.com] = "second_year/cmp"
 
-        val url = urlMap[view.id]
+        val endpoint = endpointMap[view.id]
+        val url = if (endpoint!= null) baseUrl + endpoint else null
         if (url != null) {
             adUtil.showInterAd(this, url)
         }

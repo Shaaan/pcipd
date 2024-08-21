@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import `in`.shaaan.pcipharmd.HomeActivity.Companion.getBaseUrl
 import `in`.shaaan.pcipharmd.databinding.ActivityFourthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentFourthYearBinding
 
@@ -62,17 +63,18 @@ class FourthYear : AppCompatActivity(), View.OnClickListener {
         AdUtil.refreshAd(this, yearBinding.nativeAd43, yearBinding.nativeCard43)
     }
 
-
     override fun onClick(view: View) {
-        val urlMap: MutableMap<Int, String> = HashMap()
-        urlMap[R.id.tp3] = "https://shaaan.github.io/pcipd/syllabus4/pt3"
-        urlMap[R.id.toxicology] = "https://shaaan.github.io/pcipd/syllabus4/toxicology"
-        urlMap[R.id.cp] = "https://shaaan.github.io/pcipd/syllabus4/cp"
-        urlMap[R.id.hp] = "https://shaaan.github.io/pcipd/syllabus4/hosp_pharm"
-        urlMap[R.id.biopharm] = "https://shaaan.github.io/pcipd/syllabus4/biopharm"
-        urlMap[R.id.biostat] = "https://shaaan.github.io/pcipd/syllabus4/biostat"
+        val baseUrl = getBaseUrl(this)
+        val endpointMap: MutableMap<Int, String> = HashMap()
+        endpointMap[R.id.tp3] = "fourth_year/pt3"
+        endpointMap[R.id.toxicology] = "fourth_year/toxicology"
+        endpointMap[R.id.cp] = "fourth_year/cp"
+        endpointMap[R.id.hp] = "fourth_year/hosp_pharm"
+        endpointMap[R.id.biopharm] = "fourth_year/biopharm"
+        endpointMap[R.id.biostat] = "fourth_year/biostat"
 
-        val url = urlMap[view.id]
+        val endpoint = endpointMap[view.id]
+        val url = if (endpoint!= null) baseUrl + endpoint else null
         if (url != null) {
             adUtil.showInterAd(this, url)
         }

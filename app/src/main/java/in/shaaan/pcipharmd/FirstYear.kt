@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import `in`.shaaan.pcipharmd.HomeActivity.Companion.getBaseUrl
 import `in`.shaaan.pcipharmd.databinding.ActivityFirstYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentFirstYearBinding
 
@@ -63,15 +64,17 @@ class FirstYear : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        val urlMap: MutableMap<Int, String> = HashMap()
-        urlMap[R.id.hap] = "https://shaaan.github.io/pcipd/syllabus1/hap/"
-        urlMap[R.id.ceutics] = "https://shaaan.github.io/pcipd/syllabus1/pahrmaceutics/"
-        urlMap[R.id.biochem] = "https://shaaan.github.io/pcipd/syllabus1/biochem/"
-        urlMap[R.id.ic] = "https://shaaan.github.io/pcipd/syllabus1/ic/"
-        urlMap[R.id.oc] = "https://shaaan.github.io/pcipd/syllabus1/oc/"
-        urlMap[R.id.rem_mathBio] = "https://shaaan.github.io/pcipd/syllabus1/math_bio/"
+        val baseUrl = getBaseUrl(this)
+        val endpointMap: MutableMap<Int, String> = HashMap()
+        endpointMap[R.id.hap] = "first_year/hap/"
+        endpointMap[R.id.ceutics] = "first_year/pahrmaceutics/"
+        endpointMap[R.id.biochem] = "first_year/biochem/"
+        endpointMap[R.id.ic] = "first_year/ic/"
+        endpointMap[R.id.oc] = "first_year/oc/"
+        endpointMap[R.id.rem_mathBio] = "first_year/math_bio/"
 
-        val url = urlMap[view.id]
+        val endpoint = endpointMap[view.id]
+        val url = if (endpoint!= null) baseUrl + endpoint else null
         if (url != null) {
             adUtil.showInterAd(this, url)
         }

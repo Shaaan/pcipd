@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import `in`.shaaan.pcipharmd.HomeActivity.Companion.getBaseUrl
 import `in`.shaaan.pcipharmd.databinding.ActivityFifthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentFifthYearBinding
 
@@ -62,12 +63,14 @@ class FifthYear : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        val urlMap: MutableMap<Int, String> = HashMap()
-        urlMap[R.id.epi] = "https://shaaan.github.io/pcipd/syllabus5/epi"
-        urlMap[R.id.research] = "https://shaaan.github.io/pcipd/syllabus5/research"
-        urlMap[R.id.tdm] = "https://shaaan.github.io/pcipd/syllabus5/tdm"
+        val baseUrl = getBaseUrl(this)
+        val endpointMap: MutableMap<Int, String> = HashMap()
+        endpointMap[R.id.epi] = "fifth_year/epi"
+        endpointMap[R.id.research] = "fifth_year/research"
+        endpointMap[R.id.tdm] = "fifth_year/tdm"
 
-        val url = urlMap[view.id]
+        val endpoint = endpointMap[view.id]
+        val url = if (endpoint!= null) baseUrl + endpoint else null
         if (url != null) {
             adUtil.showInterAd(this, url)
         }

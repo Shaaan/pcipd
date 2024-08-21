@@ -1,5 +1,6 @@
 package `in`.shaaan.pcipharmd
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,8 +9,11 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import `in`.shaaan.pcipharmd.HomeActivity.Companion.getBaseUrl
 import `in`.shaaan.pcipharmd.databinding.ActivitySixthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentSixthYearBinding
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 class SixthYear : AppCompatActivity(), View.OnClickListener {
     private lateinit var yearBinding: ContentSixthYearBinding
@@ -60,11 +64,13 @@ class SixthYear : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        val urlMap: MutableMap<Int, String> = HashMap()
-        urlMap[R.id.intern_activities] = "https://shaaan.github.io/pcipd/syllabus6"
-        urlMap[R.id.intern_documents] = "https://shaaan.github.io/pcipd/syllabus6_1/"
+        val baseUrl = getBaseUrl(this)
+        val endpointMap: MutableMap<Int, String> = HashMap()
+        endpointMap[R.id.intern_activities] = "sixth_year/"
+        endpointMap[R.id.intern_documents] = "internship/"
 
-        val url = urlMap[view.id]
+        val endpoint = endpointMap[view.id]
+        val url = if (endpoint!= null) baseUrl + endpoint else null
         if (url != null) {
             adUtil.showInterAd(this, url)
         }
