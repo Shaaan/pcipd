@@ -16,12 +16,12 @@ android {
             storePassword 'cyanogenm0d'
         }
     }
-    compileSdkVersion 34
+    compileSdk 35
     defaultConfig {
         applicationId "in.shaaan.pcipharmd"
-        minSdkVersion 28
-        targetSdkVersion 34
-//        versionCode getVersionCodeTimestamp()
+        minSdk 29
+        targetSdk 35
+        //        versionCode getVersionCodeTimestamp()
         versionCode 1909301660
         versionName "4.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -61,6 +61,7 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    buildToolsVersion '35.0.0'
 }
 
 def getVersionCodeTimestamp() {
@@ -73,8 +74,8 @@ def getVersionCodeTimestamp() {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.core:core-ktx:1.13.1'
-    implementation 'com.google.firebase:firebase-perf:21.0.1'
+    implementation 'androidx.core:core-ktx:1.16.0'
+    implementation 'com.google.firebase:firebase-perf:21.0.5'
     testImplementation 'junit:junit:4.13.2'
 
     // App Compat
@@ -82,22 +83,22 @@ dependencies {
     implementation 'androidx.browser:browser:1.8.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
-    implementation 'androidx.annotation:annotation:1.8.2'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'com.android.support:multidex:1.0.3'
 
     // Google
     implementation 'com.google.android.material:material:1.12.0'
-    implementation 'com.google.android.gms:play-services-ads:23.3.0'
-    implementation 'com.google.android.gms:play-services-auth:21.2.0'
-    implementation platform('com.google.firebase:firebase-bom:33.1.2')
+    implementation 'com.google.android.gms:play-services-ads:24.2.0'
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
+    implementation platform('com.google.firebase:firebase-bom:33.12.0')
 
     implementation project(':nativetemplates')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
 
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation("androidx.datastore:datastore-preferences:1.1.4")
 
 }
