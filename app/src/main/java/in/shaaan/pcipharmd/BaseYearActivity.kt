@@ -2,7 +2,6 @@ package `in`.shaaan.pcipharmd
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,11 +14,11 @@ import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
+import androidx.core.net.toUri
 import androidx.viewbinding.ViewBinding
 import com.google.android.ads.nativetemplates.TemplateView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import androidx.core.net.toUri
 
 // What: A typealias for the binding inflater function.
 // Why: To simplify the constructor signature of the base class, making it cleaner.
@@ -43,6 +42,7 @@ abstract class BaseYearActivity<VB : ViewBinding, CB : ViewBinding>(
     // Protected properties accessible to subclasses
     protected lateinit var activityBinding: VB
     protected lateinit var contentBinding: CB
+
     // What: An instance of AdUtil.
     // Why: Each activity can manage its own ad requests if needed, though the companion object in AdUtil shares the ad instances.
     protected val adUtil: AdUtil = AdUtil()
@@ -140,7 +140,11 @@ abstract class BaseYearActivity<VB : ViewBinding, CB : ViewBinding>(
                     // This assumes that FrameLayouts are used for the custom native ad.
                     AdUtil.refreshAd(this, adView, cardView as CardView)
                 }
-                else -> Log.e("BaseYearActivity", "Unsupported ad view type: ${adView::class.simpleName}")
+
+                else -> Log.e(
+                    "BaseYearActivity",
+                    "Unsupported ad view type: ${adView::class.simpleName}"
+                )
             }
         }
     }
@@ -159,7 +163,10 @@ abstract class BaseYearActivity<VB : ViewBinding, CB : ViewBinding>(
             val url = "${HomeActivity.BASE_URL}$it"
             adUtil.showInterAd(this, url)
         } ?: run {
-            Log.w("BaseYearActivity", "Clicked view with ID ${resources.getResourceEntryName(view.id)} not found in endpoint map.")
+            Log.w(
+                "BaseYearActivity",
+                "Clicked view with ID ${resources.getResourceEntryName(view.id)} not found in endpoint map."
+            )
         }
     }
 
@@ -180,10 +187,12 @@ abstract class BaseYearActivity<VB : ViewBinding, CB : ViewBinding>(
                 startActivity(Intent(this, About::class.java))
                 true
             }
+
             android.R.id.home -> {
                 onBackPressedDispatcher.onBackPressed() // Handles the "Up" button.
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -195,14 +204,26 @@ abstract class BaseYearActivity<VB : ViewBinding, CB : ViewBinding>(
         Snackbar.make(view, getString(R.string.rate_app_message), Snackbar.LENGTH_LONG)
             .setAction(getString(R.string.rate_action)) {
                 try {
-                    startActivity(Intent(Intent.ACTION_VIEW,
-                        "market://details?id=$appPackageName".toUri()))
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            "market://details?id=$appPackageName".toUri()
+                        )
+                    )
                 } catch (e: ActivityNotFoundException) {
                     try {
-                        startActivity(Intent(Intent.ACTION_VIEW,
-                            "http://play.google.com/store/apps/details?id=$appPackageName".toUri()))
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                "http://play.google.com/store/apps/details?id=$appPackageName".toUri()
+                            )
+                        )
                     } catch (webE: ActivityNotFoundException) {
-                        Toast.makeText(this, getString(R.string.play_store_error), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            getString(R.string.play_store_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }.show()

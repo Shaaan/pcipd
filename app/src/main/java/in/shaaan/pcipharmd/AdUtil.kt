@@ -2,7 +2,6 @@ package `in`.shaaan.pcipharmd
 
 import android.app.Activity
 import android.content.Context
-import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
@@ -10,15 +9,20 @@ import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import com.google.android.ads.nativetemplates.NativeTemplateStyle
 import com.google.android.ads.nativetemplates.TemplateView
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdLoader
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import `in`.shaaan.pcipharmd.databinding.AdUnifiedBinding
-import androidx.core.net.toUri
 
 /**
  * Utility class for handling Google Mobile Ads.
@@ -122,7 +126,8 @@ class AdUtil {
             nativeAdView.iconView = unifiedAdBinding.adAppIcon
             unifiedAdBinding.adHeadline.text = nativeAd.headline
             nativeAd.mediaContent?.let { unifiedAdBinding.adMedia.mediaContent = it }
-            unifiedAdBinding.adBody.visibility = if (nativeAd.body != null) View.VISIBLE else View.INVISIBLE
+            unifiedAdBinding.adBody.visibility =
+                if (nativeAd.body != null) View.VISIBLE else View.INVISIBLE
             unifiedAdBinding.adBody.text = nativeAd.body
             // ... (rest of the population logic is standard and correct)
             nativeAdView.setNativeAd(nativeAd)

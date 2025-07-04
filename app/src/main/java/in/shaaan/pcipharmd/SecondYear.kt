@@ -24,9 +24,14 @@ class SecondYear : BaseYearActivity<ActivitySecondYearBinding, ContentSecondYear
         private const val COM_PATH = "second_year/cmp"
     }
 
-    override fun getContentBinding(activityBinding: ActivitySecondYearBinding) = activityBinding.layout2y
-    override fun getToolbar(activityBinding: ActivitySecondYearBinding): Toolbar = activityBinding.toolbar
-    override fun getFab(activityBinding: ActivitySecondYearBinding): FloatingActionButton = activityBinding.fab
+    override fun getContentBinding(activityBinding: ActivitySecondYearBinding) =
+        activityBinding.layout2y
+
+    override fun getToolbar(activityBinding: ActivitySecondYearBinding): Toolbar =
+        activityBinding.toolbar
+
+    override fun getFab(activityBinding: ActivitySecondYearBinding): FloatingActionButton =
+        activityBinding.fab
 
     override val subjectButtonIdToEndpointMap: Map<Int, String> = mapOf(
         R.id.cology to COLOGY_PATH,

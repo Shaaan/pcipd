@@ -3,7 +3,6 @@ package `in`.shaaan.pcipharmd
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.ads.nativetemplates.TemplateView
 import `in`.shaaan.pcipharmd.databinding.ActivitySixthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentSixthYearBinding
 
@@ -21,9 +20,14 @@ class SixthYear : BaseYearActivity<ActivitySixthYearBinding, ContentSixthYearBin
         private const val INTERN_DOCUMENTS_PATH = "internship/"
     }
 
-    override fun getContentBinding(activityBinding: ActivitySixthYearBinding) = activityBinding.layout6y
-    override fun getToolbar(activityBinding: ActivitySixthYearBinding): Toolbar = activityBinding.toolbar
-    override fun getFab(activityBinding: ActivitySixthYearBinding): FloatingActionButton = activityBinding.fab
+    override fun getContentBinding(activityBinding: ActivitySixthYearBinding) =
+        activityBinding.layout6y
+
+    override fun getToolbar(activityBinding: ActivitySixthYearBinding): Toolbar =
+        activityBinding.toolbar
+
+    override fun getFab(activityBinding: ActivitySixthYearBinding): FloatingActionButton =
+        activityBinding.fab
 
     override val subjectButtonIdToEndpointMap: Map<Int, String> = mapOf(
         R.id.intern_activities to INTERN_ACTIVITIES_PATH,

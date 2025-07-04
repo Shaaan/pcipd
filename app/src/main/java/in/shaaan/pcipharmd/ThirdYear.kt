@@ -3,7 +3,6 @@ package `in`.shaaan.pcipharmd
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.ads.nativetemplates.TemplateView
 import `in`.shaaan.pcipharmd.databinding.ActivityThirdYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentThirdYearBinding
 
@@ -25,9 +24,14 @@ class ThirdYear : BaseYearActivity<ActivityThirdYearBinding, ContentThirdYearBin
         private const val MCHEM_PATH = "third_year/mchem"
     }
 
-    override fun getContentBinding(activityBinding: ActivityThirdYearBinding) = activityBinding.layout3y
-    override fun getToolbar(activityBinding: ActivityThirdYearBinding): Toolbar = activityBinding.toolbar
-    override fun getFab(activityBinding: ActivityThirdYearBinding): FloatingActionButton = activityBinding.fab
+    override fun getContentBinding(activityBinding: ActivityThirdYearBinding) =
+        activityBinding.layout3y
+
+    override fun getToolbar(activityBinding: ActivityThirdYearBinding): Toolbar =
+        activityBinding.toolbar
+
+    override fun getFab(activityBinding: ActivityThirdYearBinding): FloatingActionButton =
+        activityBinding.fab
 
     override val subjectButtonIdToEndpointMap: Map<Int, String> = mapOf(
         R.id.tp2 to TP2_PATH,

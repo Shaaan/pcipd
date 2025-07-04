@@ -24,9 +24,14 @@ class FirstYear : BaseYearActivity<ActivityFirstYearBinding, ContentFirstYearBin
         private const val REM_MATH_BIO_PATH = "first_year/math_bio/"
     }
 
-    override fun getContentBinding(activityBinding: ActivityFirstYearBinding) = activityBinding.layout1y
-    override fun getToolbar(activityBinding: ActivityFirstYearBinding): Toolbar = activityBinding.toolbar
-    override fun getFab(activityBinding: ActivityFirstYearBinding): FloatingActionButton = activityBinding.fab
+    override fun getContentBinding(activityBinding: ActivityFirstYearBinding) =
+        activityBinding.layout1y
+
+    override fun getToolbar(activityBinding: ActivityFirstYearBinding): Toolbar =
+        activityBinding.toolbar
+
+    override fun getFab(activityBinding: ActivityFirstYearBinding): FloatingActionButton =
+        activityBinding.fab
 
     override val subjectButtonIdToEndpointMap: Map<Int, String> = mapOf(
         R.id.hap to HAP_PATH,

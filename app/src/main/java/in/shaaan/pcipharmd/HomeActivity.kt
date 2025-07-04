@@ -2,7 +2,6 @@ package `in`.shaaan.pcipharmd
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
@@ -60,7 +59,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         binding.fab.setOnClickListener {
             Snackbar.make(binding.fab, getString(R.string.rate_app_message), Snackbar.LENGTH_LONG)
                 .setAction(getString(R.string.rate_action)) {
-                    val intent = Intent(Intent.ACTION_VIEW, "market://details?id=$packageName".toUri())
+                    val intent =
+                        Intent(Intent.ACTION_VIEW, "market://details?id=$packageName".toUri())
                     startActivity(intent)
                 }.show()
         }
@@ -70,7 +70,11 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         val contentHomeBinding = binding.layoutHome
         AdUtil.loadNativeAd(this, contentHomeBinding.nativeAd01, contentHomeBinding.nativeCard01)
         AdUtil.loadNativeAd(this, contentHomeBinding.nativeAd02, contentHomeBinding.nativeCard02)
-        AdUtil.refreshAd(this, contentHomeBinding.nativeAd03 as FrameLayout, contentHomeBinding.nativeCard03)
+        AdUtil.refreshAd(
+            this,
+            contentHomeBinding.nativeAd03 as FrameLayout,
+            contentHomeBinding.nativeCard03
+        )
     }
 
     @SuppressLint("NonConstantResourceId")

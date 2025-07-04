@@ -3,7 +3,6 @@ package `in`.shaaan.pcipharmd
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.ads.nativetemplates.TemplateView
 import `in`.shaaan.pcipharmd.databinding.ActivityFifthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentFifthYearBinding
 
@@ -22,9 +21,14 @@ class FifthYear : BaseYearActivity<ActivityFifthYearBinding, ContentFifthYearBin
         private const val TDM_PATH = "fifth_year/tdm"
     }
 
-    override fun getContentBinding(activityBinding: ActivityFifthYearBinding) = activityBinding.layout5y
-    override fun getToolbar(activityBinding: ActivityFifthYearBinding): Toolbar = activityBinding.toolbar
-    override fun getFab(activityBinding: ActivityFifthYearBinding): FloatingActionButton = activityBinding.fab
+    override fun getContentBinding(activityBinding: ActivityFifthYearBinding) =
+        activityBinding.layout5y
+
+    override fun getToolbar(activityBinding: ActivityFifthYearBinding): Toolbar =
+        activityBinding.toolbar
+
+    override fun getFab(activityBinding: ActivityFifthYearBinding): FloatingActionButton =
+        activityBinding.fab
 
     override val subjectButtonIdToEndpointMap: Map<Int, String> = mapOf(
         R.id.epi to EPI_PATH,
