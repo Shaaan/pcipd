@@ -1,99 +1,45 @@
 package `in`.shaaan.pcipharmd
 
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
-import `in`.shaaan.pcipharmd.HomeActivity.Companion.getBaseUrl
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.ads.nativetemplates.TemplateView
 import `in`.shaaan.pcipharmd.databinding.ActivitySixthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentSixthYearBinding
 
-class SixthYear : AppCompatActivity(), View.OnClickListener {
-    private lateinit var yearBinding: ContentSixthYearBinding
-    private var adUtil: AdUtil = AdUtil()
-    private lateinit var activitySixthYearBinding: ActivitySixthYearBinding
+/**
+ * Activity for the Sixth Year syllabus.
+ * What: Displays subjects for the sixth year and handles navigation to their details.
+ * Why: Provides a dedicated screen for sixth-year content.
+ * How: Extends `BaseYearActivity` to inherit common functionalities.
+ */
+class SixthYear : BaseYearActivity<ActivitySixthYearBinding, ContentSixthYearBinding>(
+    ActivitySixthYearBinding::inflate
+) {
+    companion object {
+        private const val INTERN_ACTIVITIES_PATH = "sixth_year/"
+        private const val INTERN_DOCUMENTS_PATH = "internship/"
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        activitySixthYearBinding = ActivitySixthYearBinding.inflate(
-            layoutInflater
+    override fun getContentBinding(activityBinding: ActivitySixthYearBinding) = activityBinding.layout6y
+    override fun getToolbar(activityBinding: ActivitySixthYearBinding): Toolbar = activityBinding.toolbar
+    override fun getFab(activityBinding: ActivitySixthYearBinding): FloatingActionButton = activityBinding.fab
+
+    override val subjectButtonIdToEndpointMap: Map<Int, String> = mapOf(
+        R.id.intern_activities to INTERN_ACTIVITIES_PATH,
+        R.id.intern_documents to INTERN_DOCUMENTS_PATH
+    )
+
+    override fun getNativeAdPlaceholderPairs(contentBinding: ContentSixthYearBinding): List<Pair<View, View>> {
+        return listOf(
+            Pair(contentBinding.nativeAd61, contentBinding.nativeCard61),
+            Pair(contentBinding.nativeAd62, contentBinding.nativeCard62)
         )
-        setContentView(activitySixthYearBinding.root)
-        setSupportActionBar(activitySixthYearBinding.toolbar)
-        yearBinding = activitySixthYearBinding.layout6y
-        adUtil.loadInterAd(this)
-        yearBinding.internActivities.setOnClickListener(this)
-        yearBinding.internDocuments.setOnClickListener(this)
-
-        initializeUI()
-        refreshAd()
     }
 
-    private fun initializeUI() {
-        yearBinding.internActivities.setOnClickListener(this)
-        yearBinding.internDocuments.setOnClickListener(this)
-
-        activitySixthYearBinding.fab.setOnClickListener { view: View? ->
-            Snackbar.make(
-                view!!, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG
-            )
-                .setAction("RATE") {
-                    val intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=in.shaaan.pcipharmd")
-                    )
-                    startActivity(intent)
-                }.show()
-        }
-
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
-    }
-
-    private fun refreshAd() {
-        AdUtil.loadNativeAd(this, yearBinding.nativeAd61, yearBinding.nativeCard61)
-        AdUtil.refreshAd(this, yearBinding.nativeAd62, yearBinding.nativeCard62)
-    }
-
-    override fun onClick(view: View) {
-        val baseUrl = getBaseUrl(this)
-        val endpointMap: MutableMap<Int, String> = HashMap()
-        endpointMap[R.id.intern_activities] = "sixth_year/"
-        endpointMap[R.id.intern_documents] = "internship/"
-
-        val endpoint = endpointMap[view.id]
-        val url = if (endpoint != null) baseUrl + endpoint else null
-        if (url != null) {
-            adUtil.showInterAd(this, url)
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_home, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-
-        if (id == R.id.action_settings) {
-            startActivity(Intent(this, About::class.java))
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        AdUtil.interstitialAd = null
+    override fun getSubjectButtons(contentBinding: ContentSixthYearBinding): List<View> {
+        return listOf(
+            contentBinding.internActivities, contentBinding.internDocuments
+        )
     }
 }

@@ -1,106 +1,55 @@
 package `in`.shaaan.pcipharmd
 
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
-import `in`.shaaan.pcipharmd.HomeActivity.Companion.getBaseUrl
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.ads.nativetemplates.TemplateView
 import `in`.shaaan.pcipharmd.databinding.ActivityFourthYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentFourthYearBinding
 
-class FourthYear : AppCompatActivity(), View.OnClickListener {
-    private lateinit var yearBinding: ContentFourthYearBinding
-    private var adUtil: AdUtil = AdUtil()
-    private lateinit var activityFourthYearBinding: ActivityFourthYearBinding
+/**
+ * Activity for the Fourth Year syllabus.
+ * What: Displays subjects for the fourth year and handles navigation to their details.
+ * Why: Provides a dedicated screen for fourth-year content.
+ * How: Extends `BaseYearActivity` to inherit common functionalities.
+ */
+class FourthYear : BaseYearActivity<ActivityFourthYearBinding, ContentFourthYearBinding>(
+    ActivityFourthYearBinding::inflate
+) {
+    companion object {
+        private const val TP3_PATH = "fourth_year/pt3"
+        private const val TOXICOLOGY_PATH = "fourth_year/toxicology"
+        private const val CP_PATH = "fourth_year/cp"
+        private const val HP_PATH = "fourth_year/hosp_pharm"
+        private const val BIOPHARM_PATH = "fourth_year/biopharm"
+        private const val BIOSTAT_PATH = "fourth_year/biostat"
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        activityFourthYearBinding = ActivityFourthYearBinding.inflate(
-            layoutInflater
+    override fun getContentBinding(activityBinding: ActivityFourthYearBinding) = activityBinding.layout4y
+    override fun getToolbar(activityBinding: ActivityFourthYearBinding): Toolbar = activityBinding.toolbar
+    override fun getFab(activityBinding: ActivityFourthYearBinding): FloatingActionButton = activityBinding.fab
+
+    override val subjectButtonIdToEndpointMap: Map<Int, String> = mapOf(
+        R.id.tp3 to TP3_PATH,
+        R.id.toxicology to TOXICOLOGY_PATH,
+        R.id.cp to CP_PATH,
+        R.id.hp to HP_PATH,
+        R.id.biopharm to BIOPHARM_PATH,
+        R.id.biostat to BIOSTAT_PATH
+    )
+
+    override fun getNativeAdPlaceholderPairs(contentBinding: ContentFourthYearBinding): List<Pair<View, View>> {
+        return listOf(
+            Pair(contentBinding.nativeAd41, contentBinding.nativeCard41),
+            Pair(contentBinding.nativeAd42, contentBinding.nativeCard42),
+            Pair(contentBinding.nativeAd43, contentBinding.nativeCard43)
         )
-        setContentView(activityFourthYearBinding.root)
-        setSupportActionBar(activityFourthYearBinding.toolbar)
-        yearBinding = activityFourthYearBinding.layout4y
-        adUtil.loadInterAd(this)
-
-        initializeUI()
-        refreshAd()
     }
 
-    private fun initializeUI() {
-        yearBinding.tp3.setOnClickListener(this)
-        yearBinding.toxicology.setOnClickListener(this)
-        yearBinding.hp.setOnClickListener(this)
-        yearBinding.cp.setOnClickListener(this)
-        yearBinding.biopharm.setOnClickListener(this)
-        yearBinding.biostat.setOnClickListener(this)
-
-        activityFourthYearBinding.fab.setOnClickListener { view: View? ->
-            Snackbar.make(
-                view!!, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG
-            )
-                .setAction("RATE") {
-                    val intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=in.shaaan.pcipharmd")
-                    )
-                    startActivity(intent)
-                }.show()
-        }
-
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
-    }
-
-    private fun refreshAd() {
-        AdUtil.loadNativeAd(this, yearBinding.nativeAd41, yearBinding.nativeCard41)
-        AdUtil.loadNativeAd(this, yearBinding.nativeAd42, yearBinding.nativeCard42)
-        AdUtil.refreshAd(this, yearBinding.nativeAd43, yearBinding.nativeCard43)
-    }
-
-    override fun onClick(view: View) {
-        val baseUrl = getBaseUrl(this)
-        val endpointMap: MutableMap<Int, String> = HashMap()
-        endpointMap[R.id.tp3] = "fourth_year/pt3"
-        endpointMap[R.id.toxicology] = "fourth_year/toxicology"
-        endpointMap[R.id.cp] = "fourth_year/cp"
-        endpointMap[R.id.hp] = "fourth_year/hosp_pharm"
-        endpointMap[R.id.biopharm] = "fourth_year/biopharm"
-        endpointMap[R.id.biostat] = "fourth_year/biostat"
-
-        val endpoint = endpointMap[view.id]
-        val url = if (endpoint != null) baseUrl + endpoint else null
-        if (url != null) {
-            adUtil.showInterAd(this, url)
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_home, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-
-        if (id == R.id.action_settings) {
-            startActivity(Intent(this, About::class.java))
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        AdUtil.interstitialAd = null
+    override fun getSubjectButtons(contentBinding: ContentFourthYearBinding): List<View> {
+        return listOf(
+            contentBinding.tp3, contentBinding.toxicology, contentBinding.hp,
+            contentBinding.cp, contentBinding.biopharm, contentBinding.biostat
+        )
     }
 }

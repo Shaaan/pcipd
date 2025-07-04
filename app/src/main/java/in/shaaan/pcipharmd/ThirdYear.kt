@@ -1,106 +1,55 @@
 package `in`.shaaan.pcipharmd
 
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
-import `in`.shaaan.pcipharmd.HomeActivity.Companion.getBaseUrl
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.ads.nativetemplates.TemplateView
 import `in`.shaaan.pcipharmd.databinding.ActivityThirdYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentThirdYearBinding
 
-class ThirdYear : AppCompatActivity(), View.OnClickListener {
-    private lateinit var yearBinding: ContentThirdYearBinding
-    private var adUtil: AdUtil = AdUtil()
-    private lateinit var activityThirdYearBinding: ActivityThirdYearBinding
+/**
+ * Activity for the Third Year syllabus.
+ * What: Displays subjects for the third year and handles navigation to their details.
+ * Why: Provides a dedicated screen for third-year content.
+ * How: Extends `BaseYearActivity` to inherit common functionalities.
+ */
+class ThirdYear : BaseYearActivity<ActivityThirdYearBinding, ContentThirdYearBinding>(
+    ActivityThirdYearBinding::inflate
+) {
+    companion object {
+        private const val TP2_PATH = "third_year/tp2"
+        private const val PHARMAC_PATH = "third_year/pharmac"
+        private const val FORMULATION_PATH = "third_year/formulation"
+        private const val ANALYSIS_PATH = "third_year/analysis"
+        private const val JURIS_PATH = "third_year/juris"
+        private const val MCHEM_PATH = "third_year/mchem"
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        activityThirdYearBinding = ActivityThirdYearBinding.inflate(
-            layoutInflater
+    override fun getContentBinding(activityBinding: ActivityThirdYearBinding) = activityBinding.layout3y
+    override fun getToolbar(activityBinding: ActivityThirdYearBinding): Toolbar = activityBinding.toolbar
+    override fun getFab(activityBinding: ActivityThirdYearBinding): FloatingActionButton = activityBinding.fab
+
+    override val subjectButtonIdToEndpointMap: Map<Int, String> = mapOf(
+        R.id.tp2 to TP2_PATH,
+        R.id.pharmac to PHARMAC_PATH,
+        R.id.formulation to FORMULATION_PATH,
+        R.id.analysis to ANALYSIS_PATH,
+        R.id.juris to JURIS_PATH,
+        R.id.mchem to MCHEM_PATH
+    )
+
+    override fun getNativeAdPlaceholderPairs(contentBinding: ContentThirdYearBinding): List<Pair<View, View>> {
+        return listOf(
+            Pair(contentBinding.nativeAd31, contentBinding.nativeCard31),
+            Pair(contentBinding.nativeAd32, contentBinding.nativeCard32),
+            Pair(contentBinding.nativeAd33, contentBinding.nativeCard33)
         )
-        setContentView(activityThirdYearBinding.root)
-        setSupportActionBar(activityThirdYearBinding.toolbar)
-        yearBinding = activityThirdYearBinding.layout3y
-        adUtil.loadInterAd(this)
-
-        initializeUI()
-        refreshAd()
     }
 
-    private fun initializeUI() {
-        yearBinding.tp2.setOnClickListener(this)
-        yearBinding.pharmac.setOnClickListener(this)
-        yearBinding.formulation.setOnClickListener(this)
-        yearBinding.analysis.setOnClickListener(this)
-        yearBinding.juris.setOnClickListener(this)
-        yearBinding.mchem.setOnClickListener(this)
-
-        activityThirdYearBinding.fab.setOnClickListener { view: View? ->
-            Snackbar.make(
-                view!!, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG
-            )
-                .setAction("RATE") {
-                    val intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=in.shaaan.pcipharmd")
-                    )
-                    startActivity(intent)
-                }.show()
-        }
-
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
-    }
-
-    private fun refreshAd() {
-        AdUtil.loadNativeAd(this, yearBinding.nativeAd31, yearBinding.nativeCard31)
-        AdUtil.loadNativeAd(this, yearBinding.nativeAd32, yearBinding.nativeCard32)
-        AdUtil.refreshAd(this, yearBinding.nativeAd33, yearBinding.nativeCard33)
-    }
-
-    override fun onClick(view: View) {
-        val baseUrl = getBaseUrl(this)
-        val endpointMap: MutableMap<Int, String> = HashMap()
-        endpointMap[R.id.tp2] = "third_year/tp2"
-        endpointMap[R.id.pharmac] = "third_year/pharmac"
-        endpointMap[R.id.formulation] = "third_year/formulation"
-        endpointMap[R.id.analysis] = "third_year/analysis"
-        endpointMap[R.id.juris] = "third_year/juris"
-        endpointMap[R.id.mchem] = "third_year/mchem"
-
-        val endpoint = endpointMap[view.id]
-        val url = if (endpoint != null) baseUrl + endpoint else null
-        if (url != null) {
-            adUtil.showInterAd(this, url)
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_home, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-
-        if (id == R.id.action_settings) {
-            startActivity(Intent(this, About::class.java))
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        AdUtil.interstitialAd = null
+    override fun getSubjectButtons(contentBinding: ContentThirdYearBinding): List<View> {
+        return listOf(
+            contentBinding.tp2, contentBinding.pharmac, contentBinding.formulation,
+            contentBinding.analysis, contentBinding.juris, contentBinding.mchem
+        )
     }
 }

@@ -20,6 +20,34 @@
         <item name="android:height">15dp</item>
     </style>
 
+    <!-- What: A style for the main AppBarLayout in activities. -->
+    <!-- Why: To centralize common attributes and reduce duplication in layout files. -->
+    <!-- How: Define attributes like layout_width, layout_height, theme, etc., in one place. -->
+    <style name="SyllabusActivity.AppBar" parent="Widget.MaterialComponents.AppBarLayout.Primary">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_bar_height</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:theme">@style/AppTheme.AppBarOverlay</item>
+    </style>
+
+    <!-- What: A style for the CollapsingToolbarLayout. -->
+    <style name="SyllabusActivity.CollapsingToolbar" parent="Widget.MaterialComponents.CollapsingToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="contentScrim">?attr/colorPrimary</item>
+        <item name="layout_scrollFlags">scroll|exitUntilCollapsed</item>
+    </style>
+
+    <!-- What: A style for the FloatingActionButton. -->
+    <!-- Why: Ensures all FABs look and behave consistently. -->
+    <style name="SyllabusActivity.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="layout_anchorGravity">bottom|end</item>
+    </style>
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

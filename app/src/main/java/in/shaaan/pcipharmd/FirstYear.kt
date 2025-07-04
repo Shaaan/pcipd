@@ -1,106 +1,54 @@
 package `in`.shaaan.pcipharmd
 
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
-import `in`.shaaan.pcipharmd.HomeActivity.Companion.getBaseUrl
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import `in`.shaaan.pcipharmd.databinding.ActivityFirstYearBinding
 import `in`.shaaan.pcipharmd.databinding.ContentFirstYearBinding
 
-class FirstYear : AppCompatActivity(), View.OnClickListener {
-    private lateinit var yearBinding: ContentFirstYearBinding
-    private var adUtil: AdUtil = AdUtil()
-    private lateinit var activityFirstYearBinding: ActivityFirstYearBinding
+/**
+ * Activity for the First Year syllabus.
+ * What: Displays subjects for the first year and handles navigation to their details.
+ * Why: Provides a dedicated screen for first-year content.
+ * How: Extends `BaseYearActivity` to inherit common functionalities.
+ */
+class FirstYear : BaseYearActivity<ActivityFirstYearBinding, ContentFirstYearBinding>(
+    ActivityFirstYearBinding::inflate
+) {
+    companion object {
+        private const val HAP_PATH = "first_year/hap/"
+        private const val CEUTICS_PATH = "first_year/pahrmaceutics/"
+        private const val BIOCHEM_PATH = "first_year/biochem/"
+        private const val IC_PATH = "first_year/ic/"
+        private const val OC_PATH = "first_year/oc/"
+        private const val REM_MATH_BIO_PATH = "first_year/math_bio/"
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        activityFirstYearBinding = ActivityFirstYearBinding.inflate(
-            layoutInflater
+    override fun getContentBinding(activityBinding: ActivityFirstYearBinding) = activityBinding.layout1y
+    override fun getToolbar(activityBinding: ActivityFirstYearBinding): Toolbar = activityBinding.toolbar
+    override fun getFab(activityBinding: ActivityFirstYearBinding): FloatingActionButton = activityBinding.fab
+
+    override val subjectButtonIdToEndpointMap: Map<Int, String> = mapOf(
+        R.id.hap to HAP_PATH,
+        R.id.ceutics to CEUTICS_PATH,
+        R.id.biochem to BIOCHEM_PATH,
+        R.id.ic to IC_PATH,
+        R.id.oc to OC_PATH,
+        R.id.rem_mathBio to REM_MATH_BIO_PATH
+    )
+
+    override fun getNativeAdPlaceholderPairs(contentBinding: ContentFirstYearBinding): List<Pair<View, View>> {
+        return listOf(
+            Pair(contentBinding.nativeAd11, contentBinding.nativeCard11),
+            Pair(contentBinding.nativeAd12, contentBinding.nativeCard12),
+            Pair(contentBinding.nativeAd13, contentBinding.nativeCard13)
         )
-        setContentView(activityFirstYearBinding.root)
-        setSupportActionBar(activityFirstYearBinding.toolbar)
-        yearBinding = activityFirstYearBinding.layout1y
-        adUtil.loadInterAd(this)
-
-        initializeUI()
-        refreshAd()
     }
 
-    private fun initializeUI() {
-        yearBinding.hap.setOnClickListener(this)
-        yearBinding.ceutics.setOnClickListener(this)
-        yearBinding.biochem.setOnClickListener(this)
-        yearBinding.oc.setOnClickListener(this)
-        yearBinding.ic.setOnClickListener(this)
-        yearBinding.remMathBio.setOnClickListener(this)
-
-        activityFirstYearBinding.fab.setOnClickListener { view: View? ->
-            Snackbar.make(
-                view!!, "Like the app? Rate it on Play Store!", Snackbar.LENGTH_LONG
-            )
-                .setAction("RATE") {
-                    val intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=in.shaaan.pcipharmd")
-                    )
-                    startActivity(intent)
-                }.show()
-        }
-
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
-    }
-
-    private fun refreshAd() {
-        AdUtil.loadNativeAd(this, yearBinding.nativeAd11, yearBinding.nativeCard11)
-        AdUtil.loadNativeAd(this, yearBinding.nativeAd12, yearBinding.nativeCard12)
-        AdUtil.refreshAd(this, yearBinding.nativeAd13, yearBinding.nativeCard13)
-    }
-
-    override fun onClick(view: View) {
-        val baseUrl = getBaseUrl(this)
-        val endpointMap: MutableMap<Int, String> = HashMap()
-        endpointMap[R.id.hap] = "first_year/hap/"
-        endpointMap[R.id.ceutics] = "first_year/pahrmaceutics/"
-        endpointMap[R.id.biochem] = "first_year/biochem/"
-        endpointMap[R.id.ic] = "first_year/ic/"
-        endpointMap[R.id.oc] = "first_year/oc/"
-        endpointMap[R.id.rem_mathBio] = "first_year/math_bio/"
-
-        val endpoint = endpointMap[view.id]
-        val url = if (endpoint != null) baseUrl + endpoint else null
-        if (url != null) {
-            adUtil.showInterAd(this, url)
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_home, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-
-        if (id == R.id.action_settings) {
-            startActivity(Intent(this, About::class.java))
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        AdUtil.interstitialAd = null
+    override fun getSubjectButtons(contentBinding: ContentFirstYearBinding): List<View> {
+        return listOf(
+            contentBinding.hap, contentBinding.ceutics, contentBinding.biochem,
+            contentBinding.oc, contentBinding.ic, contentBinding.remMathBio
+        )
     }
 }

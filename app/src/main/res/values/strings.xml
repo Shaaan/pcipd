@@ -67,4 +67,12 @@
     <string name="drawer_item_syllabus">Syllabus</string>
     <string name="drawer_item_chat">Chat</string>
     <string name="todo">TODO</string>
+    <string name="base_url">https://pcipd.hypertex.co.in/syllabus/</string>
+    <string name="base_url_key">base_url</string>
+    <string name="rate">RATE</string>
+
+    <!-- ... other strings ... -->
+    <string name="rate_app_message">Like the app? Rate it on Play Store!</string>
+    <string name="rate_action">RATE</string>
+    <string name="play_store_error">Could not open Play Store or browser.</string>
 </resources>
