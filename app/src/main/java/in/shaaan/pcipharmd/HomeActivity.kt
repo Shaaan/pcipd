@@ -69,11 +69,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         val contentHomeBinding = binding.layoutHome
         AdUtil.loadNativeAd(this, contentHomeBinding.nativeAd01, contentHomeBinding.nativeCard01)
         AdUtil.loadNativeAd(this, contentHomeBinding.nativeAd02, contentHomeBinding.nativeCard02)
-        AdUtil.refreshAd(
-            this,
-            contentHomeBinding.nativeAd03,
-            contentHomeBinding.nativeCard03
-        )
+        AdUtil.loadNativeAd(this, contentHomeBinding.nativeAd03, contentHomeBinding.nativeCard03)
     }
 
     @SuppressLint("NonConstantResourceId")

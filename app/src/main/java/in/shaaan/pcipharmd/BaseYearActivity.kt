@@ -16,7 +16,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.core.net.toUri
 import androidx.viewbinding.ViewBinding
-import com.google.android.ads.nativetemplates.TemplateView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
@@ -133,18 +132,11 @@ abstract class BaseYearActivity<VB : ViewBinding, CB : ViewBinding>(
         // What: Iterates through ad placeholders and loads ads.
         // Why: Centralizes ad loading logic. It's now flexible for different numbers and types of ads.
         // How: Uses a `forEach` loop and `when` to handle different ad view types.
-        adPlaceholders.forEachIndexed { index, (adView, cardView) ->
-            when (adView) {
-                is TemplateView -> AdUtil.loadNativeAd(this, adView, cardView)
-                is FrameLayout -> {
-                    // This assumes that FrameLayouts are used for the custom native ad.
-                    AdUtil.refreshAd(this, adView, cardView as CardView)
-                }
-
-                else -> Log.e(
-                    "BaseYearActivity",
-                    "Unsupported ad view type: ${adView::class.simpleName}"
-                )
+        adPlaceholders.forEach { (adView, cardView) ->
+            if (adView is FrameLayout && cardView is CardView) {
+                AdUtil.loadNativeAd(this, adView, cardView)
+            } else {
+                Log.e("BaseYearActivity", "Invalid ad placeholder types.")
             }
         }
     }

@@ -5,13 +5,12 @@ import android.content.Context
 import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import com.google.android.ads.nativetemplates.NativeTemplateStyle
-import com.google.android.ads.nativetemplates.TemplateView
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
@@ -22,7 +21,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
-import `in`.shaaan.pcipharmd.databinding.AdUnifiedBinding
+import com.google.android.gms.ads.nativead.NativeAdView
 
 /**
  * Utility class for handling Google Mobile Ads.
@@ -117,64 +116,66 @@ class AdUtil {
         private var currentNativeAd: NativeAd? = null
         private var adIsLoading = false
 
-        private fun populateNativeAdView(nativeAd: NativeAd, unifiedAdBinding: AdUnifiedBinding) {
-            val nativeAdView = unifiedAdBinding.root
-            nativeAdView.mediaView = unifiedAdBinding.adMedia
-            nativeAdView.headlineView = unifiedAdBinding.adHeadline
-            nativeAdView.bodyView = unifiedAdBinding.adBody
-            nativeAdView.callToActionView = unifiedAdBinding.adCallToAction
-            nativeAdView.iconView = unifiedAdBinding.adAppIcon
-            unifiedAdBinding.adHeadline.text = nativeAd.headline
-            nativeAd.mediaContent?.let { unifiedAdBinding.adMedia.mediaContent = it }
-            unifiedAdBinding.adBody.visibility =
-                if (nativeAd.body != null) View.VISIBLE else View.INVISIBLE
-            unifiedAdBinding.adBody.text = nativeAd.body
-            // ... (rest of the population logic is standard and correct)
-            nativeAdView.setNativeAd(nativeAd)
+        private fun populateNativeAdView(nativeAd: NativeAd, adView: NativeAdView) {
+            adView.mediaView = adView.findViewById(R.id.ad_media)
+            adView.headlineView = adView.findViewById(R.id.ad_headline)
+            adView.bodyView = adView.findViewById(R.id.ad_body)
+            adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
+            adView.iconView = adView.findViewById(R.id.ad_app_icon)
+
+            (adView.headlineView as? TextView)?.text = nativeAd.headline
+            adView.mediaView?.mediaContent = nativeAd.mediaContent
+
+            if (nativeAd.body == null) {
+                adView.bodyView?.visibility = View.INVISIBLE
+            } else {
+                adView.bodyView?.visibility = View.VISIBLE
+                (adView.bodyView as? TextView)?.text = nativeAd.body
+            }
+
+            if (nativeAd.callToAction == null) {
+                adView.callToActionView?.visibility = View.INVISIBLE
+            } else {
+                adView.callToActionView?.visibility = View.VISIBLE
+                (adView.callToActionView as? TextView)?.text = nativeAd.callToAction
+            }
+
+            if (nativeAd.icon == null) {
+                adView.iconView?.visibility = View.GONE
+            } else {
+                (adView.iconView as? ImageView)?.setImageDrawable(nativeAd.icon?.drawable)
+
+            }
+
+            adView.setNativeAd(nativeAd)
         }
 
-        fun loadNativeAd(context: Context, templateView: TemplateView, cardView: View) {
-            val adLoader = AdLoader.Builder(context, NATIVE_AD_UNIT_ID)
+        fun loadNativeAd(activity: Activity, adFrame: FrameLayout, cardView: View) {
+            val builder = AdLoader.Builder(activity, NATIVE_AD_UNIT_ID)
                 .forNativeAd { nativeAd ->
-                    val styles = NativeTemplateStyle.Builder().build()
-                    templateView.setStyles(styles)
-                    templateView.setNativeAd(nativeAd)
+                    if (activity.isDestroyed || activity.isFinishing || activity.isChangingConfigurations) {
+                        nativeAd.destroy()
+                        return@forNativeAd
+                    }
+                    currentNativeAd?.destroy()
+                    currentNativeAd = nativeAd
+
+                    val adView = activity.layoutInflater.inflate(
+                        R.layout.ad_unified_custom,
+                        null
+                    ) as NativeAdView
+                    populateNativeAdView(nativeAd, adView)
+                    adFrame.removeAllViews()
+                    adFrame.addView(adView)
                     cardView.visibility = View.VISIBLE
                 }
-                .withAdListener(object : AdListener() {
-                    override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                        Log.e("AdUtil", "Native ad failed to load: ${loadAdError.message}")
-                        cardView.visibility = View.GONE
-                    }
-                })
-                .withNativeAdOptions(NativeAdOptions.Builder().build())
-                .build()
-            adLoader.loadAd(AdRequest.Builder().build())
-        }
-
-        fun refreshAd(activity: Activity, adFrame: FrameLayout, cardView: CardView) {
-            val builder = AdLoader.Builder(activity, NATIVE_AD_UNIT_ID)
-            builder.forNativeAd { nativeAd ->
-                // What: Check if the activity is destroyed before populating the ad view.
-                // Why: This is a crucial check to prevent memory leaks and crashes if the ad loads after the activity is gone.
-                if (activity.isDestroyed || activity.isFinishing || activity.isChangingConfigurations) {
-                    nativeAd.destroy()
-                    return@forNativeAd
-                }
-                currentNativeAd?.destroy()
-                currentNativeAd = nativeAd
-                val unifiedAdBinding = AdUnifiedBinding.inflate(activity.layoutInflater)
-                populateNativeAdView(nativeAd, unifiedAdBinding)
-                adFrame.removeAllViews()
-                adFrame.addView(unifiedAdBinding.root)
-                cardView.visibility = View.VISIBLE
-            }
             val adLoader = builder.withAdListener(object : AdListener() {
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                    Log.e("AdUtil", "Native ad refresh failed: ${loadAdError.message}")
+                    Log.e("AdUtil", "Native ad failed to load: ${loadAdError.message}")
                     cardView.visibility = View.GONE
                 }
-            }).build()
+            }).withNativeAdOptions(NativeAdOptions.Builder().build()).build()
+
             adLoader.loadAd(AdRequest.Builder().build())
         }
     }

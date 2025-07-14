@@ -75,4 +75,5 @@
     <string name="rate_app_message">Like the app? Rate it on Play Store!</string>
     <string name="rate_action">RATE</string>
     <string name="play_store_error">Could not open Play Store or browser.</string>
+    <string name="ad_icon_content_description">Ad Icon</string>
 </resources>
