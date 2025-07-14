@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.google.android.gms.ads.MobileAds
@@ -72,7 +71,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         AdUtil.loadNativeAd(this, contentHomeBinding.nativeAd02, contentHomeBinding.nativeCard02)
         AdUtil.refreshAd(
             this,
-            contentHomeBinding.nativeAd03 as FrameLayout,
+            contentHomeBinding.nativeAd03,
             contentHomeBinding.nativeCard03
         )
     }

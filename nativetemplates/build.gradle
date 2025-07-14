@@ -7,8 +7,8 @@ android {
     namespace 'com.google.android.ads.nativetemplates'
 
     defaultConfig {
-        minSdkVersion 28
-        targetSdkVersion 35
+        minSdkVersion 29
+        targetSdkVersion 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -38,4 +38,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:24.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'com.google.errorprone:error_prone_annotations:2.26.0'
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
