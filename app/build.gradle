@@ -7,14 +7,20 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: "org.jetbrains.kotlin.plugin.compose"
 
+def ksFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+if (ksFile.exists()) {
+    keystoreProperties.load(new FileInputStream(ksFile))
+}
+
 android {
     ndkVersion '27.0.12077973'
     signingConfigs {
         config {
-            keyAlias 'Shaaan'
-            keyPassword 'cyanogenm0d'
-            storeFile file('/Users/shaaan/Downloads/shaaan.jks')
-            storePassword 'cyanogenm0d'
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile']
+            storePassword keystoreProperties['storePassword']
         }
     }
     compileSdk 36

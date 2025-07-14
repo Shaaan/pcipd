@@ -163,3 +163,4 @@ fabric.properties
 
 # MacOS
 .DS_Store
+keystore.properties
