@@ -8,156 +8,165 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.core.net.toUri
-import androidx.viewbinding.ViewBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-
-// What: A typealias for the binding inflater function.
-// Why: To simplify the constructor signature of the base class, making it cleaner.
-// How: Defines a shorter, more descriptive name for the function type.
-typealias ActivityBindingInflater<VB> = (inflater: LayoutInflater) -> VB
+import `in`.shaaan.pcipharmd.databinding.ActivityYearBinding
 
 /**
  * Abstract base activity for all year-specific syllabus activities.
- * What: Centralizes all common logic.
- * Why: To eliminate code duplication in subclasses (`FirstYear`, `SecondYear`, etc.), making the codebase easier to maintain.
- * How: It handles toolbar setup, FAB actions, ad loading, menu creation, and click handling. Subclasses only need to provide their specific layouts and data.
- *
- * @param VB The type of the Activity's ViewBinding.
- * @param CB The type of the Content's ViewBinding (for the included layout).
- * @param activityBindingInflater A function to inflate the Activity's ViewBinding.
+ * What: Centralizes all common logic for displaying a list of subjects.
+ * Why: To eliminate code duplication.
+ * How: It now programmatically creates subject buttons and ad placeholders based on data provided by subclasses.
  */
-abstract class BaseYearActivity<VB : ViewBinding, CB : ViewBinding>(
-    private val activityBindingInflater: ActivityBindingInflater<VB>
-) : AppCompatActivity(), View.OnClickListener {
+abstract class BaseYearActivity : AppCompatActivity(), View.OnClickListener {
 
-    // Protected properties accessible to subclasses
-    protected lateinit var activityBinding: VB
-    protected lateinit var contentBinding: CB
-
-    // What: An instance of AdUtil.
-    // Why: Each activity can manage its own ad requests if needed, though the companion object in AdUtil shares the ad instances.
-    protected val adUtil: AdUtil = AdUtil()
+    private lateinit var binding: ActivityYearBinding
+    // --- FIX 1: REMOVE ADUTIL INSTANCE ---
+    // What: Removed the local instance property `private val adUtil: AdUtil`.
+    // Why: `AdUtil` is now a singleton `object`. Creating an instance is unnecessary and no longer possible.
+    //      All calls should be made directly on the `AdUtil` object itself.
+    // How: The property declaration was deleted.
+    // private val adUtil: AdUtil = AdUtil()
 
     // --- Abstract members to be implemented by subclasses ---
 
     /**
-     * Subclass must provide its specific Content Binding instance.
+     * Subclass must provide a list of Pairs. Each pair contains a StringRes for the
+     * subject name and a String for the corresponding URL endpoint path.
      */
-    abstract fun getContentBinding(activityBinding: VB): CB
+    abstract val subjects: List<Pair<Int, String>>
 
     /**
-     * Subclass must provide the Toolbar view from its Activity Binding.
+     * Subclass must provide the number of ads to be displayed.
      */
-    abstract fun getToolbar(activityBinding: VB): Toolbar
+    abstract val adCount: Int
 
     /**
-     * Subclass must provide the FloatingActionButton from its Activity Binding.
+     * Defines at which positions to insert ads.
+     * Example: listOf(2, 5) will insert an ad after the 2nd and 5th subject.
      */
-    abstract fun getFab(activityBinding: VB): FloatingActionButton
+    abstract val adPositions: List<Int>
 
-    /**
-     * Subclass must provide a map where the key is the R.id of a subject button
-     * and the value is the corresponding URL endpoint path.
-     */
-    @get:IdRes
-    abstract val subjectButtonIdToEndpointMap: Map<Int, String>
-
-    /**
-     * Subclass must provide a list of Pairs, containing the Native Ad View and its CardView container.
-     */
-    abstract fun getNativeAdPlaceholderPairs(contentBinding: CB): List<Pair<View, View>>
-
-    /**
-     * Subclass must provide a list of all subject button Views.
-     */
-    abstract fun getSubjectButtons(contentBinding: CB): List<View>
 
     // --- Common Lifecycle Methods ---
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // What: Inflate the Activity Binding using the function provided by the subclass.
-        // Why: This is the core of the abstraction, allowing the base class to work with any layout.
-        // How: The subclass passes its `Activity...Binding::inflate` method reference to the constructor.
-        activityBinding = activityBindingInflater.invoke(layoutInflater)
-        setContentView(activityBinding.root)
+        binding = ActivityYearBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        contentBinding = getContentBinding(activityBinding)
-
-        setSupportActionBar(getToolbar(activityBinding))
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        adUtil.loadInterAd(this)
+        // --- FIX 1: UPDATE ADUTIL CALL ---
+        // What: Changed the call to `loadInterAd` to use the singleton object.
+        // Why: To align with the refactoring of `AdUtil` into a singleton.
+        // How: The call was changed from `adUtil.loadInterAd(this)` to `AdUtil.loadInterAd(this)`.
+        AdUtil.loadInterAd(this)
 
+        populateSubjectsAndAds()
         initializeCommonUI()
-        refreshAds()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        // What: Clear the static interstitial ad reference.
-        // Why: To prevent memory leaks when the activity is destroyed.
-        // How: Sets the static property in AdUtil to null.
-        AdUtil.interstitialAd = null
+        // --- FIX 1: REMOVE PROBLEMATIC STATE CLEARING ---
+        // What: Removed the line `AdUtil.interstitialAd = null`.
+        // Why: This line was causing a critical race condition. When navigating from one YearActivity to
+        //      another, the `onDestroy` of the first activity would nullify the ad that the `onCreate`
+        //      of the second activity had just started loading. The ad should only be nulled after it's
+        //      shown or fails to show, which is handled within `AdUtil` itself.
+        // How: The line was deleted.
+        // AdUtil.interstitialAd = null
     }
 
-    // --- Common UI Initialization ---
+    // --- UI and OnClick Logic ---
 
     private fun initializeCommonUI() {
-        getFab(activityBinding).setOnClickListener { view ->
+        binding.fab.setOnClickListener { view ->
             showRateAppSnackbar(view)
-        }
-
-        // What: Set the common onClick listener for all subject buttons.
-        // Why: Avoids setting individual listeners in each subclass.
-        // How: Iterates through the list of buttons provided by the subclass.
-        getSubjectButtons(contentBinding).forEach { button ->
-            button.setOnClickListener(this)
         }
     }
 
-    // --- Common Ad Refresh Logic ---
+    /**
+     * What: Dynamically populates the LinearLayout with subject buttons and ad placeholders.
+     * Why: To create the UI from a single generic layout, driven by data from subclasses.
+     * How: Iterates through the `subjects` list, creates styled CardViews and Buttons for each,
+     * and inserts ad placeholders at specified positions.
+     */
+    private fun populateSubjectsAndAds() {
+        val container = binding.contentLayout.subjectsContainer
+        var adCounter = 0
 
-    private fun refreshAds() {
-        val adPlaceholders = getNativeAdPlaceholderPairs(contentBinding)
+        subjects.forEachIndexed { index, subjectPair ->
+            // Add subject button
+            val button = createSubjectButton(subjectPair.first, subjectPair.second)
+            container.addView(button)
 
-        // What: Iterates through ad placeholders and loads ads.
-        // Why: Centralizes ad loading logic. It's now flexible for different numbers and types of ads.
-        // How: Uses a `forEach` loop and `when` to handle different ad view types.
-        adPlaceholders.forEach { (adView, cardView) ->
-            if (adView is FrameLayout && cardView is CardView) {
-                AdUtil.loadNativeAd(this, adView, cardView)
-            } else {
-                Log.e("BaseYearActivity", "Invalid ad placeholder types.")
+            // Check if an ad should be inserted after this subject
+            if (adPositions.contains(index + 1) && adCounter < adCount) {
+                val adCard = createAdPlaceholderCard()
+                container.addView(adCard)
+                loadAdForPlaceholder(adCard)
+                adCounter++
             }
         }
     }
 
-    // --- Common OnClick Logic ---
+    private fun createSubjectButton(@StringRes textResId: Int, endpoint: String): CardView {
+        val cardView = LayoutInflater.from(this)
+            .inflate(
+                R.layout.template_subject_button,
+                binding.contentLayout.subjectsContainer,
+                false
+            ) as CardView
+        val button = cardView.findViewById<Button>(R.id.subject_button_template)
+        button.setText(textResId)
+        button.tag = endpoint // Store the endpoint in the button's tag
+        button.setOnClickListener(this)
+        return cardView
+    }
+
+    private fun createAdPlaceholderCard(): CardView {
+        return LayoutInflater.from(this)
+            .inflate(
+                R.layout.template_ad_placeholder,
+                binding.contentLayout.subjectsContainer,
+                false
+            ) as CardView
+    }
+
+    /**
+     * What: Loads a custom unified ad into a given placeholder CardView.
+     * Why: To use a single, consistent ad loading mechanism.
+     * How: Calls the AdUtil.refreshAd method which handles the custom ad layout.
+     */
+    private fun loadAdForPlaceholder(adCard: CardView) {
+        val adFrame = adCard.findViewById<FrameLayout>(R.id.ad_placeholder_template)
+        AdUtil.refreshAd(this, adFrame, adCard)
+    }
+
 
     override fun onClick(view: View) {
-        // What: Retrieves the URL endpoint from the map provided by the subclass.
-        // Why: Centralizes navigation logic. The base class doesn't need to know about specific subjects.
-        // How: Uses the `subjectButtonIdToEndpointMap` to find the endpoint for the clicked button's ID.
-        val endpoint = subjectButtonIdToEndpointMap[view.id]
-
+        // Retrieve the endpoint from the tag
+        val endpoint = view.tag as? String
         endpoint?.let {
-            // What: Construct the full URL using the constant from HomeActivity.
-            // Why: Removes the need for DataStore and `runBlocking` to get the base URL. It's a constant.
             val url = "${HomeActivity.BASE_URL}$it"
-            adUtil.showInterAd(this, url)
+            // --- FIX 1: UPDATE ADUTIL CALL ---
+            // What: Changed the call to `showInterAd` to use the singleton object.
+            // Why: To align with the refactoring of `AdUtil` into a singleton.
+            // How: The call was changed from `adUtil.showInterAd(this, url)` to `AdUtil.showInterAd(this, url)`.
+            AdUtil.showInterAd(this, url)
         } ?: run {
             Log.w(
                 "BaseYearActivity",
-                "Clicked view with ID ${resources.getResourceEntryName(view.id)} not found in endpoint map."
+                "Clicked view does not have an endpoint tag."
             )
         }
     }
@@ -165,15 +174,11 @@ abstract class BaseYearActivity<VB : ViewBinding, CB : ViewBinding>(
     // --- Common Menu Handling ---
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // What: Inflates a common menu resource.
-        // Why: Ensures all year activities have the same menu options (e.g., "About").
         menuInflater.inflate(R.menu.menu_home, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // What: Handles common menu actions.
-        // Why: Avoids duplicating this logic in every subclass.
         return when (item.itemId) {
             R.id.action_settings -> {
                 startActivity(Intent(this, About::class.java))
@@ -181,7 +186,7 @@ abstract class BaseYearActivity<VB : ViewBinding, CB : ViewBinding>(
             }
 
             android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed() // Handles the "Up" button.
+                onBackPressedDispatcher.onBackPressed()
                 true
             }
 

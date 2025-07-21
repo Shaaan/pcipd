@@ -1,10 +1,5 @@
 package `in`.shaaan.pcipharmd
 
-import android.view.View
-import androidx.appcompat.widget.Toolbar
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import `in`.shaaan.pcipharmd.databinding.ActivityThirdYearBinding
-import `in`.shaaan.pcipharmd.databinding.ContentThirdYearBinding
 
 /**
  * Activity for the Third Year syllabus.
@@ -12,8 +7,7 @@ import `in`.shaaan.pcipharmd.databinding.ContentThirdYearBinding
  * Why: Provides a dedicated screen for third-year content.
  * How: Extends `BaseYearActivity` to inherit common functionalities.
  */
-class ThirdYear : BaseYearActivity<ActivityThirdYearBinding, ContentThirdYearBinding>(
-    ActivityThirdYearBinding::inflate
+class ThirdYear : BaseYearActivity(
 ) {
     companion object {
         private const val TP2_PATH = "third_year/tp2"
@@ -24,36 +18,15 @@ class ThirdYear : BaseYearActivity<ActivityThirdYearBinding, ContentThirdYearBin
         private const val MCHEM_PATH = "third_year/mchem"
     }
 
-    override fun getContentBinding(activityBinding: ActivityThirdYearBinding) =
-        activityBinding.layout3y
-
-    override fun getToolbar(activityBinding: ActivityThirdYearBinding): Toolbar =
-        activityBinding.toolbar
-
-    override fun getFab(activityBinding: ActivityThirdYearBinding): FloatingActionButton =
-        activityBinding.fab
-
-    override val subjectButtonIdToEndpointMap: Map<Int, String> = mapOf(
-        R.id.tp2 to TP2_PATH,
-        R.id.pharmac to PHARMAC_PATH,
-        R.id.formulation to FORMULATION_PATH,
-        R.id.analysis to ANALYSIS_PATH,
-        R.id.juris to JURIS_PATH,
-        R.id.mchem to MCHEM_PATH
+    override val subjects = listOf(
+        Pair(R.string.tp2, TP2_PATH),
+        Pair(R.string.pharmac, PHARMAC_PATH),
+        Pair(R.string.formulation, FORMULATION_PATH),
+        Pair(R.string.analysis, ANALYSIS_PATH),
+        Pair(R.string.juris, JURIS_PATH),
+        Pair(R.string.mchem, MCHEM_PATH)
     )
 
-    override fun getNativeAdPlaceholderPairs(contentBinding: ContentThirdYearBinding): List<Pair<View, View>> {
-        return listOf(
-            Pair(contentBinding.nativeAd31, contentBinding.nativeCard31),
-            Pair(contentBinding.nativeAd32, contentBinding.nativeCard32),
-            Pair(contentBinding.nativeAd33, contentBinding.nativeCard33)
-        )
-    }
-
-    override fun getSubjectButtons(contentBinding: ContentThirdYearBinding): List<View> {
-        return listOf(
-            contentBinding.tp2, contentBinding.pharmac, contentBinding.formulation,
-            contentBinding.analysis, contentBinding.juris, contentBinding.mchem
-        )
-    }
+    override val adCount = 3
+    override val adPositions = listOf(2, 4, 6)
 }

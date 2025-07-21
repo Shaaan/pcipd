@@ -24,14 +24,18 @@ import kotlinx.coroutines.launch
  */
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityHomeBinding
-    private val activityScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    // --- FIX 3: USE STANDARD MAIN DISPATCHER ---
+    // What: Changed the CoroutineScope to use `Dispatchers.Main` instead of `Dispatchers.Main.immediate`.
+    // Why: `Dispatchers.Main` is the standard, recommended dispatcher for UI-related tasks. While
+    //      `Dispatchers.Main.immediate` can offer minor optimizations, it can also lead to unexpected
+    //      execution order if not used carefully. For general-purpose UI scopes, the standard dispatcher
+    //      is safer and more predictable.
+    // How: Replaced `Dispatchers.Main.immediate` with `Dispatchers.Main`.
+    private val activityScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // What: Initialize Google Mobile Ads SDK on a background thread.
-        // Why: To prevent blocking the main UI thread during initialization, which is a best practice.
-        // How: Uses a CoroutineScope with Dispatchers.IO.
         activityScope.launch(Dispatchers.IO) {
             MobileAds.initialize(this@HomeActivity) { }
         }
@@ -42,7 +46,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         FirebaseAnalytics.getInstance(this)
 
         initializeUI()
-        refreshAd()
+        refreshAds()
     }
 
     private fun initializeUI() {
@@ -65,11 +69,11 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun refreshAd() {
+    private fun refreshAds() {
         val contentHomeBinding = binding.layoutHome
-        AdUtil.loadNativeAd(this, contentHomeBinding.nativeAd01, contentHomeBinding.nativeCard01)
-        AdUtil.loadNativeAd(this, contentHomeBinding.nativeAd02, contentHomeBinding.nativeCard02)
-        AdUtil.loadNativeAd(this, contentHomeBinding.nativeAd03, contentHomeBinding.nativeCard03)
+        AdUtil.refreshAd(this, contentHomeBinding.nativeAd01, contentHomeBinding.nativeCard01)
+        AdUtil.refreshAd(this, contentHomeBinding.nativeAd02, contentHomeBinding.nativeCard02)
+        AdUtil.refreshAd(this, contentHomeBinding.nativeAd03, contentHomeBinding.nativeCard03)
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -91,15 +95,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
-        // What: Cancel all coroutines launched in this activity's scope.
-        // Why: To prevent memory leaks and stop background work when the activity is destroyed.
         activityScope.cancel()
     }
 
     companion object {
-        // What: A constant for the base URL.
-        // Why: Removed the complex and unnecessary DataStore logic. This is simpler and more performant.
-        // How: Defined as a public `const val` so it can be accessed from other classes like `BaseYearActivity`.
         const val BASE_URL = "https://pcipd.hypertex.co.in/syllabus/"
     }
 }

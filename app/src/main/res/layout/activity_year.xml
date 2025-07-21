@@ -5,22 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="in.shaaan.pcipharmd.SixthYear">
+    tools:context=".BaseYearActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        style="@style/SyllabusActivity.AppBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            style="@style/SyllabusActivity.CollapsingToolbar">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -33,16 +26,14 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include
-        android:id="@+id/layout_6y"
-        layout="@layout/content_sixth_year" />
+        android:id="@+id/content_layout"
+        layout="@layout/content_year" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
+        style="@style/SyllabusActivity.Fab"
+        android:contentDescription="@string/rate_app_message"
         android:src="@drawable/ic_thumb_up_white_24dp"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end" />
+        app:layout_anchor="@id/app_bar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
