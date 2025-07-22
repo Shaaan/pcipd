@@ -41,7 +41,7 @@ object AdUtil {
     private var interstitialAd: InterstitialAd? = null
     private var adIsLoading = false
 
-    // --- FIX 2: REMOVE UNNECESSARY NATIVE AD STATE ---
+    // --- FIX 1: REMOVE UNNECESSARY NATIVE AD STATE ---
     // What: Removed the `currentNativeAd` property.
     // Why: This property was used to hold a reference to the last loaded native ad, creating a potential
     //      race condition when multiple ads were requested simultaneously. It is not needed for memory

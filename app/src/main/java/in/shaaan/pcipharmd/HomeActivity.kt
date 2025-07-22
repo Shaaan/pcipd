@@ -1,19 +1,16 @@
 package `in`.shaaan.pcipharmd
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import `in`.shaaan.pcipharmd.databinding.ActivityHomeBinding
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 /**
@@ -24,19 +21,27 @@ import kotlinx.coroutines.launch
  */
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityHomeBinding
-    // --- FIX 3: USE STANDARD MAIN DISPATCHER ---
-    // What: Changed the CoroutineScope to use `Dispatchers.Main` instead of `Dispatchers.Main.immediate`.
-    // Why: `Dispatchers.Main` is the standard, recommended dispatcher for UI-related tasks. While
-    //      `Dispatchers.Main.immediate` can offer minor optimizations, it can also lead to unexpected
-    //      execution order if not used carefully. For general-purpose UI scopes, the standard dispatcher
-    //      is safer and more predictable.
-    // How: Replaced `Dispatchers.Main.immediate` with `Dispatchers.Main`.
-    private val activityScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+
+    // What: A map to associate View objects directly with their target Activity classes.
+    // Why: This completely eliminates the need for `findViewById` or `when` blocks for navigation,
+    // making the code more robust, readable, and type-safe.
+    private val navigationViewMap by lazy {
+        with(binding.layoutHome) {
+            mapOf(
+                syllabus1 to 1,
+                syllabus2 to 2,
+                syllabus3 to 3,
+                syllabus4 to 4,
+                syllabus5 to 5,
+                syllabus6 to 6
+            )
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        activityScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.IO) {
             MobileAds.initialize(this@HomeActivity) { }
         }
 
@@ -50,13 +55,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initializeUI() {
-        binding.layoutHome.apply {
-            syllabus1.setOnClickListener(this@HomeActivity)
-            syllabus2.setOnClickListener(this@HomeActivity)
-            syllabus3.setOnClickListener(this@HomeActivity)
-            syllabus4.setOnClickListener(this@HomeActivity)
-            syllabus5.setOnClickListener(this@HomeActivity)
-            syllabus6.setOnClickListener(this@HomeActivity)
+        // What: Set click listeners by iterating through the View objects in our navigation map.
+        // Why: This is the cleanest approach, directly linking the view to its action without intermediate IDs.
+        navigationViewMap.keys.forEach { view ->
+            view.setOnClickListener(this)
         }
 
         binding.fab.setOnClickListener {
@@ -70,32 +72,31 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun refreshAds() {
-        val contentHomeBinding = binding.layoutHome
-        AdUtil.refreshAd(this, contentHomeBinding.nativeAd01, contentHomeBinding.nativeCard01)
-        AdUtil.refreshAd(this, contentHomeBinding.nativeAd02, contentHomeBinding.nativeCard02)
-        AdUtil.refreshAd(this, contentHomeBinding.nativeAd03, contentHomeBinding.nativeCard03)
+        // What: Use a 'with' scope function for cleaner access to binding properties.
+        // Why: Reduces redundant `binding.layoutHome` calls.
+        with(binding.layoutHome) {
+            val adPlaceholders = listOf(
+                nativeAd01 to nativeCard01,
+                nativeAd02 to nativeCard02,
+                nativeAd03 to nativeCard03
+            )
+
+            adPlaceholders.forEach { (adFrame, cardView) ->
+                // Use this@HomeActivity to clarify the context for AdUtil.
+                AdUtil.refreshAd(this@HomeActivity, adFrame, cardView)
+            }
+        }
     }
 
-    @SuppressLint("NonConstantResourceId")
     override fun onClick(view: View) {
-        val activityClass: Class<*>? = when (view.id) {
-            R.id.syllabus1 -> FirstYear::class.java
-            R.id.syllabus2 -> SecondYear::class.java
-            R.id.syllabus3 -> ThirdYear::class.java
-            R.id.syllabus4 -> FourthYear::class.java
-            R.id.syllabus5 -> FifthYear::class.java
-            R.id.syllabus6 -> SixthYear::class.java
-            else -> null
+        // What: Look up the target activity directly from the view object.
+        // Why: This is the most direct and efficient way to handle navigation with this pattern.
+        navigationViewMap[view]?.let { year ->
+            val intent = Intent(this, YearActivity::class.java).apply {
+                putExtra(SyllabusRepository.EXTRA_YEAR, year)
+            }
+            startActivity(intent)
         }
-
-        activityClass?.let {
-            startActivity(Intent(this, it))
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        activityScope.cancel()
     }
 
     companion object {

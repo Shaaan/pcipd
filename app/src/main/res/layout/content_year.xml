@@ -11,12 +11,13 @@
     This LinearLayout is the container where subject buttons and ads
     will be programmatically added from BaseYearActivity.
     -->
-    <LinearLayout
-        android:id="@+id/subjects_container"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/subjects_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:padding="10dp" />
+        android:clipToPadding="false"
+        android:paddingTop="50dp"
+        android:paddingBottom="4dp"
+        tools:listitem="@layout/list_item_subject" />
 
 </androidx.core.widget.NestedScrollView>

@@ -1,7 +1,8 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- FIX: Changed parent from Theme.AppCompat.* to Theme.MaterialComponents.DayNight.* -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -20,9 +21,6 @@
         <item name="android:height">15dp</item>
     </style>
 
-    <!-- What: A style for the main AppBarLayout in activities. -->
-    <!-- Why: To centralize common attributes and reduce duplication in layout files. -->
-    <!-- How: Define attributes like layout_width, layout_height, theme, etc., in one place. -->
     <style name="SyllabusActivity.AppBar" parent="Widget.MaterialComponents.AppBarLayout.Primary">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/app_bar_height</item>
@@ -30,7 +28,6 @@
         <item name="android:theme">@style/AppTheme.AppBarOverlay</item>
     </style>
 
-    <!-- What: A style for the CollapsingToolbarLayout. -->
     <style name="SyllabusActivity.CollapsingToolbar" parent="Widget.MaterialComponents.CollapsingToolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -39,8 +36,6 @@
         <item name="layout_scrollFlags">scroll|exitUntilCollapsed</item>
     </style>
 
-    <!-- What: A style for the FloatingActionButton. -->
-    <!-- Why: Ensures all FABs look and behave consistently. -->
     <style name="SyllabusActivity.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -49,7 +44,8 @@
     </style>
 
 
-    <style name="AppTheme.NoActionBar">
+    <!-- FIX: Changed parent to inherit from the new material theme -->
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -58,7 +54,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppTheme.Dialog" parent="Base.V7.Theme.AppCompat.Light.Dialog">
+    <!-- FIX: Changed parent from Base.V7.Theme.AppCompat.Light.Dialog to a Material Components Dialog theme -->
+    <style name="AppTheme.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
