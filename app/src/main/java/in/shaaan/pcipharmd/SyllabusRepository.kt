@@ -6,6 +6,7 @@ object SyllabusRepository {
     // Why: Using a constant prevents typos and ensures the key for sending/receiving data via
     //      Intents is consistent throughout the app.
     const val EXTRA_YEAR = "in.shaaan.pcipharmd.EXTRA_YEAR"
+    const val BASE_URL = "https://pcipd.hypertex.co.in/syllabus/"
 
     // What: A data class to hold all information related to a specific year.
     // Why: Encapsulates related data points (subjects and ad positions) into a single, clean object.

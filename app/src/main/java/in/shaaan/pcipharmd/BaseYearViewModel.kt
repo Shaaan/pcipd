@@ -28,7 +28,7 @@ class BaseYearViewModel(application: Application) : AndroidViewModel(application
     // How: It constructs the final URL and calls the AdUtil to show the ad, which in turn handles
     //      the navigation to the URL.
     fun onSubjectClicked(activity: Activity, endpoint: String) {
-        val url = "${HomeActivity.BASE_URL}$endpoint"
+        val url = "${SyllabusRepository.BASE_URL}$endpoint"
         AdUtil.showInterAd(activity, url)
     }
 }
