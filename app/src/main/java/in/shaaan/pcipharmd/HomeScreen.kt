@@ -1,5 +1,3 @@
-// app/src/main/java/in/shaaan/pcipharmd/ui/screen/HomeScreen.kt (New File)
-
 package `in`.shaaan.pcipharmd
 
 import android.content.Intent
@@ -20,7 +18,6 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
@@ -30,14 +27,13 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.navigation.NavController
 import `in`.shaaan.pcipharmd.ui.components.NativeAdComposable
-import `in`.shaaan.pcipharmd.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
     val context = LocalContext.current
     val snackbarHostState = remember { SnackbarHostState() }
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     val years = remember { (1..6).toList() }
     val adPositions = remember { setOf(2, 4, 6) } // Positions after which to show an ad
 
@@ -58,7 +54,7 @@ fun HomeScreen(navController: NavController) {
                 scrollBehavior = scrollBehavior,
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
-                    scrolledContainerColor = MaterialTheme.colorScheme.primary,
+                    scrolledContainerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
@@ -79,43 +75,47 @@ fun HomeScreen(navController: NavController) {
         // How: It takes a column definition and a lambda to render items from a list.
 
         LazyVerticalGrid(
-            columns = GridCells.Fixed(1),
+            columns = GridCells.Fixed(2),
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxSize(),
-            contentPadding = PaddingValues(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(years.size) { index ->
-                val year = years[index]
-                // What: A Column to hold the YearCard and potentially an ad card.
-                // Why: Ensures the ad appears directly below the preceding year card in the grid flow.
-                // How: Wrap the card and the conditional ad in a Column.
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    YearCard(year = year, onClick = {
-                        navController.navigate("year/$year")
-                    })
-
-                    if (adPositions.contains(year)) {
-                        // What: Wrap the native ad in a Card.
-                        // Why: To make the ad's presentation consistent with the rest of the UI elements.
-                        // How: Place the NativeAdComposable inside a Card composable.
-                        Card(elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)) {
+            years.forEach { year ->
+                item(key = year) {
+                    YearCard(
+                        year = year,
+                        subjectCount = SyllabusRepository.getDataForYear(year)?.subjects?.size ?: 0,
+                        onClick = { navController.navigate("year/$year") },
+                        // What: Animate item placement.
+                        // Why: Adds a polished, fluid feel when the grid appears.
+                        modifier = Modifier.animateItem()
+                    )
+                }
+                if (adPositions.contains(year)) {
+                    item(key = "ad_for_$year") {
+                        // What: Style the ad card to be distinct but themed.
+                        // Why: Differentiates ads from content while maintaining visual harmony.
+                        Card(
+                            modifier = Modifier.animateItem().padding(horizontal = 8.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                            ),
+                            shape = MaterialTheme.shapes.large
+                        ) {
                             NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
                         }
-                    }
                     }
                 }
             }
         }
     }
+}
 
     @Composable
-    fun YearCard(year: Int, onClick: () -> Unit) {
+    fun YearCard(year: Int, onClick: () -> Unit, modifier: Modifier = Modifier, subjectCount: Int) {
         val icon = when (year) {
             1 -> Icons.Default.LooksOne
             2 -> Icons.Default.LooksTwo
@@ -135,36 +135,37 @@ fun HomeScreen(navController: NavController) {
             else -> ""
         }
         Card(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
                 .clickable(onClick = onClick),
-            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+//            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+            shape = MaterialTheme.shapes.large
         ) {
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
+//                horizontalAlignment = Alignment.CenterHorizontally,
+//                verticalArrangement = Arrangement.Center,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(vertical = 24.dp)
+                    .padding(16.dp)
             ) {
                 // What: Add an Icon to the card.
                 // Why: To provide a strong visual anchor.
                 // How: Using the Icon composable with a larger size.
-//                Icon(
-//                    imageVector = icon,
-//                    contentDescription = "Year $year",
-//                    modifier = Modifier.size(48.dp),
-//                    tint = MaterialTheme.colorScheme.primary
-//                )
-                Spacer(modifier = Modifier.height(8.dp))
+                Icon(
+                    imageVector = icon,
+                    contentDescription = "Year $year",
+                    modifier = Modifier.size(48.dp),
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+                Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "$text",
-                    style = MaterialTheme.typography.headlineSmall,
+                    text = text,
+                    style = MaterialTheme.typography.titleLarge,
                     textAlign = TextAlign.Center
                 )
                 Text(
-                    text = "View Syllabus",
+                    text = "$subjectCount Subjects",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

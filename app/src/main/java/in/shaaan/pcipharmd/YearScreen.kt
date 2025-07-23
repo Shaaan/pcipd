@@ -1,16 +1,19 @@
 // app/src/main/java/in/shaaan/pcipharmd/ui/screen/YearScreen.kt (New File)
 
-package `in`.shaaan.pcipharmd.ui.screen
+package `in`.shaaan.pcipharmd
 
 import android.app.Activity
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Book
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -24,10 +27,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import `in`.shaaan.pcipharmd.AdUtil
-import `in`.shaaan.pcipharmd.BaseYearViewModel
-import `in`.shaaan.pcipharmd.ListItem
-import `in`.shaaan.pcipharmd.SyllabusRepository
 import `in`.shaaan.pcipharmd.ui.components.NativeAdComposable
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -71,26 +70,51 @@ fun YearScreen(navController: NavController, year: Int) {
             )
         }
     ) { paddingValues ->
-        // What: A LazyColumn to display a vertical list.
-        // Why: It's the Compose equivalent of a RecyclerView, efficiently rendering list items.
-        // How: `items` iterates through our list of subjects and ads, rendering a different composable for each type.
         LazyColumn(
             modifier = Modifier.padding(paddingValues),
-            contentPadding = PaddingValues(16.dp),
+            contentPadding = PaddingValues(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(listItems) { item ->
+            itemsIndexed(
+                items = listItems,
+                key = { index, item ->
+                    when (item) {
+                        is ListItem.SubjectItem -> item.textResId // Stable and unique
+                        is ListItem.AdItem -> "ad_$index" // Guaranteed unique for each ad slot
+                    }
+                }
+            ) { index, item -> // The lambda now provides both index and item
                 when (item) {
                     is ListItem.SubjectItem -> {
-                        Button(
-                            onClick = { viewModel.onSubjectClicked(context as Activity, item.endpoint) },
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Text(text = stringResource(id = item.textResId))
-                        }
+                        ListItem(
+                            headlineContent = { Text(stringResource(id = item.textResId)) },
+                            modifier = Modifier
+                                .padding(horizontal = 16.dp)
+                                .clickable { viewModel.onSubjectClicked(context as Activity, item.endpoint) }
+                                .animateItem(), // Add for smooth reordering animations
+                            leadingContent = {
+                                Icon(
+                                    Icons.Default.Book,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                            },
+                            colors = ListItemDefaults.colors(
+                                containerColor = MaterialTheme.colorScheme.secondaryContainer
+                            )
+                        )
                     }
                     is ListItem.AdItem -> {
-                        NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
+                        Card(
+                            modifier = Modifier
+                                .padding(horizontal = 16.dp)
+                                .animateItem(), // Add for smooth reordering animations
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        ) {
+                            NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
+                        }
                     }
                 }
             }
