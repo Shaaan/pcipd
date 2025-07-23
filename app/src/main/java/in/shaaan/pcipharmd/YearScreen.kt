@@ -1,48 +1,40 @@
-// app/src/main/java/in/shaaan/pcipharmd/ui/screen/YearScreen.kt (New File)
-
 package `in`.shaaan.pcipharmd
 
 import android.app.Activity
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import `in`.shaaan.pcipharmd.ui.components.NativeAdComposable
+import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun YearScreen(navController: NavController, year: Int) {
-    // What: Get an instance of the ViewModel scoped to this screen.
-    // Why: The ViewModel survives configuration changes and holds the business logic.
-    // How: Using the `viewModel()` delegate from `lifecycle-viewmodel-compose`.
     val viewModel: BaseYearViewModel = viewModel()
     val context = LocalContext.current
     var listItems by remember { mutableStateOf<List<ListItem>>(emptyList()) }
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
-    // What: A LaunchedEffect to load data when the screen is first composed.
-    // Why: This is the correct way to call suspend functions or load data asynchronously in response to a state change (in this case, the initial composition).
-    // How: It runs the block of code once when `year` changes.
+    val visibleItems = remember { mutableStateMapOf<Any, Boolean>() }
+
     LaunchedEffect(key1 = year) {
         val yearData = SyllabusRepository.getDataForYear(year)
         if (yearData != null) {
@@ -50,11 +42,19 @@ fun YearScreen(navController: NavController, year: Int) {
             yearData.subjects.forEachIndexed { index, subjectPair ->
                 items.add(ListItem.SubjectItem(subjectPair.first, subjectPair.second))
                 if (yearData.adPositions.contains(index + 1)) {
-                    // We use a placeholder here; the AdComposable will handle the actual loading.
                     items.add(ListItem.AdItem)
                 }
             }
             listItems = items
+
+            listItems.forEachIndexed { index, item ->
+                val key = when (item) {
+                    is ListItem.SubjectItem -> item.textResId
+                    is ListItem.AdItem -> "ad_$index"
+                }
+                delay(50L)
+                visibleItems[key] = true
+            }
         }
     }
 
@@ -72,26 +72,50 @@ fun YearScreen(navController: NavController, year: Int) {
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier.padding(paddingValues),
-            contentPadding = PaddingValues(8.dp),
+            contentPadding = PaddingValues(vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             itemsIndexed(
                 items = listItems,
                 key = { index, item ->
                     when (item) {
-                        is ListItem.SubjectItem -> item.textResId // Stable and unique
-                        is ListItem.AdItem -> "ad_$index" // Guaranteed unique for each ad slot
+                        is ListItem.SubjectItem -> item.textResId
+                        is ListItem.AdItem -> "ad_$index"
                     }
                 }
-            ) { index, item -> // The lambda now provides both index and item
+            ) { index, item ->
+                val key = when (item) {
+                    is ListItem.SubjectItem -> item.textResId
+                    is ListItem.AdItem -> "ad_$index"
+                }
+                val isVisible = visibleItems[key] ?: false
+
+                val alpha by animateFloatAsState(
+                    targetValue = if (isVisible) 1f else 0f,
+                    animationSpec = tween(300),
+                    label = "ItemAlpha"
+                )
+                val translationX by animateFloatAsState(
+                    targetValue = if (isVisible) 0f else -50f,
+                    animationSpec = tween(300),
+                    label = "ItemTranslationX"
+                )
+
+                val itemModifier = Modifier
+                    .graphicsLayer {
+                        this.alpha = alpha
+                        this.translationX = translationX
+                    }
+                    .animateItem()
+
                 when (item) {
                     is ListItem.SubjectItem -> {
                         ListItem(
-                            headlineContent = { Text(stringResource(id = item.textResId)) },
-                            modifier = Modifier
+                            headlineContent = { Text(text = stringResource(id = item.textResId)) },
+                            modifier = itemModifier
                                 .padding(horizontal = 16.dp)
-                                .clickable { viewModel.onSubjectClicked(context as Activity, item.endpoint) }
-                                .animateItem(), // Add for smooth reordering animations
+                                .clip(MaterialTheme.shapes.large)
+                                .clickable { viewModel.onSubjectClicked(context as Activity, item.endpoint) },
                             leadingContent = {
                                 Icon(
                                     Icons.Default.Book,
@@ -100,17 +124,16 @@ fun YearScreen(navController: NavController, year: Int) {
                                 )
                             },
                             colors = ListItemDefaults.colors(
-                                containerColor = MaterialTheme.colorScheme.secondaryContainer
-                            )
+                                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                            ),
+                            shadowElevation = 2.dp
                         )
                     }
                     is ListItem.AdItem -> {
                         Card(
-                            modifier = Modifier
-                                .padding(horizontal = 16.dp)
-                                .animateItem(), // Add for smooth reordering animations
+                            modifier = itemModifier.padding(horizontal = 16.dp),
                             colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.onPrimaryContainer
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant
                             )
                         ) {
                             NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
