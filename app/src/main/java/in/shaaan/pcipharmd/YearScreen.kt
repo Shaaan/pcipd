@@ -39,6 +39,7 @@ fun YearScreen(navController: NavController, year: Int) {
     val viewModel: BaseYearViewModel = viewModel()
     val context = LocalContext.current
     var listItems by remember { mutableStateOf<List<ListItem>>(emptyList()) }
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
     // What: A LaunchedEffect to load data when the screen is first composed.
     // Why: This is the correct way to call suspend functions or load data asynchronously in response to a state change (in this case, the initial composition).
@@ -60,13 +61,13 @@ fun YearScreen(navController: NavController, year: Int) {
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            LargeTopAppBar(
                 title = { Text("Year $year Syllabus") },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
-                }
+                }, scrollBehavior = scrollBehavior
             )
         }
     ) { paddingValues ->

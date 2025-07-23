@@ -17,7 +17,6 @@ import androidx.navigation.navArgument
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.analytics.FirebaseAnalytics
 import `in`.shaaan.pcipharmd.ui.screen.AboutScreen
-import `in`.shaaan.pcipharmd.ui.screen.HomeScreen
 import `in`.shaaan.pcipharmd.ui.screen.YearScreen
 import `in`.shaaan.pcipharmd.ui.theme.AppTheme
 import kotlinx.coroutines.Dispatchers
@@ -50,6 +49,7 @@ class MainActivity : ComponentActivity() {
                     AppNavigator()
                 }
             }
+//            AppNavigator()
         }
     }
 }
