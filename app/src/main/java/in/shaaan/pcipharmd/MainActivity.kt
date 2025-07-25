@@ -3,32 +3,43 @@ package `in`.shaaan.pcipharmd
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.stringResource
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -44,7 +55,6 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
-    // Create an instance of the InAppReviewHelper
     private val reviewHelper by lazy { InAppReviewHelper(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,9 +78,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // WHAT: MainApp is the new root composable with bottom navigation.
-                    // WHY: To provide the main navigation structure.
-                    // HOW: It contains a Scaffold with a NavigationBar and the AppNavigator.
                     MainApp(
                         onShowReview = {
                             lifecycleScope.launch {
@@ -89,14 +96,79 @@ class MainActivity : ComponentActivity() {
 fun MainApp(onShowReview: () -> Unit) {
     val navController = rememberNavController()
     val bottomNavItems = listOf(Screen.Syllabus, Screen.QuestionPapers)
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
 
     SharedTransitionLayout {
         Scaffold(
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+            topBar = {
+                when (currentDestination?.route) {
+                    Screen.Syllabus.route -> LargeTopAppBar(
+                        title = { Text(stringResource(id = R.string.app_name)) },
+                        actions = {
+                            IconButton(onClick = { navController.navigate(Screen.About.route) }) {
+                                Icon(Icons.Default.Info, contentDescription = "About")
+                            }
+                        },
+                        scrollBehavior = scrollBehavior,
+                        colors = TopAppBarDefaults.largeTopAppBarColors(
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            scrolledContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                            titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                            actionIconContentColor = MaterialTheme.colorScheme.onPrimary
+                        )
+                    )
+                    Screen.QuestionPapers.route -> LargeTopAppBar(
+                        title = { Text("Previous Year Papers") },
+                        actions = {
+                            IconButton(onClick = { navController.navigate(Screen.About.route) }) {
+                                Icon(Icons.Default.Info, contentDescription = "About")
+                            }
+                        },
+                        scrollBehavior = scrollBehavior
+                    )
+                    Screen.Year.route -> {
+                        val yearId = navBackStackEntry?.arguments?.getInt("yearId") ?: -1
+                        LargeTopAppBar(
+                            title = { Text("Year $yearId Syllabus") },
+                            navigationIcon = {
+                                IconButton(onClick = { navController.popBackStack() }) {
+                                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                                }
+                            },
+                            scrollBehavior = scrollBehavior
+                        )
+                    }
+                    Screen.QuestionPaperList.route -> {
+                        val yearId = navBackStackEntry?.arguments?.getInt("yearId") ?: -1
+                        // WHAT: Changed from TopAppBar to LargeTopAppBar.
+                        // WHY: To provide the expanding/collapsing effect on this screen.
+                        LargeTopAppBar(
+                            title = { Text("Year $yearId Papers") },
+                            navigationIcon = {
+                                IconButton(onClick = { navController.popBackStack() }) {
+                                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                                }
+                            },
+                            // WHAT: Applied the shared scrollBehavior.
+                            // WHY: To connect the app bar to the scrolling list.
+                            scrollBehavior = scrollBehavior
+                        )
+                    }
+                    Screen.About.route -> TopAppBar(
+                        title = { Text("About") },
+                        navigationIcon = {
+                            IconButton(onClick = { navController.popBackStack() }) {
+                                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                            }
+                        }
+                    )
+                }
+            },
             bottomBar = {
                 NavigationBar {
-                    val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val currentDestination = navBackStackEntry?.destination
-
                     bottomNavItems.forEach { screen ->
                         NavigationBarItem(
                             icon = { Icon(screen.icon!!, contentDescription = screen.title) },
@@ -116,46 +188,50 @@ fun MainApp(onShowReview: () -> Unit) {
                 }
             }
         ) { innerPadding ->
-            // AppNavigator now takes padding from the Scaffold.
             AppNavigator(
-                modifier = Modifier.padding(innerPadding),
-                onShowReview = onShowReview
+                modifier = Modifier,
+                navController = navController,
+                onShowReview = onShowReview,
+                paddingValues = innerPadding,
+                scrollBehavior = scrollBehavior
             )
         }
     }
 }
 
-@OptIn(ExperimentalSharedTransitionApi::class, ExperimentalAnimationApi::class)
+@OptIn(ExperimentalSharedTransitionApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun SharedTransitionScope.AppNavigator(onShowReview: () -> Unit, modifier: Modifier) {
-    // Use the NavController from the Accompanist library
-    val navController = rememberNavController()
-
+fun SharedTransitionScope.AppNavigator(
+    modifier: Modifier,
+    navController: NavHostController,
+    onShowReview: () -> Unit,
+    paddingValues: PaddingValues,
+    scrollBehavior: TopAppBarScrollBehavior
+) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Syllabus.route, // Start on the Syllabus tab
-        modifier = modifier
+        startDestination = Screen.Syllabus.route,
+        modifier = modifier.padding(paddingValues)
     ) {
-        // Main graph for the Syllabus section
         composable(Screen.Syllabus.route) {
             HomeScreen(
                 onYearClick = { year -> navController.navigate(Screen.Year.createRoute(year)) },
                 onAboutClick = { navController.navigate(Screen.About.route) },
                 onShowReview = onShowReview,
-                animatedVisibilityScope = this
+                animatedVisibilityScope = this,
+                scrollBehavior = scrollBehavior
             )
         }
 
-        // Main graph for the Question Papers section
         composable(Screen.QuestionPapers.route) {
             QuestionPapersScreen(
                 onYearClick = { year -> navController.navigate(Screen.QuestionPaperList.createRoute(year)) },
                 onAboutClick = { navController.navigate(Screen.About.route) },
-                animatedVisibilityScope = this
+                animatedVisibilityScope = this,
+                scrollBehavior = scrollBehavior
             )
         }
 
-        // Detail screen for Syllabus Year
         composable(
             route = Screen.Year.route,
             arguments = Screen.Year.arguments
@@ -168,19 +244,20 @@ fun SharedTransitionScope.AppNavigator(onShowReview: () -> Unit, modifier: Modif
             )
         }
 
-        // Detail screen for Question Paper List
         composable(
             route = Screen.QuestionPaperList.route,
             arguments = Screen.QuestionPaperList.arguments
         ) { backStackEntry ->
             val yearId = backStackEntry.arguments?.getInt("yearId") ?: -1
+            // WHAT: Passed the scrollBehavior down to the QuestionPaperListScreen.
+            // WHY: To allow the screen's LazyColumn to control the app bar.
             QuestionPaperListScreen(
                 navController = navController,
-                year = yearId
+                year = yearId,
+                scrollBehavior = scrollBehavior
             )
         }
 
-        // Shared About screen
         composable(Screen.About.route) {
             AboutScreen(navController = navController)
         }

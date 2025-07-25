@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      WHAT: This is a "bridge" theme for a 100% Compose app.
+      WHY:  To prevent the Android system from drawing a legacy ActionBar over the Compose UI.
+            It provides a clean, empty window for Compose to control entirely. This is the
+            definitive fix for the persistent black bar issue.
+      HOW:  It inherits from a "NoActionBar" parent and makes the window background transparent,
+            allowing the AppTheme composable to manage all colors and UI elements.
+    -->
+    <style name="Theme.PCIPD.Starting" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

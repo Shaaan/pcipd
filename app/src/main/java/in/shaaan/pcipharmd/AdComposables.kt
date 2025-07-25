@@ -73,7 +73,7 @@ fun NativeAdComposable(modifier: Modifier = Modifier, adUnitId: String) {
                 AndroidView(
                     factory = { ctx ->
                         // 1. Inflate the XML layout in the factory. This is called only once.
-                        LayoutInflater.from(ctx).inflate(R.layout.ad_unified, null) as NativeAdView
+                        LayoutInflater.from(ctx).inflate(R.layout.ad_unified_custom, null) as NativeAdView
                     },
                     update = { adView ->
                         // 2. Populate the view in the update block. This is called when the

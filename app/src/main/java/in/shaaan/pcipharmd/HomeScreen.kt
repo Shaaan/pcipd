@@ -18,7 +18,6 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Looks3
 import androidx.compose.material.icons.filled.Looks4
 import androidx.compose.material.icons.filled.Looks5
@@ -29,13 +28,9 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberTopAppBarState
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -45,8 +40,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import `in`.shaaan.pcipharmd.repository.SyllabusRepository
@@ -59,18 +52,11 @@ fun SharedTransitionScope.HomeScreen(
     onYearClick: (Int) -> Unit,
     onAboutClick: () -> Unit,
     onShowReview: () -> Unit,
-    animatedVisibilityScope: AnimatedVisibilityScope
+    animatedVisibilityScope: AnimatedVisibilityScope,
+    // WHAT: Added scrollBehavior as a parameter.
+    // WHY: To receive the scroll controller from the parent Scaffold in MainActivity.
+    scrollBehavior: TopAppBarScrollBehavior
 ) {
-    val context = LocalContext.current
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
-    val years = remember { (1..6).toList() }
-    val adPositions = remember { setOf(2, 4, 6) }
-
-    // WHAT: A counter to track user engagement.
-    // WHY: To trigger the in-app review prompt after the user has demonstrated
-    //      sufficient engagement (viewing 3 syllabuses), which increases the
-    //      likelihood of receiving a thoughtful rating.
-    // HOW: Using rememberSaveable to persist the count across configuration changes.
     var engagementCount by rememberSaveable { mutableIntStateOf(0) }
 
     val listItems = remember {
@@ -86,74 +72,54 @@ fun SharedTransitionScope.HomeScreen(
         items
     }
 
-    // This effect runs when the HomeScreen becomes visible again.
     LaunchedEffect(Unit) {
         if (engagementCount > 0 && engagementCount % 3 == 0) {
             onShowReview()
         }
     }
 
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            LargeTopAppBar(
-                title = { Text(stringResource(id = R.string.app_name)) },
-                actions = {
-                    IconButton(onClick = onAboutClick) {
-                        Icon(Icons.Default.Info, contentDescription = "About")
-                    }
-                },
-                scrollBehavior = scrollBehavior,
-                colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    scrolledContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                    actionIconContentColor = MaterialTheme.colorScheme.onPrimary
-                )
-            )
-        }
-    ) { paddingValues ->
-        LazyVerticalStaggeredGrid(
-            columns = StaggeredGridCells.Adaptive(minSize = 160.dp),
-            modifier = Modifier
-                .padding(paddingValues)
-                .fillMaxSize(),
-            contentPadding = PaddingValues(16.dp),
-            verticalItemSpacing = 16.dp,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            listItems.forEach { item ->
-                when (item) {
-                    is Int -> { // This is a year
-                        item(key = "s_year_$item") {
-                            YearCard(
-                                year = item,
-                                subjectCount = SyllabusRepository.getDataForYear(item)?.subjects?.size ?: 0,
-                                onClick = {
-                                    engagementCount++
-                                    onYearClick(item)
-                                },
-                                modifier = Modifier
-                                    .sharedElement(
-                                        rememberSharedContentState(key = "year-card-$item"),
-                                        animatedVisibilityScope = animatedVisibilityScope
-                                    )
-                                    .animateItem()
-                            )
-                        }
-                    }
-                    is AdPlaceholder -> { // This is an ad
-                        item(key = item.key, span = StaggeredGridItemSpan.FullLine) {
-                            Card(
-                                modifier = Modifier
-                                    .padding(vertical = 8.dp)
-                                    .animateItem(),
-                                colors = CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+    LazyVerticalStaggeredGrid(
+        columns = StaggeredGridCells.Adaptive(minSize = 160.dp),
+        // WHAT: Applied the nestedScroll modifier.
+        // WHY: This connects the grid's scrolling to the TopAppBar, allowing it to expand and collapse.
+        modifier = Modifier
+            .fillMaxSize()
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
+        contentPadding = PaddingValues(16.dp),
+        verticalItemSpacing = 16.dp,
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        listItems.forEach { item ->
+            when (item) {
+                is Int -> { // This is a year
+                    item(key = "s_year_$item") {
+                        YearCard(
+                            year = item,
+                            subjectCount = SyllabusRepository.getDataForYear(item)?.subjects?.size ?: 0,
+                            onClick = {
+                                engagementCount++
+                                onYearClick(item)
+                            },
+                            modifier = Modifier
+                                .sharedElement(
+                                    rememberSharedContentState(key = "year-card-$item"),
+                                    animatedVisibilityScope = animatedVisibilityScope
                                 )
-                            ) {
-                                NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
-                            }
+                                .animateItem()
+                        )
+                    }
+                }
+                is AdPlaceholder -> { // This is an ad
+                    item(key = item.key, span = StaggeredGridItemSpan.FullLine) {
+                        Card(
+                            modifier = Modifier
+                                .padding(vertical = 8.dp)
+                                .animateItem(),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                            )
+                        ) {
+                            NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
                         }
                     }
                 }
