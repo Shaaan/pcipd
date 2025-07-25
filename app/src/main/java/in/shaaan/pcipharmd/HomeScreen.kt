@@ -49,15 +49,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import `in`.shaaan.pcipharmd.navigation.Screen
+import `in`.shaaan.pcipharmd.repository.SyllabusRepository
+
+private data class AdPlaceholder(val key: String)
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
 fun SharedTransitionScope.HomeScreen(
-    navController: NavController,
-    animatedVisibilityScope: AnimatedVisibilityScope,
-    onShowReview: () -> Unit
+    onYearClick: (Int) -> Unit,
+    onAboutClick: () -> Unit,
+    onShowReview: () -> Unit,
+    animatedVisibilityScope: AnimatedVisibilityScope
 ) {
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
@@ -70,6 +72,19 @@ fun SharedTransitionScope.HomeScreen(
     //      likelihood of receiving a thoughtful rating.
     // HOW: Using rememberSaveable to persist the count across configuration changes.
     var engagementCount by rememberSaveable { mutableIntStateOf(0) }
+
+    val listItems = remember {
+        val years = (1..6).toList()
+        val adPositions = setOf(2, 4, 6)
+        val items = mutableListOf<Any>()
+        years.forEachIndexed { index, year ->
+            items.add(year)
+            if (adPositions.contains(index + 1)) {
+                items.add(AdPlaceholder(key = "ad_for_$year"))
+            }
+        }
+        items
+    }
 
     // This effect runs when the HomeScreen becomes visible again.
     LaunchedEffect(Unit) {
@@ -84,7 +99,7 @@ fun SharedTransitionScope.HomeScreen(
             LargeTopAppBar(
                 title = { Text(stringResource(id = R.string.app_name)) },
                 actions = {
-                    IconButton(onClick = { navController.navigate(Screen.About.route) }) {
+                    IconButton(onClick = onAboutClick) {
                         Icon(Icons.Default.Info, contentDescription = "About")
                     }
                 },
@@ -107,37 +122,38 @@ fun SharedTransitionScope.HomeScreen(
             verticalItemSpacing = 16.dp,
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            years.forEachIndexed { index, year ->
-                item(key = "year_$year") {
-                    YearCard(
-                        year = year,
-                        subjectCount = SyllabusRepository.getDataForYear(year)?.subjects?.size ?: 0,
-                        onClick = {
-                            engagementCount++ // Increment engagement on click
-                            navController.navigate(Screen.Year.createRoute(year))
-                        },
-                        modifier = Modifier
-                            // WHAT: Applied the sharedElement modifier.
-                            // WHY: To link this card with the destination screen's app bar for a smooth transition.
-                            // HOW: Using a unique key for each year.
-                            .sharedElement(
-                                rememberSharedContentState(key = "year-card-$year"),
-                                animatedVisibilityScope = animatedVisibilityScope
+            listItems.forEach { item ->
+                when (item) {
+                    is Int -> { // This is a year
+                        item(key = "s_year_$item") {
+                            YearCard(
+                                year = item,
+                                subjectCount = SyllabusRepository.getDataForYear(item)?.subjects?.size ?: 0,
+                                onClick = {
+                                    engagementCount++
+                                    onYearClick(item)
+                                },
+                                modifier = Modifier
+                                    .sharedElement(
+                                        rememberSharedContentState(key = "year-card-$item"),
+                                        animatedVisibilityScope = animatedVisibilityScope
+                                    )
+                                    .animateItem()
                             )
-                            .animateItem()
-                    )
-                }
-                if (adPositions.contains(year)) {
-                    item(key = "ad_for_$year", span = StaggeredGridItemSpan.FullLine) {
-                        Card(
-                            modifier = Modifier
-                                .padding(vertical = 8.dp)
-                                .animateItem(),
-                            colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surfaceVariant
-                            )
-                        ) {
-                            NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
+                        }
+                    }
+                    is AdPlaceholder -> { // This is an ad
+                        item(key = item.key, span = StaggeredGridItemSpan.FullLine) {
+                            Card(
+                                modifier = Modifier
+                                    .padding(vertical = 8.dp)
+                                    .animateItem(),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                                )
+                            ) {
+                                NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
+                            }
                         }
                     }
                 }
@@ -147,7 +163,7 @@ fun SharedTransitionScope.HomeScreen(
 }
 
 @Composable
-fun YearCard(year: Int, onClick: () -> Unit, modifier: Modifier = Modifier, subjectCount: Int) {
+fun YearCard(year: Int, onClick: () -> Unit, modifier: Modifier = Modifier, subjectCount: Int, countLabel: String = "Subjects") {
     val icon = when (year) {
         1 -> Icons.Default.LooksOne
         2 -> Icons.Default.LooksTwo
@@ -191,7 +207,7 @@ fun YearCard(year: Int, onClick: () -> Unit, modifier: Modifier = Modifier, subj
                 textAlign = TextAlign.Center
             )
             Text(
-                text = "$subjectCount Subjects",
+                text = "$subjectCount $countLabel",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

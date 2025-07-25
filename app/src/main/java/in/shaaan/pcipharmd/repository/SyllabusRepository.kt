@@ -1,5 +1,6 @@
-package `in`.shaaan.pcipharmd
+package `in`.shaaan.pcipharmd.repository
 
+import `in`.shaaan.pcipharmd.R
 import `in`.shaaan.pcipharmd.models.Subject
 
 object SyllabusRepository {

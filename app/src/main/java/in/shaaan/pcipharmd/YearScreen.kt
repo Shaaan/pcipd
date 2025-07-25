@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import `in`.shaaan.pcipharmd.models.Subject
+import `in`.shaaan.pcipharmd.repository.SyllabusRepository
 import kotlinx.coroutines.delay
 
 @OptIn(
