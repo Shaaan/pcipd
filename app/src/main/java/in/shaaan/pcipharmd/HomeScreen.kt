@@ -58,6 +58,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.navigation.NavController
+import `in`.shaaan.pcipharmd.navigation.Screen
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -67,11 +68,8 @@ fun HomeScreen(navController: NavController) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     val years = remember { (1..6).toList() }
-    val adPositions = remember { setOf(2, 4, 6) } // Positions after which to show an ad
+    val adPositions = remember { setOf(2, 4, 6) }
 
-    // What: A Scaffold provides the basic Material Design layout structure.
-    // Why: It simplifies the placement of top bars, floating action buttons, and snackbars.
-    // How: It takes composables for topBar, floatingActionButton, and content.
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -79,7 +77,10 @@ fun HomeScreen(navController: NavController) {
             LargeTopAppBar(
                 title = { Text(stringResource(id = R.string.app_name)) },
                 actions = {
-                    IconButton(onClick = { navController.navigate("about") }) {
+                    // WHAT: Navigation to the About screen is now type-safe.
+                    // WHY: To prevent runtime errors and improve code clarity.
+                    // HOW: Using navController.navigate(Screen.About.route).
+                    IconButton(onClick = { navController.navigate(Screen.About.route) }) {
                         Icon(Icons.Default.Info, contentDescription = "About")
                     }
                 },
@@ -114,7 +115,6 @@ fun HomeScreen(navController: NavController) {
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             years.forEachIndexed { index, year ->
-                // Render the Year Card
                 item(key = "year_$year") {
                     var isVisible by remember { mutableStateOf(false) }
                     LaunchedEffect(key1 = Unit) {
@@ -135,7 +135,12 @@ fun HomeScreen(navController: NavController) {
                     YearCard(
                         year = year,
                         subjectCount = SyllabusRepository.getDataForYear(year)?.subjects?.size ?: 0,
-                        onClick = { navController.navigate("year/$year") },
+                        onClick = {
+                            // WHAT: Navigation to the Year screen is now type-safe.
+                            // WHY: Ensures the correct argument is passed and the route is valid.
+                            // HOW: Using the createRoute helper method from the Screen.Year object.
+                            navController.navigate(Screen.Year.createRoute(year))
+                        },
                         modifier = Modifier
                             .scale(scale)
                             .alpha(alpha)
@@ -143,15 +148,11 @@ fun HomeScreen(navController: NavController) {
                     )
                 }
 
-                // Check if we need to render an ad after this card
                 if (adPositions.contains(year)) {
-                    // What: Render the ad item and make it span all columns.
-                    // Why: This provides a clean, non-jagged layout for banner-like ads
-                    //      within a staggered grid. It's the best UX for this component.
                     item(key = "ad_for_$year", span = StaggeredGridItemSpan.FullLine) {
                         Card(
                             modifier = Modifier
-                                .padding(vertical = 8.dp) // Add some vertical spacing
+                                .padding(vertical = 8.dp)
                                 .animateItem(),
                             colors = CardDefaults.cardColors(
                                 containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -190,20 +191,14 @@ fun YearCard(year: Int, onClick: () -> Unit, modifier: Modifier = Modifier, subj
         modifier = modifier
             .fillMaxWidth()
             .clickable(onClick = onClick),
-//            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
         shape = MaterialTheme.shapes.large
     ) {
         Column(
-//                horizontalAlignment = Alignment.CenterHorizontally,
-//                verticalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-            // What: Add an Icon to the card.
-            // Why: To provide a strong visual anchor.
-            // How: Using the Icon composable with a larger size.
             Icon(
                 imageVector = icon,
                 contentDescription = "Year $year",

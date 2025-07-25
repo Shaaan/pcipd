@@ -18,11 +18,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import `in`.shaaan.pcipharmd.models.Subject
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -30,27 +32,43 @@ import kotlinx.coroutines.delay
 fun YearScreen(navController: NavController, year: Int) {
     val viewModel: BaseYearViewModel = viewModel()
     val context = LocalContext.current
-    var listItems by remember { mutableStateOf<List<ListItem>>(emptyList()) }
+    var listItems by remember { mutableStateOf<List<Any>>(emptyList()) }
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
-
     val visibleItems = remember { mutableStateMapOf<Any, Boolean>() }
+
+    // WHAT: Get the primary color from the Material 3 theme.
+    // WHY: To pass to the AdUtil for a themed Custom Tab.
+    // HOW: Using MaterialTheme.colorScheme.primary.toArgb().
+    val primaryColor = MaterialTheme.colorScheme.primary.toArgb()
+
+    // WHAT: A LaunchedEffect to listen for events from the ViewModel.
+    // WHY: To handle navigation and other one-shot actions in the UI layer,
+    //      decoupling it from the ViewModel.
+    // HOW: It collects the 'navigationEvents' SharedFlow.
+    LaunchedEffect(Unit) {
+        viewModel.navigationEvents.collect { url ->
+            // The UI is now responsible for this action, passing the themed color.
+            AdUtil.showInterAd(context as Activity, url, primaryColor)
+        }
+    }
 
     LaunchedEffect(key1 = year) {
         val yearData = SyllabusRepository.getDataForYear(year)
         if (yearData != null) {
-            val items = mutableListOf<ListItem>()
-            yearData.subjects.forEachIndexed { index, subjectPair ->
-                items.add(ListItem.SubjectItem(subjectPair.first, subjectPair.second))
+            val items = mutableListOf<Any>()
+            yearData.subjects.forEachIndexed { index, subject ->
+                items.add(subject) // Add the Subject object
                 if (yearData.adPositions.contains(index + 1)) {
-                    items.add(ListItem.AdItem)
+                    items.add(ListItem.AdItem) // Use a sealed class object for ads
                 }
             }
             listItems = items
 
             listItems.forEachIndexed { index, item ->
                 val key = when (item) {
-                    is ListItem.SubjectItem -> item.textResId
+                    is Subject -> item.nameResId
                     is ListItem.AdItem -> "ad_$index"
+                    else -> "unknown_$index"
                 }
                 delay(50L)
                 visibleItems[key] = true
@@ -79,14 +97,16 @@ fun YearScreen(navController: NavController, year: Int) {
                 items = listItems,
                 key = { index, item ->
                     when (item) {
-                        is ListItem.SubjectItem -> item.textResId
+                        is Subject -> item.nameResId
                         is ListItem.AdItem -> "ad_$index"
+                        else -> "unknown_$index"
                     }
                 }
             ) { index, item ->
                 val key = when (item) {
-                    is ListItem.SubjectItem -> item.textResId
+                    is Subject -> item.nameResId
                     is ListItem.AdItem -> "ad_$index"
+                    else -> "unknown_$index"
                 }
                 val isVisible = visibleItems[key] ?: false
 
@@ -109,13 +129,18 @@ fun YearScreen(navController: NavController, year: Int) {
                     .animateItem()
 
                 when (item) {
-                    is ListItem.SubjectItem -> {
+                    is Subject -> {
                         ListItem(
-                            headlineContent = { Text(text = stringResource(id = item.textResId)) },
+                            headlineContent = { Text(text = stringResource(id = item.nameResId)) },
                             modifier = itemModifier
                                 .padding(horizontal = 16.dp)
                                 .clip(MaterialTheme.shapes.large)
-                                .clickable { viewModel.onSubjectClicked(context as Activity, item.endpoint) },
+                                .clickable {
+                                    // WHAT: The click listener no longer passes the Activity.
+                                    // WHY: To decouple the UI from the ViewModel logic.
+                                    // HOW: It now calls the updated onSubjectClicked with just the endpoint.
+                                    viewModel.onSubjectClicked(item.endpoint)
+                                },
                             leadingContent = {
                                 Icon(
                                     Icons.Default.Book,

@@ -3,9 +3,9 @@ package `in`.shaaan.pcipharmd
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import androidx.annotation.ColorInt
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -13,16 +13,15 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import `in`.shaaan.pcipharmd.config.RemoteConfigHelper
 
-/**
- * Utility class for handling Google Mobile Ads.
- * What: Provides methods to load and show interstitial and native ads.
- * Why: Centralizes ad management logic to reduce boilerplate in activities and ensure consistency.
- * How: Uses AdMob SDK components and manages the ad lifecycle via a singleton object for shared ad instances.
- */
 object AdUtil {
-    private const val AD_UNIT_ID = "ca-app-pub-1941738066609841/7774678359"
-    const val NATIVE_AD_UNIT_ID = "ca-app-pub-1941738066609841/8926036161"
+    // WHAT: Ad Unit IDs are now sourced from the RemoteConfigHelper.
+    // WHY: To make the ad unit IDs fully dynamic and updatable from the Firebase console
+    //      without needing to release a new app version.
+    // HOW: By calling the getter properties on the RemoteConfigHelper object.
+    private val AD_UNIT_ID get() = RemoteConfigHelper.interstitialAdUnitId
+    val NATIVE_AD_UNIT_ID get() = RemoteConfigHelper.nativeAdUnitId
 
     private var interstitialAd: InterstitialAd? = null
     private var adIsLoading = false
@@ -31,12 +30,18 @@ object AdUtil {
         if (adIsLoading || interstitialAd != null) {
             return
         }
+        // Ensure we don't try to load an ad with an empty ID
+        val adUnitId = AD_UNIT_ID
+        if (adUnitId.isEmpty()) {
+            Log.w("AdUtil", "Interstitial Ad Unit ID is empty. Ad not loaded.")
+            return
+        }
         adIsLoading = true
 
         val adRequest = AdRequest.Builder().build()
         InterstitialAd.load(
             context,
-            AD_UNIT_ID,
+            adUnitId,
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
@@ -53,8 +58,8 @@ object AdUtil {
             })
     }
 
-    fun showInterAd(activity: Activity, syllabusUrl: String) {
-        val customTabsIntent = buildCustomTabsIntent(activity)
+    fun showInterAd(activity: Activity, syllabusUrl: String, @ColorInt toolbarColor: Int) {
+        val customTabsIntent = buildCustomTabsIntent(activity, toolbarColor)
 
         val ad = interstitialAd
         if (ad == null) {
@@ -83,9 +88,9 @@ object AdUtil {
         ad.show(activity)
     }
 
-    private fun buildCustomTabsIntent(context: Context): CustomTabsIntent {
+    private fun buildCustomTabsIntent(context: Context, @ColorInt toolbarColor: Int): CustomTabsIntent {
         val params = CustomTabColorSchemeParams.Builder()
-            .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
+            .setToolbarColor(toolbarColor)
             .build()
         return CustomTabsIntent.Builder()
             .setDefaultColorSchemeParams(params)

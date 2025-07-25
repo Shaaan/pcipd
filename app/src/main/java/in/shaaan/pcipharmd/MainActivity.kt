@@ -15,14 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.analytics.FirebaseAnalytics
+import `in`.shaaan.pcipharmd.config.RemoteConfigHelper
+import `in`.shaaan.pcipharmd.navigation.Screen
 import `in`.shaaan.pcipharmd.ui.screen.AboutScreen
 import `in`.shaaan.pcipharmd.ui.theme.AppTheme
 import kotlinx.coroutines.Dispatchers
@@ -32,16 +32,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        lifecycleScope.launch(Dispatchers.IO) {
-            val testDeviceIds = listOf(
-//                "FEA0CE96C2B0A76E9EDD9F912B6D5826",
-                ""
-            )
 
+        // WHAT: Initialize Firebase services and Remote Config.
+        // WHY: To fetch the latest configuration values as early as possible in the app's lifecycle.
+        // HOW: By calling the initialize() method on our RemoteConfigHelper.
+        lifecycleScope.launch(Dispatchers.IO) {
+            // Initialize Remote Config
+            RemoteConfigHelper.initialize()
+
+            val testDeviceIds = listOf("")
             val requestConfiguration = RequestConfiguration.Builder()
                 .setTestDeviceIds(testDeviceIds)
                 .build()
-
             MobileAds.setRequestConfiguration(requestConfiguration)
             MobileAds.initialize(this@MainActivity) {}
         }
@@ -65,7 +67,7 @@ fun AppNavigator() {
     val navController = rememberNavController()
 
     NavHost(
-        navController = navController, startDestination = "home",
+        navController = navController, startDestination = Screen.Home.route,
         enterTransition = { fadeIn(animationSpec = tween(300)) + slideInHorizontally(initialOffsetX = { it }) },
         exitTransition = { fadeOut(animationSpec = tween(300)) + slideOutHorizontally(targetOffsetX = { -it }) },
         popEnterTransition = {
@@ -76,17 +78,17 @@ fun AppNavigator() {
             fadeOut(animationSpec = tween(300)) + slideOutHorizontally(
                 targetOffsetX = { it })
         }) {
-        composable("home") {
+        composable(Screen.Home.route) {
             HomeScreen(navController = navController)
         }
         composable(
-            route = "year/{yearId}",
-            arguments = listOf(navArgument("yearId") { type = NavType.IntType })
+            route = Screen.Year.route,
+            arguments = Screen.Year.arguments
         ) { backStackEntry ->
             val yearId = backStackEntry.arguments?.getInt("yearId") ?: -1
             YearScreen(navController = navController, year = yearId)
         }
-        composable("about") {
+        composable(Screen.About.route) {
             AboutScreen(navController = navController)
         }
     }
