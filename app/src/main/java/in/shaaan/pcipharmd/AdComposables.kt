@@ -3,8 +3,8 @@
 package `in`.shaaan.pcipharmd
 
 import android.content.Context
-import android.view.View
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -33,7 +33,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.compose.ui.viewinterop.AndroidViewBinding
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
@@ -42,7 +41,6 @@ import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.valentinilk.shimmer.shimmer
-import `in`.shaaan.pcipharmd.databinding.AdUnifiedBinding
 
 private sealed class AdResult {
     data class Loaded(val nativeAd: NativeAd) : AdResult()
@@ -129,35 +127,35 @@ private sealed class AdState {
 @Composable
 private fun ShimmerAdPlaceholder() {
     Box(modifier = Modifier.height(280.dp)) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .shimmer(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Box(
+        Row(
             modifier = Modifier
-                .size(64.dp)
-                .background(Color.LightGray)
-        )
-        Spacer(Modifier.width(8.dp))
-        Column {
+                .fillMaxWidth()
+                .padding(8.dp)
+                .shimmer(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Box(
                 modifier = Modifier
-                    .height(20.dp)
-                    .fillMaxWidth()
+                    .size(64.dp)
                     .background(Color.LightGray)
             )
-            Spacer(Modifier.height(8.dp))
-            Box(
-                modifier = Modifier
-                    .height(16.dp)
-                    .fillMaxWidth(0.7f)
-                    .background(Color.LightGray)
-            )
+            Spacer(Modifier.width(8.dp))
+            Column {
+                Box(
+                    modifier = Modifier
+                        .height(20.dp)
+                        .fillMaxWidth()
+                        .background(Color.LightGray)
+                )
+                Spacer(Modifier.height(8.dp))
+                Box(
+                    modifier = Modifier
+                        .height(16.dp)
+                        .fillMaxWidth(0.7f)
+                        .background(Color.LightGray)
+                )
+            }
         }
-    }
     }
 }
 

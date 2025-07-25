@@ -43,7 +43,7 @@ android {
             buildConfigField "String", "INTERSTITIAL_AD_UNIT_ID", "\"ca-app-pub-1941738066609841/7774678359\""
             buildConfigField "String", "NATIVE_AD_UNIT_ID", "\"ca-app-pub-1941738066609841/8926036161\""
         }
-        debug{
+        debug {
             buildConfigField "String", "INTERSTITIAL_AD_UNIT_ID", "\"ca-app-pub-1941738066609841/7774678359\""
             buildConfigField "String", "NATIVE_AD_UNIT_ID", "\"ca-app-pub-1941738066609841/8926036161\""
         }

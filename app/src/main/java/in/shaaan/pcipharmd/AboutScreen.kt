@@ -33,9 +33,11 @@ fun AboutScreen(navController: NavController) {
             )
         }
     ) { paddingValues ->
-        Column(modifier = Modifier
-            .padding(paddingValues)
-            .padding(16.dp)) {
+        Column(
+            modifier = Modifier
+                .padding(paddingValues)
+                .padding(16.dp)
+        ) {
             Text(
                 text = stringResource(id = R.string.app_name),
                 style = MaterialTheme.typography.headlineSmall

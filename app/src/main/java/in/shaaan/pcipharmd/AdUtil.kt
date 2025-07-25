@@ -88,7 +88,10 @@ object AdUtil {
         ad.show(activity)
     }
 
-    private fun buildCustomTabsIntent(context: Context, @ColorInt toolbarColor: Int): CustomTabsIntent {
+    private fun buildCustomTabsIntent(
+        context: Context,
+        @ColorInt toolbarColor: Int
+    ): CustomTabsIntent {
         val params = CustomTabColorSchemeParams.Builder()
             .setToolbarColor(toolbarColor)
             .build()

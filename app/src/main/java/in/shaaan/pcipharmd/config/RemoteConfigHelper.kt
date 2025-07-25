@@ -1,10 +1,10 @@
 package `in`.shaaan.pcipharmd.config
 
 import android.util.Log
-import `in`.shaaan.pcipharmd.BuildConfig
 import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
+import `in`.shaaan.pcipharmd.BuildConfig
 
 /**
  * WHAT: A singleton object to manage Firebase Remote Config.
