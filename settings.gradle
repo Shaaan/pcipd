@@ -1,5 +1,26 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal() // Standard repository for Gradle plugins
+        google()           // Repository for Google and Firebase plugins
+        mavenCentral()     // Often needed for other plugins or dependencies
+    }
+}
+
 plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
 }
-include ':app', ':shared'
-//include ':nativetemplates'
+
+// Add this block for centralized dependency repository management
+dependencyResolutionManagement {
+    // Optional: Good practice to prevent modules from declaring their own repositories
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+rootProject.name = "PCIPD" // Optional: Good practice to set your project name
+include ':app'
+include ':shared'

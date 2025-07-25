@@ -1,10 +1,10 @@
 plugins {
-    id 'com.google.firebase.crashlytics'
-    id 'org.jetbrains.kotlin.android'
-    id 'com.google.firebase.firebase-perf'
-    id 'com.android.application'
-    id 'com.google.gms.google-services'
-    id 'org.jetbrains.kotlin.plugin.compose'
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.firebase.perf)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.kotlin.compose)
 }
 
 def ksFile = rootProject.file("../keystore.properties")
@@ -14,7 +14,6 @@ if (ksFile.exists()) {
 }
 
 android {
-    ndkVersion '27.0.12077973'
     signingConfigs {
         config {
             keyAlias keystoreProperties['keyAlias']
@@ -26,7 +25,7 @@ android {
     compileSdk 36
     defaultConfig {
         applicationId "in.shaaan.pcipharmd"
-        minSdk 29
+        minSdk 26
         targetSdk 36
         //        versionCode getVersionCodeTimestamp()
         versionCode 1909301661
@@ -55,7 +54,7 @@ android {
         buildConfig true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.5.15'
+        kotlinCompilerExtensionVersion libs.versions.composeCompiler.get()
     }
     namespace 'in.shaaan.pcipharmd'
 }
@@ -75,44 +74,51 @@ kotlin {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    def composeBom = platform('androidx.compose:compose-bom:2025.07.00')
+    implementation libs.androidx.core.ktx
+    implementation libs.firebase.perf
+    implementation libs.androidx.compose.ui.text.google.fonts
+    implementation libs.androidx.navigation.runtime
+
+    def composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
-    implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
 
-    implementation 'androidx.core:core-ktx:1.16.0'
-    implementation 'com.google.firebase:firebase-perf'
-    implementation 'androidx.compose.ui:ui-text-google-fonts'
-    implementation 'androidx.navigation:navigation-runtime-android:2.9.2'
-
-    implementation "androidx.compose.runtime:runtime"
-    implementation "androidx.compose.ui:ui"
-    implementation "androidx.compose.foundation:foundation"
-    implementation "androidx.compose.foundation:foundation-layout"
-    implementation "androidx.compose.material3:material3"
-    implementation "androidx.compose.runtime:runtime-livedata"
-    implementation "androidx.compose.ui:ui-tooling"
-    implementation 'androidx.activity:activity-compose'
-    implementation 'androidx.compose.ui:ui-tooling-preview'
-    implementation "androidx.navigation:navigation-compose"
-    implementation "androidx.compose.ui:ui-viewbinding"
-    implementation "androidx.compose.material:material-icons-extended"
-    implementation "androidx.compose.animation:animation"
+    implementation libs.androidx.compose.runtime
+    implementation libs.androidx.compose.ui
+    implementation libs.androidx.compose.foundation
+    implementation libs.androidx.compose.foundation.layout
+    implementation libs.androidx.compose.material3
+    implementation libs.androidx.compose.runtime.livedata
+    implementation libs.androidx.compose.ui.tooling
+    implementation libs.androidx.activity.compose
+    implementation libs.androidx.compose.ui.tooling.preview
+    implementation libs.androidx.navigation.compose
+    implementation libs.androidx.compose.ui.viewbinding
+    implementation libs.androidx.compose.material.icons.extended
+    implementation libs.androidx.compose.animation
 
     // App Compat
-    implementation 'androidx.browser:browser:1.8.0'
-    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation libs.androidx.browser
+    implementation libs.androidx.annotation
 
     // Google
-    implementation 'com.google.android.material:material:1.12.0'
-    implementation 'com.google.android.gms:play-services-ads:24.5.0'
+    implementation libs.google.material
+    implementation libs.google.play.services.ads
+    implementation platform(libs.firebase.bom)
 
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation("com.google.firebase:firebase-config")
-    implementation 'com.google.firebase:firebase-crashlytics'
-    testImplementation 'junit:junit:4.13.2'
+    implementation libs.firebase.analytics
+    implementation libs.firebase.crashlytics
+    implementation libs.firebase.remote.config
+    // WHAT: Added the In-App Review and Accompanist Navigation Animation dependencies.
+    // WHY: To integrate the new features for user engagement and UI motion.
+    // HOW: By referencing the aliases from the version catalog.
+    implementation libs.google.play.review.ktx
+    implementation libs.accompanist.navigation.animation
 
-    implementation 'com.valentinilk.shimmer:compose-shimmer:1.3.3'
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2'
+    testImplementation libs.junit
+
+    implementation libs.shimmer.compose
+
+    implementation libs.kotlinx.coroutines.android
 }
