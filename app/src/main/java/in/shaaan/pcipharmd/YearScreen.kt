@@ -1,6 +1,9 @@
 package `in`.shaaan.pcipharmd
 
 import android.app.Activity
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -26,10 +29,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import `in`.shaaan.pcipharmd.models.Subject
 import kotlinx.coroutines.delay
+import java.nio.file.WatchEvent
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class,
+    ExperimentalSharedTransitionApi::class
+)
 @Composable
-fun YearScreen(navController: NavController, year: Int) {
+fun SharedTransitionScope.YearScreen(navController: NavController, year: Int, animatedVisibilityScope: AnimatedVisibilityScope) {
     val viewModel: BaseYearViewModel = viewModel()
     val context = LocalContext.current
     var listItems by remember { mutableStateOf<List<Any>>(emptyList()) }
@@ -84,7 +90,11 @@ fun YearScreen(navController: NavController, year: Int) {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
-                }, scrollBehavior = scrollBehavior
+                }, scrollBehavior = scrollBehavior,
+                modifier = Modifier.sharedElement(
+                    rememberSharedContentState(key = "year-card-$year"),
+                    animatedVisibilityScope
+                )
             )
         }
     ) { paddingValues ->

@@ -15,7 +15,6 @@ annotation = "1.9.1"
 perfPlugin = "2.0.0"
 playServicesAds = "24.5.0"
 firebaseBom = "34.0.0"
-firebaseRemoteConfig = "22.0.0"
 # WHAT: Added version for Google Play In-App Review library.
 # WHY: Required to use the in-app review API.
 # HOW: Defined a version key 'googlePlayReview'.
@@ -76,7 +75,7 @@ firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.r
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
 firebase-perf = { group = "com.google.firebase", name = "firebase-perf" }
-firebase-remote-config = { group = "com.google.firebase", name = "firebase-remote-config-ktx", version.ref = "firebaseRemoteConfig" }
+firebase-remote-config = { group = "com.google.firebase", name = "firebase-config" }
 # WHAT: Added the Google Play In-App Review library definition.
 # WHY: To make it available for use in the build.gradle file.
 # HOW: Created a library alias 'google-play-review-ktx'.

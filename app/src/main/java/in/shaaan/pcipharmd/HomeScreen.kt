@@ -1,6 +1,9 @@
 package `in`.shaaan.pcipharmd
 
 import android.content.Intent
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
@@ -45,8 +48,10 @@ import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -61,25 +66,38 @@ import androidx.navigation.NavController
 import `in`.shaaan.pcipharmd.navigation.Screen
 import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
-fun HomeScreen(navController: NavController) {
+fun SharedTransitionScope.HomeScreen(
+    navController: NavController,
+    animatedVisibilityScope: AnimatedVisibilityScope,
+    onShowReview: () -> Unit
+) {
     val context = LocalContext.current
-    val snackbarHostState = remember { SnackbarHostState() }
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     val years = remember { (1..6).toList() }
     val adPositions = remember { setOf(2, 4, 6) }
 
+    // WHAT: A counter to track user engagement.
+    // WHY: To trigger the in-app review prompt after the user has demonstrated
+    //      sufficient engagement (viewing 3 syllabuses), which increases the
+    //      likelihood of receiving a thoughtful rating.
+    // HOW: Using rememberSaveable to persist the count across configuration changes.
+    var engagementCount by rememberSaveable { mutableIntStateOf(0) }
+
+    // This effect runs when the HomeScreen becomes visible again.
+    LaunchedEffect(Unit) {
+        if (engagementCount > 0 && engagementCount % 3 == 0) {
+            onShowReview()
+        }
+    }
+
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             LargeTopAppBar(
                 title = { Text(stringResource(id = R.string.app_name)) },
                 actions = {
-                    // WHAT: Navigation to the About screen is now type-safe.
-                    // WHY: To prevent runtime errors and improve code clarity.
-                    // HOW: Using navController.navigate(Screen.About.route).
                     IconButton(onClick = { navController.navigate(Screen.About.route) }) {
                         Icon(Icons.Default.Info, contentDescription = "About")
                     }
@@ -91,17 +109,6 @@ fun HomeScreen(navController: NavController) {
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
-            )
-        },
-        floatingActionButton = {
-            ExtendedFloatingActionButton(
-                onClick = {
-                    val intent =
-                        Intent(Intent.ACTION_VIEW, "market://details?id=${context.packageName}".toUri())
-                    context.startActivity(intent)
-                },
-                icon = { Icon(Icons.Default.Star, contentDescription = "Rate App") },
-                text = { Text(text = "Rate App") }
             )
         }
     ) { paddingValues ->
@@ -116,38 +123,24 @@ fun HomeScreen(navController: NavController) {
         ) {
             years.forEachIndexed { index, year ->
                 item(key = "year_$year") {
-                    var isVisible by remember { mutableStateOf(false) }
-                    LaunchedEffect(key1 = Unit) {
-                        delay(100L * index)
-                        isVisible = true
-                    }
-                    val alpha by animateFloatAsState(
-                        targetValue = if (isVisible) 1f else 0f,
-                        animationSpec = tween(durationMillis = 300),
-                        label = "AlphaAnim"
-                    )
-                    val scale by animateFloatAsState(
-                        targetValue = if (isVisible) 1f else 0.8f,
-                        animationSpec = tween(durationMillis = 300),
-                        label = "ScaleAnim"
-                    )
-
                     YearCard(
                         year = year,
                         subjectCount = SyllabusRepository.getDataForYear(year)?.subjects?.size ?: 0,
                         onClick = {
-                            // WHAT: Navigation to the Year screen is now type-safe.
-                            // WHY: Ensures the correct argument is passed and the route is valid.
-                            // HOW: Using the createRoute helper method from the Screen.Year object.
+                            engagementCount++ // Increment engagement on click
                             navController.navigate(Screen.Year.createRoute(year))
                         },
                         modifier = Modifier
-                            .scale(scale)
-                            .alpha(alpha)
+                            // WHAT: Applied the sharedElement modifier.
+                            // WHY: To link this card with the destination screen's app bar for a smooth transition.
+                            // HOW: Using a unique key for each year.
+                            .sharedElement(
+                                rememberSharedContentState(key = "year-card-$year"),
+                                animatedVisibilityScope = animatedVisibilityScope
+                            )
                             .animateItem()
                     )
                 }
-
                 if (adPositions.contains(year)) {
                     item(key = "ad_for_$year", span = StaggeredGridItemSpan.FullLine) {
                         Card(
