@@ -45,10 +45,12 @@ import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.analytics.FirebaseAnalytics
 import `in`.shaaan.pcipharmd.config.RemoteConfigHelper
 import `in`.shaaan.pcipharmd.navigation.Screen
+import `in`.shaaan.pcipharmd.repository.SyllabusRepository
 import `in`.shaaan.pcipharmd.review.InAppReviewHelper
 import `in`.shaaan.pcipharmd.ui.screen.AboutScreen
 import `in`.shaaan.pcipharmd.ui.screen.QuestionPaperListScreen
 import `in`.shaaan.pcipharmd.ui.screen.QuestionPapersScreen
+import `in`.shaaan.pcipharmd.ui.screen.SubjectDetailScreen
 import `in`.shaaan.pcipharmd.ui.theme.AppTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -143,8 +145,6 @@ fun MainApp(onShowReview: () -> Unit) {
                     }
                     Screen.QuestionPaperList.route -> {
                         val yearId = navBackStackEntry?.arguments?.getInt("yearId") ?: -1
-                        // WHAT: Changed from TopAppBar to LargeTopAppBar.
-                        // WHY: To provide the expanding/collapsing effect on this screen.
                         LargeTopAppBar(
                             title = { Text("Year $yearId Papers") },
                             navigationIcon = {
@@ -152,9 +152,22 @@ fun MainApp(onShowReview: () -> Unit) {
                                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                                 }
                             },
-                            // WHAT: Applied the shared scrollBehavior.
-                            // WHY: To connect the app bar to the scrolling list.
                             scrollBehavior = scrollBehavior
+                        )
+                    }
+                    // WHAT: Added a TopAppBar for the new SubjectDetail screen.
+                    // WHY: To provide a title and back navigation for this screen.
+                    Screen.SubjectDetail.route -> {
+                        val yearId = navBackStackEntry?.arguments?.getInt("yearId") ?: -1
+                        val subjectIndex = navBackStackEntry?.arguments?.getInt("subjectIndex") ?: -1
+                        val subject = SyllabusRepository.getDataForYear(yearId)?.subjects?.getOrNull(subjectIndex)
+                        TopAppBar(
+                            title = { Text(subject?.let { stringResource(id = it.nameResId) } ?: "Subject Detail") },
+                            navigationIcon = {
+                                IconButton(onClick = { navController.popBackStack() }) {
+                                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                                }
+                            }
                         )
                     }
                     Screen.About.route -> TopAppBar(
@@ -249,12 +262,24 @@ fun SharedTransitionScope.AppNavigator(
             arguments = Screen.QuestionPaperList.arguments
         ) { backStackEntry ->
             val yearId = backStackEntry.arguments?.getInt("yearId") ?: -1
-            // WHAT: Passed the scrollBehavior down to the QuestionPaperListScreen.
-            // WHY: To allow the screen's LazyColumn to control the app bar.
             QuestionPaperListScreen(
                 navController = navController,
                 year = yearId,
                 scrollBehavior = scrollBehavior
+            )
+        }
+
+        // WHAT: Added the new composable to the navigation graph.
+        // WHY: To make the SubjectDetailScreen accessible via its route.
+        composable(
+            route = Screen.SubjectDetail.route,
+            arguments = Screen.SubjectDetail.arguments
+        ) { backStackEntry ->
+            val yearId = backStackEntry.arguments?.getInt("yearId") ?: -1
+            val subjectIndex = backStackEntry.arguments?.getInt("subjectIndex") ?: -1
+            SubjectDetailScreen(
+                yearId = yearId,
+                subjectIndex = subjectIndex
             )
         }
 

@@ -8,17 +8,34 @@ object SyllabusRepository {
     const val EXTRA_YEAR = "in.shaaan.pcipharmd.EXTRA_YEAR"
     const val BASE_URL = "https://pcipd.hypertex.co.in/syllabus/"
 
-    /**
-     * WHAT: The data structure for a year's data.
-     * WHY: To provide a clear, structured model for the syllabus.
-     * HOW: Now uses a List of the new 'Subject' data class instead of List<Pair<Int, String>>.
-     */
     data class YearData(val subjects: List<Subject>, val adPositions: List<Int>)
 
     private val dataMap = mapOf(
         1 to YearData(
             subjects = listOf(
-                Subject(R.string.hap, "first_year/hap/"),
+                // WHAT: Added rich content for the first subject.
+                // WHY: To serve as the data source for the new Subject Detail Screen.
+                Subject(
+                    nameResId = R.string.hap,
+                    endpoint = "first_year/hap/",
+                    keyTopics = listOf(
+                        "Introduction to Human Body",
+                        "Cellular Level of Organization",
+                        "Tissue Level of Organization",
+                        "Integumentary System",
+                        "Skeletal System",
+                        "Joints",
+                        "Muscular System",
+                        "Nervous System",
+                        "Endocrine System",
+                        "Cardiovascular System"
+                    ),
+                    recommendedBooks = listOf(
+                        "Ross & Wilson Anatomy and Physiology in Health and Illness",
+                        "K. Sembulingam: Essentials of Medical Physiology",
+                        "Gerard J. Tortora: Principles of Anatomy and Physiology"
+                    )
+                ),
                 Subject(R.string.ceutics, "first_year/pahrmaceutics/"),
                 Subject(R.string.biochem, "first_year/biochem/"),
                 Subject(R.string.oc, "first_year/oc/"),

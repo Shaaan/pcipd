@@ -26,6 +26,18 @@ sealed class Screen(val route: String, val title: String? = null, val icon: Imag
         val arguments = listOf(navArgument("yearId") { type = NavType.IntType })
     }
 
+    // WHAT: Added a new destination for the Subject Detail screen.
+    // WHY: To create a dedicated route for the new content-rich screen.
+    // HOW: It takes yearId and subjectIndex as arguments to locate the correct data.
+    data object SubjectDetail : Screen("subject_detail/{yearId}/{subjectIndex}") {
+        fun createRoute(yearId: Int, subjectIndex: Int) = "subject_detail/$yearId/$subjectIndex"
+        val arguments = listOf(
+            navArgument("yearId") { type = NavType.IntType },
+            navArgument("subjectIndex") { type = NavType.IntType }
+        )
+    }
+
+
     // Screens within the Question Papers flow
     data object QuestionPaperList : Screen("question_paper_list/{yearId}") {
         fun createRoute(id: Int) = "question_paper_list/$id"

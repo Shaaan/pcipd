@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import `in`.shaaan.pcipharmd.models.Subject
+import `in`.shaaan.pcipharmd.navigation.Screen
 import `in`.shaaan.pcipharmd.repository.SyllabusRepository
 import kotlinx.coroutines.delay
 
@@ -53,8 +54,6 @@ fun SharedTransitionScope.YearScreen(
     year: Int,
     animatedVisibilityScope: AnimatedVisibilityScope
 ) {
-    // WHAT: Removed the Scaffold and LargeTopAppBar.
-    // WHY: This is now handled by the central Scaffold in MainActivity.
     val viewModel: BaseYearViewModel = viewModel()
     val context = LocalContext.current
     var listItems by remember { mutableStateOf<List<Any>>(emptyList()) }
@@ -132,13 +131,24 @@ fun SharedTransitionScope.YearScreen(
 
             when (item) {
                 is Subject -> {
+                    // WHAT: Find the original index of the subject within the subjects-only list.
+                    // WHY: The `itemsIndexed` index includes ads, but we need the index
+                    //      relative to the original `subjects` list to pass to the detail screen.
+                    val subjectIndex = SyllabusRepository.getDataForYear(year)?.subjects?.indexOf(item) ?: -1
+
                     ListItem(
                         headlineContent = { Text(text = stringResource(id = item.nameResId)) },
                         modifier = itemModifier
                             .padding(horizontal = 16.dp)
                             .clip(MaterialTheme.shapes.large)
                             .clickable {
-                                viewModel.onSubjectClicked(item.endpoint)
+                                // WHAT: Changed the click action to navigate to the SubjectDetail screen.
+                                // WHY: To show the new content-rich screen instead of opening the PDF directly.
+                                if (subjectIndex != -1) {
+                                    navController.navigate(
+                                        Screen.SubjectDetail.createRoute(year, subjectIndex)
+                                    )
+                                }
                             },
                         leadingContent = {
                             Icon(
