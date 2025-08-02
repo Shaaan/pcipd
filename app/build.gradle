@@ -109,11 +109,9 @@ dependencies {
     implementation libs.firebase.analytics
     implementation libs.firebase.crashlytics
     implementation libs.firebase.remote.config
-    // WHAT: Added the In-App Review and Accompanist Navigation Animation dependencies.
-    // WHY: To integrate the new features for user engagement and UI motion.
-    // HOW: By referencing the aliases from the version catalog.
     implementation libs.google.play.review.ktx
     implementation libs.accompanist.navigation.animation
+    implementation libs.firebase.database
 
 
     testImplementation libs.junit

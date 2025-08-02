@@ -24,3 +24,8 @@
 -dontnote com.google.**
 -dontnote com.squareup.okhttp.**
 -dontnote okhttp3.internal.**
+
+# Firebase
+-keepclassmembers class com.yourcompany.models.** {
+  *;
+}

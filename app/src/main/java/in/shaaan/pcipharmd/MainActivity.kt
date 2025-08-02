@@ -12,20 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
-import androidx.compose.material3.rememberTopAppBarState
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -45,11 +32,9 @@ import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.analytics.FirebaseAnalytics
 import `in`.shaaan.pcipharmd.config.RemoteConfigHelper
 import `in`.shaaan.pcipharmd.navigation.Screen
-import `in`.shaaan.pcipharmd.repository.SyllabusRepository
 import `in`.shaaan.pcipharmd.review.InAppReviewHelper
 import `in`.shaaan.pcipharmd.ui.screen.AboutScreen
 import `in`.shaaan.pcipharmd.ui.screen.QuestionPaperListScreen
-import `in`.shaaan.pcipharmd.ui.screen.QuestionPapersScreen
 import `in`.shaaan.pcipharmd.ui.screen.SubjectDetailScreen
 import `in`.shaaan.pcipharmd.ui.theme.AppTheme
 import kotlinx.coroutines.Dispatchers
@@ -155,14 +140,9 @@ fun MainApp(onShowReview: () -> Unit) {
                             scrollBehavior = scrollBehavior
                         )
                     }
-                    // WHAT: Added a TopAppBar for the new SubjectDetail screen.
-                    // WHY: To provide a title and back navigation for this screen.
                     Screen.SubjectDetail.route -> {
-                        val yearId = navBackStackEntry?.arguments?.getInt("yearId") ?: -1
-                        val subjectIndex = navBackStackEntry?.arguments?.getInt("subjectIndex") ?: -1
-                        val subject = SyllabusRepository.getDataForYear(yearId)?.subjects?.getOrNull(subjectIndex)
                         TopAppBar(
-                            title = { Text(subject?.let { stringResource(id = it.nameResId) } ?: "Subject Detail") },
+                            title = { Text("Subject Details") },
                             navigationIcon = {
                                 IconButton(onClick = { navController.popBackStack() }) {
                                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -227,9 +207,11 @@ fun SharedTransitionScope.AppNavigator(
         modifier = modifier.padding(paddingValues)
     ) {
         composable(Screen.Syllabus.route) {
+            // WHAT: The call to HomeScreen now passes the NavController directly.
+            // WHY: This is the definitive fix. By removing the `onYearClick` lambda that was
+            //      causing the compiler's type inference to fail, we eliminate the error at its source.
             HomeScreen(
-                onYearClick = { year -> navController.navigate(Screen.Year.createRoute(year)) },
-                onAboutClick = { navController.navigate(Screen.About.route) },
+                navController = navController,
                 onShowReview = onShowReview,
                 animatedVisibilityScope = this,
                 scrollBehavior = scrollBehavior
@@ -238,7 +220,7 @@ fun SharedTransitionScope.AppNavigator(
 
         composable(Screen.QuestionPapers.route) {
             QuestionPapersScreen(
-                onYearClick = { year -> navController.navigate(Screen.QuestionPaperList.createRoute(year)) },
+                navController = navController,
                 onAboutClick = { navController.navigate(Screen.About.route) },
                 animatedVisibilityScope = this,
                 scrollBehavior = scrollBehavior
@@ -269,8 +251,6 @@ fun SharedTransitionScope.AppNavigator(
             )
         }
 
-        // WHAT: Added the new composable to the navigation graph.
-        // WHY: To make the SubjectDetailScreen accessible via its route.
         composable(
             route = Screen.SubjectDetail.route,
             arguments = Screen.SubjectDetail.arguments

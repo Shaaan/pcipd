@@ -1,53 +1,81 @@
-package `in`.shaaan.pcipharmd.ui.screen
+package `in`.shaaan.pcipharmd
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
-import `in`.shaaan.pcipharmd.AdUtil
-import `in`.shaaan.pcipharmd.NativeAdComposable
-import `in`.shaaan.pcipharmd.YearCard
-import `in`.shaaan.pcipharmd.repository.QuestionPaperRepository
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import `in`.shaaan.pcipharmd.models.QuestionPapersUiState
+import `in`.shaaan.pcipharmd.models.QuestionPapersViewModel
+import `in`.shaaan.pcipharmd.models.YearInfo
+import `in`.shaaan.pcipharmd.navigation.Screen
 
-// WHAT: Added a private data class for ad placeholders.
-// WHY: To create a typed item for inserting into the list for the staggered grid.
-private data class AdPlaceholder(val key: String)
+// WHAT: Added a private data class for ad placeholders within this file.
+// WHY: To resolve the "Cannot access" error. Since this is a simple helper class used
+//      only for structuring the list within this screen, defining it privately here is the
+//      cleanest solution. It was previously only defined in HomeScreen.kt.
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
 fun SharedTransitionScope.QuestionPapersScreen(
-    onYearClick: (Int) -> Unit,
+    navController: NavController,
     onAboutClick: () -> Unit,
     animatedVisibilityScope: AnimatedVisibilityScope,
-    scrollBehavior: TopAppBarScrollBehavior
+    scrollBehavior: TopAppBarScrollBehavior,
+    papersViewModel: QuestionPapersViewModel = viewModel()
 ) {
-    // WHAT: Created a list of mixed types (Int for years, AdPlaceholder for ads).
-    // WHY: To seamlessly interleave native ads within the grid of year cards, matching
-    //      the implementation on the main syllabus screen for a consistent user experience.
-    val listItems = remember {
-        val years = (1..6).toList()
-        val adPositions = setOf(2, 4, 6) // Define where ads should appear
+    val uiState by papersViewModel.uiState.collectAsState()
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .nestedScroll(scrollBehavior.nestedScrollConnection),
+        contentAlignment = Alignment.Center
+    ) {
+        when (val state = uiState) {
+            is QuestionPapersUiState.Loading -> CircularProgressIndicator()
+            is QuestionPapersUiState.Error -> Text(text = state.message, color = MaterialTheme.colorScheme.error)
+            is QuestionPapersUiState.Success -> {
+                QuestionPapersContent(
+                    yearList = state.yearList,
+                    navController = navController,
+                    animatedVisibilityScope = animatedVisibilityScope,
+                    modifier = Modifier.matchParentSize()
+                )
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalSharedTransitionApi::class)
+@Composable
+private fun SharedTransitionScope.QuestionPapersContent(
+    yearList: List<YearInfo>,
+    navController: NavController,
+    animatedVisibilityScope: AnimatedVisibilityScope,
+    modifier: Modifier = Modifier
+) {
+    val listItems = remember(yearList) {
+        val adPositions = setOf(2, 4, 6)
         val items = mutableListOf<Any>()
-        years.forEachIndexed { index, year ->
-            items.add(year)
+        yearList.forEachIndexed { index, yearInfo ->
+            items.add(yearInfo)
             if (adPositions.contains(index + 1)) {
-                items.add(AdPlaceholder(key = "ad_for_q_year_$year"))
+                items.add(AdPlaceholder(key = "ad_for_q_year_${yearInfo.year}"))
             }
         }
         items
@@ -55,48 +83,43 @@ fun SharedTransitionScope.QuestionPapersScreen(
 
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Adaptive(minSize = 160.dp),
-        modifier = Modifier
-            .fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier,
         contentPadding = PaddingValues(16.dp),
         verticalItemSpacing = 16.dp,
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // WHAT: Changed from `items` to a `forEach` loop with a `when` block.
-        // WHY: To handle rendering different composables for different item types (YearCard vs Ad).
-        listItems.forEach { item ->
+        items(
+            items = listItems,
+            key = { item -> if (item is YearInfo) "q_year_${item.year}" else (item as AdPlaceholder).key },
+            span = { item -> if (item is AdPlaceholder) StaggeredGridItemSpan.FullLine else StaggeredGridItemSpan.SingleLane }
+        ) { item ->
             when (item) {
-                is Int -> { // This is a year
-                    item(key = "q_year_$item") {
-                        YearCard(
-                            year = item,
-                            subjectCount = QuestionPaperRepository.getPapersForYear(item).size,
-                            countLabel = "Papers",
-                            onClick = { onYearClick(item) },
-                            // WHAT: Added the sharedElement modifier.
-                            // WHY: To enable the Material 3 transition animation when a user
-                            //      clicks on a year card, creating a smooth visual connection.
-                            modifier = Modifier
-                                .sharedElement(
-                                    rememberSharedContentState(key = "q-year-card-$item"),
-                                    animatedVisibilityScope = animatedVisibilityScope
-                                )
-                                .animateItem()
-                        )
-                    }
-                }
-                is AdPlaceholder -> { // This is an ad
-                    item(key = item.key, span = StaggeredGridItemSpan.FullLine) {
-                        Card(
-                            modifier = Modifier
-                                .padding(vertical = 8.dp)
-                                .animateItem(),
-                            colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                is YearInfo -> {
+                    YearCard(
+                        year = item.year,
+                        subjectCount = item.subjectCount,
+                        countLabel = "Papers",
+                        onClick = {
+                            navController.navigate(Screen.QuestionPaperList.createRoute(item.year))
+                        },
+                        modifier = Modifier
+                            .sharedElement(
+                                rememberSharedContentState(key = "q-year-card-${item.year}"),
+                                animatedVisibilityScope = animatedVisibilityScope
                             )
-                        ) {
-                            NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
-                        }
+                            .animateItem()
+                    )
+                }
+                is AdPlaceholder -> {
+                    Card(
+                        modifier = Modifier
+                            .padding(vertical = 8.dp)
+                            .animateItem(),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant
+                        )
+                    ) {
+                        NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
                     }
                 }
             }

@@ -1,17 +1,19 @@
 package `in`.shaaan.pcipharmd.models
 
-import androidx.annotation.StringRes
+import androidx.annotation.Keep
 
 /**
- * WHAT: A data class to represent a syllabus subject.
- * WHY: Provides better type safety and code readability than using a generic Pair.
- * It makes the purpose of the data explicit.
- * HOW: Defined with clear property names 'nameResId' and 'endpoint'.
- * UPDATE: Added lists for keyTopics and recommendedBooks to hold richer content.
+ * WHAT: A data class to represent a syllabus subject, compatible with Firebase.
+ * WHY: Provides type safety for data fetched from the Realtime Database. The @Keep
+ * annotation ensures that Proguard/R8 does not remove this class or its properties
+ * during the build process, which would break Firebase's automatic data mapping.
+ * Default values are required for the Firebase SDK's deserializer.
+ * HOW: Defined with properties that match the keys in your Firebase JSON structure.
  */
+@Keep // Ensures Proguard doesn't strip this class
 data class Subject(
-    @StringRes val nameResId: Int,
-    val endpoint: String,
+    val title: String = "",
+    val endpoint: String = "",
     val keyTopics: List<String> = emptyList(),
     val recommendedBooks: List<String> = emptyList()
 )

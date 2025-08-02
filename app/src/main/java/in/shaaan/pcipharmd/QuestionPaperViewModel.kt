@@ -34,7 +34,7 @@ class QuestionPaperViewModel(application: Application) : AndroidViewModel(applic
      * @return A list of QuestionPaper objects.
      */
     fun getPapersForYear(year: Int): List<QuestionPaper> {
-        return QuestionPaperRepository.getPapersForYear(year)
+        return QuestionPaperRepository.getPapersForYear(year) as List<QuestionPaper>
     }
 
     /**

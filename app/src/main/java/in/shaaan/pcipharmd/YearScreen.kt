@@ -9,33 +9,22 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Book
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.ListItem
-import androidx.compose.material3.ListItemDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateMapOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -44,10 +33,7 @@ import `in`.shaaan.pcipharmd.navigation.Screen
 import `in`.shaaan.pcipharmd.repository.SyllabusRepository
 import kotlinx.coroutines.delay
 
-@OptIn(
-    ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class,
-    ExperimentalSharedTransitionApi::class
-)
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun SharedTransitionScope.YearScreen(
     navController: NavController,
@@ -56,37 +42,91 @@ fun SharedTransitionScope.YearScreen(
 ) {
     val viewModel: BaseYearViewModel = viewModel()
     val context = LocalContext.current
-    var listItems by remember { mutableStateOf<List<Any>>(emptyList()) }
-    val visibleItems = remember { mutableStateMapOf<Any, Boolean>() }
     val primaryColor = MaterialTheme.colorScheme.primary.toArgb()
 
+    // Listen for one-time navigation events from the ViewModel (e.g., to show an ad)
     LaunchedEffect(Unit) {
         viewModel.navigationEvents.collect { url ->
             AdUtil.showInterAd(context as Activity, url, primaryColor)
         }
     }
 
+    // WHAT: Triggers the data fetch when the screen is first composed or if the year changes.
+    // WHY: To load the syllabus data for the specific year as soon as the user navigates here.
     LaunchedEffect(key1 = year) {
-        val yearData = SyllabusRepository.getDataForYear(year)
-        if (yearData != null) {
-            val items = mutableListOf<Any>()
-            yearData.subjects.forEachIndexed { index, subject ->
-                items.add(subject)
-                if (yearData.adPositions.contains(index + 1)) {
-                    items.add(ListItem.AdItem)
-                }
-            }
-            listItems = items
+        viewModel.fetchSyllabusForYear(year)
+    }
 
-            listItems.forEachIndexed { index, item ->
-                val key = when (item) {
-                    is Subject -> item.nameResId
-                    is ListItem.AdItem -> "ad_$index"
-                    else -> "unknown_$index"
-                }
-                delay(50L)
-                visibleItems[key] = true
+    // WHAT: Collects the UI state from the ViewModel as a Compose State.
+    // WHY: The UI will automatically recompose whenever the state changes (e.g., from Loading to Success).
+    val uiState by viewModel.uiState.collectAsState()
+
+    // WHAT: This `when` block acts as a state machine for the UI.
+    // WHY: To show the correct UI for each possible state—loading spinner, error message,
+    //      or the main content list—providing clear and immediate user feedback.
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        when (val state = uiState) {
+            is YearUiState.Loading -> {
+                CircularProgressIndicator()
             }
+            is YearUiState.Error -> {
+                Text(text = state.message, color = MaterialTheme.colorScheme.error)
+            }
+            is YearUiState.Success -> {
+                // WHAT: On success, delegate the rendering of the list to a separate composable.
+                // WHY: This keeps the main screen composable clean and focused on state management.
+                SyllabusList(
+                    year = year,
+                    yearData = state.yearData,
+                    navController = navController,
+                    animatedVisibilityScope = animatedVisibilityScope,
+                    onSubjectClick = { subject ->
+                        // The ViewModel handles the logic for opening the PDF, including showing an ad.
+                        viewModel.onSubjectClicked(subject.endpoint)
+                    },
+                    onSubjectInfoClick = { subjectIndex ->
+                        // Navigate to the detail screen for more info.
+                        navController.navigate(Screen.SubjectDetail.createRoute(year, subjectIndex))
+                    }
+                )
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class, ExperimentalSharedTransitionApi::class)
+@Composable
+private fun SharedTransitionScope.SyllabusList(
+    year: Int,
+    yearData: SyllabusRepository.YearData,
+    navController: NavController,
+    animatedVisibilityScope: AnimatedVisibilityScope,
+    onSubjectClick: (Subject) -> Unit,
+    onSubjectInfoClick: (Int) -> Unit
+) {
+    val subjects = yearData.subjects.values.toList()
+    var listItems by remember { mutableStateOf<List<Any>>(emptyList()) }
+    val visibleItems = remember { mutableStateMapOf<Any, Boolean>() }
+
+    // This effect creates the final list, interleaving subjects with ad placeholders.
+    LaunchedEffect(yearData) {
+        val items = mutableListOf<Any>()
+        subjects.forEachIndexed { index, subject ->
+            items.add(subject)
+            if (yearData.adPositions.contains(index + 1)) {
+                items.add(ListItem.AdItem)
+            }
+        }
+        listItems = items
+
+        // This triggers the staggered animation for list items appearing.
+        listItems.forEachIndexed { index, item ->
+            val key = if (item is Subject) item.title else "ad_$index"
+            delay(50L)
+            visibleItems[key] = true
         }
     }
 
@@ -96,31 +136,12 @@ fun SharedTransitionScope.YearScreen(
     ) {
         itemsIndexed(
             items = listItems,
-            key = { index, item ->
-                when (item) {
-                    is Subject -> item.nameResId
-                    is ListItem.AdItem -> "ad_$index"
-                    else -> "unknown_$index"
-                }
-            }
+            key = { index, item -> if (item is Subject) item.title else "ad_$index" }
         ) { index, item ->
-            val key = when (item) {
-                is Subject -> item.nameResId
-                is ListItem.AdItem -> "ad_$index"
-                else -> "unknown_$index"
-            }
+            val key = if (item is Subject) item.title else "ad_$index"
             val isVisible = visibleItems[key] ?: false
-
-            val alpha by animateFloatAsState(
-                targetValue = if (isVisible) 1f else 0f,
-                animationSpec = tween(300),
-                label = "ItemAlpha"
-            )
-            val translationX by animateFloatAsState(
-                targetValue = if (isVisible) 0f else -50f,
-                animationSpec = tween(300),
-                label = "ItemTranslationX"
-            )
+            val alpha by animateFloatAsState(targetValue = if (isVisible) 1f else 0f, animationSpec = tween(300), label = "")
+            val translationX by animateFloatAsState(targetValue = if (isVisible) 0f else -50f, animationSpec = tween(300), label = "")
 
             val itemModifier = Modifier
                 .graphicsLayer {
@@ -131,35 +152,26 @@ fun SharedTransitionScope.YearScreen(
 
             when (item) {
                 is Subject -> {
-                    // WHAT: Find the original index of the subject within the subjects-only list.
-                    // WHY: The `itemsIndexed` index includes ads, but we need the index
-                    //      relative to the original `subjects` list to pass to the detail screen.
-                    val subjectIndex = SyllabusRepository.getDataForYear(year)?.subjects?.indexOf(item) ?: -1
-
+                    val subjectIndex = subjects.indexOf(item)
                     ListItem(
-                        headlineContent = { Text(text = stringResource(id = item.nameResId)) },
+                        headlineContent = { Text(text = item.title) },
                         modifier = itemModifier
                             .padding(horizontal = 16.dp)
                             .clip(MaterialTheme.shapes.large)
                             .clickable {
-                                // WHAT: Changed the click action to navigate to the SubjectDetail screen.
-                                // WHY: To show the new content-rich screen instead of opening the PDF directly.
-                                if (subjectIndex != -1) {
-                                    navController.navigate(
-                                        Screen.SubjectDetail.createRoute(year, subjectIndex)
-                                    )
-                                }
+                                // WHAT: Navigate to the detailed subject info screen.
+                                // WHY: To provide richer content like key topics and books,
+                                //      enhancing the app's value beyond just being a PDF link list.
+                                onSubjectInfoClick(subjectIndex)
                             },
                         leadingContent = {
                             Icon(
                                 Icons.Default.Book,
-                                contentDescription = null,
+                                contentDescription = "Syllabus",
                                 tint = MaterialTheme.colorScheme.primary
                             )
                         },
-                        colors = ListItemDefaults.colors(
-                            containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
-                        ),
+                        colors = ListItemDefaults.colors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
                         shadowElevation = 2.dp
                     )
                 }
@@ -167,9 +179,7 @@ fun SharedTransitionScope.YearScreen(
                 is ListItem.AdItem -> {
                     Card(
                         modifier = itemModifier.padding(horizontal = 16.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceVariant
-                        )
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
                     ) {
                         NativeAdComposable(adUnitId = AdUtil.NATIVE_AD_UNIT_ID)
                     }

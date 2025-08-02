@@ -1,70 +1,96 @@
 package `in`.shaaan.pcipharmd.ui.screen
 
 import android.app.Activity
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.LibraryBooks
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.LibraryBooks
 import androidx.compose.material.icons.filled.MenuBook
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.ListItem
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import `in`.shaaan.pcipharmd.AdUtil
 import `in`.shaaan.pcipharmd.BaseYearViewModel
-import `in`.shaaan.pcipharmd.repository.SyllabusRepository
+import `in`.shaaan.pcipharmd.models.Subject
+import `in`.shaaan.pcipharmd.models.SubjectDetailUiState
+import `in`.shaaan.pcipharmd.models.SubjectDetailViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SubjectDetailScreen(
     yearId: Int,
     subjectIndex: Int,
-    viewModel: BaseYearViewModel = viewModel()
+    detailViewModel: SubjectDetailViewModel = viewModel(),
+    baseViewModel: BaseYearViewModel = viewModel() // For showing ads on PDF click
 ) {
-    val subject = SyllabusRepository.getDataForYear(yearId)?.subjects?.getOrNull(subjectIndex)
+    // WHAT: Trigger the data fetch when the screen is first composed or its parameters change.
+    // WHY: This ensures the correct subject data is loaded as soon as the user navigates here.
+    LaunchedEffect(yearId, subjectIndex) {
+        detailViewModel.loadSubject(yearId, subjectIndex)
+    }
+
+    val uiState by detailViewModel.uiState.collectAsState()
     val context = LocalContext.current
     val primaryColor = MaterialTheme.colorScheme.primary.toArgb()
 
-    // Observe navigation events from the ViewModel to open the PDF
+    // This observer is for the one-time event of opening the syllabus PDF.
     LaunchedEffect(Unit) {
-        viewModel.navigationEvents.collect { url ->
+        baseViewModel.navigationEvents.collect { url ->
             AdUtil.showInterAd(context as Activity, url, primaryColor)
         }
     }
 
-    if (subject == null) {
-        // Show an error or empty state if subject data is not found
-        Text("Subject not found.")
-        return
+    // WHAT: A state machine for the UI, similar to the other screens.
+    // WHY: To provide clear user feedback by showing a loading indicator, an error message,
+    //      or the main content when the data is successfully loaded.
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        when (val state = uiState) {
+            is SubjectDetailUiState.Loading -> CircularProgressIndicator()
+            is SubjectDetailUiState.Error -> Text(text = state.message, color = MaterialTheme.colorScheme.error)
+            is SubjectDetailUiState.Success -> {
+                SubjectDetailContent(
+                    subject = state.subject,
+                    onViewSyllabusClick = {
+                        baseViewModel.onSubjectClicked(state.subject.endpoint)
+                    }
+                )
+            }
+        }
     }
+}
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun SubjectDetailContent(subject: Subject, onViewSyllabusClick: () -> Unit) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+        // Subject Title
+        item {
+            Text(
+                text = subject.title,
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
         // Key Topics Section
         item {
             Text(
@@ -109,7 +135,7 @@ fun SubjectDetailScreen(
                         subject.recommendedBooks.forEach { book ->
                             ListItem(
                                 headlineContent = { Text(book) },
-                                leadingContent = { Icon(Icons.Default.MenuBook, contentDescription = null) }
+                                leadingContent = { Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null) }
                             )
                         }
                     } else {
@@ -123,11 +149,11 @@ fun SubjectDetailScreen(
         item {
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = { viewModel.onSubjectClicked(subject.endpoint) },
+                onClick = onViewSyllabusClick,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
-                    imageVector = Icons.Default.LibraryBooks,
+                    imageVector = Icons.AutoMirrored.Filled.LibraryBooks,
                     contentDescription = null,
                     modifier = Modifier.padding(end = 8.dp)
                 )
