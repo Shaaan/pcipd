@@ -100,7 +100,7 @@ private fun SubjectDetailContent(subject: Subject) {
             }
         }
 
-        // 2. Recommended Books Section (Always Visible by default)
+        // 2. Recommended Books Section (Always Visible by default - uses bodyLarge)
         item {
             SectionHeader(title = "Recommended Books", icon = Icons.AutoMirrored.Filled.MenuBook)
             if (subject.recommendedBooks.isNotEmpty()) {
@@ -160,7 +160,7 @@ private fun SubjectDetailContent(subject: Subject) {
                             )
                             Text(
                                 text = obj,
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                         }
@@ -314,13 +314,13 @@ private fun ExpandableSyllabusSection(
                                                     ) {
                                                         Text(
                                                             text = "◦",
-                                                            style = MaterialTheme.typography.bodyMedium,
+                                                            style = MaterialTheme.typography.bodyLarge,
                                                             fontWeight = FontWeight.Bold,
                                                             color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
                                                         )
                                                         Text(
                                                             text = cleanLine,
-                                                            style = MaterialTheme.typography.bodyMedium,
+                                                            style = MaterialTheme.typography.bodyLarge,
                                                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                                                             modifier = Modifier.weight(1f)
                                                         )

@@ -30,7 +30,9 @@ import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
+import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.database.database
 import `in`.shaaan.pcipharmd.config.RemoteConfigHelper
 import `in`.shaaan.pcipharmd.navigation.Screen
 import `in`.shaaan.pcipharmd.review.InAppReviewHelper
@@ -47,6 +49,11 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                Firebase.database("https://pcipd-34920.firebaseio.com/").setPersistenceEnabled(true)
+            } catch (e: Exception) {
+                android.util.Log.d("MainActivity", "Firebase persistence configuration: ${e.message}")
+            }
             RemoteConfigHelper.initialize()
             val requestConfiguration = RequestConfiguration.Builder()
                 .apply {

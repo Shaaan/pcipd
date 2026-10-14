@@ -10,6 +10,7 @@ import `in`.shaaan.pcipharmd.models.SyllabusTopicUnit
 import `in`.shaaan.pcipharmd.models.SyllabusUnit
 import kotlinx.coroutines.tasks.await
 import org.json.JSONObject
+import java.util.concurrent.ConcurrentHashMap
 
 object SyllabusRepository {
 
@@ -20,6 +21,8 @@ object SyllabusRepository {
     )
 
     const val BASE_URL = "https://pcipd.hypertex.co.in/syllabus/"
+
+    private val memoryCache = ConcurrentHashMap<Int, YearData>()
 
     fun buildSyllabusUrl(endpoint: String): String {
         if (endpoint.startsWith("http://") || endpoint.startsWith("https://")) {
@@ -39,11 +42,25 @@ object SyllabusRepository {
     }
 
     suspend fun getDataForYear(context: Context, year: Int): Result<YearData> {
+        memoryCache[year]?.let { cachedData ->
+            return Result.success(cachedData)
+        }
+
         return try {
             val databaseUrl = "https://pcipd-34920.firebaseio.com/"
             val rootRef = Firebase.database(databaseUrl).reference
 
-            // 1. Fetch directly from syllabus/$year (e.g. syllabus/1 for Year 1, syllabus/2 for Year 2)
+            val yearKey = when (year) {
+                1 -> "first_year"
+                2 -> "second_year"
+                3 -> "third_year"
+                4 -> "fourth_year"
+                5 -> "fifth_year"
+                6 -> "sixth_year"
+                else -> year.toString()
+            }
+
+            // 1. Fetch directly from syllabus/$year (e.g. syllabus/1 for Year 1)
             var subjectsList = try {
                 val yearSnap = rootRef.child("syllabus").child(year.toString()).get().await()
                 parseSubjectsFromYearSnap(yearSnap)
@@ -53,15 +70,6 @@ object SyllabusRepository {
 
             // 2. If empty, check syllabus/first_year, second_year, etc.
             if (subjectsList.isEmpty()) {
-                val yearKey = when (year) {
-                    1 -> "first_year"
-                    2 -> "second_year"
-                    3 -> "third_year"
-                    4 -> "fourth_year"
-                    5 -> "fifth_year"
-                    6 -> "sixth_year"
-                    else -> year.toString()
-                }
                 subjectsList = try {
                     val topSnap = rootRef.child("syllabus").get().await()
                     extractSubjectsFromNode(topSnap, year.toString(), yearKey)
@@ -76,14 +84,18 @@ object SyllabusRepository {
             }
 
             if (subjectsList.isNotEmpty()) {
-                Result.success(YearData(subjects = subjectsList))
+                val yearData = YearData(subjects = subjectsList)
+                memoryCache[year] = yearData
+                Result.success(yearData)
             } else {
                 Result.failure(Exception("No syllabus data found for year $year."))
             }
         } catch (e: Exception) {
             val fallback = loadYearSubjectsFromAsset(context, year)
             if (fallback.isNotEmpty()) {
-                Result.success(YearData(subjects = fallback))
+                val yearData = YearData(subjects = fallback)
+                memoryCache[year] = yearData
+                Result.success(yearData)
             } else {
                 Result.failure(e)
             }
