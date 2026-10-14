@@ -300,12 +300,33 @@ private fun ExpandableSyllabusSection(
                                         )
                                     }
                                     if (unit.details.isNotEmpty()) {
-                                        unit.details.forEach { detailLine ->
-                                            Text(
-                                                text = if (detailLine.startsWith("•")) detailLine else "  $detailLine",
-                                                style = MaterialTheme.typography.bodyMedium,
-                                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                                            )
+                                        Column(
+                                            modifier = Modifier.padding(start = 8.dp, top = 2.dp),
+                                            verticalArrangement = Arrangement.spacedBy(4.dp)
+                                        ) {
+                                            unit.details.forEach { detailLine ->
+                                                val cleanLine = detailLine.trim().removePrefix("•").trim()
+                                                if (cleanLine.isNotBlank()) {
+                                                    Row(
+                                                        modifier = Modifier.fillMaxWidth(),
+                                                        verticalAlignment = Alignment.Top,
+                                                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                                    ) {
+                                                        Text(
+                                                            text = "◦",
+                                                            style = MaterialTheme.typography.bodyMedium,
+                                                            fontWeight = FontWeight.Bold,
+                                                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f)
+                                                        )
+                                                        Text(
+                                                            text = cleanLine,
+                                                            style = MaterialTheme.typography.bodyMedium,
+                                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                            modifier = Modifier.weight(1f)
+                                                        )
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
