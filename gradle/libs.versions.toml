@@ -1,19 +1,19 @@
 [versions]
 # AndroidX & Core
-coreKtx = "1.19.0"
+coreKtx = "1.19.1"
 activityCompose = "1.13.0"
-composeBom = "2026.08.00"
+composeBom = "2026.09.00"
 firebaseCrashlyticsGradle = "3.0.8"
 googleServices = "4.5.0"
-gradle = "9.4.0"
-navigation = "2.10.0"
+gradle = "9.4.1"
+navigation = "2.10.2"
 browser = "1.10.0"
 material = "1.14.0"
-annotation = "1.10.0"
+annotation = "1.11.0"
 
 # Google & Firebase
-playServicesAds = "25.4.0"
-firebaseBom = "34.18.0"
+playServicesAds = "25.5.0"
+firebaseBom = "35.0.0"
 googlePlayReview = "2.0.2"
 
 # Third Party
@@ -25,7 +25,7 @@ junit = "4.13.2"
 
 # Build Tools & Plugins
 androidGradlePlugin = "9.4.1"
-kotlin = "2.4.10"
+kotlin = "2.4.21"
 googleServicesPlugin = "4.5.0"
 firebaseCrashlyticsPlugin = "3.0.8"
 composeCompiler = "1.5.15"
