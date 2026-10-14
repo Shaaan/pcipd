@@ -14,10 +14,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.stringResource
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -27,15 +27,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.analytics.FirebaseAnalytics
 import `in`.shaaan.pcipharmd.config.RemoteConfigHelper
 import `in`.shaaan.pcipharmd.navigation.Screen
 import `in`.shaaan.pcipharmd.review.InAppReviewHelper
-import `in`.shaaan.pcipharmd.ui.screen.AboutScreen
-import `in`.shaaan.pcipharmd.ui.screen.QuestionPaperListScreen
-import `in`.shaaan.pcipharmd.ui.screen.SubjectDetailScreen
 import `in`.shaaan.pcipharmd.ui.theme.AppTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,9 +48,12 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             RemoteConfigHelper.initialize()
-            val testDeviceIds = listOf("")
             val requestConfiguration = RequestConfiguration.Builder()
-                .setTestDeviceIds(testDeviceIds)
+                .apply {
+                    if (BuildConfig.DEBUG) {
+                        setTestDeviceIds(listOf(AdRequest.DEVICE_ID_EMULATOR))
+                    }
+                }
                 .build()
             MobileAds.setRequestConfiguration(requestConfiguration)
             MobileAds.initialize(this@MainActivity) {}
@@ -82,7 +83,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainApp(onShowReview: () -> Unit) {
     val navController = rememberNavController()
-    val bottomNavItems = listOf(Screen.Syllabus, Screen.QuestionPapers)
+    val showQuestionPapers by RemoteConfigHelper.showQuestionPapersFlow.collectAsState()
+    val bottomNavItems = if (showQuestionPapers) {
+        listOf(Screen.Syllabus, Screen.QuestionPapers)
+    } else {
+        listOf(Screen.Syllabus)
+    }
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -93,22 +99,16 @@ fun MainApp(onShowReview: () -> Unit) {
             topBar = {
                 when (currentDestination?.route) {
                     Screen.Syllabus.route -> LargeTopAppBar(
-                        title = { Text(stringResource(id = R.string.app_name)) },
+                        title = { Text("Academic Syllabus") },
                         actions = {
                             IconButton(onClick = { navController.navigate(Screen.About.route) }) {
                                 Icon(Icons.Default.Info, contentDescription = "About")
                             }
                         },
-                        scrollBehavior = scrollBehavior,
-                        colors = TopAppBarDefaults.largeTopAppBarColors(
-                            containerColor = MaterialTheme.colorScheme.primary,
-                            scrolledContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                            titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                            actionIconContentColor = MaterialTheme.colorScheme.onPrimary
-                        )
+                        scrollBehavior = scrollBehavior
                     )
                     Screen.QuestionPapers.route -> LargeTopAppBar(
-                        title = { Text("Previous Year Papers") },
+                        title = { Text("Previous Papers") },
                         actions = {
                             IconButton(onClick = { navController.navigate(Screen.About.route) }) {
                                 Icon(Icons.Default.Info, contentDescription = "About")
@@ -161,22 +161,24 @@ fun MainApp(onShowReview: () -> Unit) {
                 }
             },
             bottomBar = {
-                NavigationBar {
-                    bottomNavItems.forEach { screen ->
-                        NavigationBarItem(
-                            icon = { Icon(screen.icon!!, contentDescription = screen.title) },
-                            label = { Text(screen.title!!) },
-                            selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                            onClick = {
-                                navController.navigate(screen.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = true
+                if (bottomNavItems.size > 1) {
+                    NavigationBar {
+                        bottomNavItems.forEach { screen ->
+                            NavigationBarItem(
+                                icon = { Icon(screen.icon!!, contentDescription = screen.title) },
+                                label = { Text(screen.title!!) },
+                                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                                onClick = {
+                                    navController.navigate(screen.route) {
+                                        popUpTo(navController.graph.findStartDestination().id) {
+                                            saveState = true
+                                        }
+                                        launchSingleTop = true
+                                        restoreState = true
                                     }
-                                    launchSingleTop = true
-                                    restoreState = true
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
                 }
             }
@@ -207,9 +209,6 @@ fun SharedTransitionScope.AppNavigator(
         modifier = modifier.padding(paddingValues)
     ) {
         composable(Screen.Syllabus.route) {
-            // WHAT: The call to HomeScreen now passes the NavController directly.
-            // WHY: This is the definitive fix. By removing the `onYearClick` lambda that was
-            //      causing the compiler's type inference to fail, we eliminate the error at its source.
             HomeScreen(
                 navController = navController,
                 onShowReview = onShowReview,
@@ -221,7 +220,6 @@ fun SharedTransitionScope.AppNavigator(
         composable(Screen.QuestionPapers.route) {
             QuestionPapersScreen(
                 navController = navController,
-                onAboutClick = { navController.navigate(Screen.About.route) },
                 animatedVisibilityScope = this,
                 scrollBehavior = scrollBehavior
             )
@@ -235,7 +233,8 @@ fun SharedTransitionScope.AppNavigator(
             YearScreen(
                 navController = navController,
                 year = yearId,
-                animatedVisibilityScope = this
+                animatedVisibilityScope = this,
+                scrollBehavior = scrollBehavior
             )
         }
 
@@ -245,7 +244,6 @@ fun SharedTransitionScope.AppNavigator(
         ) { backStackEntry ->
             val yearId = backStackEntry.arguments?.getInt("yearId") ?: -1
             QuestionPaperListScreen(
-                navController = navController,
                 year = yearId,
                 scrollBehavior = scrollBehavior
             )

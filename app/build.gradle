@@ -1,7 +1,5 @@
 plugins {
     alias(libs.plugins.firebase.crashlytics)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.firebase.perf)
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.services)
     alias(libs.plugins.kotlin.compose)
@@ -22,11 +20,11 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
-    compileSdk 36
+    compileSdk 37
     defaultConfig {
         applicationId "in.shaaan.pcipharmd"
         minSdk 26
-        targetSdk 36
+        targetSdk 37
         //        versionCode getVersionCodeTimestamp()
         versionCode 1909301661
         versionName "4.0"
@@ -35,10 +33,12 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            minifyEnabled=true
+            shrinkResources=true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (ksFile.exists()) {
+                signingConfig=signingConfigs.config
+            }
             debuggable false
             buildConfigField "String", "INTERSTITIAL_AD_UNIT_ID", "\"ca-app-pub-1941738066609841/7774678359\""
             buildConfigField "String", "NATIVE_AD_UNIT_ID", "\"ca-app-pub-1941738066609841/8926036161\""
@@ -49,14 +49,14 @@ android {
         }
     }
     buildFeatures {
-        compose true
-        viewBinding true
-        buildConfig true
+        compose=true
+        viewBinding=true
+        buildConfig=true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.composeCompiler.get()
+        kotlinCompilerExtensionVersion=libs.versions.composeCompiler.get()
     }
-    namespace 'in.shaaan.pcipharmd'
+    namespace='in.shaaan.pcipharmd'
 }
 
 kotlin {
@@ -75,7 +75,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation libs.androidx.core.ktx
-    implementation libs.firebase.perf
     implementation libs.androidx.compose.ui.text.google.fonts
     implementation libs.androidx.navigation.runtime
 
@@ -110,7 +109,6 @@ dependencies {
     implementation libs.firebase.crashlytics
     implementation libs.firebase.remote.config
     implementation libs.google.play.review.ktx
-    implementation libs.accompanist.navigation.animation
     implementation libs.firebase.database
 
 

@@ -1,0 +1,1904 @@
+{
+  "syllabus": {
+    "1": {
+      "subjects": [
+        {
+          "title": "Human Anatomy & Physiology",
+          "recommendedBooks": [
+            "Tortora Gerard J. and Nicholas, P. Principles of anatomy and physiology Publisher Harpercollins college New York.",
+            "Wilson, K.J.W. Ross and Wilson's foundations of anatomy and physiology. Publisher: Churchill Livingstone, Edinburg.",
+            "Guyton arthur, C. Physiology of human body. Publisher: Holtsaunders.",
+            "Chatterjee, C.C. Human physiology. Volume I&II. Publisher: medical allied agency, Calcutta.",
+            "Peter L. Williams, Roger Warwick, Mary Dyson and Lawrence, H. Gray's anatomy. Publisher: Churchill Livingstone, London.",
+            "Goyal, R. K, Natvar M.P, and Shah S.A, Practical anatomy, physiology and biochemistry, latest edition, Publisher: B.S Shah Prakashan, Ahmedabad.",
+            "Ranade VG, Text book of practical physiology, Latest edition, Publisher: PVG, Pune",
+            "Anderson Experimental Physiology, Latest edition, Publisher: NA"
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Scope of anatomy and physiology, basic terminologies used in this subject",
+              "details": [
+                "Description of the body as such planes and terminologies"
+              ]
+            },
+            {
+              "title": "Structure of cell",
+              "details": [
+                "Its components and their functions"
+              ]
+            },
+            {
+              "title": "Elementary tissues of the human body",
+              "details": [
+                "Epithelial, connective, Muscular and nervous tissues-their sub-types and characteristics"
+              ]
+            },
+            {
+              "title": "Osseous system",
+              "details": [
+                "Structure, composition and functions of the Skeleton (done in practical classes - 6hrs)",
+                "Classification of joints, Types of movements of joints and disorders of joints (Definitions only)"
+              ]
+            },
+            {
+              "title": "Haemopoetic System",
+              "details": [
+                "Composition and functions of blood",
+                "Haemopoesis and disorders of blood components (definition of disorder)",
+                "Blood groups",
+                "Clotting factors and mechanism",
+                "Platelets and disorders of coagulation"
+              ]
+            },
+            {
+              "title": "Lymph",
+              "details": [
+                "Lymph and lymphatic system, composition, formation and circulation",
+                "Spleen: structure and functions, Disorders",
+                "Disorders of lymphatic system (definition only)"
+              ]
+            },
+            {
+              "title": "Cardiovascular system",
+              "details": [
+                "Anatomy and functions of heart",
+                "Blood vessels and circulation (Pulmonary, coronary and systemic circulation)",
+                "Electrocardiogram (ECG)",
+                "Cardiac cycle and heart sounds",
+                "Blood pressure - its maintenance and regulation",
+                "Definition of the following disorders: Hypertension, Hypotension, Arteriosclerosis, Atherosclerosis, Angina, Myocardial infarction, Congestive heart failure, Cardiac arrhythmias"
+              ]
+            },
+            {
+              "title": "Respiratory system",
+              "details": [
+                "Anatomy of respiratory organs and functions",
+                "Mechanism/physiology of respiration and regulation of respiration",
+                "Transport of respiratory gases",
+                "Respiratory volumes and capacities, and Definition of: Hypoxia, Asphyxia, Dybarism, Oxygen therapy and resuscitation"
+              ]
+            },
+            {
+              "title": "Digestive system",
+              "details": [
+                "Anatomy and physiology of GIT",
+                "Anatomy and functions of accessory glands of GIT",
+                "Digestion and absorption",
+                "Disorders of GIT (definitions only)"
+              ]
+            },
+            {
+              "title": "Nervous system",
+              "details": [
+                "Definition and classification of nervous system",
+                "Anatomy, physiology and functional areas of cerebrum",
+                "Anatomy and physiology of cerebellum",
+                "Anatomy and physiology of mid brain",
+                "Thalamus, hypothalamus and Basal Ganglia",
+                "Spinal card: Structure & reflexes - mono-poly-planter",
+                "Cranial nerves - names and functions",
+                "ANS - Anatomy & functions of sympathetic & parasympathetic N.S."
+              ]
+            },
+            {
+              "title": "Urinary system",
+              "details": [
+                "Anatomy and physiology of urinary system",
+                "Formation of urine",
+                "Renin Angiotensin system - Juxtaglomerular apparatus - acid base Balance",
+                "Clearance tests and micturition"
+              ]
+            },
+            {
+              "title": "Endocrine system",
+              "details": [
+                "Pituitary gland",
+                "Adrenal gland",
+                "Thyroid and Parathyroid glands",
+                "Pancreas and gonads"
+              ]
+            },
+            {
+              "title": "Reproductive system",
+              "details": [
+                "Male and female reproductive system",
+                "Their hormones - Physiology of menstruation",
+                "Spermatogenesis & Oogenesis",
+                "Sex determination (genetic basis)",
+                "Pregnancy and maintenance and parturition",
+                "Contraceptive devices"
+              ]
+            },
+            {
+              "title": "Sense organs",
+              "details": [
+                "Eye",
+                "Ear",
+                "Skin",
+                "Tongue & Nose"
+              ]
+            },
+            {
+              "title": "Skeletal muscles",
+              "details": [
+                "Histology",
+                "Physiology of Muscle contraction",
+                "Physiological properties of skeletal muscle and their disorders (definitions)"
+              ]
+            },
+            {
+              "title": "Sports physiology",
+              "details": [
+                "Muscles in exercise, Effect of athletic training on muscles and muscle performance",
+                "Respiration in exercise, CVS in exercise, Body heat in exercise, Body fluids and salts in exercise",
+                "Drugs and athletics"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Study of tissues of human body (Part 1)",
+              "details": [
+                "Epithelial tissue",
+                "Muscular tissue"
+              ]
+            },
+            {
+              "title": "Study of tissues of human body (Part 2)",
+              "details": [
+                "Connective tissue",
+                "Nervous tissue"
+              ]
+            },
+            {
+              "title": "Hematological experiments",
+              "details": [
+                "Study of appliances used in hematological experiments",
+                "Determination of W.B.C. count of blood",
+                "Determination of R.B.C. count of blood",
+                "Determination of differential count of blood",
+                "Determination of Erythrocyte Sedimentation Rate",
+                "Determination of Hemoglobin content of Blood",
+                "Determination of Bleeding time & Clotting time",
+                "Determination of Blood Pressure",
+                "Determination of Blood group"
+              ]
+            },
+            {
+              "title": "Study of various systems with the help of charts, models & specimens",
+              "details": [
+                "Skeleton system part I-axial skeleton",
+                "Skeleton system part II-appendicular skeleton",
+                "Cardiovascular system",
+                "Respiratory system",
+                "Digestive system",
+                "Urinary system",
+                "Nervous system",
+                "Special senses",
+                "Reproductive system"
+              ]
+            },
+            {
+              "title": "Reproductive & Experimental Physiology",
+              "details": [
+                "Study of different family planning appliances",
+                "To perform pregnancy diagnosis test",
+                "Study of appliances used in experimental physiology",
+                "To record simple muscle curve using gastroenemius sciatic nerve preparation",
+                "To record simple summation curve using gastroenemius sciatic nerve preparation",
+                "To record simple effect of temperature using gastroenemius sciatic nerve preparation",
+                "To record simple effect of load & after load using gastroenemius sciatic nerve preparation",
+                "To record simple fatigue curve using gastroenemius sciatic nerve preparation"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Pharmaceutics",
+          "recommendedBooks": [
+            "Cooper and Gunns Dispensing for pharmacy students.",
+            "A text book Professional Pharmacy by N.K.Jain and S.N.Sharma.",
+            "Introduction to Pharmaceutical dosage forms by Howard C. Ansel.",
+            "Remington's Pharmaceutical Sciences.",
+            "Register of General Pharmacy by Cooper and Gunn.",
+            "General Pharmacy by M.L.Schroff."
+          ],
+          "theoryHours": "2 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Introduction, Prescription & Posology",
+              "details": [
+                "Introduction to dosage forms - classification and definitions",
+                "Prescription: definition, parts and handling",
+                "Posology: Definition, Factors affecting dose selection. Calculation of children and infant doses."
+              ]
+            },
+            {
+              "title": "History & Pharmacopoeias",
+              "details": [
+                "Historical back ground and development of profession of pharmacy and pharmaceutical industry in brief.",
+                "Development of Indian Pharmacopoeia and introduction to other Pharmacopoeias such as BP, USP, European Pharmacopoeia, Extra pharmacopoeia and Indian national formulary."
+              ]
+            },
+            {
+              "title": "Weights, Measures & Calculations",
+              "details": [
+                "Weights and measures, Calculations involving percentage solutions, allegation, proof spirit, isotonic solutions etc.",
+                "Pharmaceutical calculations."
+              ]
+            },
+            {
+              "title": "Powders and Granules",
+              "details": [
+                "Classification advantages and disadvantages, Preparation of simple, compound powders, Insufflations, Dusting powders, Eutectic and Explosive powders, Tooth powder and effervescent powders and granules."
+              ]
+            },
+            {
+              "title": "Monophasic Dosage forms",
+              "details": [
+                "Theoretical aspects of formulation including adjuvant like stabilizers, colorants, flavours with examples.",
+                "Study of Monophasic liquids like gargles, mouth washes, Throat paint, Ear drops, Nasal drops, Liniments and lotions, Enemas and collodions."
+              ]
+            },
+            {
+              "title": "Biphasic dosage forms",
+              "details": [
+                "Suspensions and emulsions, Definition, advantages and disadvantages, classification, test for the type of emulsion, formulation, stability and evaluation."
+              ]
+            },
+            {
+              "title": "Suppositories and pessaries",
+              "details": [
+                "Definition, advantages and disadvantages, types of base, method of preparation, Displacement value and evaluation."
+              ]
+            },
+            {
+              "title": "Galenicals",
+              "details": [
+                "Definition, equipment for different extraction processes like infusion, Decoction, Maceration and Percolation, methods of preparation of spirits, tinctures and extracts."
+              ]
+            },
+            {
+              "title": "Surgical aids & Incompatibilities",
+              "details": [
+                "Surgical aids: Surgical dressings, absorbable gelatin sponge, sutures, ligatures and medicated bandages.",
+                "Incompatibilities: Introduction, classification and methods to overcome the incompatibilities."
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Syrups",
+              "details": [
+                "Simple Syrup I.P",
+                "Syrup of Ephedrine Hcl NF",
+                "Syrup Vasaka IP",
+                "Syrup of ferrous Phosphate IP",
+                "Orange Syrup"
+              ]
+            },
+            {
+              "title": "Elixir",
+              "details": [
+                "Piperizine citrate elixir BP",
+                "Cascara elixir BPC",
+                "Paracetamol elixir BPC"
+              ]
+            },
+            {
+              "title": "Linctus",
+              "details": [
+                "Simple Linctus BPC",
+                "Pediatric simple Linctus BPC"
+              ]
+            },
+            {
+              "title": "Solutions",
+              "details": [
+                "Solution of cresol with soap IP",
+                "Strong solution of ferric chloride BPC",
+                "Aqueous Iodine Solution IP",
+                "Strong solution of Iodine IP",
+                "Strong solution of ammonium acetate IP"
+              ]
+            },
+            {
+              "title": "Liniments",
+              "details": [
+                "Liniment of turpentine IP",
+                "Liniment of camphor IP"
+              ]
+            },
+            {
+              "title": "Suspensions",
+              "details": [
+                "Calamine lotion",
+                "Magnesium Hydroxide mixture BP"
+              ]
+            },
+            {
+              "title": "Emulsions",
+              "details": [
+                "Cod liver oil emulsion",
+                "Liquid paraffin emulsion"
+              ]
+            },
+            {
+              "title": "Powders",
+              "details": [
+                "Eutectic powder",
+                "Explosive powder",
+                "Dusting powder",
+                "Insufflations"
+              ]
+            },
+            {
+              "title": "Suppositories",
+              "details": [
+                "Boric acid suppositories",
+                "Chloral suppositories"
+              ]
+            },
+            {
+              "title": "Incompatibilities",
+              "details": [
+                "Mixtures with Physical",
+                "Chemical & Therapeutic incompatibilities"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Medicinal Biochemistry",
+          "recommendedBooks": [
+            "Harpers review of biochemistry - Martin",
+            "Text book of biochemistry - D.Satyanarayana",
+            "Text book of clinical chemistry- Alex kaplan & Laverve L.Szabo",
+            "Principles of biochemistry -- Lehninger",
+            "Text book of biochemistry -- Ramarao",
+            "Practical Biochemistry-David T.Plummer.",
+            "Practical Biochemistry-Pattabhiraman."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Introduction to biochemistry",
+              "details": [
+                "Cell and its biochemical organization, transport process across the cell membranes. Energy rich compounds; ATP, Cyclic AMP and their biological significance."
+              ]
+            },
+            {
+              "title": "Enzymes",
+              "details": [
+                "Definition; Nomenclature; IUB classification; Factor affecting enzyme activity; Enzyme action; enzyme inhibition. Isoenzymes and their therapeutic and diagnostic applications; Coenzymes and their biochemical role and deficiency diseases."
+              ]
+            },
+            {
+              "title": "Carbohydrate metabolism",
+              "details": [
+                "Glycolysis, Citric acid cycle (TCA cycle), HMP shunt, Glycogenolysis, gluconeogenesis, glycogenesis.",
+                "Metabolic disorders of carbohydrate metabolism (diabetes mellitus and glycogen storage diseases); Glucose, Galactose tolerance test and their significance; hormonal regulation of carbohydrate metabolism."
+              ]
+            },
+            {
+              "title": "Lipid metabolism",
+              "details": [
+                "Oxidation of saturated (beta-oxidation); Ketogenesis and ketolysis; biosynthesis of fatty acids, lipids; metabolism of cholesterol; Hormonal regulation of lipid metabolism. Defective metabolism of lipids (Atheroslerosis, fatty liver, hypercholesterolmiea)."
+              ]
+            },
+            {
+              "title": "Biological oxidation",
+              "details": [
+                "Coenzyme system involved in Biological oxidation. Electron transport chain (its mechanism in energy capture; regulation and inhibition); Uncouplers of ETC; Oxidative phosphorylation."
+              ]
+            },
+            {
+              "title": "Protein and amino acid metabolism",
+              "details": [
+                "Protein turn over; nitrogen balance; Catabolism of Amino acids (Transamination, deamination & decarboxylation).",
+                "Urea cycle and its metabolic disorders; production of bile pigments; hyperbilirubinemia, porphoria, jaundice. Metabolic disorder of Amino acids."
+              ]
+            },
+            {
+              "title": "Nucleic acid metabolism",
+              "details": [
+                "Metabolism of purine and pyrimidine nucleotides; Protein synthesis; Genetic code; inhibition of protein synthesis; mutation and repair mechanism; DNA replication (semiconservative /onion peel models) and DNA repair mechanism."
+              ]
+            },
+            {
+              "title": "Introduction to clinical chemistry",
+              "details": [
+                "Cell; composition; malfunction; Role of the clinical chemistry laboratory."
+              ]
+            },
+            {
+              "title": "The kidney function tests",
+              "details": [
+                "Role of kidney; Laboratory tests for normal function includes:",
+                "Urine analysis (macroscopic and physical examination, quantitative and semiquantitative tests.)",
+                "Test for NPN constituents. (Creatinine /urea clearance, determination of blood and urine creatinine, urea and uric acid)",
+                "Urine concentration test",
+                "Urinary tract calculi. (stones)"
+              ]
+            },
+            {
+              "title": "Liver function tests",
+              "details": [
+                "Physiological role of liver, metabolic, storage, excretory, protective, circulatory functions and function in blood coagulation.",
+                "Test for hepatic dysfunction-Bile pigments metabolism.",
+                "Test for hepatic function test- Serum bilirubin, urine bilirubin, and urine urobilinogen.",
+                "Dye tests of excretory function.",
+                "Tests based upon abnormalities of serum proteins. Selected enzyme tests."
+              ]
+            },
+            {
+              "title": "Lipid profile tests",
+              "details": [
+                "Lipoproteins, composition, functions. Determination of serum lipids, total cholesterol, HDL cholesterol, LDL cholesterol and triglycerides."
+              ]
+            },
+            {
+              "title": "Immunochemical techniques",
+              "details": [
+                "Determination of hormone levels and protein levels in serum for endocrine diseases and infectious diseases. Radio immuno assay (RIA) and Enzyme Linked Immuno Sorbent Assay (ELISA)"
+              ]
+            },
+            {
+              "title": "Electrolytes",
+              "details": [
+                "Body water, compartments, water balance, and electrolyte distrubution. Determination of sodium, calcium potassium, chlorides, bicarbonates in the body fluids."
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Title of the Experiments",
+              "details": [
+                "Qualitative analysis of normal constituents of urine.",
+                "Qualitative analysis of abnormal constituents of urine.",
+                "Quantitative estimation of urine sugar by Benedict's reagent method.",
+                "Quantitative estimation of urine chlorides by Volhard's method.",
+                "Quantitative estimation of urine creatinine by Jaffe's method.",
+                "Quantitative estimation of urine calcium by precipitation method.",
+                "Quantitative estimation of serum cholesterol by Libermann Burchard's method.",
+                "Preparation of Folin Wu filtrate from blood.",
+                "Quantitative estimation of blood creatinine.",
+                "Quantitative estimation of blood sugar Folin-Wu tube method.",
+                "Estimation of SGOT in serum.",
+                "Estimation of SGPT in serum.",
+                "Estimation of Urea in Serum.",
+                "Estimation of Proteins in Serum.",
+                "Determination of serum bilirubin",
+                "Determination of Glucose by means of Glucoseoxidase.",
+                "Enzymatic hydrolysis of Glycogen/Starch by Amylases.",
+                "Study of factors affecting Enzyme activity. (pH & Temp.)",
+                "Preparation of standard buffer solutions and its pH measurements (any two)",
+                "Experiment on lipid profile tests",
+                "Determination of sodium, calcium and potassium in serum."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Pharmaceutical Organic Chemistry",
+          "recommendedBooks": [
+            "T.R.Morrison and R. Boyd - Organic chemistry",
+            "Bentley and Driver-Text book of Pharmaceutical chemistry",
+            "I.L.Finer- Organic chemistry, the fundamentals of chemistry",
+            "Organic chemistry - J.M.Cram and D.J.Cram",
+            "Organic chemistry- Brown",
+            "Advanced organic chemistry- Jerry March, Wiley",
+            "Organic chemistry- Cram and Hammered, Pine Hendrickson"
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Structures and Physical properties",
+              "details": [
+                "Polarity of bonds, polarity of molecules, M.P, Inter molecular forces, B.P, Solubility, non ionic solutes and ionic solutes, protic and aprotic Solvents, ion pairs",
+                "Acids and bases, Lowry bronsted and Lewis theories",
+                "Isomerism"
+              ]
+            },
+            {
+              "title": "Nomenclature of organic compounds",
+              "details": [
+                "Alkanes, Alkenes, Dienes, Alkynes, Alcohols, Aldehydes, Ketones, Amides, Amines, Phenols, Alkyl Halides, Carboxylic Acid, Esters, Acid Chlorides And Cycloalkanes."
+              ]
+            },
+            {
+              "title": "Free radicals & Alicyclic compounds",
+              "details": [
+                "Free radicals chain reactions of alkane: Mechanism, relative reactivity and stability",
+                "Alicyclic compounds: Preparations of cyclo alkanes, Bayer strain theory and orbital picture of angle strain."
+              ]
+            },
+            {
+              "title": "Nucleophilic aliphatic substitution mechanism",
+              "details": [
+                "Nucleophiles and leaving groups, kinetics of second and first order reaction, mechanism and kinetics of SN2 reactions.",
+                "Stereochemistry and steric hindrance, role of solvents, phase transfer catalysis, mechanism and kinetics of SN1 reactions, stereochemistry, carbocation and their stability, rearrangement of carbocation, role of solvents in SN1 reaction, Ion dipole bonds, SN2 versus SN1 solvolyses, nucleophilic assistance by the solvents."
+              ]
+            },
+            {
+              "title": "Dehydro halogenation of alkyl halides",
+              "details": [
+                "1,2 elimination, kinetics, E2 and E1 mechanism, elimination via carbocation, evidence for E2 mechanism, absence of rearrangement isotope effect, absence hydrogen exchange, the element effect, orientation and reactivity, E2 versus E1, elimination versus substitution, dehydration of alcohol, ease of dehydration, acid catalysis, reversibility, orientation."
+              ]
+            },
+            {
+              "title": "Electrophilic and free radicals addition",
+              "details": [
+                "Reactions at carbon-carbon, double bond, electrophile, hydrogenation, heat of hydrogenation and stability of alkenes, markownikoff rule, addition of hydrogen halides, addition of hydrogen bromides, peroxide effect, electrophillic addition, mechanism, rearrangement, absence of hydrogen exchange, orientation and reactivity, addition of halogen, mechanism, halohydrin formation, mechanism of free radicals additon, mechanism of peroxide initiated addition of hydrogen bromide, orientation of free addition, additions of carbene to alkene, cyclo addition reactions."
+              ]
+            },
+            {
+              "title": "Carbon-carbon double bond as substituents & Theory of resonance",
+              "details": [
+                "Free radical halogenations of alkenes, comparision of free radical substitution with free radical addition, free radical substitution in alkenes, orientation and reactivity, allylic rearrangements.",
+                "Allyl radical as a resonance hybrid, stability, orbital picture, resonance stabilisation of allyl radicals, hyper conjugation, allyl cation as a resonance hybrid, nucleophyllic substitution in allylic substrate, SN1 reactivity, allylic rearrangement, resonance stabilisation of allyl cation, hyper conjugation, nucleophilic substitution in allylic substrate, SN2 nucleophilic substituion in vinylic substrate, vinylic cation, stability of conjugated dienes, resonance in alkenes, hyper conjugation, ease of formation of conjugated dienes, orientation of elimination, electrophilic addition to conjugated dienes, 1,4- addition, 1,2-versus 1,4-addition, rate versus equilibrium, orientation and reactivity of free radical addition to conjugated dienes."
+              ]
+            },
+            {
+              "title": "Electrophilic aromatic substitution",
+              "details": [
+                "Effect of substituent groups, determination of orientation, determination of relative reactivity, classification of substituent group, mechanism of nitration, sulphonation, halogenation, friedel craft alkylation, friedel craft acylation, reactivity and orientation, activating and deactivating O,P,M directing groups, electron release via resonance, effect of halogen on electrophilic aromatic substitution in alkyl benzene, side chain halogination of alkyl benzene, resonance stabilization of benzyl radical."
+              ]
+            },
+            {
+              "title": "Nucleophilic addition & Named Reactions",
+              "details": [
+                "Mechanism, ionisation of carboxylic acids, acidity constants, acidity of acids, structure of carboxylate ions, effect of substituent on acidity, nucleophilic acyl substitution reaction, conversion of acid to acid chloride, esters, amide and anhydride. Role of carboxyl group, comparison of alkyl nucleophilic substitution with acyl nucleophilic substitution.",
+                "Mechanism of aldol condensation, claisen condensation, cannizzaro reaction, crossed aldol condensation, crossed cannizzaro reaction, benzoin condensation, perkin condensation. Knoevenagel, Reformatsky reaction, Wittig reaction, Michael addition.",
+                "Hoffman rearrangement: Migration to electron deficient nitrogen, Sandmeyer's reaction, basicity of amines, diazotisation and coupling, acidity of phenols, Williamson synthesis, Fries rearrangement, Kolbe reaction, Reimer tieman's reactions.",
+                "Nucleophilic aromatic substitution: Bimolecular displacement mechanisms, orientation, comparison of aliphatic nucleophilic substitution with that of aromatic.",
+                "Oxidation reduction reaction."
+              ]
+            },
+            {
+              "title": "Study of official compounds",
+              "details": [
+                "Preparation, test for purity, assay and medicinal uses of Chlorbutol, Dimercaprol, Glyceryl trinitrate, Urea, Ethylene diamine dihyrate, Vanillin, Paraldehyde, Ethylene chloride, Lactic acid, Tartaric acid, citric acid, salicylic acid, aspirin, methyl salicylate, ethyl benzoate, benzyl benzoate, dimethyl pthalate, sodium lauryl sulphate, saccharin sodium, mephensin."
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Synthesis of compounds (at least 8 compounds)",
+              "details": [
+                "Acetanilde / aspirin (Acetylation)",
+                "Benzanilide / Phenyl benzoate (Benzoylation)",
+                "P-bromo acetanilide/2,4,6-tribromo aniline (Bromination)",
+                "Dibenzylidene acetone (Condensation)",
+                "1-Phenylazo-2-napthol (Diazotisation and coupling)",
+                "Benzoic acid / salicylic acid (Hydrolysis of ester)",
+                "M-dinitro benzene (Nitration)",
+                "9, 10 Anthraquinone (Oxidation of anthracene) / preparation of benzoic acid from toluene or benzaldehyde",
+                "M-phenylene diamine (Reduction of M-dinitrobenzene) / Aniline from nitrobenzene",
+                "Benzophenone oxime",
+                "Nitration of salicylic acid",
+                "Preparation of picric acid",
+                "Preparation of O-chlorobenzoic acid from O-chlorotolune",
+                "Preparation of cyclohexanone from cyclohexanol"
+              ]
+            },
+            {
+              "title": "Identification of organic compounds",
+              "details": [
+                "Systematic qualitative organic analysis including preparation of derivatives: Phenols, amides, carbohydrates, amines, carboxylic acids, aldehyde and ketones, Alcohols, esters, hydrocarbons, anilides, nitrocompounds."
+              ]
+            },
+            {
+              "title": "Introduction to the use of stereo models",
+              "details": [
+                "Methane, Ethane, Ethylene, Acetylene, Cis alkene, Trans alkene, inversion of configuration."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Pharmaceutical Inorganic Chemistry",
+          "recommendedBooks": [
+            "A text book Inorganic medicinal chemistry by Surendra N. Pandeya",
+            "A. H. Beckett and J. B. Stanlake's Practical Pharmaceutical chemistry Vol-I & Vol-II",
+            "Inorganic Pharmaceutical Chemistry III-Edition P.Gundu Rao",
+            "Inorganic Pharmaceutical Chemistry by Anand & Chetwal",
+            "Pharmaceutical Inorganic chemistry by Dr.B.G.Nagavi",
+            "Analytical chemistry principles by John H. Kennedy",
+            "I.P.1985 and 1996, Govt. of India, Ministry of health"
+          ],
+          "theoryHours": "2 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Lecture wise programme",
+              "details": [
+                "Errors",
+                "Volumetric analysis",
+                "Acid-base titrations",
+                "Redox titrations",
+                "Non aqueous titrations",
+                "Precipitation titrations",
+                "Complexometric titrations",
+                "Theory of indicators",
+                "Gravimetry",
+                "Limit tests",
+                "Medicinal gases",
+                "Acidifiers",
+                "Antacids",
+                "Cathartics",
+                "Electrolyte replenishers",
+                "Essential Trace elements",
+                "Antimicrobials",
+                "Pharmaceutical aids",
+                "Dental Products",
+                "Miscellaneous compounds",
+                "Radio Pharmaceuticals"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Limit test (6 exercises)",
+              "details": [
+                "Limit test for chlorides",
+                "Limit test for sulphates",
+                "Limit test for iron",
+                "Limit test for heavy metals",
+                "Limit test for arsenic",
+                "Modified limit tests for chlorides and sulphates"
+              ]
+            },
+            {
+              "title": "Assays (10 exercises)",
+              "details": [
+                "Ammonium chloride- Acid-base titration",
+                "Ferrous sulphate- Cerimetry",
+                "Copper sulphate- Iodometry",
+                "Calcium gluconate- Complexometry",
+                "Hydrogen peroxide - Permanganometry",
+                "Sodium benzoate - Nonaqueous titration",
+                "Sodium chloride - Modified volhard's method",
+                "Assay of KI - KIO3 titration",
+                "Gravimetric estimation of barium as barium sulphate",
+                "Sodium antimony gluconate or antimony potassium tartarate"
+              ]
+            },
+            {
+              "title": "Estimation of mixture (Any two exercises)",
+              "details": [
+                "Sodium hydroxide and sodium carbonate",
+                "Boric acid and Borax",
+                "Oxalic acid and sodium oxalate"
+              ]
+            },
+            {
+              "title": "Test for identity (Any three exercises)",
+              "details": [
+                "Sodium bicarbonate",
+                "Barium sulphate",
+                "Ferrous sulphate",
+                "Potassium chloride"
+              ]
+            },
+            {
+              "title": "Test for purity (Any two exercises)",
+              "details": [
+                "Swelling power in Bentonite",
+                "Acid neutralising capacity in aluminium hydroxide gel",
+                "Ammonium salts in potash alum",
+                "Adsorption power heavy Kaolin",
+                "Presence of Iodates in KI"
+              ]
+            },
+            {
+              "title": "Preparations (Any two exercises)",
+              "details": [
+                "Boric acids",
+                "Potash alum",
+                "Calcium lactate",
+                "Magnesium sulphate"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Remedial Mathematics / Biology",
+          "recommendedBooks": [
+            "Differential calculus By Shantinarayan",
+            "Text book of Mathematics for second year pre-university by Prof.B.M.Sreenivas",
+            "Integral calculus By Shanthinarayan",
+            "Engineering mathematics By B.S.Grewal",
+            "Trigonometry Part-I By S.L.Loney",
+            "Text book of Biology by S.B.Gokhale",
+            "A Text book of Biology by Dr.Thulajappa and Dr. Seetaram.",
+            "A Text book of Biology by B.V.Sreenivasa Naidu",
+            "A Text book of Biology by Naidu and Murthy",
+            "Botany for Degree students By A.C.Dutta.",
+            "Outlines of Zoology by M.Ekambaranatha ayyer and T.N.Ananthakrishnan.",
+            "A manual for pharmaceutical biology practical by S.B.Gokhale and C.K.Kokate."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Remedial Mathematics",
+              "details": [
+                "Algebra: Determinants, Matrices",
+                "Trigonometry: Sides and angles of a triangle, solution of triangles",
+                "Analytical Geometry: Points, Straight line, circle, parabola",
+                "Differential calculus: Limit of a function, Differential calculus, Differentiation of a sum, Product, Quotient Composite, Parametric, exponential, trigonometric and Logarithmic function. Successive differentiation, Leibnitz's theorem, Partial differentiation, Euler's theorem on homogeneous functions of two variables",
+                "Integral Calculus: Definite integrals, integration by substitution and by parts, Properties of definite integrals.",
+                "Differential equations: Definition, order, degree, variable separable, homogeneous, Linear, heterogeneous, linear, differential equation with constant coefficient, simultaneous linear equation of second order.",
+                "Laplace transform: Definition, Laplace transform of elementary functions, Properties of linearity and shifting."
+              ]
+            },
+            {
+              "title": "Biology (Part A & Part B)",
+              "details": [
+                "Part A: Introduction, General organization of plants and its inclusions, Plant tissues, Plant kingdom and its classification, Morphology of plants, Root, Stem, Leaf and Its modifications, Inflorescence and Pollination of flowers, Morphology of fruits and seeds, Plant physiology, Taxonomy of Leguminosae, umbelliferae, Solanaceae, Lilliaceae, Zinziberaceae, Rubiaceae, Study of Fungi, Yeast, Penicillin and Bacteria",
+                "Part B: Study of Animal cell, Study animal tissues, Detailed study of frog, Study of Pisces, Reptiles, Aves, General organization of mammals, Study of poisonous animals"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week (For Biology)",
+          "practicalSubjects": [
+            {
+              "title": "Biology Practicals",
+              "details": [
+                "Introduction of biology experiments",
+                "Study of cell wall constituents and cell inclusions",
+                "Study of Stem modifications",
+                "Study of Root modifications",
+                "Study of Leaf modifications",
+                "Identification of Fruits and seeds",
+                "Preparation of Permanent slides",
+                "T.S. of Senna, Cassia, Ephedra, Podophyllum.",
+                "Simple plant physiological experiments",
+                "Identification of animals",
+                "Detailed study of Frog",
+                "Computer based tutorials"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "subjects": [
+        {
+          "title": "Pathophysiology",
+          "recommendedBooks": [
+            "Pathologic basis of disease by- Cotran, Kumar, Robbins",
+            "Text book of Pathology- Harsh Mohan",
+            "Text book of Pathology-Y.M. Bhinde",
+            "Clinical Pharmacy and Therapeutics; Second edition; Roger Walker; Churchill Livingstone publication"
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Basic principles of cell injury and Adaptation",
+              "details": [
+                "Causes, Pathogenesis and morphology of cell injury",
+                "Abnormalities in lipoproteinaemia, glycogen infiltration and glycogen storage diseases"
+              ]
+            },
+            {
+              "title": "Inflammation",
+              "details": [
+                "Pathogenesis of acute inflammation, Chemical mediators in inflammation, Types of chronic inflammation",
+                "Repairs of wounds in the skin, factors influencing healing of wounds"
+              ]
+            },
+            {
+              "title": "Diseases of Immunity",
+              "details": [
+                "Introduction to T and B cells",
+                "MHC proteins or transplantation antigens",
+                "Immune tolerance",
+                "Hypersensitivity: Hypersensitivity type I, II, III, IV, Biological significance, Allergy due to food, chemicals and drugs",
+                "Autoimmunity: Criteria for autoimmunity, Classifications of autoimmune diseases in man, mechanism of autoimmunity, Transplantation and immunologic tolerance, allograft rejections, transplantation antigens, mechanism of rejection of allograft.",
+                "Acquired immune deficiency syndrome (AIDS)",
+                "Amylodosis"
+              ]
+            },
+            {
+              "title": "Cancer, Shock, Radiation, Environmental & Nutritional diseases",
+              "details": [
+                "Cancer: differences between benign and malignant tumors, Histological diagnosis of malignancy, invasions and metastasis, patterns of spread, disturbances of growth of cells, classification of tumors, general biology of tumors, spread of malignant tumors, etiology and pathogenesis of cancer.",
+                "Types of shock, mechanisms, stages and management",
+                "Biological effects of radiation",
+                "Environmental and nutritional diseases: Air pollution and smoking- SO2, NO, NO2, and CO; Protein calorie malnutrition, vitamins, obesity, pathogenesis of starvation."
+              ]
+            },
+            {
+              "title": "Pathophysiology of common diseases",
+              "details": [
+                "Parkinsonism",
+                "Schizophrenia",
+                "Depression and mania",
+                "Hypertension",
+                "Stroke (ischaemic and hemorrhage)",
+                "Angina, CCF, Atherosclerosis, Myocardial infarction",
+                "Diabetes Mellitus",
+                "Peptic ulcer and inflammatory bowel diseases",
+                "Cirrhosis and Alcoholic liver diseases",
+                "Acute and chronic renal failure",
+                "Asthma and chronic obstructive airway diseases"
+              ]
+            },
+            {
+              "title": "Infectious diseases",
+              "details": [
+                "Sexually transmitted diseases (HIV, Syphilis, Gonorrhea), Urinary tract infections, Pneumonia, Typhoid, Tuberculosis, Leprosy, Malaria Dysentery (bacterial and amoebic), Hepatitis- infective hepatitis."
+              ]
+            }
+          ],
+          "practicalHours": "0 Hrs./Week",
+          "practicalSubjects": []
+        },
+        {
+          "title": "Pharmaceutical Microbiology",
+          "recommendedBooks": [
+            "Vanitha Kale and Kishor Bhusari Applied Microbiology Himalaya Publishing house Mumbai.",
+            "Mary Louis Turgeon Immunology and Serology in Laboratory Medicines 2nd edition, 1996 Mosby- Year book inc St. Louis Missouri 63146.",
+            "Harsh Mohan, Text book of Pathology 3rd edition, 1998, B-3 Ansari road Darya ganj N. Delhi.",
+            "Prescot L.M., Jarley G.P Klein D.A Microbiology 2nd- edition Mc Graw Hill Company Inc",
+            "Rawlins E.A. Bentley's Text Book of Pharmaceutics Bailliere Tindals 24-28 London 1988",
+            "Forbisher Fundamentals of Microbiology Philidelphia W.B. Saunders.",
+            "Prescott L.M. Jarley G.P., Klein.D.A. Microbiology. 2nd edition WMC Brown Publishers, Oxford. 1993",
+            "War Roitt, Jonathan Brostoff, David male, Immunology 3rd edition 1996, Mosby-year book Europe Ltd, London.",
+            "Pharmacopoeia of India, Govt of India, 1996."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Detailed syllabus and lecture wise schedule",
+              "details": [
+                "Introduction to the science of microbiology. Major divisions of microbial world and Relationship among them.",
+                "Different methods of classification of microbes and study of Bacteria, Fungi, virus, Rickettsiae, Spirochetes.",
+                "Nutritional requirements, growth and cultivation of bacteria and virus. Study of different important media required for the growth of aerobic and anaerobic bacteria & fungi. Differential media, enriched media and selective media, maintenance of lab cultures.",
+                "Different methods used in isolation and identification of bacteria with emphasis to different staining techniques and biochemical reactions. Counting of bacteria -Total and Viable counting techniques.",
+                "Detailed study of different methods of sterilization including their merits and demerits. Sterilization methods for all pharmaceutical products. Detailed study of sterility testing of different pharmaceutical preparations. Brief information on Validation.",
+                "Disinfectants- Study of disinfectants, antiseptics, fungicidal and virucidal agents factors affecting their activation and mechanism of action. Evaluation of bactericidal, bacteristatic, virucidal activities, evaluation of preservatives in pharmaceutical preparations.",
+                "Immunology- Immunity, Definition, Classification, General principles of natural immunity, Phagocytosis, acquired immunity(active and passive). Antigens, chemical nature of antigens structure and formation of Antibodies, Antigen-Antibody reactions. Bacterial exotoxins and endotoxins. Significance of toxoids in active immunity, Immunization programme, and importance of booster dose.",
+                "Diagnostic tests: Schick's Test, Elisa test, Western Blot test, Southern Blot, PCR Widal, QBC, Mantaux Peripheral smear. Study of malarial parasite.",
+                "Microbial culture sensitivity Testing: Interpretation of results Principles and methods of different microbiological assays, microbiological assay of Penicillin, Streptomycin and vitamin B2 and B12. Standardisation of vaccines and sera.",
+                "Study of infectious diseases: Typhoid, Tuberculosis, Malaria, Cholera, Hepatitis, Meningitis, Syphilis & Gonorrhea and HIV."
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Experiments",
+              "details": [
+                "Study of apparatus used in experimental microbiology.",
+                "Sterilisation of glass ware's. Preparation of media and sterilisation.",
+                "Staining techniques - Simple staining; Gram's staining; Negative staining",
+                "Study of motility characters.",
+                "Enumeration of micro-organisms (Total and Viable)",
+                "Study of the methods of isolation of pure culture.",
+                "Bio chemical testing for the identification of micro-organisms.",
+                "Cultural sensitivity testing for some micro-organisms.",
+                "Sterility testing for powders and liquids.",
+                "Determination of minimum inhibitory concentration.",
+                "Microbiological assay of antibiotics by cup plate method.",
+                "Microbiological assay of vitamins by Turbidometric method",
+                "Determination of RWC.",
+                "Diagnostic tests for some common diseases, Widal, malarial parasite."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Pharmacognosy & Phytopharmaceuticals",
+          "recommendedBooks": [
+            "Pharmacognosy by G.E. Trease & W.C.Evans.",
+            "Pharmacognosy by C.K.Kokate, Gokhale & A.C.Purohit.",
+            "Pharmacognosy by Brady & Tyler.E.",
+            "Pharmacognosy by T.E. Wallis.",
+            "Pharmacognosy by C.S. Shah & Qadery.",
+            "Pharmacognosy by M.A. Iyengar."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Lecture wise programme",
+              "details": [
+                "Introduction.",
+                "Definition, history and scope of Pharmacognosy.",
+                "Classification of crude drugs.",
+                "Cultivation, collection, processing and storage of crude drugs.",
+                "Detailed method of cultivation of crude drugs.",
+                "Study of cell wall constituents and cell inclusions.",
+                "Microscopical and powder Microscopical study of crude drugs.",
+                "Study of natural pesticides.",
+                "Detailed study of various cell constituents.",
+                "Carbohydrates and related products.",
+                "Detailed study carbohydrates containing drugs (11 drugs).",
+                "Definition sources, method extraction, chemistry and method of analysis of lipids.",
+                "Detailed study of oils.",
+                "Definition, classification, chemistry and method of analysis of protein.",
+                "Study of plants fibers used in surgical dressings and related products.",
+                "Different methods of adulteration of crude drugs."
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "List of experiments",
+              "details": [
+                "Introduction of Pharmacognosy laboratory and experiments.",
+                "Study of cell wall constituents and cell inclusions.",
+                "Macro, powder and microscopic study of Datura, Senna, Cassia cinnamon, Cinchona, Ephedra, Quassia, Clove, Fennel, Coriander, Isapgol, Nux vomica, Rauwolfia, Liquorice, Ginger, Podophyllum.",
+                "Determination of Iodine value, Saponification value and unsaponifiable matter, ester value, Acid value.",
+                "Chemical tests for Acacia, Tragacanth, Agar, Starch, Lipids (castor oil, sesame oil, shark liver oil, bees wax), Gelatin."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Pharmacology - I",
+          "recommendedBooks": [
+            "Tripathi, K. D. Essentials of medical pharmacology. 4th Ed, 1999. Publisher: Jaypee, Delhi.",
+            "Satoskar, R.S. and Bhadarkar, S.D. Pharmacology and pharmacotherapeutics. 16th edition (single volume), 1999. Publisher: Popular, Dubai.",
+            "Rang, H.P. & Dale, M.M. Pharmacology. 4th edition, 1999. Publisher: Churchill Living stone.",
+            "Goodman Gilman, A., Rall, T.W., Nies, A.I.S. and Taylor, P. Goodman and Gilman's The pharmacological Basis of therapeutics. 9th Ed, 1996. Publisher Mc Graw Hill, Pergamon press.",
+            "Craig, C.R.&Stitzel, R.E. Modern Pharmacology. Latest edition. Publisher: Little Brown.Co",
+            "Katzung, B.G. Basic and clinical pharmacology. Latest edition. Publisher: Prentice Hall, Int.",
+            "Shargel and Leon. Applied Biopharmaceutics and pharmacokinetics. Latest edition. Publisher: Prentice Hall, London."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "General Pharmacology",
+              "details": [
+                "Introduction, definitions and scope of pharmacology",
+                "Routes of administration of drugs",
+                "Pharmacokinetics (absorption, distribution, metabolism and excretion)",
+                "Pharmacodynamics",
+                "Factors modifying drug effects",
+                "Drug toxicity - Acute, sub- acute and chronic toxicity.",
+                "Pre-clinical evaluations",
+                "Drug interactions"
+              ]
+            },
+            {
+              "title": "Pharmacology of drugs acting on ANS",
+              "details": [
+                "Adrenergic and antiadrenergic drugs",
+                "Cholinergic and anticholinergic drugs",
+                "Neuromuscular blockers",
+                "Mydriatics and miotics",
+                "Drugs used in myasthenia gravis",
+                "Drugs used in Parkinsonism"
+              ]
+            },
+            {
+              "title": "Pharmacology of drugs acting on cardiovascular system",
+              "details": [
+                "Antihypertensives",
+                "Anti-anginal drugs",
+                "Anti-arrhythmic drugs",
+                "Drugs used for therapy of Congestive Heart Failure",
+                "Drugs used for hyperlipidaemias"
+              ]
+            },
+            {
+              "title": "Pharmacology of drugs acting on Central Nervous System",
+              "details": [
+                "General anesthetics",
+                "Sedatives and hypnotics",
+                "Anticonvulsants",
+                "Analgesic and anti-inflammatory agents",
+                "Psychotropic drugs",
+                "Alcohol and methyl alcohol",
+                "CNS stimulants and cognition enhancers",
+                "Pharmacology of local anaesthetics"
+              ]
+            },
+            {
+              "title": "Pharmacology of Drugs acting on Respiratory tract",
+              "details": [
+                "Bronchodilators",
+                "Mucolytics",
+                "Expectorants",
+                "Antitussives",
+                "Nasal Decongestants"
+              ]
+            },
+            {
+              "title": "Pharmacology of Hormones and Hormone antagonists",
+              "details": [
+                "Thyroid and Antithyroid drugs",
+                "Insulin, Insulin analogues and oral hypoglycemic agents",
+                "Sex hormones and oral contraceptives",
+                "Oxytocin and other stimulants and relaxants"
+              ]
+            },
+            {
+              "title": "Pharmacology of autocoids and their antagonists",
+              "details": [
+                "Histamines and Antihistaminics",
+                "5-Hydroxytryptamine and its antagonists",
+                "Lipid derived autocoids and platelet activating factor"
+              ]
+            }
+          ],
+          "practicalHours": "0 Hrs./Week",
+          "practicalSubjects": []
+        },
+        {
+          "title": "Community Pharmacy",
+          "recommendedBooks": [
+            "Health Education and Community Pharmacy by N.S.Parmar.",
+            "WHO consultative group report.",
+            "Drug store & Business management by Mohammed Ali & Jyoti.",
+            "Handbook of pharmacy - health care. Edt. Robin J Harman. The Pharmaceutical press.",
+            "Comprehensive Pharmacy Review Edt. Leon Shargel. Lippincott Williams & Wilkins."
+          ],
+          "theoryHours": "2 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Lecture wise programme",
+              "details": [
+                "Definition, scope, of community pharmacy; Roles and responsibilities of Community pharmacist",
+                "Community Pharmacy Management: Selection of site, Space layout, and design; Staff, Materials- coding, stocking; Legal requirements; Maintenance of various registers; Use of Computers: Business and health care soft wares",
+                "Prescriptions: parts of prescription, legality & identification of medication related problems like drug interactions.",
+                "Inventory control in community pharmacy: Definition, various methods of Inventory Control (ABC, VED, EOQ, Lead time, safety stock)",
+                "Pharmaceutical care: Definition and Principles of Pharmaceutical care.",
+                "Patient counselling: Definition, outcomes, various stages, barriers, Strategies to overcome barriers; Patient information leaflets- content, design, & layouts, advisory labels",
+                "Patient medication adherence: Definition, Factors affecting medication adherence, role of pharmacist in improving the adherence.",
+                "Health screening services: Definition, importance, methods for screening Blood pressure/ blood sugar/ lung function and Cholesterol testing",
+                "OTC Medication- Definition, OTC medication list & Counselling",
+                "Health Education: WHO Definition of health, and health promotion, care for children, pregnant & breast feeding women, and geriatric patients. Commonly occurring Communicable Diseases, causative agents, Clinical presentations and prevention of communicable diseases (Tuberculosis, Hepatitis, Typhoid, Amoebiasis, Malaria, Leprosy, Syphilis, Gonorrhea and AIDS). Balance diet, and treatment & prevention of deficiency disorders. Family planning - role of pharmacist",
+                "Responding to symptoms of minor ailments: Relevant pathophysiology, common drug therapy to Pain, GI disturbances (Nausea, Vomiting, Dyspepsia, diarrhea, constipation), Pyrexia, Ophthalmic symptoms, worms infestations.",
+                "Essential Drugs concept and Rational Drug Therapy: Role of community pharmacist",
+                "Code of ethics for community pharmacists"
+              ]
+            }
+          ],
+          "practicalHours": "0 Hrs./Week",
+          "practicalSubjects": []
+        },
+        {
+          "title": "Pharmacotherapeutics - I",
+          "recommendedBooks": [
+            "Clinical Pharmacy and Therapeutics - Roger and Walker, Churchill Livingstone publication.",
+            "Pharmacotherapy: A Pathophysiologic approach - Joseph T. Dipiro et al. Appleton & Lange.",
+            "Pathologic basis of disease - Robins SL, W.B.Saunders publication.",
+            "Pathology and therapeutics for Pharmacists: A Basis for Clinical Pharmacy Practice - Green and Harris, Chapman and Hall publication.",
+            "Clinical Pharmacy and Therapeutics - Eric T. Herfindal, Williams and Wilkins Publication.",
+            "Applied Therapeutics: The clinical Use of Drugs. Lloyd Young and Koda-Kimble MA",
+            "Avery's Drug Treatment, 4th Edn, 1997, Adis International Limited."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Etiopathogenesis and pharmacotherapy of diseases",
+              "details": [
+                "Cardiovascular system: Hypertension, Congestive cardiac failure, Angina Pectoris, Myocardial infarction, Hyperlipidaemias, Electrophysiology of heart and Arrhythmias",
+                "Respiratory system: Introduction to Pulmonary function test, Asthma, Chronic obstructive airways disease, Drug induced pulmonary diseases",
+                "Endocrine system: Diabetes, Thyroid diseases, Oral contraceptives, Hormone replacement therapy, Osteoporosis",
+                "General prescribing guidelines for: Paediatric patients, Geriatric patients, Pregnancy and breast feeding",
+                "Ophthalmology: Glaucoma, Conjunctivitis- viral & bacterial",
+                "Introduction to rational drug use: Definition, Role of pharmacist, Essential drug concept, Rational drug formulations"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Hospital postings & Assignments",
+              "details": [
+                "Hospital postings in various departments designed to complement the lectures by providing practical clinical discussion; attending ward rounds; follow up the progress and changes made in drug therapy in allotted patients; case presentation upon discharge. A minimum of 20 cases should be presented and recorded covering most common diseases.",
+                "Written assignments on recent developments in drug therapy of various diseases (Minimum of THREE assignments [1500 - 2000 words])."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "subjects": [
+        {
+          "title": "Pharmacology - II",
+          "recommendedBooks": [
+            "Tripathi, K. D. Essentials of medical pharmacology. 4th edition, 1999. Publisher: Jaypee, Delhi.",
+            "Satoskar, R.S. and Bhadarkar, S.D. Pharmacology and pharmacotherapeutics. 16th edition (single volume), 1999. Publisher: Popular, Dubai.",
+            "Rang, H.P. and Dale, M.M. Pharmacology. 4th edition, 1999. Publisher: Churchill Living stone.",
+            "Goodman Gilman, A., Rall, T.W., Nies, A.I.S. and Taylor, P. Goodman and Gilman's The pharmacological Basis of therapeutics. 9th edition, 1996. Publisher: Mc Graw Hill, Pergamon press.",
+            "Craig, C.R. and Stitzel, R.E. Modern Pharmacology. Latest edition. Publisher: Little Brown and company.",
+            "Katzung, B.G. Basic and clinical pharmacology. Latest edition. Publisher: Prentice Hall, International.",
+            "Gupta, P.K. and Salunkhe, D.K. Modern Toxicology. Volume I, II and III. Latest edition. Publisher: B.V. Gupta, Metropolitan Book Co. (p) Ltd, New Delhi.",
+            "Molecular Biology of the Cell by Alberts B., Bray, D., Lewis, J., Raff M., Roberts, K and Watson, JD, 3rd edition.",
+            "Molecular Cell Biology By Lodish, H., Baltimore, D., Berk, A et al., 5th edition.",
+            "Molecular Biology by Turner, PC., McLennan, AG., Bates, AD and White MRH 2nd edition.",
+            "Genes VIII by Lewin, B., (2004)",
+            "Pharmaceutical Biotechnology, by Crommelin, DJA and Sindelar RD (1997)",
+            "Recombinant DNA by Watson, JD., Gilman, M., et al., (1996)",
+            "Biopharmaceutical: Biochemistry and Biotechnology by Walsh, G., (1998)",
+            "Kulkarni, S. K. and Dandia, P. C. Hand book of experimental pharmacology. Latest edition, Publisher: Vallab, Delhi.",
+            "Macleod, L.J. Pharmacological experiments on intact preparations. Latest edition, Publisher: Churchill livingstone.",
+            "Macleod, L.J. Pharmacological experiments on isolated preparations. Latest edition, Publisher: Churchill livingstone.",
+            "Ghosh, M.N. Fundamentals of experimental pharmacology. Latest edition, Publisher: Scientific book agency, Kolkata.",
+            "Ian Kitchen. Textbook of in vitro practical pharmacology. Latest edition, Publisher: Black well Scientific."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Pharmacology of Drugs acting on Blood and blood forming agents & Renal System",
+              "details": [
+                "Anticoagulants, Thrombolytics and antiplatelet agents, Haemopoietics and plasma expanders",
+                "Renal System: Diuretics, Antidiuretics"
+              ]
+            },
+            {
+              "title": "Chemotherapy",
+              "details": [
+                "Introduction",
+                "Sulfonamides and co-trimoxazole",
+                "Penicillins and Cephalosporins",
+                "Tetracyclins and Chloramphenicol",
+                "Macrolides, Aminoglycosides, Polyene & Polypeptide antibiotics",
+                "Quinolines and Fluroquinolines",
+                "Antifungal antibiotics",
+                "Antiviral agents",
+                "Chemotherapy of tuberculosis and leprosy",
+                "Chemotherapy of Malaria",
+                "Chemotherapy of protozoal infections (amoebiasis, Giardiasis)",
+                "Pharmacology of Anthelmintic drugs",
+                "Chemotherapy of cancer (Neoplasms)"
+              ]
+            },
+            {
+              "title": "Immunopharmacology & Animal Toxicology",
+              "details": [
+                "Pharmacology of immunosuppressants and stimulants",
+                "Principles of Animal toxicology: Acute, sub acute and chronic toxicity"
+              ]
+            },
+            {
+              "title": "The dynamic cell & The Gene",
+              "details": [
+                "Cell and macromolecules: Cellular classification, subcellular organelles, macromolecules, large macromolecular assemblies",
+                "Chromosome structure: Pro and eukaryotic chromosome structures, chromatin structure, genome complexity, the flow of genetic information.",
+                "DNA replication: General, bacterial and eukaryotic DNA replication.",
+                "The cell cycle: Restriction point, cell cycle regulators and modifiers.",
+                "Cell signaling: Communication between cells and their environment, ion-channels, signal transduction pathways (MAP kinase, P38 kinase, JNK, Ras and PI3-kinase pathways, biosensors).",
+                "Gene structure: Organization and elucidation of genetic code.",
+                "Gene expression: Expression systems (pro and eukaryotic), genetic elements that control gene expression (nucleosomes, histones, acetylation, HDACS, DNA binding protein families).",
+                "Transcription and Transcription factors: Basic principles of transcription in pro and eukaryotes. Transcription factors that regulate transcription in pro and eukaryotes.",
+                "RNA processing: rRNA, tRNA and mRNA processing.",
+                "Protein synthesis: Mechanisms of protein synthesis, initiation in eukaryotes, translation control and post-translation events.",
+                "Altered gene functions: Mutations, deletions, amplifications, LOH, translocations, trinucleotide repeats and other genetic abnormalities. Oncogenes and tumor suppressor genes.",
+                "The gene sequencing, mapping and cloning of human disease genes. Introduction to gene therapy and targeting.",
+                "Recombinant DNA technology: principles, processes (gene transfer technology) and applications."
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "List of Experiments",
+              "details": [
+                "Study of laboratory animals and their handling (Frogs, Mice, Rats, Guinea pigs, Rabbits).",
+                "Study of physiological salt solutions used in experimental pharmacology.",
+                "Study of laboratory appliances used in experimental pharmacology.",
+                "Study of use of anesthetics in laboratory animals.",
+                "To record the dose response curve of Ach using isolated ileum/rectus abdominis muscle preparation.",
+                "To carry out bioassay of Ach using isolated ileum/rectus abdominis muscle preparation by interpolation method and three point method.",
+                "To record the dose response curve of Histamine using isolated guinea-pig ileum preparation.",
+                "Study of agonistic and antagonistic effects of drugs using isolated guinea-pig ileum preparation.",
+                "To carry out bioassay of Histamine using isolated guinea-pig ileum preparation by interpolation method and three point method.",
+                "To study the routes of administration of drugs in animals (Rats, Mice, Rabbits).",
+                "Study of theory, principle, procedure involved and interpretation of given results for: Analgesic property (analgesiometer), Antiinflammatory effect (rat-paw edema), Anticonvulsant activity (MES and PTZ), Antidepressant activity (pole climbing and pentobarbitone sleeping time), Locomotor activity (actophotometer and rotarod), Cardiotonic activity (isolated frog heart and mammalian heart)."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Pharmaceutical Analysis",
+          "recommendedBooks": [
+            "Text Book of Pharm. Analysis by Higuchi. T and Hasen. E. B., New York Inter Science Publishers.",
+            "Quantitative Pharma. Analysis by Jenkins, The Blakiston division, New York.",
+            "Quantitative Drug Analysis, by Garrot. D, Chapman & Hall Ltd., London.",
+            "Undergraduate Instrumental Analysis by James. E., CBS Publishers.",
+            "Instrumental Analysis by Willard and Merritt, EWP, East West Press Ltd., Delhi/Madras.",
+            "Pharm Analysis by Skoog and West, Sounders Manipal College Publishing.",
+            "Text Book of Chemical Analysis, by A.I.Vogel, ELBS with Macmillan press, Hampshire.",
+            "Textbook of Pharm. Analysis by K.A.Connors, John Wiley & Sons, New York, Brisbane, Singapore.",
+            "Textbook of Pharm. Analysis (Practical) by Beckett & Stenlake, CBS Publishers, Delhi.",
+            "Textbook of Drug Analysis by P.D. Sethi., CBS Publishers, Delhi.",
+            "Spectroscopy by Silverstein, John & Wiley & Sons. Inc., Canada & Singapore.",
+            "How to practise GMP-A Plan for total quality control by P.P. Sharma, Vandana Publications, Agra.",
+            "The Science & Practice of Pharmacy by Remington Vol-I & II, Mack Publishing Co. Pennsylvania.",
+            "TLC by Stahl, Spring Verlay.",
+            "Text Book of Pharm. Chemistry by Chatten, CBS Publications.",
+            "Spectroscopy by William Kemp, ELBS with Macmillan Press, Hampshire.",
+            "I.P.-1996, The Controller of Publications, New Delhi.",
+            "BPC- Dept. of Health, U.K. for HMSO.",
+            "USP - Mack Publishing Co., Easton, PA.",
+            "The Extra Pharmacopoeia - The Pharm. Press, London."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Quality Assurance",
+              "details": [
+                "Introduction, sources of quality variation, control of quality variation.",
+                "Concept of statistical quality control.",
+                "Validation methods- quality of equipment, validation of equipment and validation of analytical instruments and calibration.",
+                "GLP, ISO 9000.",
+                "Total quality management, quality review and documentation.",
+                "ICH-international conference for harmonization-guidelines.",
+                "Regulatory control."
+              ]
+            },
+            {
+              "title": "Chromatography",
+              "details": [
+                "Column Chromatography: Adsorption column chromatography, Operational technique, frontal analysis and elution analysis. Factors affecting column efficiency, applications and partition chromatography.",
+                "TLC: Introduction, principle, techniques, Rf value and applications.",
+                "PC: Introduction, principle, types of paper chromatography, preparation techniques, development techniques, applications.",
+                "Ion-exchange chromatography: Introduction, principles, types of ion exchange synthetic resins, physical properties, factors affecting ion exchange, methodology and applications.",
+                "HPLC: Introduction, theory, instrumentation, and applications.",
+                "HPTLC: Introduction, theory, instrumentation, and applications.",
+                "Gas Chromatography: Introduction, theory, instrumentation-carrier gases, types of columns, stationary phases in GLC & GSC. Detectors-Flame ionization detectors, electron capture detector, thermal conductivity detector. Typical gas chromatogram, derivatisation techniques, programmed temperature gas chromatography, applications.",
+                "Electrophoresis: Principles of separation, equipment for paper and gel electrophoresis, and application.",
+                "Gel filtration and affinity chromatography: Introduction, technique, applications."
+              ]
+            },
+            {
+              "title": "Electrometric Methods",
+              "details": [
+                "Potentiometry: Electrical potential, electrochemical cell, reference electrodes, indicator electrodes, measurement of potential and pH, construction and working of electrodes, Potentiometric titrations, methods of detecting end point, Karl Fischer titration.",
+                "Conductometry: Introduction, conductivity cell, conductometric titrations and applications.",
+                "Polarography: Instrumentation, DME, residual current, diffusion current and limiting current, polarographic wave, Ilkovic's equation, Effect of oxygen on polarographic wave, Polarographic maxima and suppressors and applications.",
+                "Amperometric Titrations: Introduction, types of electrodes used, reference and indicator electrode, instrumentation, titration procedure, advantages and disadvantages of Amperometry over potentiometry. Pharma applications."
+              ]
+            },
+            {
+              "title": "Spectroscopy",
+              "details": [
+                "Absorption Spectroscopy: Theory of electronic, atomic and molecular spectra. Fundamental laws of photometry, Beer-Lambert's Law, application and its deviation, limitation of Beer law, application of the law to single and multiple component analysis, measurement of equilibrium constant and rate constant by spectroscopy. Spectra of isolated chromophores, auxochromes, batho-chromic shift, hypsochromic shift, hyperchromic and hypochromic effect, effect of solvent on absorption spectra, molecular structure and infrared spectra. Instrumentation - Photometer, U.V.-Visible spectrophotometer - sources, collimating systems, monochromators, sample cells and detectors (Photocell, Barrier layer cell, Phototube, Diode array), applications of U.V.-Visible spectroscopy in pharmacy and spectrophotometric titrations.",
+                "Infrared Spectroscopy: Vibrational transitions, frequency - structure correlations, Infrared absorption bands, Instrumentation-IR spectrometer-sources of IR, Collimating systems, monochromators, sample cells, sample handling in IR spectroscopy and detectors-Thermocouple, Golay Cells, Thermistor, Bolometer, Pyroelectric detector, Applications of IR in pharmacy.",
+                "Fluorimetric Analysis: Theory, luminescence, factors affecting fluorescence, quenching. Instrumentation, Applications, fluorescent indicators, study of pharmaceutically important compounds estimated by fluorimetry.",
+                "Flame Photometry: Theory, nebulisation, flame and flame temperature, interferences, flame spectrometric techniques and instrumentation and pharmaceutical applications.",
+                "Atomic Absorption Spectrometry: Introduction, Theory, types of electrodes, instrumentation and applications.",
+                "Atomic Emission Spectroscopy: Spectroscopic sources, atomic emission spectrometers, photographic and photoelectric detection.",
+                "NMR & ESR (introduction only): Introduction, theoretical aspects and applications.",
+                "Mass Spectroscopy (Introduction only): Fragmentation, types of ions produced, mass spectrum and applications.",
+                "Polarimetry (Introduction only): Introduction to optical rotatory dispersion, circular dichroism, polarimeter.",
+                "X-RAY Diffraction (Introduction only): Theory, reciprocal lattice concept, diffraction patterns and applications.",
+                "Thermal Analysis: Introduction, instrumentation, applications, and DSC and DTA."
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "List of Experiments",
+              "details": [
+                "Separation and identification of Amino Acids by Paper Chromatography.",
+                "Separation and identification of Sulpha drugs by TLC technique.",
+                "Effect of pH and solvent on the UV spectrum of given compound.",
+                "Comparison of the UV spectrum of a compound with that of its derivatives.",
+                "Determination of dissociation constant of indicators using UV-Visible spectroscopy.",
+                "Conductometric titration of mixture of acids with a strong base.",
+                "Potentiometric titration of a acid with a strong base.",
+                "Estimation of drugs by Fluorimetric technique.",
+                "Study of quenching effect in fluorimetry.",
+                "Colourimetric estimation of Sulpha drugs using BMR reagent.",
+                "Simultaneous estimation of two drugs present in given formulation.",
+                "Assay of Salicylic Acid by colourimetry.",
+                "Determination of Chlorides and Sulphates in Calcium gluconate by Nepheloturbidimetric Method.",
+                "Determination of Na/K by Flame Photometry.",
+                "Determination of pKa using pH meter.",
+                "Determination of specific rotation.",
+                "Comparison of the IR spectrum of a compound with that of its derivatives.",
+                "Demonstration of HPLC, HPTLC, GC-MS, DSC.",
+                "Interpretation of NMR spectra of any one compound."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Pharmacotherapeutics - II",
+          "recommendedBooks": [
+            "Clinical Pharmacy and Therapeutics - Roger and Walker, Churchill Livingstone publication",
+            "Pharmacotherapy: A Pathophysiologic approach - Joseph T. Dipiro et al. Appleton & Lange",
+            "Clinical Pharmacy and Therapeutics - Eric T. Herfindal, Williams and Wilkins Publication",
+            "Applied Therapeutics: The clinical Use of Drugs. Lloyd Young and Koda-Kimble MA"
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Etiopathogenesis and pharmacotherapy of diseases",
+              "details": [
+                "Infectious disease: Guidelines for the rational use of antibiotics and surgical Prophylaxis, Tuberculosis, Meningitis, Respiratory tract infections, Gastroenteritis, Endocarditis, Septicemia, Urinary tract infections, Protozoal infection Malaria, HIV & Opportunistic infections, Fungal infections, Viral infections, Gonorrhoea and Syphilis",
+                "Musculoskeletal disorders: Rheumatoid arthritis, Osteoarthritis, Gout, Spondylitis, Systemic lupus erythematosus.",
+                "Renal system: Acute Renal Failure, Chronic Renal Failure, Renal Dialysis, Drug induced renal disorders",
+                "Oncology: Basic principles of Cancer therapy, General introduction to cancer chemotherapeutic agents, Chemotherapy of breast cancer, leukemia. Management of chemotherapy nausea and emesis",
+                "Dermatology: Psoriasis, Scabies, Eczema, Impetigo"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Hospital postings & Assignments",
+              "details": [
+                "Hospital postings in various departments designed to complement the lectures by providing practical clinical discussion; attending ward rounds; follow up the progress and changes made in drug therapy in allotted patients; case presentation upon discharge. A minimum of 20 cases should be presented and recorded covering most common diseases.",
+                "Written assignments on recent developments in drug therapy of various diseases (Minimum of THREE assignments [1500 - 2000 words])."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Pharmaceutical Jurisprudence",
+          "recommendedBooks": [
+            "Mithal, B M. Textbook of Forensic Pharmacy. Calcutta: National; 1988.",
+            "Singh, KK, editor. Beotra's the Laws of Drugs, Medicines & cosmetics. Allahabad: Law Book House; 1984.",
+            "Jain, NK. A Textbook of forensic pharmacy. Delhi: Vallabh prakashan; 1995.",
+            "Reports of the Pharmaceutical enquiry Committee",
+            "I.D.M.A., Mumbai. DPCO 1995",
+            "Various reports of Amendments.",
+            "Deshapande, S.W. The drugs and magic remedies act 1954 and rules 1955. Mumbai: Susmit Publications; 1998.",
+            "Eastern Book Company. The narcotic and psychotropic substances act 1985, Lucknow: Eastern; 1987."
+          ],
+          "theoryHours": "2 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Detailed syllabus and lecture wise schedule",
+              "details": [
+                "Pharmaceutical Legislations - A brief review.",
+                "Principle and Significance of professional ethics. Critical study of the code of pharmaceutical ethics drafted by PCI.",
+                "Drugs and Cosmetics Act, 1940, and its rules 1945: Objectives, Legal definition, Study of Schedule's with reference to Schedule B, C&C1, D, E1, F&F1, F2, F3, FF, G, H, J, K, M, N, P, R, V, W, X, Y. Sales, Import, labeling and packaging of Drugs And Cosmetics. Provisions Relating to Indigenous Systems. Constitution and Functions of DTAB, DCC, CDL. Qualification and duties - Govt. analyst and Drugs Inspector.",
+                "Pharmacy Act-1948: Objectives Legal Definitions, General Study, Constitution and Functions of State & Central Council, Registration & Procedure, ER.",
+                "Medicinal and Toilet Preparation Act-1955: Objectives, Legal Definitions, Licensing, Bonded and Non Bonded Laboratory, Ware Housing, Manufacture of Ayurvedic, Homeopathic, Patent & Proprietory Preparations.",
+                "Narcotic Drugs and Psychotropic substances Act-1985 and Rules: Objectives, Legal Definitions, General Study, Constitution and Functions of narcotic & Psychotropic Consultative Committee, National Fund for Controlling the Drug Abuse, Prohibition, Control and regulations, Schedules to the Act.",
+                "Study of Salient Features of Drugs and magic remedies Act and its rules.",
+                "Study of essential Commodities Act Relevant to drugs price control Order.",
+                "Drug Price control Order & National Drug Policy (Current).",
+                "Prevention Of Cruelty to animals Act-1960.",
+                "Patents & design Act-1970.",
+                "Brief study of prescription and Non-prescription Products."
+              ]
+            }
+          ],
+          "practicalHours": "0 Hrs./Week",
+          "practicalSubjects": []
+        },
+        {
+          "title": "Medicinal Chemistry",
+          "recommendedBooks": [
+            "Wilson and Gisvold's Text book of Organic, Medicinal and Pharmaceutical Chemistry, Lippincott-Raven Publishers-New York, Philadelphia.",
+            "William.O.Foye, Principles of Medicinal Chemistry, B.I. Waverly Pvt. Ltd., New Delhi.",
+            "Burgers, Medicinal Chemistry, M.E., Welly Med.Chemistry M.E. Walffed Johnwilley and Sons, Wiley-interscience Publication, New York, Toranto.",
+            "A Text Book of Medicinal Chemistry Vol. I and II by Surendra N. Pandeya, S.G. Publisher, 6, Dildayal Nagar, Varanasi -10.",
+            "Indian Pharmacopoeia 1985 and 1996. The Controller of Publications, Civil Lines, Delhi - 54.",
+            "Current Index of Medical Specialities (CIMS) and MIMS India, MIMS, A.E. Morgan Publications (I) Pvt. Ltd, New Delhi-19.",
+            "Organic Drug Synthesis-Ledniser Mitzsher Vol. I and II.",
+            "Pharmaceutical Chemistry drug Synthesis Vol. I and II by H. J. Roth and A. Kleemann.",
+            "The Science and Practice of Pharmacy Vol. 1 and 2, Remington, MACK Publishing Company, Easton, Pennsylvania."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Modern concept of rational drug design & Drug Classes",
+              "details": [
+                "A brief introduction to Quantitative Structure Activity Relationship (QSAR), prodrug, combinatorial chemistry and computer aided drug design (CADD) and concept of antisense molecules.",
+                "Anti-infective agents: Local anti-infective agents, Preservatives, Antifungal agents, Urinary tract anti-infectives, Antitubercular agents, Antiviral agents and Anti AIDS agents, Antiprotozoal agents, Anthelmentics, Antiscabies and Antipedicular agents",
+                "Sulphonamides and sulphones",
+                "Antimalarials",
+                "Antibiotics",
+                "Antineoplastic agents",
+                "Cardiovascular agents: Antihypertensive agents, Antianginal agents and vasodilators, Antiarrhythmic agents, Antihyperlipidemic agents, Coagulants and Anticoagulants, Endocrine",
+                "Hypoglycemic agents",
+                "Thyroid and Antithyroid agents",
+                "Diuretics",
+                "Diagnostic agents",
+                "Steroidal Hormones and Adrenocorticoids"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Practicals",
+              "details": [
+                "Assays of important drugs from the course content.",
+                "Preparation of medicinally important compounds or intermediates required for synthesis of drugs.",
+                "Monograph analysis of important drugs.",
+                "Determination of partition coefficients, dissociation constants and molar refractivity of compounds for QSAR analysis."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Pharmaceutical Formulations",
+          "recommendedBooks": [
+            "Pharmaceutical dosage forms, Vol, I, II and III by Lachman",
+            "Rowlings Text book of Pharmaceutics",
+            "Tutorial Pharmacy - Cooper & Gun",
+            "Remington's Pharmaceutical Sciences",
+            "USP/BP/IP"
+          ],
+          "theoryHours": "2 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Detailed syllabus and lecture wise schedule",
+              "details": [
+                "Pharmaceutical dosage form- concept and classification",
+                "Tablets: Formulation of different types of tablets, tablet excipients, granulation techniques quality control and evaluation of tablets. Tablet coating, Type of coating, quality control tests for coated tablet.",
+                "Capsules: Production and filling of hard gelatin capsules, Raw material for shell, finishing, quality control tests for capsules. Production and filling of soft gelatin capsules, quality control tests for soft gelatin capsules.",
+                "Liquid orals: Formulation and evaluation of suspensions, emulsions and solutions. Stability of these preparations",
+                "Parenterals: Introduction, Containers used for Parenterals (including official tests), Formulation of large and small volume Parenterals, Sterilization",
+                "Ophthalmic preparations (Semi-Solids): Introduction and classification, Factors affecting absorption and anatomy of skin, Packaging storage and labeling, Ointments, Types of Ointment Base, Preparation of ointment, Jellies, Types of jellies, Formulation of jellies, Suppositories, Method of preparation, Types, Packaging",
+                "Definition and concept of Controlled and novel Drug delivery systems with available examples, viz. parenteral, trans dermal, buccal, rectal, nasal, implants, ocular"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "List of Experiments",
+              "details": [
+                "Manufacture of Tablets: Ordinary compressed tablet-wet granulation, Tablets prepared by direct compression, Soluble tablet, Chewable tablet.",
+                "Formulation and filling of hard gelatin capsules",
+                "Manufacture of parenterals: Ascorbic acid injection, Calcium gluconate injection, Sodium chloride infusion, Dextrose and Sodium chloride injection/infusion.",
+                "Evaluation of Pharmaceutical formulations (QC tests): Tablets, Capsules, Injections",
+                "Formulation of two liquid oral preparations and evaluation by assay: Solution (Paracetamol Syrup), Antacid suspensions (Aluminum hydroxide gel)",
+                "Formulation of semisolids and evaluation by assay: Salicylic acid and benzoic acid ointment, Gel formulation Diclofenac gel",
+                "Cosmetic preparations: Lipsticks, Cold cream and vanishing cream, Clear liquid shampoo, Tooth paste and tooth powders.",
+                "Tablet coating (demonstration)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "4": {
+      "subjects": [
+        {
+          "title": "Pharmacotherapeutics - III",
+          "recommendedBooks": [
+            "Clinical Pharmacy and Therapeutics - Roger and Walker, Churchill Livingstone publication",
+            "Pharmacotherapy: A Pathophysiologic approach - Joseph T. Dipiro et al. Appleton & Lange",
+            "Pathologic basis of disease - Robins SL, W.B.Saunders publication",
+            "Pathology and therapeutics for Pharmacists: A Basis for Clinical Pharmacy Practice - Green and Harris, Chapman and Hall publication",
+            "Clinical Pharmacy and Therapeutics - Eric T. Herfindal, Williams and Wilkins Publication",
+            "Applied Therapeutics: The clinical Use of Drugs. Lloyd Young and Koda-Kimble MA",
+            "Avery's Drug Treatment, 4th Edn, 1997, Adis International Limited."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Etiopathogenesis and pharmacotherapy of diseases",
+              "details": [
+                "Gastrointestinal system: Peptic ulcer disease, Gastro Esophageal Reflux Disease, Inflammatory bowel disease, Liver disorders, Alcoholic liver disease, Viral hepatitis including jaundice, and Drug induced liver disorders.",
+                "Haematological system: Anaemias, Venous thromboembolism, Drug induced blood disorders.",
+                "Nervous system: Epilepsy, Parkinsonism, Stroke, Alzheimer's disease",
+                "Psychiatry disorders: Schizophrenia, Affective disorders, Anxiety disorders, Sleep disorders, Obsessive Compulsive disorders",
+                "Pain management including Pain pathways, neuralgias, headaches.",
+                "Evidence Based Medicine"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Hospital postings & Assignments",
+              "details": [
+                "Hospital postings for a period of at least 50 hours is required to understand the principles and practice involved in ward round participation and clinical discussion on selection of drug therapy. Students are required to maintain a record of 15 cases observed in the ward and present at least two medical cases.",
+                "Written assignments on recent developments in drug therapy of various diseases (Minimum of THREE assignments [1500 - 2000 words])."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Hospital Pharmacy",
+          "recommendedBooks": [
+            "Hospital pharmacy by William .E. Hassan",
+            "A text book of Hospital Pharmacy by S.H.Merchant & Dr. J.S. Qadry. Revised by R.K.Goyal & R.K. Parikh",
+            "WHO consultative group report.",
+            "R.P.S. Vol.2. Part -B; Pharmacy Practice section.",
+            "Handbook of pharmacy health care. Edt. Robin J Harman. The Pharmaceutical press."
+          ],
+          "theoryHours": "2 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Lecture wise programme",
+              "details": [
+                "Hospital - its Organisation and functions",
+                "Hospital pharmacy-Organisation and management: Organizational structure-Staff, Infrastructure & work load statistics; Management of materials and finance; Roles & responsibilities of hospital pharmacist",
+                "The Budget - Preparation and implementation",
+                "Hospital drug policy: Pharmacy and Therapeutic committee (PTC), Hospital formulary, Hospital committees (Infection committee, Research and ethical committee), developing therapeutic guidelines, Hospital pharmacy communication - Newsletter",
+                "Hospital pharmacy services: Procurement & warehousing of drugs and Pharmaceuticals; Inventory control (Definition, ABC, VED, EOQ, Lead time, safety stock); Drug distribution in the hospital (Individual prescription method, Floor stock method, Unit dose drug distribution method); Distribution of Narcotic and other controlled substances; Central sterile supply services - Role of pharmacist",
+                "Manufacture of Pharmaceutical preparations: Sterile formulations - large and small volume parenterals; Manufacture of Ointments, Liquids, and creams; Manufacturing of Tablets, granules, capsules, and powders; Total parenteral nutrition",
+                "Continuing professional development programs: Education and training",
+                "Radio Pharmaceuticals - Handling and packaging",
+                "Professional Relations and practices of hospital pharmacist"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Experiments & Assignments",
+              "details": [
+                "Assessment of drug interactions in the given prescriptions",
+                "Manufacture of parenteral formulations, powders.",
+                "Drug information queries.",
+                "Inventory control",
+                "Assignments: Design and Management of Hospital pharmacy department for a 300 bedded hospital; Pharmacy and Therapeutics committee; Development of a hospital formulary; Preparation of ABC analysis; Different phases of clinical trials; Various sources of drug information; Evaluation of prescriptions generated in hospital for drug interactions."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Clinical Pharmacy",
+          "recommendedBooks": [
+            "Practice Standards and Definitions - The Society of Hospital Pharmacists of Australia.",
+            "Basic skills in interpreting laboratory data - Scott LT, American Society of Health System Pharmacists Inc.",
+            "Biopharmaceutics and Applied Pharmacokinetics - Leon Shargel, Prentice Hall publication.",
+            "A text book of Clinical Pharmacy Practice; Essential concepts and skills, Dr.G.Parthasarathi et al, Orient Longman Pvt.Ltd.",
+            "Australian drug information -Procedure manual. The Society of Hospital Pharmacists of Australia.",
+            "Clinical Pharmacokinetics - Rowland and Tozer, Williams and Wilkins Publication.",
+            "Pharmaceutical statistics. Practical and clinical applications. Sanford Bolton, Marcel Dekker, Inc."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Detailed syllabus and lecture wise schedule",
+              "details": [
+                "Definitions, development and scope of clinical pharmacy",
+                "Introduction to daily activities of a clinical pharmacist: Drug therapy monitoring (medication chart review, clinical review, pharmacist interventions), Ward round participation, Adverse drug reaction management, Drug information and poisons information, Medication history, Patient counseling, Drug utilisation evaluation (DUE) and review (DUR), Quality assurance of clinical pharmacy services",
+                "Patient data analysis: The patient's case history, its structure and use in evaluation of drug therapy & Understanding common medical abbreviations and terminologies used in clinical practices.",
+                "Clinical laboratory tests used in the evaluation of disease states, and interpretation of test results: Haematological, Liver function, Renal function, thyroid function tests; Tests associated with cardiac disorders; Fluid and electrolyte balance; Microbiological culture sensitivity tests; Pulmonary Function Tests",
+                "Drug & Poison information: Introduction to drug information resources available, Systematic approach in answering DI queries, Critical evaluation of drug information and literature, Preparation of written and verbal reports, Establishing a Drug Information Centre, Poisons information- organization & information resources",
+                "Pharmacovigilance: Scope, definition and aims of pharmacovigilance; Adverse drug reactions Classification, mechanism, predisposing factors, causality assessment [different scales used]; Reporting, evaluation, monitoring, preventing & management of ADRs; Role of pharmacist in management of ADR.",
+                "Communication skills, including patient counselling techniques, medication history interview, presentation of cases.",
+                "Pharmaceutical care concepts",
+                "Critical evaluation of biomedical literature",
+                "Medication errors"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Practicals & Assignments",
+              "details": [
+                "Answering drug information questions (4 Nos)",
+                "Patient medication counselling (4 Nos)",
+                "Case studies related to laboratory investigations (4 Nos)",
+                "Patient medication history interview (3 Nos)",
+                "Assignments: THREE written assignments (1500-2000 words) covering Drug information, Patient medication history interview, Patient medication counselling, Critical appraisal of recently published articles in the biomedical literature."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Biostatistics & Research Methodology",
+          "recommendedBooks": [
+            "Pharmaceutical statistics- practical and clinical applications, Sanford Bolton 3rd edition, publisher Marcel Dekker Inc. New York.",
+            "Drug Information- A Guide for Pharmacists, Patrick M Malone, Karen L Kier, John E Stanovich, 3rd edition, McGraw Hill Publications 2006"
+          ],
+          "theoryHours": "2 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Research Methodology",
+              "details": [
+                "Types of clinical study designs: Case studies, observational studies, interventional studies",
+                "Designing the methodology",
+                "Sample size determination and Power of a study: Determination of sample size for simple comparative experiments, determination of sample size to obtain a confidence interval of specified width, power of a study",
+                "Report writing and presentation of data"
+              ]
+            },
+            {
+              "title": "Biostatistics",
+              "details": [
+                "Introduction, Types of data distribution, Measures describing the central tendency distributions- average, median, mode, Measurement of the spread of data-range, variation of mean, standard deviation, variance, coefficient of variation, standard error of mean.",
+                "Data graphics: Construction and labeling of graphs, histogram, piecharts, scatter plots, semilogarithmic plots",
+                "Basics of testing hypothesis: Null hypothesis, level of significance, power of test, P value, statistical estimation of confidence intervals; Level of significance (Parametric data)- students t test (paired and unpaired), chi Square test, Analysis of Variance (one-way and two-way); Level of significance (Non-parametric data)- Sign test, Wilcoxan's signed rank test, Wilcoxan rank sum test, Mann Whitney U test, Kruskal-Wallis test (one way ANOVA); Linear regression and correlation- Introduction, Pearson's and Spearman's correlation and correlation co-efficient; Introduction to statistical software: SPSS, Epi Info, SAS.",
+                "Statistical methods in epidemiology: Incidence and prevalence, relative risk, attributable risk"
+              ]
+            },
+            {
+              "title": "Computer applications in pharmacy",
+              "details": [
+                "Computer System in Hospital Pharmacy: Patterns of Computer use in Hospital Pharmacy, Patient record database management, Medication order entry - Drug labels and list, Intravenous solution and admixture, patient medication profiles, Inventory control, Management report & Statistics.",
+                "Computer In Community Pharmacy: Computerizing the Prescription Dispensing process, Use of Computers for Pharmaceutical Care in community pharmacy, Accounting and General ledger system",
+                "Drug Information Retrieval & Storage: Introduction - Advantages of Computerized Literature Retrieval, Use of Computerized Retrieval"
+              ]
+            }
+          ],
+          "practicalHours": "0 Hrs./Week",
+          "practicalSubjects": []
+        },
+        {
+          "title": "Biopharmaceutics & Pharmacokinetics",
+          "recommendedBooks": [
+            "Biopharmaceutics and Clinical Pharmacokinetics by, Milo Gibaldi",
+            "Remington's Pharmaceutical Sciences, By Mack Publishing Company, Pennsylvania.",
+            "Pharmacokinetics: By Milo Gibaldi Donald, R. Marcel Dekker Inc.",
+            "Hand Book of Clinical Pharmacokinetics, By Milo Gibaldi and Laurie Prescott by ADIS Health Science Press.",
+            "Biopharmaceutics and Pharmacokinetics; By Robert F Notari",
+            "Biopharmaceutics; By Swarbrick",
+            "Biopharmaceutics and Pharmacokinetics-A Treatise, By D. M. Brahmankar and Sunil B.Jaiswal, Vallabh Prakashan Pitampura, Delhi",
+            "Clinical Pharmacokinetics, Concepts and Applications: By Malcolm Rowland and Thomas, N. Tozer, Lea and Febiger, Philadelphia, 1995.",
+            "Dissolution, Bioavailability and Bioequivalence, By Abdou H.M, Mack, Publishing Company, Pennsylvania 1989.",
+            "Biopharmaceutics and Clinical Pharmacokinetics-An introduction 4th edition Revised and expanded by Robert F Notari Marcel Dekker Inc, New York and Basel, 1987.",
+            "Encyclopedia of Pharmaceutical Technology, Vol 13, James Swarbrick, James, C. Boylan, Marcel Dekker Inc, New York 1996."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Biopharmaceutics",
+              "details": [
+                "Introduction to Biopharmaceutics: Absorption of drugs from gastrointestinal tract, Drug Distribution, Drug Elimination."
+              ]
+            },
+            {
+              "title": "Pharmacokinetics",
+              "details": [
+                "Introduction to Pharmacokinetics: Mathematical model, Drug levels in blood, Pharmacokinetic model, Compartment models, Pharmacokinetic study.",
+                "One compartment open model: Intravenous Injection (Bolus), Intravenous infusion.",
+                "Multicompartment models: Two compartment open model, IV bolus, IV infusion and oral administration",
+                "Multiple-Dosage Regimens: Repetitive Intravenous injections - One Compartment Open Model, Repetitive Extravascular dosing - One Compartment Open model, Multiple Dose Regimen - Two Compartment Open Model",
+                "Nonlinear Pharmacokinetics: Introduction, Factors causing Non-linearity, Michaelis-menton method of estimating parameters.",
+                "Noncompartmental Pharmacokinetics: Statistical Moment Theory, MRT for various compartment models, Physiological Pharmacokinetic model.",
+                "Bioavailability and Bioequivalence: Introduction, Bioavailability study protocol, Methods of Assessment of Bioavailability"
+              ]
+            }
+          ],
+          "practicalHours": "3 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Experiments",
+              "details": [
+                "Improvement of dissolution characteristics of slightly soluble drugs by some methods.",
+                "Comparison of dissolution studies of two different marketed products of same drug.",
+                "Influence of polymorphism on solubility and dissolution.",
+                "Protein binding studies of a highly protein bound drug and poorly protein bound drug.",
+                "Extent of plasma-protein binding studies on the same drug (i.e. highly and poorly protein bound drug) at different concentrations in respect of constant time.",
+                "Bioavailability studies of some commonly used drugs on animal/human model.",
+                "Calculation of Ka, Ke, t1/2, Cmax, AUC, AUMC, MRT etc. from blood profile data.",
+                "Calculation of bioavailability from urinary excretion data for two drugs.",
+                "Calculation of AUC and bioequivalence from the given data for two drugs.",
+                "In vitro absorption studies.",
+                "Bioequivalency studies on the different drugs marketed (e.g. Tetracycline, Sulphamethoxazole, Trimethoprim, Aspirin etc.) on animals and human volunteers.",
+                "Absorption studies in animal inverted intestine using various drugs.",
+                "Effect on contact time on the plasma protein binding of drugs.",
+                "Studying metabolic pathways for different drugs based on elimination kinetics data.",
+                "Calculation of elimination half-life for different drugs by using urinary elimination data and blood level data.",
+                "Determination of renal clearance."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Clinical Toxicology",
+          "recommendedBooks": [
+            "Matthew J Ellenhorn. ELLENHORNS MEDICAL TOXICOLOGY - DIAGNOSIS AND TREATMENT OF POISONING. Second edition. Williams and Wilkins publication, London",
+            "V V Pillay. HANDBOOK OF FORENSIC MEDICINE AND TOXICOLOGY. Thirteenth edition 2003 Paras Publication, Hyderabad"
+          ],
+          "theoryHours": "2 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Syllabus",
+              "details": [
+                "General principles involved in the management of poisoning",
+                "Antidotes and the clinical applications.",
+                "Supportive care in clinical Toxicology.",
+                "Gut Decontamination.",
+                "Elimination Enhancement.",
+                "Toxicokinetics.",
+                "Clinical symptoms and management of acute poisoning with the following agents: Pesticide poisoning (organophosphorous compounds, carbamates, organochlorines, pyrethroids), Opiates overdose, Antidepressants, Barbiturates and benzodiazepines, Alcohol (ethanol, methanol), Paracetamol and salicylates, Non-steroidal anti-inflammatory drugs, Hydrocarbons (Petroleum products and PEG), Caustics (inorganic acids and alkali), Radiation poisoning",
+                "Clinical symptoms and management of chronic poisoning with the following agents: Heavy metals (Arsenic, lead, mercury, iron, copper)",
+                "Venomous snake bites: Families of venomous snakes, clinical effects of venoms, general management as first aid, early manifestations, complications and snake bite injuries.",
+                "Plants poisoning. Mushrooms, Mycotoxins.",
+                "Food poisonings",
+                "Envenomations - Arthropod bites and stings.",
+                "Substance abuse: Signs and symptoms of substance abuse and treatment of dependence (CNS stimulants: amphetamine, Opioids, CNS depressants, Hallucinogens: LSD, Cannabis group, Tobacco)"
+              ]
+            }
+          ],
+          "practicalHours": "0 Hrs./Week",
+          "practicalSubjects": []
+        }
+      ]
+    },
+    "5": {
+      "subjects": [
+        {
+          "title": "Clinical Research",
+          "recommendedBooks": [
+            "Central Drugs Standard Control Organization. Good Clinical Practices-Guidelines for Clinical Trials on Pharmaceutical Products in India. New Delhi: Ministry of Health; 2001.",
+            "International Conference on Harmonisation of Technical requirements for registration of Pharmaceuticals for human use. ICH Harmonised Tripartite Guideline. Guideline for Good Clinical Practice. E6; May 1996.",
+            "Ethical Guidelines for Biomedical Research on Human Subjects 2000. Indian Council of Medical Research, New Delhi.",
+            "Textbook of Clinical Trials edited by David Machin, Simon Day and Sylvan Green, March 2005, John Wiley and Sons.",
+            "Principles of Clinical Research edited by Giovanna di Ignazio, Di Giovanna and Haynes.",
+            "Clinical Data Management edited by RK Rondels, S A Varley, CF Webbs. Second Edition, Jan 2000, Wiley Publications.",
+            "Goodman & Gilman: JG Hardman, LE Limbird, 10th Edn. McGraw Hill Publications, 2001."
+          ],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Drug development process",
+              "details": [
+                "Introduction",
+                "Various Approaches to drug discovery: Pharmacological, Toxicological, IND Application, Drug characterization, Dosage form"
+              ]
+            },
+            {
+              "title": "Clinical development of drug",
+              "details": [
+                "Introduction to Clinical trials",
+                "Various phases of clinical trial.",
+                "Methods of post marketing surveillance",
+                "Abbreviated New Drug Application submission.",
+                "Good Clinical Practice - ICH, GCP, Central drug standard control organisation (CDSCO) guidelines",
+                "Challenges in the implementation of guidelines",
+                "Ethical guidelines in Clinical Research",
+                "Composition, responsibilities, procedures of IRB / IEC",
+                "Overview of regulatory environment in USA, Europe and India.",
+                "Role and responsibilities of clinical trial personnel as per ICH GCP: Sponsor, Investigators, Clinical research associate, Auditors, Contract research coordinators, Regulatory authority",
+                "Designing of clinical study documents (protocol, CRF, ICF, PIC with assignment)",
+                "Informed consent Process",
+                "Data management and its components",
+                "Safety monitoring in clinical trials."
+              ]
+            }
+          ],
+          "practicalHours": "0 Hrs./Week",
+          "practicalSubjects": []
+        },
+        {
+          "title": "Pharmacoepidemiology and Pharmacoeconomics",
+          "recommendedBooks": [],
+          "theoryHours": "3 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Pharmacoepidemiology",
+              "details": [
+                "Definition and scope: Origin and evaluation of pharmacoepidemiology, need for pharmacoepidemiology, aims and applications.",
+                "Measurement of outcomes in pharmacoepidemiology: Outcome measure and drug use measures; Prevalence, incidence and incidence rate. Monetary units, number of prescriptions, units of drugs dispensed, defined daily doses and prescribed daily doses, medication adherence measurement",
+                "Concept of risk in pharmacoepidemiology: Measurement of risk, attributable risk and relative risk, time-risk relationship and odds ratio",
+                "Pharmacoepidemiological methods: Drug utilization review, case reports, case series, surveys of drug use, cross sectional studies, cohort studies, case control studies, case-cohort studies, meta analysis studies, spontaneous reporting, prescription event monitoring and record linkage system.",
+                "Sources of data for pharmacoepidemiological studies: Ad Hoc data sources and automated data systems.",
+                "Selected special applications of pharmacoepidemiology: Studies of vaccine safety, hospital pharmacoepidemiology, pharmacoepidemiology and risk management, drug induced birth defects."
+              ]
+            },
+            {
+              "title": "Pharmacoeconomics",
+              "details": [
+                "Definition, history, needs of pharmacoeconomic evaluations",
+                "Role in formulary management decisions",
+                "Pharmacoeconomic evaluation: Outcome assessment and types of evaluation; Cost-minimization, cost-benefit, cost-effectiveness, cost-utility",
+                "Applications of Pharmacoeconomics: Software and case studies"
+              ]
+            }
+          ],
+          "practicalHours": "0 Hrs./Week",
+          "practicalSubjects": []
+        },
+        {
+          "title": "Clinical Pharmacokinetics & Pharmacotherapeutic Drug Monitoring",
+          "recommendedBooks": [],
+          "theoryHours": "2 Hrs./Week",
+          "theorySubjects": [
+            {
+              "title": "Syllabus",
+              "details": [
+                "Introduction to Clinical pharmacokinetics.",
+                "Design of dosage regimens: Nomograms and Tabulations in designing dosage regimen, Conversion from intravenous to oral dosing, Determination of dose and dosing intervals, Drug dosing in the elderly and pediatrics and obese patients.",
+                "Pharmacokinetics of Drug Interaction: Pharmacokinetic drug interactions, Inhibition and Induction of Drug metabolism, Inhibition of Biliary Excretion.",
+                "Therapeutic Drug monitoring: Introduction, Individualization of drug dosage regimen (Variability - Genetic, Age and Weight, disease, Interacting drugs), Indications for TDM, Protocol for TDM, Pharmacokinetic/Pharmacodynamic Correlation in drug therapy, TDM of drugs used in cardiovascular disease, Seizure disorders, Psychiatric conditions, and Organ transplantations.",
+                "Dosage adjustment in Renal and hepatic Disease: Renal impairment, Pharmacokinetic considerations, General approach for dosage adjustment in Renal disease, Measurement of Glomerular Filtration rate and creatinine clearance, Dosage adjustment for uremic patients, Extracorporeal removal of drugs, Effect of Hepatic disease on pharmacokinetics.",
+                "Population Pharmacokinetics: Introduction to Bayesian Theory, Adaptive method or Dosing with feedback, Analysis of Population pharmacokinetic Data.",
+                "Pharmacogenetics: Genetic polymorphism in Drug metabolism (Cytochrome P-450 Isoenzymes), Genetic Polymorphism in Drug Transport and Drug Targets, Pharmacogenetics and Pharmacokinetics/Pharmacodynamic considerations"
+              ]
+            }
+          ],
+          "practicalHours": "0 Hrs./Week",
+          "practicalSubjects": []
+        },
+        {
+          "title": "Clerkship",
+          "recommendedBooks": [],
+          "theoryHours": "0 Hrs./Week (1 Hr/Week Seminar)",
+          "theorySubjects": [],
+          "practicalHours": "Attending ward rounds on daily basis (half a day in the morning hours)",
+          "practicalSubjects": [
+            {
+              "title": "Clerkship Activities & Examination",
+              "details": [
+                "Attending ward rounds on daily basis.",
+                "Oral examination conducted after completion of clerkship: Presenting allotted medical cases followed by discussion. Assessment of capabilities in delivering clinical pharmacy services, pharmaceutical care planning and knowledge of therapeutics."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Project Work (Six Months)",
+          "recommendedBooks": [],
+          "theoryHours": "0 Hrs./Week",
+          "theorySubjects": [],
+          "practicalHours": "20 Hrs./Week",
+          "practicalSubjects": [
+            {
+              "title": "Project Work Objectives & Methodology",
+              "details": [
+                "To allow the student to develop data collection and reporting skills in the area of community, hospital and clinical pharmacy under the supervision of a teacher.",
+                "Comprises objectives of the work, methodology, results, discussions and conclusions.",
+                "Related to pharmacy practice in community, hospital and clinical setup (patient and treatment oriented, like drug utilisation reviews, pharmacoepidemiology, pharmacovigilance or pharmacoeconomics).",
+                "Students work in groups of 2 to 4, present at least three seminars, and submit a 40-50 page written report."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "6": {
+      "subjects": [
+        {
+          "title": "Internship or Residency Training",
+          "recommendedBooks": [],
+          "theoryHours": "0 Hrs./Week",
+          "theorySubjects": [],
+          "practicalHours": "Full time (12 Months)",
+          "practicalSubjects": [
+            {
+              "title": "Postings in Speciality Units",
+              "details": [
+                "Student should independently provide the clinical pharmacy services to the allotted wards.",
+                "Six months in General Medicine department.",
+                "Two months each in three other speciality departments (from Surgery, Pediatrics, Gynecology and obstetrics, Psychiatry, Skin and VD, Orthopedics)."
+              ]
+            },
+            {
+              "title": "Specific Objectives",
+              "details": [
+                "Provide patient care in cooperation with patients, prescribers, and other members of an interprofessional health care team.",
+                "Manage and use resources of the health care system to provide safe, accurate, and time-sensitive medication distribution.",
+                "Promote health improvement, wellness, and disease prevention.",
+                "Demonstrate skills in monitoring of the National Health Programmes and schemes.",
+                "Develop leadership qualities to function effectively as a member of the health care team.",
+                "Communicate effectively with patients and the community."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

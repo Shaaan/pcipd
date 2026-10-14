@@ -17,10 +17,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven { url='https://jitpack.io' }
     }
 }
 
 rootProject.name = "PCIPD" // Optional: Good practice to set your project name
 include ':app'
-include ':shared'

@@ -7,7 +7,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
-import com.google.firebase.database.getValue
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +16,6 @@ import kotlinx.coroutines.launch
 
 // Using the same YearInfo data class as HomeViewModel
 // It holds the data the UI grid needs: the year and a count.
-// data class YearInfo(val year: Int, val subjectCount: Int) is already defined in HomeViewModel.kt
 
 // A specific UI state for this screen
 sealed interface QuestionPapersUiState {
@@ -40,15 +38,7 @@ class QuestionPapersViewModel : ViewModel() {
             _uiState.value = QuestionPapersUiState.Loading
             fetchAllQuestionPaperData().collect { result ->
                 result.fold(
-                    onSuccess = { paperMap ->
-                        // WHAT: Transform the map from the database into a simple list for the UI.
-                        // WHY: This prepares the data exactly as the UI needs it, simplifying the UI code.
-                        val yearInfoList = paperMap.map { (year, papers) ->
-                            YearInfo(
-                                year = year.toInt(),
-                                subjectCount = papers.size // Here the count is for papers
-                            )
-                        }.sortedBy { it.year }
+                    onSuccess = { yearInfoList ->
                         _uiState.value = QuestionPapersUiState.Success(yearInfoList)
                     },
                     onFailure = {
@@ -59,18 +49,21 @@ class QuestionPapersViewModel : ViewModel() {
         }
     }
 
-    // WHAT: Fetches the entire "question_papers" node from RTDB at once.
-    // WHY: This is highly efficient, minimizing network calls.
-    private fun fetchAllQuestionPaperData(): Flow<Result<Map<String, List<QuestionPaper>>>> = callbackFlow {
-        val papersRef = Firebase.database.reference.child("question_papers")
+    private fun fetchAllQuestionPaperData(): Flow<Result<List<YearInfo>>> = callbackFlow {
+        val databaseUrl = "https://pcipd-34920.firebaseio.com/"
+        val papersRef = Firebase.database(databaseUrl).reference.child("question_papers")
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val data = snapshot.getValue<Map<String, List<QuestionPaper>>>()
-                if (data != null) {
-                    trySend(Result.success(data))
-                } else {
-                    // It's valid to have no papers, so send an empty map instead of an error.
-                    trySend(Result.success(emptyMap()))
+                try {
+                    val yearInfoList = mutableListOf<YearInfo>()
+                    for (child in snapshot.children) {
+                        val yearKey = child.key?.toIntOrNull() ?: continue
+                        val papers = child.children.mapNotNull { it.getValue(QuestionPaper::class.java) }
+                        yearInfoList.add(YearInfo(year = yearKey, subjectCount = papers.size))
+                    }
+                    trySend(Result.success(yearInfoList.sortedBy { it.year }))
+                } catch (e: Exception) {
+                    trySend(Result.failure(e))
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -78,6 +71,6 @@ class QuestionPapersViewModel : ViewModel() {
             }
         }
         papersRef.addListenerForSingleValueEvent(listener)
-        awaitClose { }
+        awaitClose { papersRef.removeEventListener(listener) }
     }
 }

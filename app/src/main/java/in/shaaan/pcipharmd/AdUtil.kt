@@ -16,21 +16,37 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import `in`.shaaan.pcipharmd.config.RemoteConfigHelper
 
 object AdUtil {
-    // WHAT: Ad Unit IDs are now sourced from the RemoteConfigHelper.
-    // WHY: To make the ad unit IDs fully dynamic and updatable from the Firebase console
-    //      without needing to release a new app version.
-    // HOW: By calling the getter properties on the RemoteConfigHelper object.
     private val AD_UNIT_ID get() = RemoteConfigHelper.interstitialAdUnitId
     val NATIVE_AD_UNIT_ID get() = RemoteConfigHelper.nativeAdUnitId
 
     private var interstitialAd: InterstitialAd? = null
     private var adIsLoading = false
 
+    private val ALLOWED_HOSTS = setOf("pcipd.hypertex.co.in", "pci.gov.in", "pcipd-34920.firebaseio.com")
+
+    private fun isValidSyllabusUrl(url: String): Boolean {
+        return try {
+            val uri = url.toUri()
+            val scheme = uri.scheme
+            val host = uri.host
+            (scheme == "http" || scheme == "https") && (host != null && ALLOWED_HOSTS.any { host.endsWith(it) })
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    private fun launchValidatedUrl(activity: Activity, url: String, customTabsIntent: CustomTabsIntent) {
+        if (isValidSyllabusUrl(url)) {
+            customTabsIntent.launchUrl(activity, url.toUri())
+        } else {
+            Log.e("AdUtil", "Blocked opening untrusted URL: $url")
+        }
+    }
+
     fun loadInterAd(context: Context) {
         if (adIsLoading || interstitialAd != null) {
             return
         }
-        // Ensure we don't try to load an ad with an empty ID
         val adUnitId = AD_UNIT_ID
         if (adUnitId.isEmpty()) {
             Log.w("AdUtil", "Interstitial Ad Unit ID is empty. Ad not loaded.")
@@ -55,28 +71,29 @@ object AdUtil {
                     adIsLoading = false
                     Log.i("AdUtil", "Interstitial ad loaded successfully.")
                 }
-            })
+            }
+        )
     }
 
     fun showInterAd(activity: Activity, syllabusUrl: String, @ColorInt toolbarColor: Int) {
-        val customTabsIntent = buildCustomTabsIntent(activity, toolbarColor)
+        val customTabsIntent = buildCustomTabsIntent(toolbarColor)
 
         val ad = interstitialAd
         if (ad == null) {
-            customTabsIntent.launchUrl(activity, syllabusUrl.toUri())
+            launchValidatedUrl(activity, syllabusUrl, customTabsIntent)
             loadInterAd(activity)
             return
         }
 
         ad.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdDismissedFullScreenContent() {
-                customTabsIntent.launchUrl(activity, syllabusUrl.toUri())
+                launchValidatedUrl(activity, syllabusUrl, customTabsIntent)
                 interstitialAd = null
                 loadInterAd(activity)
             }
 
             override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                customTabsIntent.launchUrl(activity, syllabusUrl.toUri())
+                launchValidatedUrl(activity, syllabusUrl, customTabsIntent)
                 interstitialAd = null
                 loadInterAd(activity)
             }
@@ -88,10 +105,7 @@ object AdUtil {
         ad.show(activity)
     }
 
-    private fun buildCustomTabsIntent(
-        context: Context,
-        @ColorInt toolbarColor: Int
-    ): CustomTabsIntent {
+    private fun buildCustomTabsIntent(@ColorInt toolbarColor: Int): CustomTabsIntent {
         val params = CustomTabColorSchemeParams.Builder()
             .setToolbarColor(toolbarColor)
             .build()
@@ -101,5 +115,4 @@ object AdUtil {
             .setShowTitle(true)
             .build()
     }
-
 }

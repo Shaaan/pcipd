@@ -1,5 +1,3 @@
-// app/src/main/java/in/shaaan/pcipharmd/ui/components/AdComposables.kt (New File)
-
 package `in`.shaaan.pcipharmd
 
 import android.content.Context
@@ -48,8 +46,11 @@ private sealed class AdResult {
 }
 
 @Composable
-fun NativeAdComposable(modifier: Modifier = Modifier, adUnitId: String) {
-    var nativeAd by remember { mutableStateOf<NativeAd?>(null) }
+fun NativeAdComposable(
+    modifier: Modifier = Modifier,
+    adUnitId: String,
+    onAdFailed: () -> Unit = {}
+) {
     var adState by remember { mutableStateOf<AdState>(AdState.Loading) }
     val context = LocalContext.current
 
@@ -69,32 +70,30 @@ fun NativeAdComposable(modifier: Modifier = Modifier, adUnitId: String) {
         when (state) {
             is AdState.Loading -> ShimmerAdPlaceholder()
             is AdState.Loaded -> {
-                // This block now only runs when we are sure we have an ad to show.
                 AndroidView(
                     factory = { ctx ->
-                        // 1. Inflate the XML layout in the factory. This is called only once.
                         LayoutInflater.from(ctx).inflate(R.layout.ad_unified_custom, null) as NativeAdView
                     },
                     update = { adView ->
-                        // 2. Populate the view in the update block. This is called when the
-                        //    factory completes and whenever the state changes.
                         populateNativeAdView(state.nativeAd, adView)
                     }
                 )
             }
 
             AdState.Failed -> {
-                // Render nothing if the ad fails to load.
                 Spacer(modifier = Modifier.height(0.dp))
             }
         }
     }
+
     LaunchedEffect(adUnitId) {
         loadNativeAd(context, adUnitId) { result ->
-            // The result is handled cleanly in a single when block.
             adState = when (result) {
                 is AdResult.Loaded -> AdState.Loaded(result.nativeAd)
-                is AdResult.Failed -> AdState.Failed
+                is AdResult.Failed -> {
+                    onAdFailed()
+                    AdState.Failed
+                }
             }
         }
     }
@@ -168,7 +167,6 @@ private fun populateNativeAdView(nativeAd: NativeAd, adView: NativeAdView) {
     adView.starRatingView = adView.findViewById<RatingBar>(R.id.ad_stars)
     adView.advertiserView = adView.findViewById<TextView>(R.id.ad_advertiser)
 
-    // Populate the content.
     (adView.headlineView as TextView).text = nativeAd.headline
     adView.mediaView?.mediaContent = nativeAd.mediaContent
 
@@ -207,6 +205,5 @@ private fun populateNativeAdView(nativeAd: NativeAd, adView: NativeAdView) {
         adView.advertiserView?.visibility = View.VISIBLE
     }
 
-    // Register the ad object with the view. This is the crucial final step.
     adView.setNativeAd(nativeAd)
 }

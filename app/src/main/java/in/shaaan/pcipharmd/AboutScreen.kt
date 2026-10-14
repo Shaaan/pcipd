@@ -1,4 +1,4 @@
-package `in`.shaaan.pcipharmd.ui.screen
+package `in`.shaaan.pcipharmd
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -10,13 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import `in`.shaaan.pcipharmd.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(navController: NavController) {
-    // WHAT: Removed the Scaffold and TopAppBar.
-    // WHY: This is now handled by the central Scaffold in MainActivity.
     Column(
         modifier = Modifier.padding(16.dp)
     ) {
@@ -25,9 +22,8 @@ fun AboutScreen(navController: NavController) {
             style = MaterialTheme.typography.headlineSmall
         )
         Text(
-            text = "Version 4.0", // This could be dynamic
+            text = "Version 4.0",
             style = MaterialTheme.typography.bodyMedium
         )
-        // Add more about text here
     }
 }

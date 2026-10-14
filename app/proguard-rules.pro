@@ -1,31 +1,35 @@
 # Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in /home/shantanu/SDK/android-sdk-linux/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the proguardFiles
-# directive in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
 
-# Add any project specific keep options here:
+# Keep annotations & signature attributes required by Firebase / Kotlin Reflection
+-keepattributes Signature, *Annotation*, InnerClasses, EnclosingMethod
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-# Recommended flags for Firebase Auth
--keepattributes Signature
--keepattributes *Annotation*
-
-# Retrofit config
--dontnote com.google.**
--dontnote com.squareup.okhttp.**
--dontnote okhttp3.internal.**
-
-# Firebase
--keepclassmembers class com.yourcompany.models.** {
-  *;
+# Keep @Keep annotated classes
+-keep @androidx.annotation.Keep class * { *; }
+-keepclassmembers class * {
+    @androidx.annotation.Keep *;
 }
+
+# Keep Firebase Realtime Database Deserializer
+-keep class com.google.firebase.database.DataSnapshot { *; }
+
+# Keep all app data models used for Firebase deserialization
+-keep class in.shaaan.pcipharmd.models.** { *; }
+-keepclassmembers class in.shaaan.pcipharmd.models.** {
+    public <init>();
+    public <fields>;
+    public <methods>;
+}
+
+# Keep YearData inside SyllabusRepository
+-keep class in.shaaan.pcipharmd.repository.SyllabusRepository$YearData { *; }
+-keepclassmembers class in.shaaan.pcipharmd.repository.SyllabusRepository$YearData {
+    public <init>();
+    public <fields>;
+    public <methods>;
+}
+
+# Keep AdMob Native Ad Custom Views
+-keep class com.google.android.gms.ads.nativead.NativeAdView { *; }
+-keep class com.google.android.gms.ads.nativead.MediaView { *; }
+
+-dontnote com.google.**
