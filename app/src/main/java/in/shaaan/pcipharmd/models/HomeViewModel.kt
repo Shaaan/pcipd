@@ -9,6 +9,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import androidx.annotation.Keep
+import androidx.compose.runtime.Immutable
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +20,8 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 
 // Data class to hold the specific information the Home Screen UI needs
+@Keep
+@Immutable
 data class YearInfo(val year: Int, val subjectCount: Int)
 
 // Sealed interface to represent the different states of the Home Screen UI

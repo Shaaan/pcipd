@@ -1,6 +1,5 @@
 package `in`.shaaan.pcipharmd
 
-import android.app.Activity
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
@@ -30,6 +29,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import `in`.shaaan.pcipharmd.models.Subject
@@ -52,7 +52,7 @@ fun SharedTransitionScope.YearScreen(
 
     LaunchedEffect(Unit) {
         viewModel.navigationEvents.collect { url ->
-            AdUtil.showInterAd(context as Activity, url, primaryColor)
+            AdUtil.showInterAd(context, url, primaryColor)
         }
     }
 
@@ -60,7 +60,7 @@ fun SharedTransitionScope.YearScreen(
         viewModel.fetchSyllabusForYear(year)
     }
 
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Box(
         modifier = Modifier

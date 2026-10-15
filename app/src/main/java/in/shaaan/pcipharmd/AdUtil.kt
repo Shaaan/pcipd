@@ -2,6 +2,7 @@ package `in`.shaaan.pcipharmd
 
 import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
 import android.util.Log
 import androidx.annotation.ColorInt
 import androidx.browser.customtabs.CustomTabColorSchemeParams
@@ -14,6 +15,15 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import `in`.shaaan.pcipharmd.config.RemoteConfigHelper
+
+fun Context.findActivity(): Activity? {
+    var ctx = this
+    while (ctx is ContextWrapper) {
+        if (ctx is Activity) return ctx
+        ctx = ctx.baseContext
+    }
+    return null
+}
 
 object AdUtil {
     private val AD_UNIT_ID get() = RemoteConfigHelper.interstitialAdUnitId
@@ -75,13 +85,19 @@ object AdUtil {
         )
     }
 
-    fun showInterAd(activity: Activity, syllabusUrl: String, @ColorInt toolbarColor: Int) {
+    fun showInterAd(context: Context, syllabusUrl: String, @ColorInt toolbarColor: Int) {
+        val activity = context.findActivity()
         val customTabsIntent = buildCustomTabsIntent(toolbarColor)
+
+        if (activity == null) {
+            Log.e("AdUtil", "Could not resolve Activity from context for showing ad.")
+            return
+        }
 
         val ad = interstitialAd
         if (ad == null) {
             launchValidatedUrl(activity, syllabusUrl, customTabsIntent)
-            loadInterAd(activity)
+            loadInterAd(context)
             return
         }
 
@@ -89,13 +105,13 @@ object AdUtil {
             override fun onAdDismissedFullScreenContent() {
                 launchValidatedUrl(activity, syllabusUrl, customTabsIntent)
                 interstitialAd = null
-                loadInterAd(activity)
+                loadInterAd(context)
             }
 
             override fun onAdFailedToShowFullScreenContent(adError: AdError) {
                 launchValidatedUrl(activity, syllabusUrl, customTabsIntent)
                 interstitialAd = null
-                loadInterAd(activity)
+                loadInterAd(context)
             }
 
             override fun onAdShowedFullScreenContent() {

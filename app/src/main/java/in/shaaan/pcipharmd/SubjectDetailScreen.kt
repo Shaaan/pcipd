@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import `in`.shaaan.pcipharmd.models.Subject
 import `in`.shaaan.pcipharmd.models.SubjectDetailUiState
@@ -37,7 +38,7 @@ fun SubjectDetailScreen(
         detailViewModel.loadSubject(yearId, subjectIndex)
     }
 
-    val uiState by detailViewModel.uiState.collectAsState()
+    val uiState by detailViewModel.uiState.collectAsStateWithLifecycle()
 
     Box(
         modifier = Modifier.fillMaxSize(),

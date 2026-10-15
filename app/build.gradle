@@ -25,7 +25,6 @@ android {
         applicationId "in.shaaan.pcipharmd"
         minSdk 26
         targetSdk 37
-        //        versionCode getVersionCodeTimestamp()
         versionCode 1909301662
         versionName "4.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -53,23 +52,12 @@ android {
         viewBinding=true
         buildConfig=true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion=libs.versions.composeCompiler.get()
-    }
     namespace='in.shaaan.pcipharmd'
 }
 
 kotlin {
-    jvmToolchain(21) // Or your desired Java version (e.g., 21)
+    jvmToolchain(21)
 }
-
-//def getVersionCodeTimestamp() {
-//    def date = new Date()
-//    def formattedDate = date.format('yyMMddHHmm')
-//    def code = formattedDate.toBigInteger()
-//    println sprintf("VersionCode: %d", code)
-//    return code
-//}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -90,6 +78,7 @@ dependencies {
     implementation libs.androidx.compose.runtime.livedata
     implementation libs.androidx.compose.ui.tooling
     implementation libs.androidx.activity.compose
+    implementation libs.androidx.lifecycle.runtime.compose
     implementation libs.androidx.compose.ui.tooling.preview
     implementation libs.androidx.navigation.compose
     implementation libs.androidx.compose.ui.viewbinding
@@ -110,7 +99,6 @@ dependencies {
     implementation libs.firebase.remote.config
     implementation libs.google.play.review.ktx
     implementation libs.firebase.database
-
 
     testImplementation libs.junit
 

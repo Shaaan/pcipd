@@ -1,6 +1,7 @@
 package `in`.shaaan.pcipharmd
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -159,51 +160,79 @@ private fun ShimmerAdPlaceholder() {
 }
 
 private fun populateNativeAdView(nativeAd: NativeAd, adView: NativeAdView) {
-    adView.mediaView = adView.findViewById<MediaView>(R.id.ad_media)
-    adView.headlineView = adView.findViewById<TextView>(R.id.ad_headline)
-    adView.bodyView = adView.findViewById<TextView>(R.id.ad_body)
-    adView.callToActionView = adView.findViewById<Button>(R.id.ad_call_to_action)
-    adView.iconView = adView.findViewById<ImageView>(R.id.ad_app_icon)
-    adView.starRatingView = adView.findViewById<RatingBar>(R.id.ad_stars)
-    adView.advertiserView = adView.findViewById<TextView>(R.id.ad_advertiser)
+    try {
+        adView.mediaView = adView.findViewById(R.id.ad_media)
+        adView.headlineView = adView.findViewById(R.id.ad_headline)
+        adView.bodyView = adView.findViewById(R.id.ad_body)
+        adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
+        adView.iconView = adView.findViewById(R.id.ad_app_icon)
+        adView.starRatingView = adView.findViewById(R.id.ad_stars)
+        adView.advertiserView = adView.findViewById(R.id.ad_advertiser)
 
-    (adView.headlineView as TextView).text = nativeAd.headline
-    adView.mediaView?.mediaContent = nativeAd.mediaContent
+        // Headline
+        (adView.headlineView as? TextView)?.text = nativeAd.headline
 
-    if (nativeAd.body == null) {
-        adView.bodyView?.visibility = View.INVISIBLE
-    } else {
-        adView.bodyView?.visibility = View.VISIBLE
-        (adView.bodyView as TextView).text = nativeAd.body
+        // Media
+        adView.mediaView?.mediaContent = nativeAd.mediaContent
+
+        // Body
+        val bodyView = adView.bodyView as? TextView
+        if (bodyView != null) {
+            if (nativeAd.body == null) {
+                bodyView.visibility = View.INVISIBLE
+            } else {
+                bodyView.visibility = View.VISIBLE
+                bodyView.text = nativeAd.body
+            }
+        }
+
+        // Call to Action
+        val ctaView = adView.callToActionView as? Button
+        if (ctaView != null) {
+            if (nativeAd.callToAction == null) {
+                ctaView.visibility = View.INVISIBLE
+            } else {
+                ctaView.visibility = View.VISIBLE
+                ctaView.text = nativeAd.callToAction
+            }
+        }
+
+        // App Icon
+        val iconView = adView.iconView as? ImageView
+        if (iconView != null) {
+            if (nativeAd.icon == null) {
+                iconView.visibility = View.GONE
+            } else {
+                iconView.setImageDrawable(nativeAd.icon?.drawable)
+                iconView.visibility = View.VISIBLE
+            }
+        }
+
+        // Star Rating (Safely check if view exists in XML)
+        val starRatingView = adView.starRatingView as? RatingBar
+        if (starRatingView != null) {
+            if (nativeAd.starRating == null) {
+                starRatingView.visibility = View.INVISIBLE
+            } else {
+                starRatingView.rating = nativeAd.starRating!!.toFloat()
+                starRatingView.visibility = View.VISIBLE
+            }
+        }
+
+        // Advertiser (Safely check if view exists in XML)
+        val advertiserView = adView.advertiserView as? TextView
+        if (advertiserView != null) {
+            if (nativeAd.advertiser == null) {
+                advertiserView.visibility = View.INVISIBLE
+            } else {
+                advertiserView.text = nativeAd.advertiser
+                advertiserView.visibility = View.VISIBLE
+            }
+        }
+
+        // Register native ad
+        adView.setNativeAd(nativeAd)
+    } catch (e: Exception) {
+        Log.e("AdComposables", "Error populating native ad view", e)
     }
-
-    if (nativeAd.callToAction == null) {
-        adView.callToActionView?.visibility = View.INVISIBLE
-    } else {
-        adView.callToActionView?.visibility = View.VISIBLE
-        (adView.callToActionView as Button).text = nativeAd.callToAction
-    }
-
-    if (nativeAd.icon == null) {
-        adView.iconView?.visibility = View.GONE
-    } else {
-        (adView.iconView as ImageView).setImageDrawable(nativeAd.icon?.drawable)
-        adView.iconView?.visibility = View.VISIBLE
-    }
-
-    if (nativeAd.starRating == null) {
-        adView.starRatingView?.visibility = View.INVISIBLE
-    } else {
-        (adView.starRatingView as RatingBar).rating = nativeAd.starRating!!.toFloat()
-        adView.starRatingView?.visibility = View.VISIBLE
-    }
-
-    if (nativeAd.advertiser == null) {
-        adView.advertiserView?.visibility = View.INVISIBLE
-    } else {
-        (adView.advertiserView as TextView).text = nativeAd.advertiser
-        adView.advertiserView?.visibility = View.VISIBLE
-    }
-
-    adView.setNativeAd(nativeAd)
 }

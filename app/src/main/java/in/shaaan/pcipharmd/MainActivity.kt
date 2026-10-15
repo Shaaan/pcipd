@@ -3,6 +3,7 @@ package `in`.shaaan.pcipharmd
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.SharedTransitionScope
@@ -14,11 +15,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.core.view.WindowCompat
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        enableEdgeToEdge()
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -90,7 +90,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainApp(onShowReview: () -> Unit) {
     val navController = rememberNavController()
-    val showQuestionPapers by RemoteConfigHelper.showQuestionPapersFlow.collectAsState()
+    val showQuestionPapers by RemoteConfigHelper.showQuestionPapersFlow.collectAsStateWithLifecycle()
     val bottomNavItems = if (showQuestionPapers) {
         listOf(Screen.Syllabus, Screen.QuestionPapers)
     } else {
