@@ -167,3 +167,4 @@ keystore.properties
 .artifacts/
 app/release/
 gemini-code-*.json
+.kotlin/

@@ -9,19 +9,17 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
-import androidx.annotation.Keep
-import androidx.compose.runtime.Immutable
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
 // Data class to hold the specific information the Home Screen UI needs
-@Keep
-@Immutable
 data class YearInfo(val year: Int, val subjectCount: Int)
 
 // Sealed interface to represent the different states of the Home Screen UI
@@ -96,8 +94,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     }
 
                     if (yearMap.isEmpty()) {
-                        val fallback = loadYearInfoFromAsset(getApplication())
-                        trySend(Result.success(fallback))
+                        viewModelScope.launch(Dispatchers.IO) {
+                            val fallback = loadYearInfoFromAsset(getApplication())
+                            trySend(Result.success(fallback))
+                        }
                         return
                     }
 
@@ -110,14 +110,18 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
                     trySend(Result.success(yearInfoList.sortedBy { it.year }))
                 } catch (_: Exception) {
-                    val fallback = loadYearInfoFromAsset(getApplication())
-                    trySend(Result.success(fallback))
+                    viewModelScope.launch(Dispatchers.IO) {
+                        val fallback = loadYearInfoFromAsset(getApplication())
+                        trySend(Result.success(fallback))
+                    }
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                val fallback = loadYearInfoFromAsset(getApplication())
-                trySend(Result.success(fallback))
+                viewModelScope.launch(Dispatchers.IO) {
+                    val fallback = loadYearInfoFromAsset(getApplication())
+                    trySend(Result.success(fallback))
+                }
             }
         }
 
@@ -125,8 +129,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         awaitClose { syllabusRef.removeEventListener(listener) }
     }
 
-    private fun loadYearInfoFromAsset(context: Context): List<YearInfo> {
-        return try {
+    private suspend fun loadYearInfoFromAsset(context: Context): List<YearInfo> = withContext(Dispatchers.IO) {
+        try {
             val jsonString = context.assets.open("syllabus_default.json").bufferedReader().use { it.readText() }
             val rootObj = JSONObject(jsonString)
             val targetObj = if (rootObj.has("syllabus")) rootObj.getJSONObject("syllabus") else rootObj

@@ -102,17 +102,17 @@ object SyllabusRepository {
         }
     }
 
-    fun loadYearSubjectsFromAsset(context: Context, year: Int): List<Subject> {
-        return try {
+    suspend fun loadYearSubjectsFromAsset(context: Context, year: Int): List<Subject> = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+        try {
             val jsonString = context.assets.open("syllabus_default.json").bufferedReader().use { it.readText() }
             val rootObj = JSONObject(jsonString)
             val targetObj = if (rootObj.has("syllabus")) rootObj.getJSONObject("syllabus") else rootObj
 
             val yearKey = year.toString()
-            if (!targetObj.has(yearKey)) return emptyList()
+            if (!targetObj.has(yearKey)) return@withContext emptyList()
 
             val yearObj = targetObj.getJSONObject(yearKey)
-            if (!yearObj.has("subjects")) return emptyList()
+            if (!yearObj.has("subjects")) return@withContext emptyList()
 
             val subjectsArray = yearObj.getJSONArray("subjects")
             val list = mutableListOf<Subject>()

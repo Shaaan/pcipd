@@ -14,7 +14,7 @@ lifecycleRuntimeCompose = "2.11.0"
 
 # Google & Firebase
 playServicesAds = "25.5.0"
-firebaseBom = "35.0.0"
+firebaseBom = "35.0.1"
 googlePlayReview = "2.0.2"
 
 # Third Party

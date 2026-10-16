@@ -2,6 +2,7 @@ package `in`.shaaan.pcipharmd.models
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import `in`.shaaan.pcipharmd.repository.SyllabusRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,12 +15,25 @@ sealed interface SubjectDetailUiState {
     data object Loading : SubjectDetailUiState
 }
 
-class SubjectDetailViewModel(application: Application) : AndroidViewModel(application) {
+class SubjectDetailViewModel(
+    application: Application,
+    private val savedStateHandle: SavedStateHandle
+) : AndroidViewModel(application) {
 
     private val _uiState = MutableStateFlow<SubjectDetailUiState>(SubjectDetailUiState.Loading)
     val uiState: StateFlow<SubjectDetailUiState> = _uiState
 
+    init {
+        val savedYearId = savedStateHandle.get<Int>("yearId")
+        val savedSubjectIndex = savedStateHandle.get<Int>("subjectIndex")
+        if (savedYearId != null && savedSubjectIndex != null && savedYearId > 0 && savedSubjectIndex >= 0) {
+            loadSubject(savedYearId, savedSubjectIndex)
+        }
+    }
+
     fun loadSubject(yearId: Int, subjectIndex: Int) {
+        savedStateHandle["yearId"] = yearId
+        savedStateHandle["subjectIndex"] = subjectIndex
         viewModelScope.launch {
             _uiState.value = SubjectDetailUiState.Loading
             val result = SyllabusRepository.getDataForYear(getApplication(), yearId)
